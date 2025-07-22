@@ -8,7 +8,7 @@ My account with draft  - System user (submitted) – GOV.UK Prototype Kit
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-     <form class="form" action="#" method="post">
+     <form class="form" action="start-draft-assessment" method="post">
      
       {% set html %}
   <p class="govuk-notification-banner__heading">
@@ -18,7 +18,7 @@ My account with draft  - System user (submitted) – GOV.UK Prototype Kit
 {{ govukNotificationBanner({
   html: html
 }) }}
-
+</form>
  <h2 class="govuk-heading-l">
         My account
       </h2>
@@ -27,7 +27,6 @@ My account with draft  - System user (submitted) – GOV.UK Prototype Kit
   text: "Start a draft assessment",
   classes: "govuk-button--secondary"
 }) }}
-</form>
 <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
        Draft assessments
       </h3>
@@ -42,9 +41,23 @@ My account with draft  - System user (submitted) – GOV.UK Prototype Kit
 <Br>
 <h3 class="govuk-heading-m">
        Submitted assessments
-      </h3>  
-    <p class="govuk-body govuk-!-margin-bottom-2 govuk-hint">You didn't submit an assessment.<p>
-       
+      </h3>
+      
+
+    <p class="govuk-body govuk-!-margin-bottom-2">You submitted 1 assessment for an independent review<p>
+      <a href="#" class="govuk-link govuk-link--no-visited-state">
+                View submitted assessment<Br>
+   </a>
+   
+<br>
+     
+            
+      
+      
+
+
+     
+      
     </div>
 
     <div class="govuk-grid-column-one-third">
@@ -63,7 +76,7 @@ My account with draft  - System user (submitted) – GOV.UK Prototype Kit
             <li>
             </li>
             <li>
-              <a href="organisation-show"class="govuk-link govuk-link--no-visited-state">
+              <a href="my-organisation"class="govuk-link govuk-link--no-visited-state">
                 Your organisation details
               </a>
             </li>

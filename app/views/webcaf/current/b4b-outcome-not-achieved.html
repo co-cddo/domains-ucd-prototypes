@@ -1,5 +1,7 @@
 {% extends "layouts/webcaf.html" %}
-
+{% block pageTitle %}
+B4.b Not achieved outcome – GOV.UK Prototype Kit
+{% endblock %}
 {% block beforeContent %}
  
 
@@ -79,7 +81,7 @@
     {
       value: "no",
       text: "Confirm",
-      checked: checked("b3a-not-achieved", "no")
+      checked: checked("b4b-not-achieved", "no")
     },
     {
       value: "pa",
@@ -87,7 +89,7 @@
       conditional: {
         html: changeStatus
       },
-      checked: checked("b3a-not-achieved", "pa")
+      checked: checked("b4b-not-achieved", "pa")
     },
     {
       value: "yes",
@@ -95,7 +97,7 @@
       conditional: {
         html: changeStatus
       },
-      checked: checked("b3a-not-achieved", "yes")
+      checked: checked("b4b-not-achieved", "yes")
     }
     
   ]

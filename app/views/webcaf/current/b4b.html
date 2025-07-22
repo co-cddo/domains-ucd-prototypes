@@ -1,10 +1,7 @@
-
-
 {% extends "layouts/webcaf.html" %}
-
-
-
-
+{% block pageTitle %}
+B4.b Statements – GOV.UK Prototype Kit
+{% endblock %}
  
 {% block beforeContent %}
  
@@ -57,7 +54,7 @@
       <div class="govuk-grid-column-two-thirds">
     
     <h3 class="govuk-heading-m">Read each statement and select what's true about your system or organisation.</h3>
-    <form class="form" action="b4b-outcome-achieved" method="post">
+    <form class="form" action="b4b-answer" method="post">
           
       {% set giveReason %}
       {{ govukTextarea({
@@ -652,11 +649,7 @@
               text: " "
               },
               items: [
-              {
-                  value: "no",
-                  text: "This does not apply to my system or organisation",
-                  checked: checked("b4b-outcome1-not-achieved", "no")
-                },  
+               
                 {
                   value: "na",
                   text: "This does apply to my system or organisation and I have justifications ",
@@ -669,6 +662,11 @@
                   value: "yes",
                   text: "This does apply to my system or organisation, but I have no justifications",
                   checked: checked("b4b-outcome1-not-achieved", "yes")
+                },
+                {
+                  value: "no",
+                  text: "This does not apply to my system or organisation",
+                  checked: checked("b4b-outcome1-not-achieved", "no")
                 }
                 
               ]
@@ -691,11 +689,7 @@
                 text: ""
                 },
                 items: [
-              {
-                  value: "no",
-                  text: "This does not apply to my system or organisation",
-                  checked: checked("b4b-outcome2-not-achieved", "no")
-                },  
+                  
                 {
                   value: "na",
                   text: "This does apply to my system or organisation and I have justifications ",
@@ -704,10 +698,15 @@
                   },
                   checked: checked("b4b-outcome2-not-achieved", "na")
                 },
-              {
+               {
                   value: "yes",
                   text: "This does apply to my system or organisation, but I have no justifications",
                   checked: checked("b4b-outcome2-not-achieved", "yes")
+                },
+                {
+                  value: "no",
+                  text: "This does not apply to my system or organisation",
+                  checked: checked("b4b-outcome2-not-achieved", "no")
                 }
                 
               ]
@@ -728,11 +727,7 @@
                 text: ""
                 },
                 items: [
-              {
-                  value: "no",
-                  text: "This does not apply to my system or organisation",
-                  checked: checked("b4b-outcome3-not-achieved", "no")
-                },  
+                
                 {
                   value: "na",
                   text: "This does apply to my system or organisation and I have justifications ",
@@ -741,10 +736,15 @@
                   },
                   checked: checked("b4b-outcome3-not-achieved", "na")
                 },
-              {
+               {
                   value: "yes",
                   text: "This does apply to my system or organisation, but I have no justifications",
                   checked: checked("b4b-outcome3-not-achieved", "yes")
+                },
+                {
+                  value: "no",
+                  text: "This does not apply to my system or organisation",
+                  checked: checked("b4b-outcome3-not-achieved", "no")
                 }
                 
               ]
@@ -766,11 +766,7 @@
                 text: ""
                 },
                 items: [
-              {
-                  value: "no",
-                  text: "This does not apply to my system or organisation",
-                  checked: checked("b4b-outcome4-not-achieved", "no")
-                },  
+                 
                 {
                   value: "na",
                   text: "This does apply to my system or organisation and I have justifications ",
@@ -779,10 +775,15 @@
                   },
                   checked: checked("b4b-outcome4-not-achieved", "na")
                 },
-              {
+               {
                   value: "yes",
                   text: "This does apply to my system or organisation, but I have no justifications",
                   checked: checked("b4b-outcome4-not-achieved", "yes")
+                },
+                {
+                  value: "no",
+                  text: "This does not apply to my system or organisation",
+                  checked: checked("b4b-outcome4-not-achieved", "no")
                 }
                 
               ]
@@ -803,23 +804,24 @@
                 text: ""
                 },
                 items: [
-              {
-                  value: "no",
-                  text: "This does not apply to my system or organisation",
-                  checked: checked("b4b-outcome4-not-achieved", "no")
-                },  
+                
                 {
                   value: "na",
                   text: "This does apply to my system or organisation and I have justifications ",
                   conditional: {
                     html: giveReason
                   },
-                  checked: checked("b4b-outcome4-not-achieved", "na")
+                  checked: checked("b4b-outcome5-not-achieved", "na")
                 },
-              {
+               {
                   value: "yes",
                   text: "This does apply to my system or organisation, but I have no justifications",
-                  checked: checked("b4b-outcome4-not-achieved", "yes")
+                  checked: checked("b4b-outcome5-not-achieved", "yes")
+                },
+                {
+                  value: "no",
+                  text: "This does not apply to my system or organisation",
+                  checked: checked("b4b-outcome5-not-achieved", "no")
                 }
                 
               ]

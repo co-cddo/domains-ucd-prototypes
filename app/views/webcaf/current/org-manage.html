@@ -1,0 +1,59 @@
+{% extends "layouts/webcaf.html" %}
+{% block pageTitle %}
+Manage organisations' details
+ – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  
+ {% from "govuk/components/table/macro.njk" import govukTable %}
+
+ <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+{{ govukTable({
+  caption: "My organisations",
+  captionClasses: "govuk-table__caption--m",
+  firstCellIsHeader: true,
+  head: [
+    {
+      text: "Organisation name"
+    },
+    {
+      text: "Action"
+    }
+  ],
+  rows: [
+    [
+      {
+        html: '<span class="govuk-body">CIVIL AVIATION AUTHORITY</span>'
+      },
+      {
+        html: '<a href="organisation" class="govuk-link govuk-link--no-visited-state">view</a>'
+      }
+    ],
+    [
+      {
+        html: '<span class="govuk-body">DEPARTMENT FOR SCIENCE, INNOVATION & TECHNOLOGY</span>'
+      },
+      {
+       html: '<a href="organisation2" class="govuk-link govuk-link--no-visited-state">view</a>'
+      }
+    ]
+  ]
+}) }}
+
+{{ govukDetails({
+  summaryText: "How to add an organisation",
+  html: 'You should contact the GovAssure team at <code class="govspeak-code">cybergovassure@cabinetoffice.gov.uk</code> to set you up with the organisation you want to manage.'
+}) }}
+</div>
+</div>
+{% endblock %}

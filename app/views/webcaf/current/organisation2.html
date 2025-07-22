@@ -1,5 +1,8 @@
 {% extends "layouts/webcaf.html" %}
-
+{% block pageTitle %}
+My organisation details
+ – GOV.UK Prototype Kit
+{% endblock %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -44,7 +47,7 @@
         text: "Name"
       },
       value: {
-        html: "CIVIL AVIATON AUTHORITY"
+        html: "DEPARTMENT FOR SCIENCE, INNOVATION & TECHNOLOGY"
       }
     },
     {
@@ -52,15 +55,7 @@
         text: "Type"
       },
       value: {
-        html: "Public corporation"
-      }
-    },
-    {
-      key: {
-        text: "Parent organisation"
-      },
-      value: {
-        html: "TRANSPORT OF LONDON"
+        html: "Ministerial department"
       }
     }
   ]
@@ -87,7 +82,7 @@
         text: "Name"
       },
       value: {
-        html: "John Riley"
+        html: "Amanda Smith"
       }
     },
     {
@@ -103,7 +98,7 @@
         text: "Email address"
       },
       value: {
-        html: "enquiries@caa.co.uk"
+        html: "amanda.smith@dsit.gov.uk"
       }
     }
   ]

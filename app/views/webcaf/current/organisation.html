@@ -1,0 +1,171 @@
+{% extends "layouts/webcaf.html" %}
+{% block pageTitle %}
+My organisation details
+ – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  
+ {% from "govuk/components/table/macro.njk" import govukTable %}
+
+ <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+<h2 class="govuk-heading-m">
+        My organisation details
+      </h2>
+
+<form class="form" action="my-account-dept-draft" id="mainForm" method="post">
+{# If parent org doesn't exist #}
+{% if data['orgParent'] == "no" %}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "About the organisation"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Name"
+      },
+      value: {
+        html: "CIVIL AVIATON AUTHORITY"
+      }
+    },
+    {
+      key: {
+        text: "Type"
+      },
+      value: {
+        html: data['orgType']
+      },
+      actions: {
+        items: [
+          {
+            href: "org-type",
+            text: "Change",
+            visuallyHiddenText: "age"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+
+{# Parent organisation exists #}
+{% else %}
+
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "About the organisation"
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Name"
+      },
+      value: {
+        html: "CIVIL AVIATON AUTHORITY"
+      }
+    },
+    {
+      key: {
+        text: "Type"
+      },
+      value: {
+        html: data['orgType']
+      },
+      actions: {
+        items: [
+          {
+            href: "org-type",
+            text: "Change",
+            visuallyHiddenText: "age"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Parent organisation"
+      },
+      value: {
+       html: data['addParent']
+      },
+      actions: {
+        items: [
+          {
+            href: "org-parent",
+            text: "Change",
+            visuallyHiddenText: "age"
+          }
+        ]
+      }
+    }
+  ]
+}) }}
+{% endif %}
+{{ govukSummaryList({
+  card: {
+    title: {
+      text: "Additional contact information"
+    },
+    actions: {
+      items: [
+        {
+          href: "org-contact",
+          text: "Change details",
+          visuallyHiddenText: "Update additional information details"
+        }
+      ]
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Full ame"
+      },
+      value: {
+        html: data['orgfullName']
+      }
+    },
+    {
+      key: {
+        html: "Organisation role"
+      },
+      value: {
+        html: data['orgRole']
+      }
+    },
+    {
+      key: {
+        text: "Email address"
+      },
+      value: {
+        html: data['orgEmail']
+      }
+    }
+  ]
+}) }}
+
+ <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+        </div>
+
+</form>
+{% endblock %}

@@ -1,5 +1,7 @@
 {% extends "layouts/webcaf.html" %}
-
+{% block pageTitle %}
+B4.b Partially achieved outcome – GOV.UK Prototype Kit
+{% endblock %}
 {% block beforeContent %}
  
 
@@ -78,16 +80,17 @@
   items: [
     {
       value: "pa",
-      text: "Confirm"
+      text: "Confirm",
+    
+    checked: checked("b4b-partially-achieved", "pa")
     },
-    checked: checked("4b4-partially-achieved", "pa")
     {
       value: "yes",
       text: "Change to Achieved",
       conditional: {
         html: changeStatus
       },
-      checked: checked("4b4-partially-achieved", "yes")
+      checked: checked("b4b-partially-achieved", "yes")
     },
     {
       value: "no",
@@ -95,9 +98,8 @@
       conditional: {
         html: changeStatus
       },
-      checked: checked("4b4-partially-achieved", "no")
+      checked: checked("b4b-partially-achieved", "no")
     }
-    
   ]
 }) }}
 

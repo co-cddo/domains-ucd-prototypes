@@ -29,6 +29,9 @@ Check system details – GOV.UK Prototype Kit
         Check your system details
       </h1>
 
+
+    {# if autocomplete exists show auto system #}
+      {% if  data['govsysmanual'] %}
       {{ govukSummaryList({
         rows: [
           {
@@ -36,7 +39,7 @@ Check system details – GOV.UK Prototype Kit
               text: "System name"
             },
             value: {
-              html: data['govsysmanual']
+              html: data['govsysmanual'] 
             },
             actions: {
               items: [
@@ -70,6 +73,47 @@ Check system details – GOV.UK Prototype Kit
         ]
       }) }}
 
+      {% else %}
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "System name"
+            },
+            value: {
+              html: data['systemauto']
+            },
+            actions: {
+              items: [
+                {
+                  href: "add-system",
+                  text: "Change",
+                  visuallyHiddenText: "Add system"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "System description"
+            },
+            value: {
+              html: data['govsysdescription']
+            },
+            actions: {
+              items: [
+                {
+                  href: "add-system",
+                  text: "Change",
+                  visuallyHiddenText: "Add description"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+ {% endif%}
 
       <form action="/webcaf/current/draft-assessment3" method="post" novalidate>
 
