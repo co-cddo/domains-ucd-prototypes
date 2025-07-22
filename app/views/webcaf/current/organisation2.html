@@ -20,7 +20,7 @@ My organisation details
       <div class="govuk-grid-column-two-thirds">
         {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
-<h2 class="govuk-heading-m">
+<h2 class="govuk-heading-l">
         My organisation details
       </h2>
 
@@ -35,7 +35,7 @@ My organisation details
       items: [
         {
           href: "#",
-          text: "Change details",
+          text: "",
           visuallyHiddenText: "Update organisation details"
         }
       ]
@@ -56,6 +56,15 @@ My organisation details
       },
       value: {
         html: "Ministerial department"
+      },
+      actions: {
+        items: [
+          {
+            href: "#",
+            text: "Change",
+            visuallyHiddenText: "Change"
+          }
+        ]
       }
     }
   ]
