@@ -1,10 +1,10 @@
 # The Cyber and Domains Protection Team prototypes
-Welcome :wave: to the working prototypes for The Cyber and Domains Protection Team. The publishd prototypes aim to assist with the user-centered design process.
+Welcome :wave: to the working prototypes for The Cyber and Domains Protection Team. The published prototypes aim to assist with the user-centered design process.
 
 ### Prototypes
 | **Prototype name**                             | **Version** | **Status** | 
 | ---------------------------------------------- | ----------- | ---------- |
-| Submit a CAF self-assessment.                  | Version 1   | `Design` |
+| Complete a CAF self-assessment.                  | Version 1   | `Design` |
 | Get approval to use a .gov.uk domain name      | Version 4   | `Live` |
 | Moving your parish council to a .gov.uk domain | Version 3   | `Live` |
 
