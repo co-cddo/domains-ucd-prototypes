@@ -12,7 +12,7 @@ My account with draft  - System user (submitted) – GOV.UK Prototype Kit
     
       {% set html %}
   <p class="govuk-notification-banner__heading">
-    Before starting a new CAF self-assessment, you must have a completed and signed off scoping document for stage 1 and 2 of the GovAssure process.
+    Before starting a new CAF self-assessment, you must have completed your scoping document for stage 1 and 2 of the GovAssure process.
   </p>
 {% endset %}
 
@@ -23,30 +23,30 @@ My account with draft  - System user (submitted) – GOV.UK Prototype Kit
  <h2 class="govuk-heading-l">
         My account
       </h2>
-      <div> <p class="govuk-hint">On this page you can view any assessments you have already submitted, continue any draft assessments and start a new assessment.</p></div>
+      <div> <p class="govuk-hint">On this page you can start a new self-assessment, continue a draft assessment and view assessments that you have already sent for review.</p></div>
   {{ govukButton({
-  text: "Start a draft assessment",
+  text: "Start a self-assessment",
   classes: "govuk-button--secondary"
 }) }}
 
 </form>
 <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
-       Draft assessments
+       Continue a draft assessment
       </h3>
       
 
     
-     <p class="govuk-body govuk-!-margin-bottom-2 govuk-hint">You don't have any draft assessments.<p>
+     <p class="govuk-body govuk-!-margin-bottom-2 govuk-hint">You do not have any draft assessments.<p>
 
 
 <Br>
 <h3 class="govuk-heading-m">
-       Submitted assessments
+       Assessments sent for review
       </h3>
       
 
       
-    <p class="govuk-body govuk-!-margin-bottom-2 govuk-hint">You didn't submit an assessment.<p>
+    <p class="govuk-body govuk-!-margin-bottom-2 govuk-hint">You have not sent any assessments for review.<p>
      
     </div>
 
