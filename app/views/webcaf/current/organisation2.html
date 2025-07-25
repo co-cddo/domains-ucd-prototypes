@@ -25,20 +25,10 @@ My organisation details
       </h2>
 
 
-
 {{ govukSummaryList({
   card: {
     title: {
       text: "About the organisation"
-    },
-    actions: {
-      items: [
-        {
-          href: "#",
-          text: "",
-          visuallyHiddenText: "Update organisation details"
-        }
-      ]
     }
   },
   rows: [
@@ -47,7 +37,7 @@ My organisation details
         text: "Name"
       },
       value: {
-        html: "DEPARTMENT FOR SCIENCE, INNOVATION & TECHNOLOGY"
+        html: "CIVIL AVIATON AUTHORITY"
       }
     },
     {
@@ -55,16 +45,15 @@ My organisation details
         text: "Type"
       },
       value: {
-        html: "Ministerial department"
+        html: "Public corporation"
+      }
+    },
+    {
+      key: {
+        text: "Parent organisation"
       },
-      actions: {
-        items: [
-          {
-            href: "#",
-            text: "Change",
-            visuallyHiddenText: "Change"
-          }
-        ]
+      value: {
+       html: "DEPARTMENT FOR TRANSPORT (DfT)"
       }
     }
   ]
