@@ -32,13 +32,13 @@ Add system – GOV.UK Prototype Kit
           
 
       <h1 class="govuk-heading-l">
-        Select a new government system
+        Add a new government system
       </h1>
      
-      <form class="form" action="draft-assessment3" id="mainForm" method="post">
+      <form class="form" action="check-system" id="mainForm" method="post">
      
         <h2 class="govuk-heading-m">
-          System name
+          Select a system name
         </h2>
         
         
@@ -112,8 +112,41 @@ Add system – GOV.UK Prototype Kit
             <option value="DfE Sign-in (DSI)">DfE Sign-in (DSI)</option>
       </select>
           
-        <p><br></p>
+        <p><br>or</p>
         
+     
+          {{ govukInput({
+          label: {
+            html: '<span class="govuk-heading-m">Add a new system manually</span>'
+          },
+          hint: {
+            text: "System name"
+          },
+          id: "govsysmanual",
+          name: "govsysmanual",
+          type: "string",
+          autocomplete: "string",
+          spellcheck: false,
+          value: data['govsysmanual']
+          
+        }) }}
+
+        {{ govukTextarea({
+          name: "govsysdescription",
+          id: "govsysdescription",
+          type: "string",
+          autocomplete: "string",
+          label: {
+            text: "System description",
+            classes: "govuk-heading-s",
+            value: data['govsysdescription'],
+            isPageHeading: true
+          },
+          hint: {
+            text: "Describe what the system does and why you need to submit a self-assessment CAF."
+          }
+        }) }}
+
         
     
           
