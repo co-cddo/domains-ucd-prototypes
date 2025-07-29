@@ -98,7 +98,7 @@ router.post('/b4b-answer', function(request, response) {
     var partiallyachieved5 = request.session.data['b4b-outcome5-partiallyachieved']
     var partiallyachieved6 = request.session.data['b4b-outcome6-partiallyachieved']
     var notachieved1 = request.session.data['b4b-outcome1-not-achieved']
-    var notachieved2 = request.session.data['outcome2-not-achieved']
+    var notachieved2 = request.session.data['b4b-outcome2-not-achieved']
     var notachieved3 = request.session.data['b4b-outcome3-not-achieved']
     var notachieved4 = request.session.data['b4b-outcome4-not-achieved']
     var notachieved5 = request.session.data['b4b-outcome5-not-achieved']
@@ -116,6 +116,35 @@ router.post('/b4b-answer', function(request, response) {
     else 
      {
         response.redirect("b4b-outcome-not-achieved")
+    }
+})
+
+
+
+
+// Q: a3a - routing
+router.post('/a3a-answer', function(request, response) {
+
+    var achieved1 = request.session.data['a3a-outcome1-achieved']
+    var achieved2 = request.session.data['a3a-outcome2-achieved']
+    var achieved3 = request.session.data['a3a-outcome3-achieved']
+    var achieved4 = request.session.data['a3a-outcome4-achieved']
+    var achieved5 = request.session.data['a3a-outcome5-achieved']
+    var notachieved1 = request.session.data['a3a-outcome1-not-achieved']
+    var notachieved2 = request.session.data['a3a-outcome2-not-achieved']
+    var notachieved3 = request.session.data['a3a-outcome3-not-achieved']
+    var notachieved4 = request.session.data['a3a-outcome4-not-achieved']
+    var notachieved5 = request.session.data['a3a-outcome5-not-achieved']
+    
+    
+    
+    
+    if (achieved1 == "yes" &&  achieved2 == "yes" &&  achieved3 == "yes" &&  achieved4 == "yes" &&  achieved5 == "yes" &&  notachieved1 == "no" &&  notachieved2 == "no" &&  notachieved3 == "no" &&  notachieved4 == "no" &&  notachieved5 == "no" ) {
+        response.redirect("a3a-outcome-achieved")
+    }
+    else 
+     {
+        response.redirect("a3a-outcome-not-achieved")
     }
 })
 

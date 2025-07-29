@@ -82,7 +82,7 @@
               text: "A1.b Roles and responsibilities"
             },
             value: {
-              html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+              html: '<strong class="govuk-tag govuk-tag--red">Not achieved</strong>'
             },
             actions: {
               items: [
@@ -100,7 +100,7 @@
               text: "A1.c Decision-making"
             },
             value: {
-              html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+              html: '<strong class="govuk-tag govuk-tag--red">Not achieved</strong>'
             },
             actions: {
               items: [
@@ -234,7 +234,7 @@ Objective B - Protecting against cyber attacks
               classes: "govuk-!-width-one-half"
             },
             value: {
-              html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>' 
+              html: '<strong class="govuk-tag govuk-tag--red">Not achieved</strong>'
             },
             actions: {
               items: [
@@ -384,7 +384,7 @@ Objective B - Protecting against cyber attacks
               text: "B3.b Data in transit"
             },
             value: {
-               html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+               html: '<strong class="govuk-tag govuk-tag--red">Not achieved</strong>'
             },
             actions: {
               items: [
@@ -467,7 +467,7 @@ Objective B - Protecting against cyber attacks
               classes: "govuk-!-width-one-half"
             },
             value: {
-               html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+               html: '<strong class="govuk-tag govuk-tag--yellow">Partially achieved</strong>'
             },
             actions: {
               items: [
@@ -664,7 +664,7 @@ Objective B - Protecting against cyber attacks
               classes: "govuk-!-width-one-half"
             },
             value: {
-              html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+              html: '<strong class="govuk-tag govuk-tag--red">Not achieved</strong>'
             },
             actions: {
               items: [
@@ -914,7 +914,7 @@ Objective B - Protecting against cyber attacks
               text: "D1.c Testing and exercising"
             },
             value: {
-              html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+              html: '<strong class="govuk-tag govuk-tag--red">Not achieved</strong>'
             },
             actions: {
               items: [
@@ -929,14 +929,17 @@ Objective B - Protecting against cyber attacks
         ]
       }) }}
 
-      <h2 class="govuk-heading-l">Before you continue</h2>
-      <p>For GovAssure Year 3 2025/26 the submission deadline is 11:59pm on 31 March 2026. You must tell us if you are submitting late. Late submissions will be filed for GovAssure Year 4 2025/26.</p>
+      <h2 class="govuk-heading-l">Confirm your self-assessment submission date</h2>
+ <p>Submissions close for GovAssure Year 3 2025/26 at 11:59pm on 31 March 2026. If you provide your self-assessment after this date, it will be filed for Year 4 2025/26.
+</p>
+    
       {{ govukRadios({
   classes: "govuk-radios--inline",
   name: "sectioncompleted",
   fieldset: {
     legend: {
-      text: "Are you submitting after the deadline?",
+      text: "Are you submitting your self-assessment before the closing date of 11:59pm on 31 March 2026??
+",
       isPageHeading: true,
       classes: "govuk-fieldset__legend--s"
     }

@@ -1,0 +1,493 @@
+{% extends "layouts/webcaf.html" %}
+{% block pageTitle %}
+A3.a Statements – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+ 
+
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "#"
+      },
+      {
+        text: "Create a new assessment
+        ",
+        href: "#"
+      },
+      {
+        text: "Objective A - Managing security risk
+        ",
+        href: "#"
+      },
+      
+      {
+        text: "A3.a Asset management"
+      }
+    ]
+  }) }}
+  <div class="proto-admin">
+   <div id="changedName-hint" class="govuk-hint">
+      Principle 3 of 4<br>
+      <strong>Principle: A3 Asset management</strong>
+    </div>     
+         <p id="progress-pages"><strong>You're on outcome 1 of 1</strong></p>
+         <div class="progress-inactive"><div class="progress-active" style="width: 0%"></div></div>
+      </div>
+  
+{% endblock %}
+{% block content %}
+
+    <h3 class="govuk-heading-l">A3.a Asset management</h3>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+    
+    <h3 class="govuk-heading-m">Read each statement in all tabs and select what's true about your system or organisation.</h3>
+    <form class="form" action="a3a-answer" method="post">
+          
+      {% set giveReason %}
+      {{ govukTextarea({
+        name: "give",
+        id: "give",
+        label: {
+          text: "Tell us your justifications"
+        }
+      }) }}
+      {% endset -%}
+
+
+            {% set achievedHtml %}
+              <h1 class="govuk-heading-s">Achieved statements</h1>
+              <div id="signIn-hint" class="govuk-hint">To achieve this outcome you must answer true to all statements.
+              </div> 
+              {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+              {{ govukWarningText({
+                text: "If you cannot select true for a statement, you must select not true and provide your justifications. If you don't have a justification, you will fail this outcome.",
+                iconFallbackText: "Warning"
+              }) }}
+               
+                  
+              {{ govukRadios({
+              name: "a3a-outcome1-achieved",  
+              fieldset: {
+                legend: {
+                  text: "1. All assets relevant to the secure operation of essential function(s) are identified and inventoried (at a suitable level of detail). The inventory is kept up-to-date.  ",
+                  isPageHeading: true,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "True ",
+                  checked: checked("a3a-outcome1-achieved", "yes")
+                },
+                {
+                  value: "na",
+                  text: "Not true, but I do have justifications",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("a3a-outcome1-achieved", "na")
+                },
+                {
+                  value: "no",
+                  text: " Not true and I have no justifications",
+                  checked: checked("a3a-outcome1-achieved", "no")
+                }
+              ]
+            }) }}
+
+            {{ govukRadios({
+              name: "a3a-outcome2-achieved",
+              
+              fieldset: {
+                legend: {
+                  text: "2. Dependencies on supporting infrastructure (e.g. power, cooling etc) are recognised and recorded.",
+                  isPageHeading: true,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "True",
+                  checked: checked("a3a-outcome2-achieved", "yes")
+                },
+                {
+                  value: "na",
+                  text: "Not true, but I do have justifications",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("a3a-outcome2-achieved", "na")
+                },
+                {
+                  value: "no",
+                  text: "Not true and I have no justifications",
+                  checked: checked("a3a-outcome2-achieved", "no")
+                }
+                
+              ]
+            }) }}
+
+            {{ govukRadios({
+              name: "a3a-outcome3-achieved",
+              
+              fieldset: {
+                legend: {
+                  text: "3. You have prioritised your assets according to their importance to the operation of the essential function(s).",
+                  isPageHeading: true,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "True",
+                  checked: checked("a3a-outcome3-achieved", "yes")
+                },
+                
+                {
+                  value: "na",
+                  text: "Not true, but I do have justifications",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("a3a-outcome3-achieved", "na")
+                },
+                {
+                  value: "no",
+                  text: "Not true and I have no justifications",
+                  checked: checked("a3a-outcome3-achieved", "no")
+                }
+              ]
+            }) }}
+
+            {{ govukRadios({
+              name: "a3a-outcome4-achieved",
+              
+              fieldset: {
+                legend: {
+                  text: "4. You have assigned responsibility for managing all assets, including physical assets, relevant to the operation of the essential function(s).",
+                  isPageHeading: true,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "True",
+                  checked: checked("a3a-outcome4-achieved", "yes")
+                },
+                {
+                  value: "na",
+                  text: "Not true, but I do have justifications",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("a3a-outcome4-achieved", "na")
+                },
+                {
+                  value: "no",
+                  text: "Not true and I have no justifications",
+                  checked: checked("a3a-outcome4-achieved", "no")
+                }
+                
+              ]
+            }) }}
+            {{ govukRadios({
+              name: "a3a-outcome5-achieved",
+              
+              fieldset: {
+                legend: {
+                  text: "5. Assets relevant to the essential function(s) are managed with cyber security in mind throughout their lifecycle, from creation through to eventual decommissioning or disposal.",
+                  isPageHeading: true,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "True",
+                  checked: checked("a3a-outcome5-achieved", "yes")
+                },
+                {
+                  value: "na",
+                  text: "Not true, but I do have justifications",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("a3a-outcome5-achieved", "na")
+                },
+                {
+                  value: "no",
+                  text: "Not true and I have no justifications",
+                  checked: checked("a3a-outcome5-achieved", "no")
+                }
+                
+              ]
+            }) }}
+            
+            
+                
+            {% endset -%}
+
+            {% set notachievedHtml %}
+            <h1 class="govuk-heading-s">Not achieved statements</h1>
+              <div id="signIn-hint" class="govuk-hint">If any statement applies to your system or organisation in this section you must provide justifications otherwise you will fail this outcome.
+              </div> 
+
+            {{ govukRadios({
+              name: "a3a-outcome1-not-achieved",
+
+              fieldset: {
+              legend: {
+              html: "1. Inventories of assets relevant to the essential function(s) are incomplete, non-existent, or inadequately detailed.",
+              isPageHeading: true,
+              classes: "govuk"
+              }
+              },
+              hint: {
+              text: " "
+              },
+              items: [
+               
+                {
+                  value: "na",
+                  text: "This does apply to my system or organisation and I have justifications ",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("a3a-outcome1-not-achieved", "na")
+                },
+              {
+                  value: "yes",
+                  text: "This does apply to my system or organisation, but I have no justifications",
+                  checked: checked("a3a-outcome1-not-achieved", "yes")
+                },
+                {
+                  value: "no",
+                  text: "This does not apply to my system or organisation",
+                  checked: checked("a3a-outcome1-not-achieved", "no")
+                }
+                
+              ]
+              }) }}
+
+
+                {{ govukRadios({
+                name: "a3a-outcome2-not-achieved",
+
+                fieldset: {
+                legend: {
+                html: "2. Only certain domains or types of asset are documented and understood. Dependencies between assets are not understood (such as the dependencies between IT and OT).",
+                isPageHeading: true,
+                classes: "govuk"
+                }
+                },
+                hint: {
+                text: ""
+                },
+                items: [
+                  
+                {
+                  value: "na",
+                  text: "This does apply to my system or organisation and I have justifications ",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("a3a-outcome2-not-achieved", "na")
+                },
+               {
+                  value: "yes",
+                  text: "This does apply to my system or organisation, but I have no justifications",
+                  checked: checked("a3a-outcome2-not-achieved", "yes")
+                },
+                {
+                  value: "no",
+                  text: "This does not apply to my system or organisation",
+                  checked: checked("a3a-outcome2-not-achieved", "no")
+                }
+                
+              ]
+                }) }}
+
+                {{ govukRadios({
+                name: "a3a-outcome3-not-achieved",
+
+                fieldset: {
+                legend: {
+                html: "3.  Information assets, which could include personally identifiable information and / or important / critical data, are stored for long periods of time with no clear business need or retention policy.",
+                isPageHeading: true,
+                classes: "govuk"
+                }
+                },
+                hint: {
+                text: ""
+                },
+                items: [
+                
+                {
+                  value: "na",
+                  text: "This does apply to my system or organisation and I have justifications ",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("a3a-outcome3-not-achieved", "na")
+                },
+               {
+                  value: "yes",
+                  text: "This does apply to my system or organisation, but I have no justifications",
+                  checked: checked("a3a-outcome3-not-achieved", "yes")
+                },
+                {
+                  value: "no",
+                  text: "This does not apply to my system or organisation",
+                  checked: checked("a3a-outcome3-not-achieved", "no")
+                }
+                
+              ]
+                }) }}
+
+                {{ govukRadios({
+                name: "a3a-outcome4-not-achieved",
+
+                fieldset: {
+                legend: {
+                html: "4. Knowledge critical to the management, operation, or recovery of the essential function(s) is held by one or two key individuals with no succession plan.",
+                isPageHeading: true,
+                classes: "govuk"
+                }
+                },
+                hint: {
+                text: ""
+                },
+                items: [
+                 
+                {
+                  value: "na",
+                  text: "This does apply to my system or organisation and I have justifications ",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("a3a-outcome4-not-achieved", "na")
+                },
+               {
+                  value: "yes",
+                  text: "This does apply to my system or organisation, but I have no justifications",
+                  checked: checked("a3a-outcome4-not-achieved", "yes")
+                },
+                {
+                  value: "no",
+                  text: "This does not apply to my system or organisation",
+                  checked: checked("a3a-outcome4-not-achieved", "no")
+                }
+                
+              ]
+                }) }}
+                {{ govukRadios({
+                name: "a3a-outcome5-not-achieved",
+
+                fieldset: {
+                legend: {
+                html: "5. Asset inventories are neglected and out of date.",
+                isPageHeading: true,
+                classes: "govuk"
+                }
+                },
+                hint: {
+                text: ""
+                },
+                items: [
+                
+                {
+                  value: "na",
+                  text: "This does apply to my system or organisation and I have justifications ",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("a3a-outcome5-not-achieved", "na")
+                },
+               {
+                  value: "yes",
+                  text: "This does apply to my system or organisation, but I have no justifications",
+                  checked: checked("a3a-outcome5-not-achieved", "yes")
+                },
+                {
+                  value: "no",
+                  text: "This does not apply to my system or organisation",
+                  checked: checked("a3a-outcome5-not-achieved", "no")
+                }
+                
+              ]
+                }) }}
+                {% endset -%}
+
+
+       {{ govukTabs({
+        items: [
+           {
+            label: "Achieved",
+            id: "achieved",
+            panel: {
+              html: achievedHtml
+            }
+          },
+          
+          {
+            label:  "Not achieved",
+            id: "notachieved",
+            panel: {
+              html: notachievedHtml
+            }
+          }
+        ]
+      }) }}
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-visually-hidden">Warning</span>
+    Before you click 'Save and continue', you must answer 'Achieved' and 'Not achieved' statements.
+  </strong>
+</div>
+
+<div class="govuk-button-group">
+  {{ govukButton({
+    text: "Save and continue"
+  }) }}
+  </form>
+
+  <a class="govuk-link" href="#">Back to Objective A - Managing security risk </a>
+</div>
+    </div>    
+  </div>
+
+{% endblock %}
