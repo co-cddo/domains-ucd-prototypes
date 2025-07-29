@@ -6,36 +6,34 @@ My account - GovAssure Lead user – GOV.UK Prototype Kit
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-     
+     <form class="form" action="start-a-draft-assessment" method="post">
       <h2 class="govuk-heading-l">
         My Cyber advisor account
       </h2>
-    
- <form class="form" action="add-system-ca" method="post">  
-<div id="noassessments-hint" class="govuk-hint">
-     On this page you can add new systems, modify existing systems and view assessments that users have already sent for review.
-    </div>
-  {{ govukButton({
-  text: "Add a new system",
+      {{ govukButton({
+  text: "Start a draft assessment",
   classes: "govuk-button--secondary"
 }) }}
 </form>
+<div id="noassessments-hint" class="govuk-hint">
+     You have no draft assessments 
+    </div>
+      
 
-      <br>
-<h3 class="govuk-heading-m">
-       My government systems
-      </h3>  
-    <p class="govuk-body govuk-!-margin-bottom-2 govuk-hint">You don't have any systems.<p>
-    <br>
-
-    <h3 class="govuk-heading-m">
-       Assessments sent for review
-      </h3>  
-    <p class="govuk-body govuk-!-margin-bottom-2 govuk-hint">You have not sent any assessments for review.<p>
-    
      
 
-       
+              
+
+      <p><br></p>
+      <h2 class="govuk-heading-m">
+        My government systems
+      </h2>
+      <P><a href="view-systems"class="govuk-link govuk-link--no-visited-state">
+                Add a new system
+              </a></P>
+
+      <p><br></p>
+      
 
 
      

@@ -1,0 +1,137 @@
+{% extends "/layouts/webcaf.html" %}
+
+{% block pageTitle %}
+Start a draft assessment – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "My account",
+        href: "/webcaf/current/my-account-dept"
+      },
+      {
+        text: "Start a draft assessment"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">Submit a WebCAF self-assessment
+
+      </h1>
+      <p><strong>Draft assessment</strong></p>
+      
+      {{ govukInsetText({
+        html: "Submission deadline is 11:59pm on <strong>31 March 2026</strong>."
+      }) }}
+      <h2 class="govuk-heading-m">1. Give system details and profile to be assessed</h2>
+
+      {% set completedStatus = {
+        text: "Completed"
+      } %}
+
+      {% set cannotstartStatus = {
+        text: "Cannot start yet",
+        classes: "govuk-task-list__status--cannot-start-yet"
+      } %}
+
+      {% set incompleteStatus = {
+        tag: {
+          text: "Incomplete",
+          classes: "govuk-tag--blue"
+        }
+      } %}
+
+      {# To switch between the completed and incomplete statues, use some inline logic within the component below, like this: "status: (completedStatus if ... else incompleteStatus)" #}
+
+      {{ govukTaskList({
+        idPrefix: "sysprofil-section",
+        items: [
+          {
+            title: {
+              text: "Choose your government CAF profile
+"
+            },
+            href: "caf-profile",
+            status: completedStatus
+          },
+          {
+            title: {
+              text: "Provide system details"
+            },
+            href: "add-system",
+            status: incompleteStatus
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-5">2. Create your assessment</h2>
+      <p>Take time to select your answers for each outcome. They will be assessed against your system and organisation.</p>
+
+      {{ govukTaskList({
+        idPrefix: "objectives-section",
+        items: [
+          {
+            title: {
+              text: "Objective A - Managing security risk"
+            },
+            href: "",
+            status: cannotstartStatus
+          },
+          {
+            title: {
+              text: "Objective B - Protecting against cyber attacks"
+            },
+            href: "",
+            status: cannotstartStatus
+          },
+          {
+            title: {
+              text: "Objective C - Detecting cyber security events"
+            },
+            href: "",
+            status: cannotstartStatus
+          },
+          {
+            title: {
+              text: "Objective D - Minimising the impact of cyber
+security incidents"
+            },
+            href: "",
+            status: cannotstartStatus
+          }
+        ]
+      }) }}
+ <h2 class="govuk-heading-m govuk-!-margin-top-5">3. Submit your assessment</h2>
+{{ govukTaskList({
+        idPrefix: "submit-section",
+        items: [
+          {
+            title: {
+              text: "Complete the full assessment"
+            },
+            href: "",
+            status: cannotstartStatus
+          }
+        ]
+      }) }}
+     
+
+    </div>
+  </div>
+{% endblock %}

@@ -23,7 +23,7 @@ router.use('/registration/strategic/ver1/moving-your-parish', require('./views/r
 router.use('/registration/strategic/ver2/g0-moving-pc', require('./views/registration/strategic/ver2/routes/routes'))
 
 // Webcaf
-//router.use('/registration/webcaf/current', require('./views/registration/webcaf/current/routes/routes'))
 router.use('/webcaf/current', require('./views/webcaf/current/routes/routes'))
+router.use('/webcaf/v1', require('./views/webcaf/v1/routes/routes'))
 
 module.exports = router

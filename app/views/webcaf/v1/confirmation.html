@@ -1,0 +1,40 @@
+{% extends "layouts/webcaf.html" %}
+
+{% block pageTitle %}
+  Confirmation page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukPanel({
+        titleText: "Self-assessment submitted",
+        html: "Your reference number<br><strong>CAF2123F</strong>"
+      }) }}
+
+      <p>
+        Your CAF self-assessment has been shared with the GovAssure team. We have sent you a confirmation email.
+      </p>
+
+      <h2 class="govuk-heading-m">
+        What happens next
+      </h2>
+
+      <p>
+        You must make sure that your independent assessor or peer reviewer can access your self-assessment before starting Stage 4.
+      </p>
+
+      
+      <p>
+        <a href="#">
+          What did you think of this service?
+        </a> (takes 30 seconds)
+      </p>
+
+
+    </div>
+  </div>
+
+{% endblock %}

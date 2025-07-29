@@ -1,0 +1,93 @@
+{% extends "/layouts/webcaf.html" %}
+
+{% block pageTitle %}
+Select organisation type – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock  %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+          
+<h1 class="govuk-heading-l">
+  <span class="govuk-caption-l">Civil Aviation Authority</span>
+Do you have a parent organisation?
+</h1>
+      
+      <form class="form" action="org-contact" id="mainForm" method="post">
+
+{% set addParent %}
+{{ govukInput({
+  id: "addParent",
+  name: "addParent",
+  type: "name",
+  autocomplete: "name",
+  classes: "govuk-!-width-full",
+  label: {
+    text: "Enter parent organisation name"
+  },
+  value: data['addParent']
+}) }}
+{% endset -%}
+{{ govukRadios({
+  name: "orgParent",
+  fieldset: {
+    legend: {
+      text: "",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  hint: {
+    text: "A Tranche 2 organisation (parent) is responsible for a Tranche 1 organisation. For example, Transport for London is the parent organistion of the Civil Aviation Authority."
+  },
+  items: [
+    {
+      value: "Yes",
+      text: "Yes",
+      conditional: {
+        html: addParent
+      },
+      checked: checked("orgParent", "yes")
+    },
+    {
+      value: "no",
+      text: "No",
+      checked: checked("orgParent", "yes")
+    }
+  ]
+}) }}
+    
+          
+          <span class="govuk-body govuk-!-font-size-24">
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+   
+        </div>
+        </form>
+
+    
+   </div>
+  
+
+{% endblock %}

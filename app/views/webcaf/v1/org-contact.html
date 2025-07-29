@@ -1,0 +1,109 @@
+{% extends "/layouts/webcaf.html" %}
+
+{% block pageTitle %}
+Select organisation type – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock  %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+          
+<h1 class="govuk-heading-l">
+  <span class="govuk-caption-l">Civil Aviation Authority</span>
+Add contact details
+</h1>
+      
+      <form class="form" action="organisation" id="mainForm" method="post">
+
+     
+      
+        
+        
+
+
+      
+      <p class="govuk-body">We are collecting your contact details, so that the GovAssure team can get in touch with you.</p>
+
+        {{ govukInput({
+          label: {
+            text: "Full name"
+          },
+          
+          id: "orgfullName",
+          name: "orgfullName",
+          autocomplete: "name",
+          spellcheck: false,
+          classes: "govuk-input--width-20",
+          value: data['orgfullName']
+
+        }) }}
+
+        
+        {{ govukInput({
+          label: {
+            text: "Organisation role"
+          },
+          
+          id: "orgRole",
+          name: "orgRole",
+          type: "name",
+          autocomplete: "tel",
+          classes: "govuk-input--width-20",
+          value: data['orgRole']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Email address"
+          },
+          hint: {
+            text: "Use a current work email address for the civil servant"
+          },          
+          id: "orgEmail",
+          name: "orgEmail",
+          type: "email",
+          autocomplete: "email",
+          spellcheck: false,
+          value: data['orgEmail']
+        }) }}
+
+       
+
+
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+         
+        
+        </div>
+    
+        
+        </form>
+
+    
+   </div>
+  
+
+{% endblock %}

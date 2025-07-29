@@ -1,0 +1,484 @@
+{% extends "layouts/main.html" %}
+
+
+
+{% block pageTitle %}
+  Webcaf - Test  – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+
+ 
+{% block beforeContent %}
+ 
+
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/registration/webcaf/current"
+      },
+      {
+        text: "Create a new assessment
+        ",
+        href: "/registration/index"
+      },
+      {
+        text: "Objective B - Protecting against cyber attacks and data breaches
+        ",
+        href: "/registration/index"
+      },
+      
+      {
+        text: "Principle: B3.a Understanding Data"
+      }
+    ]
+  }) }}
+  <div class="proto-admin">
+   <div id="changedName-hint" class="govuk-hint">
+      Principle 2 of 4<br>
+      <strong>Principle: A2 Risk management</strong>
+    </div>     
+         <p id="progress-pages"><strong>You're on outcome 1 of 2</strong></p>
+         <div class="progress-inactive"><div class="progress-active" style="width: 50%"></div></div>
+      </div>
+  
+{% endblock %}
+{% block content %}
+
+<h3 class="govuk-heading-l">B3.a Understanding Data</h3>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+ 
+    <h3 class="govuk-heading-m">Read each statement and select what's true about your system or organisation.
+</h3>
+    
+
+          {% set giveReason %}
+          {{ govukTextarea({
+            name: "give",
+            id: "give",
+            label: {
+              text: "If you don't tell us your justification, you will fail this outcome."
+            }
+          }) }}
+          {% endset -%}
+
+          {% set giveReasonCommentHtml %}
+          {{ govukTextarea({
+              name: "giveReasonCommentHtml",
+              id: "giveReasonCommentHtml",
+              label: {
+                text: "Explain why you selected this statement"
+              }
+            }) }}
+            {% endset -%}
+
+
+            {% set achievedHtml %}
+
+
+            
+                  
+              {{ govukRadios({
+              name: "outcome1-achieved", 
+              classes: "govuk-radios--inline",
+              fieldset: {
+                legend: {
+                  text: "",
+                  isPageHeading: false,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "Achieved",
+                  html: '<h3 class="govuk-heading-m">Achieved</h3> ',
+                  checked: checked("outcome1-achieved", "yes")
+                }
+               
+              ]
+            }) }}
+
+         {{ govukWarningText({
+  text: "To achieve this outcome all statements must be true for your system or organisation.",
+  iconFallbackText: "Warning"
+}) }}
+
+            {{ govukCheckboxes({
+          name: "statement-achieved",
+          fieldset: {
+            legend: {
+              html: "1. You have identified and catalogued all the data important to the operation of the essential function(s), or that would assist an attacker.",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--"
+            }
+          },
+          hint: {
+            text: ""
+          },
+           items: [
+            {
+              value: "object5",
+              text: "Not true, but I do have justifications",
+              checked: checked("statement-achieved", "object5"),
+              conditional: {
+              html: giveReasonCommentHtml
+               }
+            }
+            
+          ]    
+        }) }}
+        {{ govukCheckboxes({
+          name: "statement-achieved",
+          fieldset: {
+            legend: {
+              text: "2. You have identified and catalogued who has access to the data important to the operation of the essential function(s).",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--"
+            }
+          },
+          hint: {
+            text: ""
+          },
+           items: [
+            {
+              value: "object5",
+              text: "Not true, but I do have justifications",
+              checked: checked("statement-achieved", "object5"),
+              conditional: {
+              html: giveReasonCommentHtml
+               }
+            }
+            
+          ]    
+        }) }}
+         {{ govukCheckboxes({
+          name: "statement-achieved",
+          fieldset: {
+            legend: {
+              text: "3. You maintain a current understanding of the location, quantity and quality of data important to the operation of the essential function(s).",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--"
+            }
+          },
+          hint: {
+            text: ""
+          },
+           items: [
+            {
+              value: "object5",
+              text: "Not true, but I do have justifications",
+              checked: checked("statement-achieved", "object5"),
+              conditional: {
+              html: giveReasonCommentHtml
+               }
+            }
+            
+          ]    
+        }) }}
+         {{ govukCheckboxes({
+          name: "statement-achieved",
+          fieldset: {
+            legend: {
+              text: "4. You take steps to remove or minimise unnecessary copies or unneeded historic data.",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--"
+            }
+          },
+          hint: {
+            text: ""
+          },
+           items: [
+            {
+              value: "object5",
+              text: "Not true, but I do have justifications",
+              checked: checked("statement-achieved", "object5"),
+              conditional: {
+              html: giveReasonCommentHtml
+               }
+            }
+            
+          ]    
+        }) }}
+         {{ govukCheckboxes({
+          name: "statement-achieved",
+          fieldset: {
+            legend: {
+              text: "5. You have identified all mobile devices and media that may hold data important to the operation of the essential function(s).",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--"
+            }
+          },
+          hint: {
+            text: ""
+          },
+           items: [
+            {
+              value: "object5",
+              text: "Not true, but I do have justifications",
+              checked: checked("statement-achieved", "object5"),
+              conditional: {
+              html: giveReasonCommentHtml
+               }
+            }
+            
+          ]    
+        }) }}
+         {{ govukCheckboxes({
+          name: "statement-achieved",
+          fieldset: {
+            legend: {
+              text: "6. You maintain a current understanding of the data links used to transmit data that is important to your essential function(s).",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--"
+            }
+          },
+          hint: {
+            text: ""
+          },
+           items: [
+            {
+              value: "object5",
+              text: "Not true, but I do have justifications",
+              checked: checked("statement-achieved", "object5"),
+              conditional: {
+              html: giveReasonCommentHtml
+               }
+            }
+            
+          ]    
+        }) }}
+         {{ govukCheckboxes({
+          name: "statement-achieved",
+          fieldset: {
+            legend: {
+              text: "7. You understand the context, limitations and dependencies of your important data.",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--"
+            }
+          },
+          hint: {
+            text: ""
+          },
+           items: [
+            {
+              value: "object5",
+              text: "Not true, but I do have justifications",
+              checked: checked("statement-achieved", "object5"),
+              conditional: {
+              html: giveReasonCommentHtml
+               }
+            }
+            
+          ]    
+        }) }}
+        {{ govukCheckboxes({
+          name: "statement-achieved",
+          fieldset: {
+            legend: {
+              text: "8. You understand and document the impact on your essential function(s) of all relevant scenarios, including unauthorised data access, modification or deletion, or when authorised users are unable to appropriately access this data.",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--"
+            }
+          },
+          hint: {
+            text: ""
+          },
+           items: [
+            {
+              value: "object5",
+              text: "Not true, but I do have justifications",
+              checked: checked("statement-achieved", "object5"),
+              conditional: {
+              html: giveReasonCommentHtml
+               }
+            }
+            
+          ]    
+        }) }}
+           {{ govukCheckboxes({
+          name: "statement-achieved",
+          fieldset: {
+            legend: {
+              text: "9. You validate these documented impact statements regularly, at least annually.",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--"
+            }
+          },
+          hint: {
+            text: ""
+          },
+           items: [
+            {
+              value: "object5",
+              text: "Not true, but I do have justifications",
+              checked: checked("statement-achieved", "object5"),
+              conditional: {
+              html: giveReasonCommentHtml
+               }
+            }
+            
+          ]    
+        }) }}
+                
+            {% endset -%}
+{% set partiallyachievedHtml %}
+{{ govukRadios({
+              name: "outcome1-achieved", 
+              classes: "govuk-radios--inline",
+              fieldset: {
+                legend: {
+                  text: "",
+                  isPageHeading: false,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "Achieved",
+                  text: "Partially achieved ",
+                  checked: checked("outcome1-achieved", "yes")
+                }
+               
+              ]
+            }) }}
+
+<div id="signIn-hint" class="govuk-hint">To partially achieve this outcome you must answer true to all statements.
+</div>
+
+                {{ govukCheckboxes({
+          name: "statement-achieved",
+          fieldset: {
+            legend: {
+              text: "",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          hint: {
+            text: ""
+          },
+           items: [
+            {
+              value: "object5",
+              text: "Comment",
+              checked: checked("statement-achieved", "object5"),
+              conditional: {
+              html: giveReasonCommentHtml
+               }
+            }
+            
+          ]    
+        }) }}
+            {% endset -%}
+            {% set notachievedHtml %}
+            {{ govukRadios({
+              name: "outcome1-achieved", 
+              classes: "govuk-radios--inline",
+              fieldset: {
+                legend: {
+                  text: "",
+                  isPageHeading: false,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "Achieved",
+                  text: "Not achieved ",
+                  checked: checked("outcome1-achieved", "yes")
+                }
+               
+              ]
+            }) }}
+              <div id="signIn-hint" class="govuk-hint">If any statement applies to your system or organisation in this section you must provide justifications otherwise you will fail this outcome.
+              </div> 
+{{ govukCheckboxes({
+          name: "statement-achieved",
+          fieldset: {
+            legend: {
+              text: "",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--s"
+            }
+          },
+          hint: {
+            text: ""
+          },
+           items: [
+            {
+              value: "object5",
+              text: "Comment",
+              checked: checked("statement-achieved", "object5"),
+              conditional: {
+              html: giveReasonCommentHtml
+               }
+            }
+            
+          ]    
+        }) }}
+            
+                {% endset -%}
+
+
+       {{ govukTabs({
+        items: [
+           {
+            label: "Achieved",
+            id: "achieved",
+            panel: {
+              html: achievedHtml
+            }
+          },
+          {
+            label: "Partially achieved",
+            id: "partiallyachieved",
+            panel: {
+              html: partiallyachievedHtml
+            }
+          },
+          {
+            label:  "Not achieved",
+            id: "notachieved",
+            panel: {
+              html: notachievedHtml
+            }
+          }
+        ]
+      }) }}
+
+<div class="govuk-button-group">
+  {{ govukButton({
+    text: "Save and continue"
+  }) }}
+  </form>
+
+  <a class="govuk-link" href="#">Back to Objective B - Protecting against cyber attacks and data breaches </a>
+</div>
+    </div>    
+  </div>
+
+{% endblock %}

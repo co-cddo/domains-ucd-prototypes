@@ -1,0 +1,71 @@
+{% extends "layouts/webcaf-start.html" %}
+
+{% block pageTitle %}
+  Sign in  – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Sign in
+
+      </h1>
+      {{ govukWarningText({
+          html: "You're signing in to www.security.gov.uk",
+          iconFallbackText: "Warning"
+        }) }}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{{ govukInput({
+  label: {
+    text: "Email address",
+    classes: "govuk-body",
+    isPageHeading: false
+  },
+  id: "email",
+  name: "email"
+}) }}
+
+{{ govukCheckboxes({
+  name: "waste",
+  fieldset: {
+    legend: {
+      text: "",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+      value: "remember",
+      text: "Remember me"
+    }
+  ]
+}) }}
+<form class="form" action="my-account-dept" method="post">
+<div class="govuk-button-group">
+  {{ govukButton({
+    text: "Continue"
+  }) }}
+
+  {{ govukButton({
+    text: "Cancel",
+    classes: "govuk-button--secondary"
+  }) }}
+</div>
+
+</form>
+    </div>
+  </div>
+
+{% endblock %}

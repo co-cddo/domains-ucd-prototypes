@@ -1,0 +1,505 @@
+{% extends "layouts/webcaf.html" %}
+
+{% block pageTitle %}
+  Objective B - status all
+ – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "My account",
+        href: "/webcaf/current/my-account-dept"
+      },
+      {
+        text: "Start a draft assessment",
+        href: "/webcaf/current/draft-assessment3"
+      },
+      {
+        text: "Objective B - Protecting against cyber attacks
+        "
+      }
+    ]
+  }) }}
+  {% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/webcaf/current/draft-assessment6" method="post">
+
+      <h1 class="govuk-heading-l">
+        Objective B - Protecting against cyber attacks
+      </h1>
+       
+<p>Please provide your answers for each principle. You can review the status of individual outcomes below each principle and change your answers if you need to.</p>
+
+
+      <h2 class="govuk-heading-m">
+        Principle: B1 Service protection policies and processes 
+      </h2>
+
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "B1.a Policy and process development",
+              classes: "govuk-!-width-one-half"
+            },
+            value: {
+              html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>' 
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  classes: "govuk-link--no-visited-state",
+                  text: "Change",
+                  visuallyHiddenText: "Change my answers"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "B1.b Policy and process implementation"
+            },
+            value: {
+             html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  classes: "govuk-link--no-visited-state",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      <h2 class="govuk-heading-m">
+        Principle: B2 Identity and access control 
+      </h2>
+
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "B2.a Identity verification, authentication and authorisation",
+              classes: "govuk-!-width-one-half"
+            },
+            value: {
+              html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  classes: "govuk-link--no-visited-state",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "B2.b Device management"
+            },
+            value: {
+              html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  classes: "govuk-link--no-visited-state",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "B2.c Privileged user management"
+            },
+            value: {
+             html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  classes: "govuk-link--no-visited-state",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "B2.d Identity and access management (IdAM)"
+            },
+            value: {
+              html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  classes: "govuk-link--no-visited-state",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Principle: B3 Data security
+      </h2>
+
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "B3.a Understanding data",
+              classes: "govuk-!-width-one-half"
+            },
+            value: {
+              html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "b3a",
+                  classes: "govuk-link--no-visited-state",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "B3.b Data in transit"
+            },
+            value: {
+               html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  classes: "govuk-link--no-visited-state",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "B3.c Stored data"
+            },
+            value: {
+              html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  classes: "govuk-link--no-visited-state",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "B3.d Mobile data"
+            },
+            value: {
+               html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  classes: "govuk-link--no-visited-state",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "B3.e Media equipment sanitisation"
+            },
+            value: {
+               html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  classes: "govuk-link--no-visited-state",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      
+      <h2 class="govuk-heading-m">
+       Principle: B4 System security
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "B4.a Secure by design",
+              classes: "govuk-!-width-one-half"
+            },
+            value: {
+               html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "",
+                  classes: "govuk-link--no-visited-state",
+                 text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "B4.b Secure configuration"
+            },
+            value: {
+               html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "b4b",
+                  classes: "govuk-link--no-visited-state",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "B4.c Secure management"
+            },
+            value: {
+               html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  classes: "govuk-link--no-visited-state",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "B4.d Vulnerability management"
+            },
+            value: {
+               html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  classes: "govuk-link--no-visited-state",
+                 text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">
+       Principle: B5 Resilient networks and systems
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "B5.a Resilience preparation",
+              classes: "govuk-!-width-one-half"
+            },
+            value: {
+               html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  classes: "govuk-link--no-visited-state",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "B5.b Design for resilience"
+            },
+            value: {
+               html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "B5.c backups"
+            },
+            value: {
+               html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">
+       Principle: B6 Staff awareness and training
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "B6.a Cyber security culture",
+              classes: "govuk-!-width-one-half"
+            },
+            value: {
+               html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "B6.b Cyber security training"
+            },
+            value: {
+               html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {{ govukRadios({
+  name: "sectioncompleted",
+  fieldset: {
+    legend: {
+      text: "Have you completed all six principles?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes, I've completed all six principles"
+    },
+    {
+      value: "no",
+      text: "No, I'll come back to it later"
+    }
+  ]
+}) }}
+      
+      <form action="/confirmation" method="post" novalidate>
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
