@@ -1,0 +1,154 @@
+{% extends "/layouts/webcaf-cyber.html" %}
+
+{% block pageTitle %}
+Add user – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+
+
+
+{% endblock  %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+          
+<span class="govuk-caption-l">Civil Aviation Authority</span>
+      <h1 class="govuk-heading-l">
+        Add a user
+      </h1>
+     
+      <form class="form" action="check-user" id="mainForm" method="post">
+     
+        {{ govukInput({
+          label: {
+            text: "First name"
+          },
+          classes: "govuk-input--width-20",
+          id: "firstname",
+          name: "firstname",
+          type: "string",
+          autocomplete: "string",
+          spellcheck: false,
+          value: data['firstname']
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Last name"
+          },
+          classes: "govuk-input--width-20",
+          id: "lastname",
+          name: "lastname",
+          type: "string",
+          autocomplete: "string",
+          spellcheck: false,
+          value: data['lastname']
+        }) }}
+
+         {{ govukInput({
+          label: {
+            text: "Email address"
+          },
+          classes: "govuk-input--width-20",
+          id: "email",
+          name: "email",
+          type: "email",
+          autocomplete: "string",
+          spellcheck: false,
+          value: data['email']
+        }) }}
+       
+     
+
+      <h2 class="govuk-heading-m">
+        Select user role
+      </h2>
+{{ govukRadios({
+  classes: "govuk-radios",
+  name: "userRole",
+  fieldset: {
+    legend: {
+      text: "",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+    html: "Select one that applies"
+  },
+  items: [
+    {
+      value: "GovAssure lead",
+      text: "GovAssure lead",
+      hint: {
+        html: '<details class="govuk-details govuk-!-margin-bottom-0">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    What cyber advisors can do
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                  <ul class="govuk-list govuk-list--bullet">
+                    <li>add organisation users</li>
+                    <li>view, add and submit self-assessments</li>
+                  </ul>
+                </div>
+                </details>
+                '
+      },
+      checked: checked("userRole", "GovAssure lead")
+    },
+    {
+      value: "Organisation user",
+      text: "Organisation user",
+        hint: {
+        html: '<details class="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    What organisation users can do
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                  <ul class="govuk-list govuk-list--bullet">
+                    <li>view and edit self-assessments</li>
+                  </ul>
+                </div>
+                </details>
+                '
+      },
+      checked: checked("userRole", "Organisation user")
+     }
+      ]
+    }) }}
+
+  
+    {{ govukButton({
+      text: "Save and continue"
+    }) }}
+
+         
+        
+        </div>
+        </form>
+   </div>
+  
+
+{% endblock %}

@@ -170,6 +170,29 @@ router.post('/pathMyaccount-answer', function(request, response) {
     }
 })
 
+// Q: View systems routing
+router.post('/pathMyaccountUser-answer', function(request, response) {
+
+    var pathABuser = request.session.data['pathMyaccountUser']
+    if (pathABuser == "no"){
+        response.redirect("my-account")
+    } else {
+        response.redirect("add-user")
+    }
+})
+
+// Q: Remove user routing
+router.post('/pathMyaccountRemoveUser-answer', function(request, response) {
+
+    var removeUser = request.session.data['removeUser']
+    if (removeUser == "no"){
+        response.redirect("view-users")
+    } else {
+        response.redirect("view-users2")
+    }
+})
+
+
 
 module.exports = router
 

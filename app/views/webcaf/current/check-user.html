@@ -1,7 +1,7 @@
 {% extends "/layouts/webcaf-cyber.html" %}
 
 {% block pageTitle %}
-Check system details – GOV.UK Prototype Kit
+Check user details – GOV.UK Prototype Kit
 {% endblock %}
  
 {% block beforeContent %}
@@ -16,7 +16,7 @@ Check system details – GOV.UK Prototype Kit
 
    {{ govukBackLink({
     text: "Back",
-    href: "add-system-ca"
+    href: "javascript:window.history.back()"
   }) }}
 
 {% endblock  %}
@@ -26,7 +26,7 @@ Check system details – GOV.UK Prototype Kit
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <h1 class="govuk-heading-l">
-        Check your system details
+        Check your user details
       </h1>
 
         {{ govukSummaryList({
@@ -37,7 +37,7 @@ Check system details – GOV.UK Prototype Kit
             actions: {
               items: [
                 {
-                  href: "add-system-ca",
+                  href: "add-user",
                   text: "Change",
                   visuallyHiddenText: "of Civil Aviation Authority"
                 }
@@ -47,58 +47,26 @@ Check system details – GOV.UK Prototype Kit
           rows: [
             {
               key: {
-                text: "System name"
+                text: "Full name"
               },
               value: {
-                html: data['govsysmanual']
+                html: data['firstname']+" "+data['lastname']
               }
             },
             {
               key: {
-                text: "System type"
+                text: "Email address"
               },
               value: {
-                html: data['systype']
+                html: data['email']
               }
             },
             {
               key: {
-                text: "Essential services"
+                text: "User role"
               },
               value: {
-                html: data['govsysessentialservice']
-              }
-            },
-            {
-              key: {
-                text: "System ownership"
-              },
-              value: {
-                html: data['sysowner']
-              }
-            },
-            {
-              key: {
-                text: "Hosting and connectivity"
-              },
-              value: {
-                html: data['hosting']
-              }
-            },
-            {
-              key: {
-                text: "Internet facing"
-              },
-              value: {
-                html: data['internetfacing']
-              }
-            },
-            {
-              key: {
-                text: "GovAssure year"
-              },
-              value: {
-                html: data['govassureYear']
+                html: data['userRole']
               }
             }
           ]
@@ -108,7 +76,7 @@ Check system details – GOV.UK Prototype Kit
       
  
 
-      <form action="/webcaf/current/view-systems" method="post" novalidate>
+      <form action="/webcaf/current/view-users" method="post" novalidate>
 
         {{ govukButton({
           text: "Save and continue"
