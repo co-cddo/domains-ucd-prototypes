@@ -23,7 +23,7 @@ My account with draft  - System user (submitted) – GOV.UK Prototype Kit
  <h2 class="govuk-heading-l">
         My account
       </h2>
-      <div> <p class="govuk-hint">On this page you can start a new self-assessment, continue a draft assessment and view assessments that you have already sent for review.</p></div>
+      <div> <p class="govuk-hint">On this page you can start a new self-assessment, review before sent and view assessments that you have already sent for review.</p></div>
   {{ govukButton({
   text: "Start a self-assessment",
   classes: "govuk-button--secondary"
@@ -44,32 +44,31 @@ My account with draft  - System user (submitted) – GOV.UK Prototype Kit
       </h3>  
     <p class="govuk-body govuk-!-margin-bottom-2 govuk-hint">You have not sent any assessments for review.<p>
     </div>
-
     <div class="govuk-grid-column-one-third">
-
-      
-        <h2 class="govuk-body" id="subsection-title">
-          Logged in as
-          <span class="govuk-heading-m">
-          Civil Aviation Authority
-          
-        </span> 
-        </h2>
+    <h2 class="govuk-body" id="subsection-title">
+      Logged in as
+      <span class="govuk-heading-m">
+      Civil Aviation Authority
+</span> 
+</h2>
         
-        <nav role="navigation" aria-labelledby="subsection-title">
-          <ul class="govuk-list">
-            <li>
-            </li>
-            <li>
-              <a href="org-contact"class="govuk-link govuk-link--no-visited-state">
-                Update your organisation
-              </a>
-            </li>
-          </ul>
-        </nav>
-      
-
-    </div>
+  <nav role="navigation" aria-labelledby="subsection-title">
+    <ul class="govuk-list">
+      <li>
+      </li>
+      <li>
+        <a href="org-contact"class="govuk-link govuk-link--no-visited-state">
+          Update your organisation
+        </a>
+      </li>
+      <li>
+        <a href="#"class="govuk-link govuk-link--no-visited-state">
+         Manage users
+        </a>
+      </li>
+    </ul>
+  </nav>
+  </div>
   </div>
 
 {% endblock %}

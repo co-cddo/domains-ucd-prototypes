@@ -11,31 +11,30 @@ My account - GovAssure Lead user – GOV.UK Prototype Kit
         My Cyber advisor account
       </h2>
     
- <form class="form" action="add-system-ca" method="post">  
-<div id="noassessments-hint" class="govuk-hint">
-     On this page you can add new systems, modify existing systems and view assessments that users have already sent for review.
+    <form class="form" action="add-system-ca" method="post">  
+    <div id="noassessments-hint" class="govuk-hint">
+        On this page you can add new systems, modify existing systems <br>and manage users within an organisation.
+        </div> 
+        
+    <div class="govuk-button-group">
+      {{ govukButton({
+        text: "Add a new system"
+      }) }}
+
+     <a class="govuk-link govuk-link--no-visited-state" href="view-systems">View systems</a>
     </div>
-  {{ govukButton({
-  text: "Add a new system",
-  classes: "govuk-button--secondary"
-}) }}
-</form>
+    </form>
 
       <br>
-<h3 class="govuk-heading-m">
-       My government systems
-      </h3>  
-    <p class="govuk-body govuk-!-margin-bottom-2 govuk-hint">You don't have any systems.<p>
-    <br>
 
     <h3 class="govuk-heading-m">
-       Assessments sent for review
+        Assessments sent for review
       </h3>  
     <p class="govuk-body govuk-!-margin-bottom-2 govuk-hint">You have not sent any assessments for review.<p>
-    
-     
 
-       
+        
+
+          
 
 
      
@@ -56,9 +55,10 @@ My account - GovAssure Lead user – GOV.UK Prototype Kit
           <ul class="govuk-list">
             <li>
             </li>
-            <li>
+            
+               <li>
               <a href="org-contact"class="govuk-link govuk-link--no-visited-state">
-                Update organisation
+                Manage users
               </a>
             </li>
             

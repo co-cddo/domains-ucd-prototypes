@@ -16,17 +16,19 @@ Check system details – GOV.UK Prototype Kit
 
    {{ govukBackLink({
     text: "Back",
-    href: "add-system-ca"
+    href: "javascript:window.history.back()"
   }) }}
 
 {% endblock  %}
 
+
 {% block content %}
+<form class="form" action="/webcaf/current/pathAorB-answer" method="post">
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds-from-desktop">
 
       <h1 class="govuk-heading-l">
-        Check your system details
+        About your system details
       </h1>
 
         {{ govukSummaryList({
@@ -103,15 +105,44 @@ Check system details – GOV.UK Prototype Kit
             }
           ]
         }) }}
-
+{{ govukWarningText({
+  text: "There is self-assessment started with this system.",
+  iconFallbackText: "Warning"
+}) }}
         
+  {{ govukRadios({
+  classes: "govuk-radios--inline",
+  name: "pathAorB",
+  fieldset: {
+    legend: {
+      text: "Do you want to continue?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  hint: {
+    text: ""
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes",
+      checked: checked("pathAorB", "yes")
+    },
+    {
+      value: "no",
+      text: "No",
+      checked: checked("pathAorB", "no")
+    }
+  ]
+}) }} 
       
  
 
-      <form action="/webcaf/current/view-systems" method="post" novalidate>
+      
 
         {{ govukButton({
-          text: "Save and continue"
+          text: "Continue"
         }) }}
 
       </form>

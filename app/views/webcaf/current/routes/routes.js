@@ -148,6 +148,27 @@ router.post('/a3a-answer', function(request, response) {
     }
 })
 
+// Q: Started assessment routing
+router.post('/pathAorB-answer', function(request, response) {
+
+    var pathAB = request.session.data['pathAorB']
+    if (pathAB == "yes"){
+        response.redirect("draft-assessment3")
+    } else {
+        response.redirect("view-systems")
+    }
+})
+
+// Q: View systems routing
+router.post('/pathMyaccount-answer', function(request, response) {
+
+    var pathAB = request.session.data['pathMyaccount']
+    if (pathAB == "no"){
+        response.redirect("my-account")
+    } else {
+        response.redirect("add-system-ca")
+    }
+})
 
 
 module.exports = router

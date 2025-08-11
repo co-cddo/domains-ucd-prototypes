@@ -15,19 +15,14 @@ My account with draft  - System user (submitted) – GOV.UK Prototype Kit
     Before starting a new CAF self-assessment, you must have completed your scoping document for stage 1 and 2 of the GovAssure process.
 {% endset %}
 
-{{ govukNotificationBanner({
-  html: html
-}) }}
+
 
  <h2 class="govuk-heading-l">
         My account
       </h2>
  <form class="form" action="#" method="post">  
-       <div> <p class="govuk-hint">On this page you can view any assessments you have already submitted, continue any draft assessments and start a new assessment.</p></div>
-  {{ govukButton({
-  text: "Start a self-assessment",
-  classes: "govuk-button--secondary"
-}) }}
+       <div> <p class="govuk-hint">On this page you can view any assessments you have already submitted, continue any draft assessments.</p></div>
+ 
 </form>
 <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
        Continue a draft assessment
