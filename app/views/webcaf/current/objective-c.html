@@ -189,10 +189,11 @@
       }) }}
 
         {{ govukRadios({
+        classes: "govuk-radios--inline",
         name: "sectioncompleted",
         fieldset: {
           legend: {
-            text: "Have you completed all two principles?",
+            text: "Do you want to continue with the next objective?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--m"
           }
@@ -200,11 +201,11 @@
         items: [
           {
             value: "yes",
-            text: "Yes, I've completed all two principles"
+            text: "Yes"
           },
           {
             value: "no",
-            text: "No, I'll come back to it later"
+            text: "No"
           }
         ]
       }) }}
