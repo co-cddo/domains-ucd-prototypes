@@ -190,10 +190,10 @@
 
         {{ govukRadios({
         classes: "govuk-radios--inline",
-        name: "sectioncompleted",
+        name: "objective-c-nav",
         fieldset: {
           legend: {
-            text: "Do you want to continue with the next objective?",
+            text: "Do you want to go to the next objective?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--m"
           }
@@ -209,7 +209,7 @@
           }
         ]
       }) }}
-      <form action="draft-assessment3" method="post" novalidate>
+      <form action="objective-c-nav-answer" method="post" novalidate>
 
         {{ govukButton({
           text: "Save and continue"

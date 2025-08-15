@@ -187,13 +187,13 @@
           }
         ]
       }) }}
-<form action="draft-assessment6" method="post" novalidate>
-
-        {{ govukRadios({
-        name: "sectioncompleted",
+<form action="objective-c-nav-answer" method="post" novalidate>
+ {{ govukRadios({
+        classes: "govuk-radios--inline",
+        name: "objective-c-nav",
         fieldset: {
           legend: {
-            text: "Have you completed all two principles?",
+            text: "Do you want to go to the next objective?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--m"
           }
@@ -201,11 +201,11 @@
         items: [
           {
             value: "yes",
-            text: "Yes, I've completed all two principles"
+            text: "Yes"
           },
           {
             value: "no",
-            text: "No, I'll come back to it later"
+            text: "No"
           }
         ]
       }) }}

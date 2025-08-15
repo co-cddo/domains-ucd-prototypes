@@ -472,27 +472,28 @@
       }) }}
 
       {{ govukRadios({
-  name: "sectioncompleted",
-  fieldset: {
-    legend: {
-      text: "Have you completed all six principles?",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--m"
-    }
-  },
-  items: [
-    {
-      value: "yes",
-      text: "Yes, I've completed all six principles"
-    },
-    {
-      value: "no",
-      text: "No, I'll come back to it later"
-    }
-  ]
-}) }}
+        classes: "govuk-radios--inline",
+        name: "objective-b-nav",
+        fieldset: {
+          legend: {
+            text: "Do you want to go to the next objective?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
       
-      <form action="/confirmation" method="post" novalidate>
+      <form action="/objective-b-nav-answer" method="post" novalidate>
 
         {{ govukButton({
           text: "Save and continue"

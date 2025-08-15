@@ -236,31 +236,29 @@
         ]
       }) }}
 
-<form action="draft-assessment3" method="post" novalidate>
+<form action="objective-a-nav-answer" method="post" novalidate>
 
-{{ govukRadios({
-  name: "objective-a-completed",
-  fieldset: {
-    legend: {
-      text: "Have you completed all four principles?",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--m"
-    }
-  },
-  items: [
-    {
-      value: "yes",
-      text: "Yes, I've completed all four principles",
-      checked: checked("objective-a-completed", "yes")
-    },
-    {
-      value: "no",
-      text: "No, I'll come back to it later",
-      checked: checked("objective-a-completed", "no")
-    }
-  ]
-}) }}
-
+ {{ govukRadios({
+        classes: "govuk-radios--inline",
+        name: "objective-a-nav",
+        fieldset: {
+          legend: {
+            text: "Do you want to go to the next objective?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
       
 
         {{ govukButton({

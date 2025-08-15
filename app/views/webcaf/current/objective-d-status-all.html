@@ -169,32 +169,11 @@
       }) }}
      <form action="draft-assessment6" method="post" novalidate>
 
-      {{ govukRadios({
-        name: "sectioncompleted",
-        fieldset: {
-          legend: {
-            text: "Have you completed all two principles?",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        items: [
-          {
-            value: "yes",
-            text: "Yes, I've completed all two principles"
-          },
-          {
-            value: "no",
-            text: "No, I'll come back to it later"
-          }
-        ]
-      }) }}
-
-      
       
 
         {{ govukButton({
-          text: "Save and continue"
+          text: "Back to draft",
+          classes: "govuk-button--secondary"
         }) }}
 
       </form>

@@ -9,37 +9,42 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
-// Q: Objective B routing
-router.post('/objective-b-answer', function(request, response) {
 
-    var objB = request.session.data['objective-b-completed']
+
+// Q: Objective A navigation routing
+router.post('/objective-a-nav-answer', function(request, response) {
+
+    var objA = request.session.data['objective-a-nav']
+    if (objA == "yes"){
+        response.redirect("objective-b")
+    } else {
+        response.redirect("draft-assessment3")
+    }
+})
+
+// Q: Objective B navigation routing
+router.post('objective-b-nav-answer', function(request, response) {
+
+    var objB = request.session.data['objective-b-nav']
     if (objB == "yes"){
-        response.redirect("draft-assessment5")
+        response.redirect("objective-c")
     } else {
         response.redirect("draft-assessment3")
     }
 })
 
-// Q: Objective B status routing
-router.post('/objective-b-status-answer', function(request, response) {
+// Q: Objective C navigation routing
+router.post('/objective-c-nav-answer', function(request, response) {
 
-    var objBs = request.session.data['objective-b-status']
-    if (objBs == "yes"){
-        response.redirect("draft-assessment5")
+    var objC = request.session.data['objective-c-nav']
+    if (objC == "yes"){
+        response.redirect("objective-c")
     } else {
         response.redirect("draft-assessment3")
     }
 })
-// Q: Objective B status2 routing
-router.post('/objective-b-status2-answer', function(request, response) {
 
-    var objBs2 = request.session.data['objective-b-status2']
-    if (objBs2 == "yes"){
-        response.redirect("draft-assessment5")
-    } else {
-        response.redirect("draft-assessment3")
-    }
-})
+
 
   
 // Q: b3a - routing
