@@ -31,7 +31,7 @@ Start a draft assessment – GOV.UK Prototype Kit
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">Submit a WebCAF self-assessment
+      <h1 class="govuk-heading-l">Complete a WebCAF self-assessment
 
       </h1>
       <p><strong>Draft assessment</strong></p>
@@ -80,7 +80,7 @@ Start a draft assessment – GOV.UK Prototype Kit
         ]
       }) }}
 
-      <h2 class="govuk-heading-m govuk-!-margin-top-5">2. Create your assessment</h2>
+      <h2 class="govuk-heading-m govuk-!-margin-top-5">2. Create your self-assessment</h2>
       <p>Take time to select your answers for each outcome. They will be assessed against your system and organisation.</p>
 
       {{ govukTaskList({
@@ -117,13 +117,13 @@ security incidents"
           }
         ]
       }) }}
- <h2 class="govuk-heading-m govuk-!-margin-top-5">3. Submit your assessment</h2>
+  <h2 class="govuk-heading-m govuk-!-margin-top-5">3. Send your self-assessment for review</h2>
 {{ govukTaskList({
         idPrefix: "submit-section",
         items: [
           {
             title: {
-              text: "Complete the full assessment"
+              text: "Complete the full self-assessment"
             },
             href: "",
             status: cannotstartStatus
