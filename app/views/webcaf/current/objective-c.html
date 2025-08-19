@@ -187,7 +187,8 @@
           }
         ]
       }) }}
-
+      <form action="objective-c-nav-answer" method="post" novalidate>
+        
         {{ govukRadios({
         classes: "govuk-radios--inline",
         name: "objective-c-nav",
@@ -201,15 +202,17 @@
         items: [
           {
             value: "yes",
-            text: "Yes"
+            text: "Yes",
+            checked: checked("objective-c-nav", "yes")
           },
           {
             value: "no",
-            text: "No"
+            text: "No",
+            checked: checked("objective-c-nav", "no")
           }
         ]
       }) }}
-      <form action="objective-c-nav-answer" method="post" novalidate>
+      
 
         {{ govukButton({
           text: "Save and continue"

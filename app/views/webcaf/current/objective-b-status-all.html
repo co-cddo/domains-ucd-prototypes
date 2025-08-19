@@ -36,9 +36,6 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-      <form class="form" action="/webcaf/current/draft-assessment6" method="post">
-
       <h1 class="govuk-heading-l">
         Objective B - Protecting against cyber attacks
       </h1>
@@ -471,6 +468,7 @@
         ]
       }) }}
 
+      <form class="form" action="objective-c" method="post">
       {{ govukRadios({
         classes: "govuk-radios--inline",
         name: "objective-b-nav",
@@ -484,11 +482,13 @@
         items: [
           {
             value: "yes",
-            text: "Yes"
+            text: "Yes",
+            checked: checked("objective-b-nav", "yes")
           },
           {
             value: "no",
-            text: "No"
+            text: "No",
+            checked: checked("objective-b-nav", "no")
           }
         ]
       }) }}

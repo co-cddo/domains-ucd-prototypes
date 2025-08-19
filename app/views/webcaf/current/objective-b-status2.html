@@ -37,7 +37,7 @@ Objective B
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="objective-b-nav-answer" method="post">
+      <form class="form" action="objective-c" method="post">
 
       <h1 class="govuk-heading-l">
         Objective B - Protecting against cyber attacks
@@ -484,11 +484,13 @@ Objective B
         items: [
           {
             value: "yes",
-            text: "Yes"
+            text: "Yes",
+            checked: checked("objective-b-nav", "yes")
           },
           {
             value: "no",
-            text: "No"
+            text: "No",
+            checked: checked("objective-b-nav", "no")
           }
         ]
       }) }}

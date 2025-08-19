@@ -670,7 +670,7 @@
           }
         ]
       }) }}
-<form class="form" action="objective-b-nav-answer" id="mainForm" method="post">
+<form class="form" action="objective-c" id="mainForm" method="post">
 
        {{ govukRadios({
         classes: "govuk-radios--inline",
@@ -685,11 +685,13 @@
         items: [
           {
             value: "yes",
-            text: "Yes"
+            text: "Yes",
+            checked: checked("objective-b-nav", "yes")
           },
           {
             value: "no",
-            text: "No"
+            text: "No",
+            checked: checked("objective-b-nav", "no")
           }
         ]
       }) }}

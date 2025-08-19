@@ -23,7 +23,7 @@ router.post('/objective-a-nav-answer', function(request, response) {
 })
 
 // Q: Objective B navigation routing
-router.post('objective-b-nav-answer', function(request, response) {
+router.post('objective-b-nav-answer2', function(request, response) {
 
     var objB = request.session.data['objective-b-nav']
     if (objB == "yes"){
@@ -38,7 +38,7 @@ router.post('/objective-c-nav-answer', function(request, response) {
 
     var objC = request.session.data['objective-c-nav']
     if (objC == "yes"){
-        response.redirect("objective-c")
+        response.redirect("objective-d")
     } else {
         response.redirect("draft-assessment3")
     }
