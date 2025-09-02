@@ -60,12 +60,39 @@
         rows: [
           {
             key: {
-              html: 'A1.a Board direction'
-             ,
+              html: 'A1.a Board direction'+'<br><br><details class="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    5 justifications added
+                  </span>
+                </summary>
+                <div class="govuk-details__text"><span>
+                    <p><strong>Achieved:</strong> 2 and 7.</p>
+                    <ul class="govuk-list govuk-list--bullet">
+                      <li>2: We are supporting cyber analysis with a particular internal toolset.</li>
+                      <li>7: We do not support cyber posture in this case.</li>
+                    </ul>
+                    <p><strong>Not achieved:</strong> 1,2 and 7.</p>
+                    <ul class="govuk-list govuk-list--bullet">
+                      <li>1: We are supporting cyber analysis with a particular internal toolset.</li>
+                      <li>2: We do not support cyber posture in this case.</li>
+                      <li>7: Our manager signs these cyber records.</li>
+                    </ul>
+
+                  <a href="#">View statements</a> 
+                 
+                </div>
+              </details></span>',
               classes: "govuk-!-width-one-half"
             },
             value: {
-             html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+             html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'+'<br><br><div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+Updated by user
+    
+  </strong>
+</div>'
             },
             actions: {
               items: [
@@ -930,8 +957,8 @@ Objective B - Protecting against cyber attacks
         ]
       }) }}
 
-      <h2 class="govuk-heading-l">Confirm the date you are completing your self-assessment</h2>
- <p>For it to be assessed in GovAssure Year 3, 2025/26 you must complete your self-assessment before 11:59pm on 31 March 2026.<br>If you complete your self-assessment after this date, it will be filed for Year 4 2025/26.
+      <h2 class="govuk-heading-l">Confirm your self-assessment submission date</h2>
+ <p>Submissions close for GovAssure Year 3 2025/26 at 11:59pm on 31 March 2026. If you provide your self-assessment after this date, it will be filed for Year 4 2025/26.
 </p>
     
       {{ govukRadios({
@@ -939,7 +966,7 @@ Objective B - Protecting against cyber attacks
   name: "sectioncompleted",
   fieldset: {
     legend: {
-      text: "Are you completing your self-assessment before the closing date of 11:59pm on 31 March 2026?
+      text: "Are you submitting your self-assessment before the closing date of 11:59pm on 31 March 2026?
 ",
       isPageHeading: true,
       classes: "govuk-fieldset__legend--s"

@@ -51,9 +51,23 @@
       <div class="govuk-grid-column-two-thirds">
 <h1 class="govuk-heading-l">A3.a Asset management outcome</h1>
 <h1 class="govuk-heading-m">Status: Not achieved</h1>
-  <span class="govuk-hint">You selected 'not true' to at least one of the achieved or partially achieved statements.
-Please confirm you agree with this status, or you can choose to change the outcome. </span>
-
+  <span class="govuk-hint">We have calculated your outcome, based on your answers provided and </span>
+{{ govukDetails({
+  summaryHtml: "<strong>5</strong> justifications added",
+  html: '
+                    <strong>Achieved:</strong> 2 and 7.
+                    <ul class="govuk-list govuk-list--bullet">
+                      <li>2: We are supporting cyber analysis with a particular internal toolset.</li>
+                      <li>7: We do not support cyber posture in this case.</li>
+                    </ul>
+                    <strong>Not achieved:</strong> 1,2 and 7.
+                    <ul class="govuk-list govuk-list--bullet">
+                      <li>1: We are supporting cyber analysis with a particular internal toolset.</li>
+                      <li>2: We do not support cyber posture in this case.</li>
+                      <li>7: Our manager signs these cyber records.</li>
+                    </ul>
+  '
+}) }}
 
 {% set changeStatus %}
 {{ govukTextarea({
