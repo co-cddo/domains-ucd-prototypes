@@ -1,0 +1,84 @@
+{% extends "layouts/webcaf-cyber.html" %}
+
+{% block pageTitle %}
+View 3 users – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<form class="form" action="/webcaf/current/pathMyaccountUser-answer" method="post">
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+ <table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--l">Civil Aviation Authority has 3 users</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row"></th>
+      <th scope="col" class="govuk-table__header">Name</th>
+      <th scope="col" class="govuk-table__header">Registered email address </th>
+      <th scope="col" class="govuk-table__header">Action</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header" class="govuk-fieldset__legend--s">Robert Nagy</a><strong class="govuk-tag govuk-!-margin-left-3">Cyber advisor</strong></th>
+      <td class="govuk-table__cell">robert.nagy@digital.cabinet-office.gov.uk</td>
+      <td scope="row" class="govuk-table__cell"></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header" class="govuk-fieldset__legend--s">Khidr Suliman</a><strong class="govuk-tag govuk-tag--green govuk-!-margin-left-3">GovAssure lead</strong></th>
+      <td class="govuk-table__cell">khidr.suliman@digital.cabinet-office.gov.uk</td>
+      <td scope="row" class="govuk-table__cell"><a href="add-user" class="govuk-link govuk-link--no-visited-state">Change</a> | <a href="remove-user" class="govuk-link govuk-link--no-visited-state">Remove</a></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header" class="govuk-fieldset__legend--s">Katherine Brown</a><strong class="govuk-tag govuk-tag--yellow govuk-!-margin-left-3">Organisation user</strong></th>
+      <td class="govuk-table__cell">katherine.brown@digital.cabinet-office.gov.uk</td>
+      <td scope="row" class="govuk-table__cell"><a href="#" class="govuk-link govuk-link--no-visited-state">Change</a> | <a href="#" class="govuk-link govuk-link--no-visited-state">Remove</a></td>
+    </tr>
+    
+    
+  </tbody>
+</table>
+
+ {{ govukRadios({
+          classes: "govuk-radios--inline",
+          name: "pathMyaccountUser",
+          fieldset: {
+            legend: {
+              text: "Add another user?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: ""
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: checked("pathMyaccount", "yes")
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: checked("pathMyaccount", "no")
+            }
+          ]
+        }) }} 
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+</div>
+</div>
+{% endblock %}

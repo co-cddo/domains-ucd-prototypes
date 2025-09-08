@@ -1,0 +1,436 @@
+{% extends "layouts/main.html" %}
+
+
+
+{% block pageTitle %}
+  Webcaf - Test  – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/registration/webcaf/current"
+      },
+      {
+        text: "Create a new assessment
+        ",
+        href: "/registration/index"
+      },
+      {
+        text: "Objective A - Managing risk
+        ",
+        href: "/registration/index"
+      },
+      
+      {
+        text: "Principle: A1 Governance
+        "
+      }
+    ]
+  }) }}
+  <div class="proto-admin">
+   <div id="changedName-hint" class="govuk-hint">
+      Principle 1 of 4<br>
+      <strong>Principle: A1 Governance</strong>
+    </div>     
+         <p id="progress-pages"><strong>You're on outcome 1 of 3</strong></p>
+         <div class="progress-inactive"><div class="progress-active" style="width: 33%"></div></div>
+      </div>
+  
+{% endblock %}
+{% block content %}
+
+<h3 class="govuk-heading-l">A1.a Board direction</h3>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+ 
+    <h3 class="govuk-heading-m">Read all the statements on both tabs. Select true or false as an answer to the statement. </h3>
+    {{ govukInsetText({
+  html: "You can select not applicable if you believe this statement is not relevant to your organisation or system. <br><br>You must explain the reason why the statement does not apply."
+}) }}
+</h3>
+
+      {% set notachievedHtml %}
+      
+ <form class="form" action="webcaf3-answer" id="mainForm" method="post">
+    
+<h1 class="govuk-heading-s">Not achieved statements</h1>
+<div id="signIn-hint" class="govuk-hint">If you select true to any of the following statements it means that you have not achieved this outcome.
+    </div>
+
+   
+{% set giveReason %}
+{{ govukTextarea({
+  name: "giveReason",
+  id: "giveReason",
+  label: {
+    text: "Explain your reason for saying this statement is not applicable to your system or organisation."
+  }
+}) }}
+{% endset -%}
+
+
+{{ govukRadios({
+  name: "outcome1-not-achieved",
+  classes: "govuk-radios--inline",
+  fieldset: {
+    legend: {
+      html: "Which of the following happens at your organisation?
+                  
+              ",
+      isPageHeading: true,
+      classes: "govuk"
+    }
+  },
+  hint: {
+    text: ""
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Your organisation's approach and policy relating to the security of network and information systems supporting the operation of your essential function(s) are owned and managed at board-level. These are communicated, in a meaningful way, to risk management decision-makers across the organisation.
+",
+      checked: checked("outcome1-not-achieved", "yes")
+    },
+    {
+      value: "no",
+      text: "The security of network and information systems related to the operation of essential function(s) is not discussed or reported on regularly at board- level.",
+      checked: checked("outcome1-not-achieved", "no")
+    },
+    {
+      value: "na",
+      text: "Not applicable",
+      conditional: {
+        html: giveReason
+      },
+      checked: checked("outcome1-not-achieved", "na")
+    }
+  ]
+}) }}
+
+
+
+{{ govukRadios({
+  name: "outcome2-not-achieved",
+  classes: "govuk-radios--inline",
+  fieldset: {
+    legend: {
+      html: "2. Board-level discussions on the security of network and information
+                  systems are based on partial or out-of-date information, without
+                  the benefit of expert guidance.",
+      isPageHeading: true,
+      classes: "govuk"
+    }
+  },
+  hint: {
+    text: ""
+  },
+  items: [
+    {
+      value: "yes",
+      text: "True",
+      checked: checked("outcome2-not-achieved", "yes")
+    },
+    {
+      value: "no",
+      text: "False",
+      checked: checked("outcome2-not-achieved", "no")
+    },
+    {
+      value: "na",
+      text: "Not applicable",
+      conditional: {
+        html: giveReason
+      },
+      checked: checked("outcome1-not-achieved", "na")
+    }
+  ]
+}) }}
+
+{{ govukRadios({
+  name: "outcome3-not-achieved",
+  classes: "govuk-radios--inline",
+  fieldset: {
+    legend: {
+      html: "3. The security of network and information systems supporting your
+                  essential function(s) are not driven effectively by the direction
+                  set at board-level.</span>",
+      isPageHeading: true,
+      classes: "govuk"
+    }
+  },
+  hint: {
+    text: ""
+  },
+  items: [
+    {
+      value: "yes",
+      text: "True",
+      checked: checked("outcome3-not-achieved", "yes")
+    },
+    {
+      value: "no",
+      text: "False",
+      checked: checked("outcome3-not-achieved", "no")
+    },
+    {
+      value: "na",
+      text: "Not applicable",
+      conditional: {
+        html: giveReason
+      },
+      checked: checked("outcome1-not-achieved", "na")
+    }
+  ]
+}) }}
+
+{{ govukRadios({
+  name: "outcome4-not-achieved",
+  classes: "govuk-radios--inline",
+  fieldset: {
+    legend: {
+      html: "4. Senior management or other pockets of the organisation consider
+                  themselves exempt from some policies or expect special accommodations
+                  to be made.</span>",
+      isPageHeading: true,
+      classes: "govuk"
+    }
+  },
+  hint: {
+    text: ""
+  },
+  items: [
+    {
+      value: "yes",
+      text: "True",
+      checked: checked("outcome4-not-achieved", "yes")
+    },
+    {
+      value: "no",
+      text: "False",
+      checked: checked("outcome3-not-achieved", "no")
+    },
+    {
+      value: "na",
+      text: "Not applicable",
+      conditional: {
+        html: giveReason
+      },
+      checked: checked("outcome1-not-achieved", "na")
+    }
+  ]
+}) }}
+
+      {% endset -%}
+      
+      {% set achievedHtml %}
+       
+          
+<h1 class="govuk-heading-s">Achieved statements</h1>
+<div id="signIn-hint" class="govuk-hint">You must answer with yes to all statements to achieve this outcome.
+
+
+    </div> 
+
+     {{ govukRadios({
+  name: "outcome5-achieved",
+  classes: "govuk-radios--inline",
+  fieldset: {
+    legend: {
+      text: "1. Your organisation's approach and policy relating to the security
+                  of network and information systems supporting the operation of your
+                  essential function(s) are owned and managed at board-level. These are
+                  communicated, in a meaningful way, to risk management decision-makers
+                  across the organisation.",
+      isPageHeading: true,
+      classes: "govuk"
+    }
+  },
+  hint: {
+    text: ""
+  },
+  items: [
+    {
+      value: "yes",
+      text: "True",
+      checked: checked("outcome5-achieved", "yes")
+    },
+    {
+      value: "no",
+      text: "False",
+      checked: checked("outcome5-achieved", "no")
+    },
+    {
+      value: "na",
+      text: "Not applicable",
+      conditional: {
+        html: giveReason
+      },
+      checked: checked("outcome5-achieved", "na")
+    }
+  ]
+}) }}
+
+ {{ govukRadios({
+  name: "outcome6-achieved",
+  classes: "govuk-radios--inline",
+  fieldset: {
+    legend: {
+      text: "2. Regular board-level discussions on the security of network and
+                  information systems supporting the operation of your essential function(s)
+                  take place, based on timely and accurate information and informed
+                  by expert guidance.",
+      isPageHeading: true,
+      classes: "govuk"
+    }
+  },
+  hint: {
+    text: ""
+  },
+  items: [
+    {
+      value: "yes",
+      text: "True",
+      checked: checked("outcome6-achieved", "yes")
+    },
+    {
+      value: "no",
+      text: "False",
+      checked: checked("outcome6-achieved", "no")
+    },
+    {
+      value: "na",
+      text: "Not applicable",
+      conditional: {
+        html: giveReason
+      },
+      checked: checked("outcome6-achieved", "na")
+    }
+  ]
+}) }}
+
+ {{ govukRadios({
+  name: "outcome7-achieved",
+  classes: "govuk-radios--inline",
+  fieldset: {
+    legend: {
+      text: "3. There is a board-level individual who has overall accountability
+                  for the security of network and information systems and drives regular
+                  discussion at board-level.",
+      isPageHeading: true,
+      classes: "govuk"
+    }
+  },
+  hint: {
+    text: ""
+  },
+  items: [
+    {
+      value: "yes",
+      text: "True",
+      checked: checked("outcome7-achieved", "yes")
+    },
+    {
+      value: "no",
+      text: "False",
+      checked: checked("outcome7-achieved", "no")
+    },
+    {
+      value: "na",
+      text: "Not applicable",
+      conditional: {
+        html: giveReason
+      },
+      checked: checked("outcome7-achieved", "na")
+    }
+  ]
+}) }}
+
+{{ govukRadios({
+  name: "outcome8-achieved",
+  classes: "govuk-radios--inline",
+  fieldset: {
+    legend: {
+      text: "4. Direction set at board-level is translated into effective organisational
+                  practices that direct and control the security of the network and
+                  information systems supporting your essential function(s).",
+      isPageHeading: true,
+      classes: "govuk"
+    }
+  },
+  hint: {
+    text: ""
+  },
+  items: [
+    {
+      value: "yes",
+      text: "True",
+      checked: checked("outcome8-achieved", "yes")
+    },
+    {
+      value: "no",
+      text: "False",
+      checked: checked("outcome8-achieved", "no")
+    },
+    {
+      value: "na",
+      text: "Not applicable",
+      conditional: {
+        html: giveReason
+      },
+      checked: checked("outcome8-achieved", "na")
+    }
+  ]
+}) }}
+     
+      {% endset -%}
+       {{ govukTabs({
+        items: [
+          {
+            label:  "Not achieved",
+            id: "notachieved",
+            panel: {
+              html: notachievedHtml
+            }
+          },
+          {
+            label: "Achieved",
+            id: "achieved",
+            panel: {
+              html: achievedHtml
+            }
+          }
+        ]
+      }) }}
+
+<div class="govuk-button-group">
+  {{ govukButton({
+    text: "Save and continue"
+  }) }}
+  </form>
+
+  <a class="govuk-link" href="#">Back to Objective A - Managing risk </a>
+</div>
+
+    
+
+
+    </div>    
+  </div>
+
+{% endblock %}

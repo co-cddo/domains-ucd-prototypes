@@ -1,0 +1,143 @@
+{% extends "layouts/main.html" %}
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+  
+{% set pageName="Home" %}
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h2 class="govuk-heading-xl">
+      Webcaf admin prototype
+    </h2>
+  </div>
+</div>
+
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+<div class="proto-admin">
+        <h2 class="govuk-heading-l">User research</h2>
+          
+          
+          
+            <p class='govuk-list app-list--definition'>
+              <a href='https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/current/start' class="govuk-link--no-visited-state">Version 1.3</a>
+             <br>
+            End-to-end journey starts here. We're running on v1.3 (with some internal changes and tweaks). This version does not contain any UR feedback or iteration. v2 will be iterated after 27th August and onwards.
+              <br><span class="govuk-body govuk-!-font-size-14">#Last updated on 2 September 2025.
+            </span>
+             
+        </p>
+
+        <p class='govuk-list app-list--definition'>
+              <a href='https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/current/start-b' class="govuk-link--no-visited-state">Start page - Version b</a>
+             <br>
+            A/B testing on the service name.
+              <br><span class="govuk-body govuk-!-font-size-14">#Last updated on 25 July 2025
+            </span>
+             
+        </p>
+</div>
+
+<div class="proto-admin">
+        <h2 class="govuk-heading-l">Design history</h2>
+          
+          
+          
+            <p class='govuk-list app-list--definition'>
+              <a href='https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/v1/start' class="govuk-link--no-visited-state">Version 1.2</a>
+             <br>
+            Version 1 of the prototype, brought into user research.
+              <br><span class="govuk-body govuk-!-font-size-14">#Last updated on 18 Aug 2025
+            </span>
+             
+        </p>
+
+</div>
+      <div class="proto-admin">
+        <h2 class="govuk-heading-l">Patterns and key design building blocks</h2>
+        <p class='govuk-list app-list--definition'>
+            <a href='https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/current/my-account' class="govuk-link--no-visited-state">My account: Cyber advisor</a>
+            <br>Cyber advisor - home page. This user type can add systems, manage users. Full mini-journeys included on this link.
+        </p>
+
+        <p class='govuk-list app-list--definition'>
+            <a href='https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/current/my-account-dept' class="govuk-link--no-visited-state">My account: GovAssure lead</a>
+            <br>GovAssure lead who manages a single organisation, can start assessment and adds Organisation users, including updating organisation detais.
+        </p>
+        <p class='govuk-list app-list--definition'>
+            <a href='https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/current/my-account-dept-multi' class="govuk-link--no-visited-state">My account - GovAssure lead</a>
+            <br>GovAssure lead who manages multiple organisations, can start assessment and adds Organisation users, including updating organisation detais.
+        </p>
+        <p class='govuk-list app-list--definition'>
+            <a href='https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/current/start-draft-assessment' class="govuk-link--no-visited-state">Draft self-assessment task list: Organisation user</a>
+            <br>Organisation user who is filling in an already started/saved self-assessment, including updating organisation detais. This user will fill in the draft assessment.
+        </p>  
+        <p class='govuk-list app-list--definition'>
+            <a href='https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/current/1-igp-tabs' class="govuk-link--no-visited-state">CAF self-assessment statements</a>
+            <br>Using radio buttons as options, showing 3 types of statements in tabs, including new numbering.
+        </p>
+         <p class='govuk-list app-list--definition'>
+            <a href='https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/current/b4b-outcome-achieved' class="govuk-link--no-visited-state">Outcome status</a>
+            <br>Evidence removed, and added High level summary guidance.
+          </p>
+          <p class='govuk-list app-list--definition'>
+            <a href='https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/current/progress-indicator' class="govuk-link--no-visited-state">Progress indicator </a>
+            <br>Shows user where and how far are they're in the process
+            <br><span class="govuk-body govuk-!-font-size-14">#Last updated on 26 June 2025
+            </span>
+          </p>
+     </div>
+   
+      <div class="proto-admin">
+        <h2 class="govuk-heading-l">Design thinking</h2>
+          <p class='govuk-heading-m'>User journeys, user-flows and wireframes</p>
+          <p class='govuk-list app-list--definition'>
+          
+            <p class='govuk-list app-list--definition'>
+              <a href='https://sgs-ddt-01-96c924f9e494.herokuapp.com/public/downloads/webcaf-as-is.pdf' class="govuk-link--no-visited-state" target="new">Webcaf - As-is workflow</a>
+            <br>Webcaf's current workflow state.
+            <br><span class="govuk-body govuk-!-font-size-14">#Last updated on 4 April 2025
+            </span>
+            </p>
+            <p class='govuk-list app-list--definition'>
+              <a href='https://sgs-ddt-01-96c924f9e494.herokuapp.com/public/downloads/webcaf-to-be.pdf' class="govuk-link--no-visited-state" target="new">Webcaf - To-be workflow</a>
+            <br>End-to-end journey, version 1 to take into user research.
+            <br><span class="govuk-body govuk-!-font-size-14">#Last updated on 17 July 2025
+            </span>
+            </p>
+      </div>
+
+
+
+
+
+      {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+
+                  
+</div>
+</div>
+
+{% endblock %}

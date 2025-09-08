@@ -1,0 +1,127 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Content page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Roadmap
+      </h1>
+      <p><span class="govuk-body govuk-!-font-size-14"> Last updated: 3 February 2025</span>
+      <br>
+      <span class="govuk-body govuk-!-font-size-14"> Next review due: 31 March 2025</span></p>
+      <h2 class="govuk-heading-m">
+        Things we're working on now
+      </h2>
+      <h3 class="govuk-heading-s">
+        Registrar Satisfaction and Improvements survey
+
+      </h3>
+      <p>A survey to designed to: 
+          <ul class="govuk-list govuk-list--bullet">
+            <li>Provide a base-line of service satisfaction (app experience and time taken to receive a decision)</li>
+            <li>Identify and prioritise areas of service improvement </li>
+          </ul>
+        </p>
+          
+
+      <h3 class="govuk-heading-s">
+        Improvements to the back-end admin interface
+      </h3>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>Goal: v2 updates live in production by March 2025</li>
+            <li>Prioritisation of: catching domain name is available before approval</li>
+            <li>Admin export improvements - including days taken for a decision column (this to be added to admin interface also)</li>
+          </ul>
+          <p><span class="govuk-body govuk-!-font-size-15"> Resourcing: Katie, Robert (lead), Mo, Nigel, Dev</span></p>
+
+      <h3 class="govuk-heading-s">
+        Front-end updates 
+      </h3>
+      <p>Planning in quant with Registrars to understand more of what is working well and what areas they would like to see improved - and how</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>Goal: v2 prototype created and at least 1 iteration of UR + comms prep</li>
+            <li>Prioritisation of: Prioritisation of: Evidence of clerk - link and upload </li>
+            <li>Stretch goal: 2nd round of UR testing completed + comms prep </li>
+            <li>Central government journey review - what other things do we need to ask on this Journey</li>
+            <li>Breaking through our assumptions about behaviors with domains and how will they maintain domains when they aren’t used in the way we expect? </li>
+          </ul>
+          <p><span class="govuk-body govuk-!-font-size-15"> Resourcing: Katie, Robert (lead)</span></p>
+
+      <h3 class="govuk-heading-s">
+        Onboarding new Business Relationship Manager - handover from CMC and Mo
+      </h3>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Goal: Emma will be up to speed on Parish Council Helper Service and applications by March 2025</li>
+          <li>Handover of presentation material and relationships</li>
+        </ul>
+        <p><span class="govuk-body govuk-!-font-size-15"> Resourcing: Khidr (lead), CMC, Katie, Robert, Paula, Mo</span></p>
+    
+            
+ 
+
+
+      <h2 class="govuk-heading-m">
+        Things we'll do later (post-March)
+      </h2>
+      <h3 class="govuk-heading-s">
+        KPIs dashboard
+      </h3>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>Short-term goal - understand what we want to do and the resources needed </li>
+            <li>Medium-term goal - get info from baseline questionnaire for end users - before end of Feb 2025</li>
+            <li>Interim solution - improve the manual process (speeding up the manual population)</li>
+            <li>Long-term solution: Design a KPI dashboard for automated metrics</li>
+            <li>Create tickets for DEV for all metrics that need automating</li>
+          </ul>
+          <p><span class="govuk-body govuk-!-font-size-15"> Resourcing: Katie (lead), Robert, Mo, Nigel, Dev</span></p>
+      <h3 class="govuk-heading-s">
+        Processing applications
+      </h3>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Goal: clear distribution of work after Mo has gone</li>
+        </ul>
+        
+        <h3 class="govuk-heading-s">
+          Service.gov.uk domain management
+        </h3>
+        
+            <ul class="govuk-list govuk-list--bullet">
+              <li>Goal: clear distribution of work after Mo has gone</li>
+          <li>Later part of March: having thinking space</li>
+          <li>Stakeholder workshop: what is the as-is and what is needed - do a sprint</li>
+            </ul>
+            <p><span class="govuk-body govuk-!-font-size-15"> Resourcing: Khidr (lead), Katie, Robert, Emma</span></p>
+        
+        
+      <h2 class="govuk-heading-m" id="things-we-have-done">
+        Things we’ve done
+      </h2>
+      
+          <ul class="govuk-list govuk-list--bullet">
+            <li>Publish new content: <a href="https://www.gov.uk/guidance/moving-your-parish-council-to-a-govuk-domain" class="govuk-link--no-visited-state">Moving your parish council to a .gov.uk domain name</a> on 23 January 2025</li>
+          </ul>
+      </p>
+
+      
+
+      <p>
+        Read more on our <a href="https://docs.google.com/presentation/d/1P7-8wDc_lJnG1kFwrdUxCH-H3UTnO8AIJMj3IDmDFow/edit#slide=id.g3110a3826c8_0_0" class="govuk-link--no-visited-state">sprint reviews</a> and loook at our <a href="https://docs.google.com/presentation/d/1Fm4xZ0HvUYOyZ95LFrk089QPYZdtq8n1rxfo6HGeKaQ/edit#slide=id.g302ca300f0b_0_231" class="govuk-link--no-visited-state">visual roadmap</a>.
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}

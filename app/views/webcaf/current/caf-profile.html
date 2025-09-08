@@ -28,19 +28,15 @@ CAF government profile – GOV.UK Prototype Kit
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-        Government CAF profile
+        Choose your Government CAF profile
       </h1>
       <p>
-        Every system undergoing GovAssure must be classified as one of two profile types. These are baseline or enhanced.
+        Every system undergoing GovAssure must be assigned one of the two Government CAF profiles. These are baseline and enhanced. You will have agreed this with your cyber advisor during stage 2.
       </p>
-      {{ govukInsetText({
-      text: "Baseline profile is essential for all government organisations. Enhanced is for critical or CNI systems."
-        }) }}
-      
+      <p>You can read more in the <a href="https://www.security.gov.uk/policy-and-guidance/govassure/stage-2-in-scope-systems-and-assigning-target-caf-profile/#section_5_assign-caf-profiles-to-your-systems" target="new" class="govuk-lik"> CAF profiles to your systems guidance (opens in new tab). </a></p>
       
 
-
-      <form class="form" action="/webcaf/current/draft-assessment2" method="post">
+      <form class="form" action="/webcaf/current/review-type-answer" method="post">
         
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
@@ -62,32 +58,18 @@ CAF government profile – GOV.UK Prototype Kit
             {
               value: "baseline",
               text: "Baseline",
-              checked: checked("cafprofile", "baseline"),
-              hint: {
-        text: "Use this if your system is non-critical"
-      }
+              checked: checked("cafprofile", "baseline")
             },
             {
               value: "enhanced",
               text: "Enhanced",
-              checked: checked("cafprofile", "enhanced"),
-              hint: {
-        text: "Use this if your system is part of the CNI or is another critical government system"
-      }
+              checked: checked("cafprofile", "enhanced")
             }
           ]
         }) }}
-
-
-       
-
-        {{ govukWarningText({
-          html: 'All government organisations must meet the Baseline Profile. If your organisation wants to assign the Enhanced Profile to a system, you should contact us at <code class="govspeak-code">cybergovassure@cabinetoffice.gov.uk</code>.',
-          iconFallbackText: "Warning"
-        }) }}
       
         {{ govukButton({
-          text: "Continue"
+          text: "Save and continue"
         }) }}
 
       </form>

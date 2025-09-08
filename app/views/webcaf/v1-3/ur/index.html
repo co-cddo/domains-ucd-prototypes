@@ -1,0 +1,65 @@
+{% extends "layouts/main.html" %}
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+  
+{% set pageName="Home" %}
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h2 class="govuk-heading-xl">
+      User research priorities (Changes)
+    </h2>
+  </div>
+</div>
+
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+<div class="proto-admin">
+        <h2 class="govuk-heading-l">Proposed solutions</h2>
+  
+        <p class='govuk-list app-list--definition'>
+          <a href='06-playback-messaging' class="govuk-link--no-visited-state">06-Playback messaging</a>
+        </p>
+         <p class='govuk-list app-list--definition'>
+          <a href='06-playback-messaging2' class="govuk-link--no-visited-state">06-Playback messaging (Option B)</a>
+        </p>
+         <p class='govuk-list app-list--definition'>
+          <a href='08-character-count' class="govuk-link--no-visited-state">08-Character count update</a>
+        </p>
+         <p class='govuk-list app-list--definition'>
+          <a href='09-status-overridden' class="govuk-link--no-visited-state">09-Status overriden on Summary page</a>
+        </p>
+        <p class='govuk-list app-list--definition'>
+          <a href='11-progress-indicator' class="govuk-link--no-visited-state">11-Progress indicator update</a>
+        </p>
+
+</div>
+
+
+                  
+</div>
+</div>
+
+{% endblock %}

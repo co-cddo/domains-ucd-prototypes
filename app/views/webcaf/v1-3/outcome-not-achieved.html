@@ -1,0 +1,180 @@
+{% extends "layouts/main.html" %}
+
+
+
+{% block pageTitle %}
+  Webcaf - Test  – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+
+ 
+{% block beforeContent %}
+ 
+
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/index.html"
+      },
+      {
+        text: "Create a new assessment
+        ",
+        href: "/registration/index"
+      },
+      {
+        text: "Objective A - Managing risk
+        ",
+        href: "/registration/index"
+      },
+      
+      {
+        text: "Principle: A1 Governance
+        "
+      }
+    ]
+  }) }}
+  <div class="proto-admin">
+   <div id="changedName-hint" class="govuk-hint">
+      Principles 1 of 4<br>
+      <strong>Principle: A1 Governance</strong>
+    </div>     
+         <p id="progress-pages"><strong>You're on outcome 1 of 3</strong></p>
+         <div class="progress-inactive"><div class="progress-active" style="width: 33%"></div></div>
+      </div>
+  
+{% endblock %}
+
+{% block content %}
+
+<form class="form" action="2c" id="mainForm" method="post">
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+     
+<h1 class="govuk-heading-l">A1.a Board direction outcome</h1>
+<h1 class="govuk-heading-m">Status: Not achieved</h1>
+
+{% set changeStatus %}
+{{ govukTextarea({
+  name: "moreDetail",
+  id: "more-detail",
+  label: {
+    text: "Explain why you've changed the outcome"
+  }
+}) }}
+{% endset -%}
+
+{{ govukRadios({
+  classes: "",
+  name: "changedName",
+  fieldset: {
+    legend: {
+      text: "",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  hint: {
+    html: "You have not achieved this outcome. This is because you selected 'Yes' to one of the not-achieved statements.<br>You can change this outcome using the buttons."
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Confirm"
+    },
+    {
+      value: "no",
+      text: "Change to Achieved",
+      conditional: {
+        html: changeStatus
+      }
+    }
+  ]
+}) }}
+
+  <h3 class="govuk-heading-m">Provide a summary about [principle]</h3>
+            
+      
+
+{{ govukCharacterCount({
+  id: "label-as-page-heading",
+  name: "labelAsPageHeading",
+  maxlength: 200,
+  label: {
+    text: "Please write a short summary outlining how you worked towards achieving this outcome."
+  }
+}) }}      
+       
+<h3 class="govuk-heading-m">Provide links to evidence [principle]</h3>
+<div id="with-hint-hint" class="govuk-hint">
+Your evidence must not have been created specifically to support this assessment. <br><br>
+Evidence can include, but not is limited to:
+  
+<ul class="govuk-list govuk-list--bullet govuk-hint">
+  <li>your cyber strategy, policies, and procedures</li>
+  <li>other supporting strategies</li>
+  <li>security initiatives and improvement plans</li>
+  <li>meeting minutes</li>
+</ul>
+    
+  </div>
+
+  <div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+    {{ govukInput({
+  label: {
+    text: "Evidence link"
+  },
+  prefix: {
+    text: "1."
+  },
+  classes: "govuk-input--width-20",
+  id: "width-20",
+  name: "width20"
+}) }}
+   
+{{ govukTextarea({
+  name: "moreDetail",
+  id: "more-detail",
+  label: {
+    text: "Evidence description"
+  }
+}) }}
+{{ govukButton({
+  text: "Add another",
+  classes: "govuk-button--secondary"
+}) }}
+  </div>
+  <div class="govuk-grid-column-one-half">
+  
+  <button type="submit" class="govuk-button govuk-button--secondary govuk-!-margin-top-6" data-module="govuk-button">
+    Remove
+  </button>
+  </div>
+</div>
+
+<div class="govuk-button-group">
+  {{ govukButton({
+    text: "Save and continue"
+  }) }}
+  </form>
+
+  <a class="govuk-link" href="javascript:window.history.back()">Back to statements </a>
+</div>
+    </div>    
+  </div>
+
+{% endblock %}

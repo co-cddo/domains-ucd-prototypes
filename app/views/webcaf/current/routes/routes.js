@@ -10,6 +10,18 @@ const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
 
+// Q: Review type answer
+router.post('/review-type-answer', function(request, response) {
+
+    var cafPr = request.session.data['cafprofile']
+    if (cafPr == "baseline"){
+        response.redirect("draft-assessment4")
+    } else {
+        response.redirect("enhanced-review")
+    }
+})
+
+
 
 // Q: Objective A navigation routing
 router.post('/objective-a-nav-answer', function(request, response) {
@@ -18,18 +30,18 @@ router.post('/objective-a-nav-answer', function(request, response) {
     if (objA == "yes"){
         response.redirect("objective-b")
     } else {
-        response.redirect("draft-assessment3")
+        response.redirect("draft-assessment4")
     }
 })
 
 // Q: Objective B navigation routing
-router.post('objective-b-nav-answer2', function(request, response) {
+router.post('objective-b-nav-answer', function(request, response) {
 
     var objB = request.session.data['objective-b-nav']
     if (objB == "yes"){
         response.redirect("objective-c")
     } else {
-        response.redirect("draft-assessment3")
+        response.redirect("draft-assessment4")
     }
 })
 
@@ -40,7 +52,7 @@ router.post('/objective-c-nav-answer', function(request, response) {
     if (objC == "yes"){
         response.redirect("objective-d")
     } else {
-        response.redirect("draft-assessment3")
+        response.redirect("draft-assessment4")
     }
 })
 
@@ -197,8 +209,65 @@ router.post('/pathMyaccountRemoveUser-answer', function(request, response) {
     }
 })
 
+// Q: Remove user routing (with validation)
+router.get('/pathMyaccountRemoveUser', function (req, res) {
+  // Render the page (pre-populate if user already answered)
+  res.render('pathMyaccountRemoveUser', {
+    values: { removeUser: req.session.data?.removeUser }
+  })
+})
+
+
+//Error
+// GET – show page (prefill from session if present)
+router.get('/outcome', (req, res) => {
+  // pick up any validation stored by the error route (then clear it)
+  const validation = req.session?.validation || null;
+  if (req.session) req.session.validation = null;
+
+  res.render('outcome', {
+    hasErrors: !!validation,
+    errorList: validation ? validation.errorList : null,
+    errors: validation ? validation.errors : null,
+    values: { a3a: req.session?.data?.a3a }
+  });
+});
+
+// POST – validate from req.body (not session!)
+router.post('/outcome-answer', (req, res) => {
+  const answer = req.body.a3a;           // "yes" | "no" | undefined
+  const valid = ['yes', 'no'];
+
+  if (!answer || !valid.includes(answer)) {
+    // store errors in session, then redirect to /outcome-answer (your request)
+    const msg = 'Select yes if you have changed your name';
+    if (!req.session) req.session = {};
+    req.session.validation = {
+      hasErrors: true,
+      errors: { a3a: { text: msg } },
+      errorList: [{ text: msg, href: '#a3a' }]
+    };
+    return res.redirect('/outcome-answer');
+  }
+
+  // success: save and go to next step
+  if (!req.session.data) req.session.data = {};
+  req.session.data.a3a = answer;
+  return res.redirect('webcaf/current/errors/next-step');
+});
+
+// When blank, we redirect here; it immediately shows the page with the error
+router.get('/outcome-answer', (req, res) => {
+  // just reuse the /outcome renderer; it will read the session validation
+  return res.redirect('/outcome');
+});
+
+// Tiny next step so you can see it working
+router.get('webcaf/current/errors/next-step', (req, res) => {
+  res.send(`Next step reached. Answer = ${req.session?.data?.a3a || 'n/a'}`);
+});
 
 
 module.exports = router
 
- 
+  

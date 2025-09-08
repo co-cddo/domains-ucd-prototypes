@@ -1,0 +1,71 @@
+{% extends "layouts/webcaf-home.html" %}
+{% block pageTitle %}
+My account with draft  - System user (submitted) – GOV.UK Prototype Kit
+{% endblock %}
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+     <form class="form" action="start-draft-assessment" method="post">
+    
+   
+  <h1 class="govuk-heading-l">
+        Your draft self-assessments
+      </h1>
+  
+
+  {{ govukTable({
+  caption: "Continue a draft assessment ",
+  captionClasses: "govuk-table__caption--m",
+  firstCellIsHeader: false,
+  head: [
+    {
+      text: "System name",
+      classes: "app-custom-class"
+    },
+    
+    {
+      text: "Last updated on",
+      classes: "app-custom-class"
+    },
+    {
+      text: "Action",
+      classes: "app-custom-class"
+    }
+  ],
+  rows: [
+    [
+      {
+        html: data['systemauto']
+      },
+      
+      {
+        html: "1:15am on 1 August 2025"
+      },
+      {
+        html: '<a href="draft-assessment6.html">View</a>'
+      }
+    ],
+    [
+      {
+        text: "Microsoft 365 - Cabinet Office ver 3.4"
+      },
+      
+      {
+        html: "3:45pm on 31 July 2025"
+      },
+      {
+        html: '<a href="#">View</a>'
+      }
+    ]
+  ]
+}) }}
+      </form>
+    </div>
+    
+  </div>
+  </div>
+
+{% endblock %}

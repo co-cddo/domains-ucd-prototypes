@@ -60,12 +60,36 @@
         rows: [
           {
             key: {
-              html: 'A1.a Board direction'
-             ,
+              html: 'A1.a Board direction'+'<br><br><details class="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    Change history
+                  </span>
+                </summary>
+                <div class="govuk-details__text"><span>
+                    <ul class="govuk-list govuk-list--bullet">
+                      <span class="govuk-heading-s">Status<Br>
+                      <span class="govuk-hint">01 Sep 2025 at 4:27pm</span></span>
+                      <strong class="govuk-tag govuk-tag--red">Not achieved</strong><Br><br>
+                      
+                      <span class="govuk-heading-s">Status changed by user<Br>
+                  <span class="govuk-hint">03 Sep 2025 at 8:22am</span></span>
+                  <strong class="govuk-tag govuk-tag--green">Achieved</strong><br><br>
+                  
+                    <strong>Justification: </strong>We are supporting cyber analysis with a particular internal toolset.
+                    </ul>
+                </div>
+              </details></span>',
               classes: "govuk-!-width-one-half"
             },
             value: {
-             html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+             html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'+'<br><br><div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+Status changed
+    
+  </strong>
+</div>'
             },
             actions: {
               items: [

@@ -1,0 +1,71 @@
+{% extends "layouts/main.html" %}
+
+
+
+{% block pageTitle %}
+  Webcaf - Test  – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+  
+{{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/registration/webcaf/current"
+      },
+      {
+        text: "Create a new assessment
+        ",
+        href: "/registration/index"
+      },
+      {
+        text: "Objective A - Managing risk
+        ",
+        href: "/registration/index"
+      },
+      
+      {
+        text: "Principle: A1 Governance
+        "
+      }
+    ]
+  }) }}
+  <div class="progress-indicator">
+   <div id="changedName-hint" class="govuk-hint">
+      Principle 1 of 4<br>
+      <strong>Principle: A1 Governance</strong>
+    </div>     
+         <p id="progress-pages"><strong>You've completed 25% of your self-assessment.</strong></p>
+         <div class="progress-inactive"><div class="progress-active" style="width: 25%"></div></div>
+      </div>
+  
+  
+  
+{% endblock %}
+{% block content %}
+
+<h3 class="govuk-heading-l">Outcome 1</h3>
+
+<h3 class="govuk-heading-m">Progress indicator for webcaf 2.0</h3>
+<form class="form" action="progress-indicator2" id="mainForm" method="post">
+  {{ govukButton({
+    text: "Next",
+    classes: "govuk-button--secondary"
+  }) }}
+  </form>
+
+{% endblock %}

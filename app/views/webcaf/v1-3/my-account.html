@@ -1,0 +1,72 @@
+{% extends "layouts/webcaf-home.html" %}
+{% block pageTitle %}
+My account - GovAssure Lead user – GOV.UK Prototype Kit
+{% endblock %}
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+     
+      <h2 class="govuk-heading-l">
+        My account
+      </h2>
+    
+    <form class="form" action="add-system-ca" method="post">  
+    <div id="noassessments-hint" class="govuk-hint">
+        On this page you can add new systems, modify existing systems <br>and manage users within an organisation.
+        </div> 
+        
+    <div class="govuk-button-group">
+      {{ govukButton({
+        text: "Add a new system"
+      }) }}
+
+     <a class="govuk-link govuk-link--no-visited-state" href="view-systems">View systems</a>
+    </div>
+    </form>
+
+      <br>
+
+    <h3 class="govuk-heading-m">
+        Assessments sent for review
+      </h3>  
+    <p class="govuk-body govuk-!-margin-bottom-2 govuk-hint">You have not sent any assessments for review.<p>
+
+        
+
+          
+
+
+     
+      
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+      
+        <h2 class="govuk-body" id="subsection-title">
+          Logged in as <a href="org-change" class="govuk-link--no-visited-state govuk-body govuk-!-font-size-16 govuk-!-text-align-right"><strong>(Change)</strong></a>
+          <span class="govuk-heading-m">
+          Civil Aviation Authority
+        </span> 
+        </h2>
+        
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list">
+            <li>
+            </li>
+            
+               <li>
+              <a href="view-users2"class="govuk-link govuk-link--no-visited-state">
+                Manage users
+              </a>
+            </li>
+            
+          </ul>
+        </nav>
+      
+
+    </div>
+  </div>
+
+{% endblock %}
