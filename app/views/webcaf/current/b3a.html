@@ -52,7 +52,7 @@ B3.a Understanding data – GOV.UK Prototype Kit
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
     
-    <h3 class="govuk-heading-m">Read each statement on all tabs and select what's true about your system or organisation.</h3>
+    <h3 class="govuk-heading-m">Read each indicator of good practice (IGP) statement on all tabs and select what's true about your system or organisation.</h3>
     <form class="form" action="b3a-answer" method="post">
           
       {% set giveReason %}
@@ -74,7 +74,7 @@ B3.a Understanding data – GOV.UK Prototype Kit
               {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
               {{ govukWarningText({
-                text: "If you cannot select true for a statement, you must select not true and provide your justifications. If you don't have a justification, you will fail this outcome.",
+                text: "If you cannot select true for a statement, you must select not true and provide your justifications. If you do not have a justification, you will not be able to rate this outcome as achieved.",
                 iconFallbackText: "Warning"
               }) }}
                
@@ -98,17 +98,17 @@ B3.a Understanding data – GOV.UK Prototype Kit
                   checked: checked("outcome1-achieved", "yes")
                 },
                 {
+                  value: "no",
+                  text: " Not true",
+                  checked: checked("outcome1-achieved", "no")
+                },
+                {
                   value: "na",
-                  text: "Not true, but I do have justifications",
+                  text: "Not true, but I have justifications",
                   conditional: {
                     html: giveReason
                   },
                   checked: checked("outcome1-achieved", "na")
-                },
-                {
-                  value: "no",
-                  text: " Not true and I have no justifications",
-                  checked: checked("outcome1-achieved", "no")
                 }
               ]
             }) }}
@@ -133,19 +133,18 @@ B3.a Understanding data – GOV.UK Prototype Kit
                   checked: checked("outcome2-achieved", "yes")
                 },
                 {
+                  value: "no",
+                  text: "Not true",
+                  checked: checked("outcome2-achieved", "no")
+                },
+                {
                   value: "na",
-                  text: "Not true, but I do have justifications",
+                  text: "Not true, but I have justifications",
                   conditional: {
                     html: giveReason
                   },
                   checked: checked("outcome2-achieved", "na")
-                },
-                {
-                  value: "no",
-                  text: "Not true and I have no justifications",
-                  checked: checked("outcome2-achieved", "no")
                 }
-                
               ]
             }) }}
 
@@ -168,19 +167,18 @@ B3.a Understanding data – GOV.UK Prototype Kit
                   text: "True",
                   checked: checked("outcome3-achieved", "yes")
                 },
-                
+                {
+                  value: "no",
+                  text: "Not true",
+                  checked: checked("outcome3-achieved", "no")
+                },
                 {
                   value: "na",
-                  text: "Not true, but I do have justifications",
+                  text: "Not true, but I have justifications",
                   conditional: {
                     html: giveReason
                   },
                   checked: checked("outcome3-achieved", "na")
-                },
-                {
-                  value: "no",
-                  text: "Not true and I have no justifications",
-                  checked: checked("outcome3-achieved", "no")
                 }
               ]
             }) }}
@@ -205,19 +203,18 @@ B3.a Understanding data – GOV.UK Prototype Kit
                   checked: checked("outcome4-achieved", "yes")
                 },
                 {
+                  value: "no",
+                  text: "Not true",
+                  checked: checked("outcome4-achieved", "no")
+                },
+                {
                   value: "na",
-                  text: "Not true, but I do have justifications",
+                  text: "Not true, but I have justifications",
                   conditional: {
                     html: giveReason
                   },
                   checked: checked("outcome4-achieved", "na")
-                },
-                {
-                  value: "no",
-                  text: "Not true and I have no justifications",
-                  checked: checked("outcome4-achieved", "no")
                 }
-                
               ]
             }) }}
             {{ govukRadios({
@@ -240,19 +237,18 @@ B3.a Understanding data – GOV.UK Prototype Kit
                   checked: checked("outcome5-achieved", "yes")
                 },
                 {
+                  value: "no",
+                  text: "Not true",
+                  checked: checked("outcome5-achieved", "no")
+                },
+                {
                   value: "na",
-                  text: "Not true, but I do have justifications",
+                  text: "Not true, but I have justifications",
                   conditional: {
                     html: giveReason
                   },
                   checked: checked("outcome5-achieved", "na")
-                },
-                {
-                  value: "no",
-                  text: "Not true and I have no justifications",
-                  checked: checked("outcome5-achieved", "no")
                 }
-                
               ]
             }) }}
             {{ govukRadios({
@@ -274,20 +270,19 @@ B3.a Understanding data – GOV.UK Prototype Kit
                   text: "True",
                   checked: checked("outcome6-achieved", "yes")
                 },
+                 {
+                  value: "no",
+                  text: "Not true",
+                  checked: checked("outcome6-achieved", "no")
+                },
                 {
                   value: "na",
-                  text: "Not true, but I do have justifications",
+                  text: "Not true, but I have justifications",
                   conditional: {
                     html: giveReason
                   },
                   checked: checked("outcome6-achieved", "na")
-                },
-                {
-                  value: "no",
-                  text: "Not true and I have no justifications",
-                  checked: checked("outcome6-achieved", "no")
-                }
-                
+                } 
               ]
             }) }}
             {{ govukRadios({
@@ -310,19 +305,18 @@ B3.a Understanding data – GOV.UK Prototype Kit
                   checked: checked("outcome7-achieved", "yes")
                 },
                 {
+                  value: "no",
+                  text: "Not true",
+                  checked: checked("outcome7-achieved", "no")
+                },
+                {
                   value: "na",
-                  text: "Not true, but I do have justifications",
+                  text: "Not true, but I have justifications",
                   conditional: {
                     html: giveReason
                   },
                   checked: checked("outcome7-achieved", "na")
-                },
-                {
-                  value: "no",
-                  text: "Not true and I have no justifications",
-                  checked: checked("outcome7-achieved", "no")
                 }
-                
               ]
             }) }}
             {{ govukRadios({
@@ -345,19 +339,18 @@ B3.a Understanding data – GOV.UK Prototype Kit
                   checked: checked("outcome8-achieved", "yes")
                 },
                 {
+                  value: "no",
+                  text: "Not true",
+                  checked: checked("outcome8-achieved", "no")
+                },
+                {
                   value: "na",
-                  text: "Not true, but I do have justifications",
+                  text: "Not true, but I have justifications",
                   conditional: {
                     html: giveReason
                   },
                   checked: checked("outcome8-achieved", "na")
-                },
-                {
-                  value: "no",
-                  text: "Not true and I have no justifications",
-                  checked: checked("outcome8-achieved", "no")
                 }
-                
               ]
             }) }}
             {{ govukRadios({
@@ -380,19 +373,18 @@ B3.a Understanding data – GOV.UK Prototype Kit
                   checked: checked("outcome9-achieved", "yes")
                 },
                 {
+                  value: "no",
+                  text: "Not true",
+                  checked: checked("outcome9-achieved", "no")
+                },
+                {
                   value: "na",
-                  text: "Not true, but I do have justifications",
+                  text: "Not true, but I have justifications",
                   conditional: {
                     html: giveReason
                   },
                   checked: checked("outcome9-achieved", "na")
-                },
-                {
-                  value: "no",
-                  text: "Not true and I have no justifications",
-                  checked: checked("outcome9-achieved", "no")
                 }
-                
               ]
             }) }}
                 
@@ -404,7 +396,7 @@ B3.a Understanding data – GOV.UK Prototype Kit
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
     {{ govukWarningText({
-    text: "If you cannot select true for a statement, you must select not true and provide your justifications. If you don't have a justification, you will fail this outcome.",
+    text: "If you cannot select true for a statement, you must select not true and provide your justifications. If you do not have a justification, you will not be able to rate this outcome as partially achieved.",
     iconFallbackText: "Warning"
     }) }}
 
@@ -427,17 +419,17 @@ B3.a Understanding data – GOV.UK Prototype Kit
                   checked: checked("outcome1-partiallyachieved", "yes")
                 },
                 {
+                  value: "no",
+                  text: "Not true",
+                  checked: checked("outcome1-partiallyachieved", "no")
+                },
+                {
                   value: "na",
-                  text: "Not true, but I do have justifications",
+                  text: "Not true, but I have justifications",
                   conditional: {
                     html: giveReason
                   },
                   checked: checked("outcome1-partiallyachieved", "na")
-                },
-                {
-                  value: "no",
-                  text: "Not true and I have no justifications",
-                  checked: checked("outcome1-partiallyachieved", "no")
                 }
               ]
             }) }}
@@ -462,19 +454,18 @@ B3.a Understanding data – GOV.UK Prototype Kit
                   checked: checked("outcome2-partiallyachieved", "yes")
                 },
                 {
+                  value: "no",
+                  text: "Not true",
+                  checked: checked("outcome2-partiallyachieved", "no")
+                },
+                {
                   value: "na",
-                  text: "Not true, but I do have justifications",
+                  text: "Not true, but I have justifications",
                   conditional: {
                     html: giveReason
                   },
                   checked: checked("outcome2-partiallyachieved", "na")
-                },
-                {
-                  value: "no",
-                  text: "Not true and I have no justifications",
-                  checked: checked("outcome2-partiallyachieved", "no")
                 }
-                
               ]
             }) }}
 
@@ -497,19 +488,18 @@ B3.a Understanding data – GOV.UK Prototype Kit
                   text: "True",
                   checked: checked("outcome3-partiallyachieved", "yes")
                 },
-                
+                {
+                  value: "no",
+                  text: "Not true",
+                  checked: checked("outcome3-partiallyachieved", "no")
+                },
                 {
                   value: "na",
-                  text: "Not true, but I do have justifications",
+                  text: "Not true, but I have justifications",
                   conditional: {
                     html: giveReason
                   },
                   checked: checked("outcome3-partiallyachieved", "na")
-                },
-                {
-                  value: "no",
-                  text: "Not true and I have no justifications",
-                  checked: checked("outcome3-partiallyachieved", "no")
                 }
               ]
             }) }}
@@ -534,19 +524,18 @@ B3.a Understanding data – GOV.UK Prototype Kit
                   checked: checked("outcome4-partiallyachieved", "yes")
                 },
                 {
+                  value: "no",
+                  text: "Not true",
+                  checked: checked("outcome4-partiallyachieved", "no")
+                },
+                {
                   value: "na",
-                  text: "Not true, but I do have justifications",
+                  text: "Not true, but I have justifications",
                   conditional: {
                     html: giveReason
                   },
                   checked: checked("outcome4-partiallyachieved", "na")
-                },
-                {
-                  value: "no",
-                  text: "Not true and I have no justifications",
-                  checked: checked("outcome4-partiallyachieved", "no")
                 }
-                
               ]
             }) }}
             {{ govukRadios({
@@ -569,19 +558,18 @@ B3.a Understanding data – GOV.UK Prototype Kit
                   checked: checked("outcome5-partiallyachieved", "yes")
                 },
                 {
+                  value: "no",
+                  text: "Not true",
+                  checked: checked("outcome5-partiallyachieved", "no")
+                },
+                {
                   value: "na",
-                  text: "Not true, but I do have justifications",
+                  text: "Not true, but I have justifications",
                   conditional: {
                     html: giveReason
                   },
                   checked: checked("outcome5-partiallyachieved", "na")
-                },
-                {
-                  value: "no",
-                  text: "Not true and I have no justifications",
-                  checked: checked("outcome5-partiallyachieved", "no")
                 }
-                
               ]
             }) }}
             {{ govukRadios({
@@ -604,19 +592,18 @@ B3.a Understanding data – GOV.UK Prototype Kit
                   checked: checked("outcome6-partiallyachieved", "yes")
                 },
                 {
+                  value: "no",
+                  text: "Not true",
+                  checked: checked("outcome6-partiallyachieved", "no")
+                },
+                {
                   value: "na",
-                  text: "Not true, but I do have justifications",
+                  text: "Not true, but I have justifications",
                   conditional: {
                     html: giveReason
                   },
                   checked: checked("outcome6-partiallyachieved", "na")
-                },
-                {
-                  value: "no",
-                  text: "Not true and I have no justifications",
-                  checked: checked("outcome6-partiallyachieved", "no")
                 }
-                
               ]
             }) }}
                 
@@ -640,26 +627,24 @@ B3.a Understanding data – GOV.UK Prototype Kit
               text: " "
               },
               items: [
-               
+               {
+                  value: "no",
+                  text: "This does not apply to my system or organisation",
+                  checked: checked("outcome1-not-achieved", "no")
+                },
+                {
+                  value: "yes",
+                  text: "This does apply to my system or organisation",
+                  checked: checked("outcome1-not-achieved", "yes")
+                },
                 {
                   value: "na",
-                  text: "This does apply to my system or organisation and I have justifications ",
+                  text: "This does apply to my system or organisation, but I have justifications ",
                   conditional: {
                     html: giveReason
                   },
                   checked: checked("outcome1-not-achieved", "na")
-                },
-              {
-                  value: "yes",
-                  text: "This does apply to my system or organisation, but I have no justifications",
-                  checked: checked("outcome1-not-achieved", "yes")
-                },
-                {
-                  value: "no",
-                  text: "This does not apply to my system or organisation",
-                  checked: checked("outcome1-not-achieved", "no")
                 }
-                
               ]
               }) }}
 
@@ -678,26 +663,24 @@ B3.a Understanding data – GOV.UK Prototype Kit
                 text: ""
                 },
                 items: [
-                
-                {
-                  value: "na",
-                  text: "This does apply to my system or organisation and I have justifications ",
-                  conditional: {
-                    html: giveReason
-                  },
-                  checked: checked("outcome2-not-achieved", "na")
-                },
-              {
-                  value: "yes",
-                  text: "This does apply to my system or organisation, but I have no justifications",
-                  checked: checked("outcome2-not-achieved", "yes")
-                },
                 {
                   value: "no",
                   text: "This does not apply to my system or organisation",
                   checked: checked("outcome2-not-achieved", "no")
-                }
-                
+                },
+                {
+                  value: "yes",
+                  text: "This does apply to my system or organisation",
+                  checked: checked("outcome2-not-achieved", "yes")
+                },
+                {
+                  value: "na",
+                  text: "This does apply to my system or organisation, but I have justifications ",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("outcome2-not-achieved", "na")
+                } 
               ]
                 }) }}
 
@@ -715,26 +698,24 @@ B3.a Understanding data – GOV.UK Prototype Kit
                 text: ""
                 },
                 items: [
-                
-                {
-                  value: "na",
-                  text: "This does apply to my system or organisation and I have justifications ",
-                  conditional: {
-                    html: giveReason
-                  },
-                  checked: checked("outcome3-not-achieved", "na")
-                },
-              {
-                  value: "yes",
-                  text: "This does apply to my system or organisation, but I have no justifications",
-                  checked: checked("outcome3-not-achieved", "yes")
-                },
                 {
                   value: "no",
                   text: "This does not apply to my system or organisation",
                   checked: checked("outcome3-not-achieved", "no")
-                }
-                
+                },
+                {
+                  value: "yes",
+                  text: "This does apply to my system or organisation",
+                  checked: checked("outcome3-not-achieved", "yes")
+                },
+                {
+                  value: "na",
+                  text: "This does apply to my system or organisation, but I have justifications ",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("outcome3-not-achieved", "na")
+                }  
               ]
                 }) }}
 
@@ -752,26 +733,24 @@ B3.a Understanding data – GOV.UK Prototype Kit
                 text: ""
                 },
                 items: [
-                
-                {
-                  value: "na",
-                  text: "This does apply to my system or organisation and I have justifications ",
-                  conditional: {
-                    html: giveReason
-                  },
-                  checked: checked("outcome4-not-achieved", "na")
-                },
-              {
-                  value: "yes",
-                  text: "This does apply to my system or organisation, but I have no justifications",
-                  checked: checked("outcome4-not-achieved", "yes")
-                },
                 {
                   value: "no",
                   text: "This does not apply to my system or organisation",
                   checked: checked("outcome4-not-achieved", "no")
+                },
+                {
+                  value: "yes",
+                  text: "This does apply to my system or organisation",
+                  checked: checked("outcome4-not-achieved", "yes")
+                },
+                {
+                  value: "na",
+                  text: "This does apply to my system or organisation, but I have justifications ",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("outcome4-not-achieved", "na")
                 }
-                
               ]
                 }) }}
                 {% endset -%}

@@ -58,26 +58,36 @@ Start a draft assessment – GOV.UK Prototype Kit
 
       {# To switch between the completed and incomplete statues, use some inline logic within the component below, like this: "status: (completedStatus if ... else incompleteStatus)" #}
 
-      {{ govukTaskList({
-        idPrefix: "sysprofil-section",
+     {{ govukTaskList({
+        idPrefix: "first-section",
         items: [
-          {
-            title: {
-              text: "Choose your government CAF profile
-"
-            },
-            href: "caf-profile",
-            status: completedStatus
-          },
           {
             title: {
               text: "Provide system details"
             },
             href: "add-system",
             status: completedStatus
+          },
+          {
+            title: {
+              text: "Choose your government CAF profile
+"
+            },
+            href: "caf-profile",
+            classes: "govuk-link--no-visited-state",
+            status: completedStatus
+          },
+          
+          {
+            title: {
+              text: "Choose a review type"
+            },
+            href: "enhanced-review",
+            status: completedStatus
           }
         ]
       }) }}
+
 
       <h2 class="govuk-heading-m govuk-!-margin-top-5">2. Create your self-assessment</h2>
       <p>Take time to select your answers for each outcome. They will be assessed against your system and organisation.</p>
