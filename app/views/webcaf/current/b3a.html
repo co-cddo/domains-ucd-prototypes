@@ -74,7 +74,7 @@ B3.a Understanding data – GOV.UK Prototype Kit
               {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
               {{ govukWarningText({
-                text: "If you cannot select true for a statement, you must select not true and provide your justifications. If you do not have a justification, you will not be able to rate this outcome as achieved.",
+                text: "If any statement is not true, you must provide a justification. Otherwise, your status for this outcome will be not achieved.",
                 iconFallbackText: "Warning"
               }) }}
                
@@ -396,7 +396,7 @@ B3.a Understanding data – GOV.UK Prototype Kit
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
     {{ govukWarningText({
-    text: "If any statement is not true, you will fail this outcome.",
+    text: "If any statement is not true, you must provide a justification. Otherwise, your status for this outcome will be not achieved.",
     iconFallbackText: "Warning"
     }) }}
 

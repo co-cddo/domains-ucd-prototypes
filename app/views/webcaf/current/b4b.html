@@ -74,7 +74,7 @@ B4.b Statements – GOV.UK Prototype Kit
               {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
               {{ govukWarningText({
-                text: "If you cannot select true for a statement, you must select not true and provide your justifications. If you don't have a justification, you will fail this outcome.",
+                text: "If any statement is not true, you must provide a justification. Otherwise, your status for this outcome will be not achieved.",
                 iconFallbackText: "Warning"
               }) }}
                
@@ -399,7 +399,7 @@ B4.b Statements – GOV.UK Prototype Kit
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
     {{ govukWarningText({
-    text: "If you cannot select true for a statement, you must select not true and provide your justifications. If you don't have a justification, you will fail this outcome.",
+    text: "If any statement is not true, you must provide a justification. Otherwise, your status for this outcome will be not achieved.",
     iconFallbackText: "Warning"
     }) }}
 
