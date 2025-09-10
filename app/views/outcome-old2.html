@@ -38,7 +38,18 @@ A3.a Statements – GOV.UK Prototype Kit
     ]
   }) }}
 
- 
+  {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+{{ govukErrorSummary({
+  titleText: "There is a problem",
+  errorList: [
+    {
+      text: "You must respond to every statement",
+      href: "#"
+    }
+  ]
+}) }}
+
   <div class="proto-admin">
    <div id="changedName-hint" class="govuk-hint">
       Principle 3 of 4<br>
@@ -50,26 +61,15 @@ A3.a Statements – GOV.UK Prototype Kit
   
 {% endblock %}
 {% block content %}
-
-
-{% if errorList %}
-      {{ govukErrorSummary({
-        titleText: "There is a problem",
-        errorList: errorList
-      }) }}
-    {% endif %}
  
-    <form method="post" action="/webcaf/current/a3a" novalidate>
 
     <h3 class="govuk-heading-l">A3.a Asset management</h3>
     <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+      <div class="govuk-grid-column-two-thirds">
     
     <h3 class="govuk-heading-m">Read each indicator of good practice (IGP) statement on all tabs and select what's true about your system or organisation.</h3>
-    
-
-    
-    
+     
+    <form class="form" action="a3a-answer" method="post">
           
       {% set giveReason %}
       {{ govukTextarea({
@@ -95,8 +95,7 @@ A3.a Statements – GOV.UK Prototype Kit
                
                   
               {{ govukRadios({
-              idPrefix: "a3aAc1",
-                name: "a3aAc1",  
+              name: "a3a-outcome1-achieved",  
               fieldset: {
                 legend: {
                   text: "1. All assets relevant to the secure operation of essential function(s) are identified and inventoried (at a suitable level of detail). The inventory is kept up-to-date.  ",
@@ -107,17 +106,16 @@ A3.a Statements – GOV.UK Prototype Kit
               hint: {
                 text: ""
               },
-              errorMessage: errors.a3aAc1 if errors else null,
               items: [
                 {
                   value: "yes",
                   text: "True",
-                  checked: checked("a3aAc1", "yes" if values else false)
+                  checked: checked("a3a-outcome1-achieved", "yes")
                 },
                 {
                   value: "no",
                   text: "Not true",
-                  checked: checked("a3aAc1", "no" if values else false)
+                  checked: checked("a3a-outcome1-achieved", "no")
                 },
                 {
                   value: "na",
@@ -125,7 +123,7 @@ A3.a Statements – GOV.UK Prototype Kit
                   conditional: {
                     html: giveReason
                   },
-                  checked: checked("a3aAc1", "na" if values else false)
+                  checked: checked("a3a-outcome1-achieved", "na")
                 }
               ]
             }) }}
@@ -133,7 +131,7 @@ A3.a Statements – GOV.UK Prototype Kit
             
 
             {{ govukRadios({
-              name: "a3aAc2",
+              name: "a3a-outcome2-achieved",
               
               fieldset: {
                 legend: {
@@ -145,17 +143,16 @@ A3.a Statements – GOV.UK Prototype Kit
               hint: {
                 text: ""
               },
-              errorMessage: errors.a3aAc2 if errors else null,
               items: [
                 {
                   value: "yes",
                   text: "True",
-                  checked: checked("a3aAc2", "yes" if values else false)
+                  checked: checked("a3a-outcome2-achieved", "yes")
                 },
                 {
                   value: "no",
                   text: "Not true",
-                  checked: checked("a3aAc2", "no" if values else false)
+                  checked: checked("a3a-outcome2-achieved", "no")
                 },
                 {
                   value: "na",
@@ -163,14 +160,14 @@ A3.a Statements – GOV.UK Prototype Kit
                   conditional: {
                     html: giveReason
                   },
-                  checked: checked("a3aAc2", "na" if values else false)
+                  checked: checked("a3a-outcome2-achieved", "na")
                 }
                 
               ]
             }) }}
 
             {{ govukRadios({
-              name: "a3aAc3",
+              name: "a3a-outcome3-achieved",
               
               fieldset: {
                 legend: {
@@ -182,17 +179,16 @@ A3.a Statements – GOV.UK Prototype Kit
               hint: {
                 text: ""
               },
-              errorMessage: errors.a3aAc3 if errors else null,
               items: [
                 {
                   value: "yes",
                   text: "True",
-                  checked: checked("a3aAc3", "yes" if values else false)
+                  checked: checked("a3a-outcome3-achieved", "yes")
                 },
                 {
                   value: "no",
                   text: "Not true",
-                  checked: checked("a3aAc3", "no" if values else false)
+                  checked: checked("a3a-outcome3-achieved", "no")
                 },
                  {
                   value: "na",
@@ -200,13 +196,13 @@ A3.a Statements – GOV.UK Prototype Kit
                   conditional: {
                     html: giveReason
                   },
-                  checked: checked("a3aAc3", "na" if values else false)
+                  checked: checked("a3a-outcome3-achieved", "na")
                 }
               ]
             }) }}
 
             {{ govukRadios({
-              name: "a3aAc4",
+              name: "a3a-outcome4-achieved",
               
               fieldset: {
                 legend: {
@@ -218,17 +214,16 @@ A3.a Statements – GOV.UK Prototype Kit
               hint: {
                 text: ""
               },
-              errorMessage: errors.a3aAc4 if errors else null,
               items: [
                 {
                   value: "yes",
                   text: "True",
-                  checked: checked("a3aAc4", "yes" if values else false)
+                  checked: checked("a3a-outcome4-achieved", "yes")
                 },
                 {
                   value: "no",
                   text: "Not true",
-                  checked: checked("a3aAc4", "no" if values else false)
+                  checked: checked("a3a-outcome4-achieved", "no")
                 },
                 {
                   value: "na",
@@ -236,17 +231,17 @@ A3.a Statements – GOV.UK Prototype Kit
                   conditional: {
                     html: giveReason
                   },
-                  checked: checked("a3aAc4", "na" if values else false)
+                  checked: checked("a3a-outcome4-achieved", "na")
                 }
                 
               ]
             }) }}
             {{ govukRadios({
-              name: "a3aAc5",
+              name: "a3a-outcome5-achieved",
               
               fieldset: {
                 legend: {
-                  text: "5. Assets relevant to the essential function(s) are managed with cyber security in mind throughout their lifecycle, from creation through to eventual decommissioning or disposal.",
+                  text: "5. Assets relevant to the essential function(s) are managed with cyber security in mind throughout their lifecycle, from creation through to eventual decommissioning or disposal.",
                   isPageHeading: true,
                   classes: "govuk"
                 }
@@ -254,17 +249,16 @@ A3.a Statements – GOV.UK Prototype Kit
               hint: {
                 text: ""
               },
-              errorMessage: errors.a3aAc5 if errors else null,
               items: [
                 {
                   value: "yes",
                   text: "True",
-                  checked: checked("a3aAc5", "yes" if values else false)
+                  checked: checked("a3a-outcome5-achieved", "yes")
                 },
                 {
                   value: "no",
                   text: "Not true",
-                  checked: checked("a3aAc5", "no" if values else false)
+                  checked: checked("a3a-outcome5-achieved", "no")
                 },
                 {
                   value: "na",
@@ -272,7 +266,7 @@ A3.a Statements – GOV.UK Prototype Kit
                   conditional: {
                     html: giveReason
                   },
-                  checked: checked("a3aAc5", "na" if values else false)
+                  checked: checked("a3a-outcome5-achieved", "na")
                 }
                 
               ]
@@ -288,7 +282,7 @@ A3.a Statements – GOV.UK Prototype Kit
               </div> 
 
             {{ govukRadios({
-              name: "a3aNac1",
+              name: "a3a-outcome1-not-achieved",
 
               fieldset: {
               legend: {
@@ -300,17 +294,16 @@ A3.a Statements – GOV.UK Prototype Kit
               hint: {
               text: " "
               },
-              errorMessage: errors.a3aNac1 if errors else null,
               items: [
                {
                   value: "no",
                   text: "This does not apply to my system or organisation",
-                  checked: checked("a3aNac1", "no" if values else false)
+                  checked: checked("a3a-outcome1-not-achieved", "no")
                 },
                 {
                   value: "yes",
                   text: "This does apply to my system or organisation",
-                  checked: checked("a3aNac1", "yes" if values else false)
+                  checked: checked("a3a-outcome1-not-achieved", "yes")
                 },
                 {
                   value: "na",
@@ -318,14 +311,14 @@ A3.a Statements – GOV.UK Prototype Kit
                   conditional: {
                     html: giveReason
                   },
-                  checked: checked("a3aNac1", "na" if values else false)
+                  checked: checked("a3a-outcome1-not-achieved", "na")
                 }
               ]
               }) }}
 
 
                 {{ govukRadios({
-                name: "a3aNac2",
+                name: "a3a-outcome2-not-achieved",
 
                 fieldset: {
                 legend: {
@@ -337,17 +330,16 @@ A3.a Statements – GOV.UK Prototype Kit
                 hint: {
                 text: ""
                 },
-                errorMessage: errors.a3aNac2 if errors else null,
                 items: [
                   {
                   value: "no",
                   text: "This does not apply to my system or organisation",
-                  checked: checked("a3aNac2", "no" if values else false)
+                  checked: checked("a3a-outcome2-not-achieved", "no")
                 },
                 {
                   value: "yes",
                   text: "This does apply to my system or organisation",
-                  checked: checked("a3aNac2", "yes" if values else false)
+                  checked: checked("a3a-outcome2-not-achieved", "yes")
                 },
                 {
                   value: "na",
@@ -355,14 +347,14 @@ A3.a Statements – GOV.UK Prototype Kit
                   conditional: {
                     html: giveReason
                   },
-                  checked: checked("a3aNac2", "na" if values else false)
+                  checked: checked("a3a-outcome2-not-achieved", "na")
                 }
                
               ]
                 }) }}
 
                 {{ govukRadios({
-                name: "a3aNac3",
+                name: "a3a-outcome3-not-achieved",
 
                 fieldset: {
                 legend: {
@@ -374,17 +366,16 @@ A3.a Statements – GOV.UK Prototype Kit
                 hint: {
                 text: ""
                 },
-                errorMessage: errors.a3aNac3 if errors else null,
                 items: [
                 {
                   value: "no",
                   text: "This does not apply to my system or organisation",
-                  checked: checked("a3aNac3", "no" if values else false)
+                  checked: checked("a3a-outcome3-not-achieved", "no")
                 },
                 {
                   value: "yes",
                   text: "This does apply to my system or organisation",
-                  checked: checked("a3aNac3", "yes" if values else false)
+                  checked: checked("a3a-outcome3-not-achieved", "yes")
                 },
                 {
                   value: "na",
@@ -392,13 +383,13 @@ A3.a Statements – GOV.UK Prototype Kit
                   conditional: {
                     html: giveReason
                   },
-                  checked: checked("a3aNac3", "na" if values else false)
+                  checked: checked("a3a-outcome3-not-achieved", "na")
                 }
               ]
                 }) }}
 
                 {{ govukRadios({
-                name: "a3aNac4",
+                name: "a3a-outcome4-not-achieved",
 
                 fieldset: {
                 legend: {
@@ -410,25 +401,24 @@ A3.a Statements – GOV.UK Prototype Kit
                 hint: {
                 text: ""
                 },
-                errorMessage: errors.a3aNac4 if errors else null,
                 items: [
                  {
                   value: "no",
                   text: "This does not apply to my system or organisation",
-                  checked: checked("a3aNac4", "no" if values else false)
+                  checked: checked("a3a-outcome4-not-achieved", "no")
                 },
                  {
                   value: "yes",
                   text: "This does apply to my system or organisation",
-                  checked: checked("a3aNac4", "yes" if values else false)
+                  checked: checked("a3a-outcome4-not-achieved", "yes")
                 },
                 {
                   value: "na",
-                  text: "This does apply to my system or organisation, but I have justifications",
+                  text: "This does apply to my system or organisation, but I have justifications ",
                   conditional: {
                     html: giveReason
                   },
-                  checked: checked("a3aNac4", "na" if values else false)
+                  checked: checked("a3a-outcome4-not-achieved", "na")
                 }
               
                 
@@ -436,7 +426,7 @@ A3.a Statements – GOV.UK Prototype Kit
               ]
                 }) }}
                 {{ govukRadios({
-                name: "a3aNac5",
+                name: "a3a-outcome5-not-achieved",
 
                 fieldset: {
                 legend: {
@@ -448,17 +438,16 @@ A3.a Statements – GOV.UK Prototype Kit
                 hint: {
                 text: ""
                 },
-                errorMessage: errors.a3aNac5 if errors else null,
                 items: [
                 {
                   value: "no",
                   text: "This does not apply to my system or organisation",
-                  checked: checked("a3aNac5", "no" if values else false)
+                  checked: checked("a3a-outcome5-not-achieved", "no")
                 },
                 {
                   value: "yes",
                   text: "This does apply to my system or organisation",
-                  checked: checked("a3aNac5", "yes" if values else false)
+                  checked: checked("a3a-outcome5-not-achieved", "yes")
                 },
                 {
                   value: "na",
@@ -466,7 +455,7 @@ A3.a Statements – GOV.UK Prototype Kit
                   conditional: {
                     html: giveReason
                   },
-                  checked: checked("a3aNac5", "na" if values else false)
+                  checked: checked("a3a-outcome5-not-achieved", "na")
                 }
                
                 
