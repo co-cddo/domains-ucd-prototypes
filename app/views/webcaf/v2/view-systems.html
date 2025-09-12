@@ -1,0 +1,85 @@
+{% extends "layouts/webcaf.html" %}
+
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<form class="form" action="/webcaf/current/pathMyaccount-answer" method="post">
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+ <table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--l">Civil Aviation Authority has 4 systems</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">System name</th>
+      
+      <th scope="col" class="govuk-table__header">Assessment status </th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header"><a href="check-system-b" class="govuk-link govuk-link--no-visited-state">{{data['govsysmanual']}}</a></th>
+      
+      <td class="govuk-table__cell">Drafted</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header"><a href="#" class="govuk-link govuk-link--no-visited-state">DPS</a></th>
+      
+      <td class="govuk-table__cell">Submitted</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header"><a href="check-system-c" class="govuk-link govuk-link--no-visited-state">Quantum</a></th>
+      
+      <td class="govuk-table__cell">No assessment started</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header"><a href="check-system-d" class="govuk-link govuk-link--no-visited-state">Multi-Vendor Contribution System (MVCS)</a></th>
+      
+      <td class="govuk-table__cell">No assessment started</td>
+    </tr>
+    
+  </tbody>
+</table>
+
+ {{ govukRadios({
+          classes: "govuk-radios--inline",
+          name: "pathMyaccount",
+          fieldset: {
+            legend: {
+              text: "Add another system?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: ""
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: checked("pathMyaccount", "yes")
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: checked("pathMyaccount", "no")
+            }
+          ]
+        }) }} 
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+</div>
+</div>
+{% endblock %}

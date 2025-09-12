@@ -1,0 +1,54 @@
+{% extends "/layouts/webcaf.html" %}
+
+{% block pageTitle %}
+Start a draft assessment – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "My account",
+        href: "/webcaf/current/my-account"
+      },
+      {
+        text: "Start a draft assessment",
+        href: "/webcaf/current/start-a-draft-assessment"
+      },
+      {
+        text: "Add a government system"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Heading goes here
+      </h1>
+
+      <p>
+        This is a paragraph of text. It explains in more detail what has happened and wraps across several lines.
+      </p>
+
+      <p>
+        Read more <a href="/path/of/page">about this topic</a>.
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}

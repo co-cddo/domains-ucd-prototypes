@@ -1,0 +1,135 @@
+{% extends "/layouts/webcaf.html" %}
+
+{% block pageTitle %}
+Select organisation type – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock  %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+          
+<h1 class="govuk-heading-l">
+  <span class="govuk-caption-l">Department for Science, Innovation & Technology</span>
+Select organisation type
+</h1>
+      
+      <form class="form" action="#" id="mainForm" method="post">
+  
+{{ govukRadios({
+  name: "orgType",
+  fieldset: {
+    legend: {
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+    html: "If you're a department, agency or public body on the <a href='https://www.gov.uk/government/organisations'>GOV.UK organisations list (opens in a new tab)</a>, select the type shown."
+  },
+  items: [
+   {
+      value: "Ad-hoc advisory group",
+      text: "Ad-hoc advisory group",
+      checked: checked("orgType", "Ad-hoc advisory group")
+    }, 
+     {
+      value: "Advisory non-departmental public body",
+      text: "Advisory non-departmental public body",
+      checked: checked("orgType", "Advisory non-departmental public body")
+    }, 
+    {
+      value: "Civil service",
+      text: "Civil service",
+      checked: checked("orgType", "Civil service")
+    }, 
+  {
+      value: "Executive agency",
+      text: "Executive agency",
+      checked: checked("orgType", "Executive agency")
+    }, 
+     {
+      value: "Executive non-departmental public body",
+      text: "Executive non-departmental public body",
+      checked: checked("orgType", "Executive non-departmental public body")
+    },
+    {
+      value: "Executive office",
+      text: "Executive office",
+      checked: checked("orgType", "Executive office")
+    },
+     {
+      value: "Independent monitoring body",
+      text: "Independent monitoring body",
+      checked: checked("orgType", "Independent monitoring body")
+    },
+    {
+      value: "Ministerial department",
+      text: "Ministerial department",
+      checked: checked("orgType", "Ministerial department")
+    },
+  {
+      value: "Non-ministerial department",
+      text: "Non-ministerial department",
+      checked: checked("orgType", "Non-ministerial department")
+    },
+    {
+      value: "Public corporation",
+      text: "Public corporation",
+      checked: checked("orgType", "Non-ministerial department")
+    },
+    {
+      value: "Special health authority",
+      text: "Special health authority",
+      checked: checked("orgType", "Special health authority")
+    },
+       {
+      value: "Tribunal",
+      text: "Tribunal",
+      checked: checked("orgType", "Tribunal")
+    },
+    
+    
+    {
+      value: "Other",
+      text: "Other",
+      checked: checked("orgType", "Other")
+    }
+  ]
+}) }}
+        
+    
+          
+          <span class="govuk-body govuk-!-font-size-24">
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        </div>
+    
+        
+        </form>
+
+    
+   </div>
+  
+
+{% endblock %}

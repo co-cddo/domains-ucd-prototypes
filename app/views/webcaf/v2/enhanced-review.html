@@ -1,0 +1,46 @@
+{% extends "/layouts/webcaf.html" %}
+
+{% block pageTitle %}
+Start a draft assessment – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+    {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+<form class="form" action="draft-assessment4b" id="mainForm" method="post">
+      <h1 class="govuk-heading-l">
+      You have chosen an enhanced CAF profile for this system
+      </h1>
+      <p>This means your self-assessment must have an independent assurance review.</p>
+
+     
+    
+   
+ {{ govukButton({
+            text: "Continue"
+          }) }}
+</form>
+    </div>    
+  </div>
+
+{% endblock %}

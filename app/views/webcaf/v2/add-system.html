@@ -1,0 +1,162 @@
+{% extends "/layouts/webcaf.html" %}
+
+{% block pageTitle %}
+Add system – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+
+
+<script type="text/javascript" src="assets/js/accessible-autocomplete.min.js"></script>
+{% endblock  %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+          
+
+      <h1 class="govuk-heading-l">
+        Select a new government system
+      </h1>
+     
+      <form class="form" action="draft-assessment2" id="mainForm" method="post">
+     
+        <h2 class="govuk-heading-m">
+          System name
+        </h2>
+        
+        
+        <link rel="stylesheet" href="../dist/location-autocomplete.min.css" />
+        <style>
+        html {
+          color: #111;
+          background: #FFF;
+          font-family: -apple-system, BlinkMacSystemFont, 'avenir next', avenir, 'helvetica neue', helvetica, ubuntu, roboto, noto, 'segoe ui', arial, sans-serif;
+          font-size: 16px;
+          line-height: 1.5;
+        }
+  
+        body {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+  
+        h1, h2, h3, h4, h5, h6 {
+          line-height: normal;
+        }
+  
+        label {
+          display: block;
+          margin-bottom: .5rem;
+        }
+  
+        .autocomplete-wrapper {
+          max-width: 40em;
+          margin-bottom: 4rem;
+        }
+      </style>
+         <div class="govuk-form-group autocomplete-wrapper">
+         <label class="govuk-label" for="default">
+            Select your organisation's system from the list.
+          </label>
+          <select class="govuk-select"  id="default" name="systemauto" value="{{ data['systemauto'] }}">
+           <option value="choose" selected>Start typing...</option>
+            <option value="Bloomberg">Bloomberg</option>
+            <option value="Corporate Infrastructure System">Corporate Infrastructure System</option>
+            <option value="Windows 365">Windows 365</option>
+            <option value="GWS Portal">GWS Portal</option>
+            <option value="Unit4 ERP">Unit4 ERP</option>
+            <option value="CO Official IT">CO Official IT</option>
+            <option value="GOV.UK Website">GOV.UK Website</option>
+            <option value="GOVWIFI">GOVWIFI</option>
+            <option value="MyCSP Infrastructure/Platform">MyCSP Infrastructure/Platform</option>
+            <option value="NSVS">NSVS</option>
+            <option value="Resilience Direct">Resilience Direct</option>
+            <option value="ChildFirst">ChildFirst</option>
+            <option value="Microsoft 365">Microsoft 365</option>
+            <option value="Drone and Model Aircraft Registration and Education Scheme (DMARES)">Drone and Model Aircraft Registration and Education Scheme (DMARES)</option>
+            <option value="Chronicle Firearms System">Chronicle Firearms System</option>
+            <option value="Vanderbilt Access Control Technology">Vanderbilt Access Control Technology</option>
+            <option value="Register of Overseas Entities (ROE)">Register of Overseas Entities (ROE)</option>
+            <option value="MS365">MS365</option>
+            <option value="Corporate Website & Guided Match">Corporate Website & Guided Match</option>
+            <option value="Report Management Information">Report Management Information</option>
+            <option value="Case Management System (CMS)">Case Management System (CMS)</option>
+            <option value="Microsoft Azure">Microsoft Azure</option>
+            <option value="Oracle Cloud">Oracle Cloud</option>
+            <option value="OutSystems">OutSystems</option>
+            <option value="DPS">DPS</option>
+            <option value="Multi-Vendor Contribution System (MVCS)">Multi-Vendor Contribution System (MVCS)</option>
+            <option value="Quantum">Quantum</option>
+            <option value="SWIFT">SWIFT</option>
+            <option value="System for Electronic Tender (SEAT)">System for Electronic Tender (SEAT)</option>
+            <option value="LITE">LITE</option>
+            <option value="O365 DBT Configuration">O365 DBT Configuration</option>
+            <option value="DCMS Core (Google Workspace)">DCMS Core (Google Workspace)</option>
+            <option value="DfE Sign-in (DSI)">DfE Sign-in (DSI)</option>
+      </select>
+          
+        <p><br></p>
+        {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{{ govukWarningText({
+  html: 'If you cannot see your system in this list, or there is a problem, please email <code class="govspeak-code"> webcaf@cabinetoffice.gov.uk</code>.',
+  iconFallbackText: "Warning"
+}) }}
+        
+    
+          
+          <span class="govuk-body govuk-!-font-size-24">
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+         
+        
+        </div>
+    
+        
+        </form>
+
+        <script type="text/javascript" src="https://alphagov.github.io/govuk-country-and-territory-autocomplete/dist/location-autocomplete.min.js"></script>
+        <script type="text/javascript">
+          openregisterLocationPicker({
+            additionalSynonyms: [
+              { name: 'Albion', code: 'country:GB' }
+            ],
+            defaultValue: '',
+            selectElement: document.getElementById('default'),
+            url: '../dist/location-autocomplete-graph.json'
+          })
+    
+          openregisterLocationPicker({
+            additionalSynonyms: [
+              { name: 'Albion', code: 'country:GB' }
+            ],
+            defaultValue: 'country:GB',
+            selectElement: document.getElementById('preselected'),
+            url: '../dist/location-autocomplete-graph.json'
+          })
+        </script>
+    
+   </div>
+  
+
+{% endblock %}

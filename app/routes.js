@@ -26,4 +26,10 @@ router.use('/registration/strategic/ver2/g0-moving-pc', require('./views/registr
 router.use('/webcaf/current', require('./views/webcaf/current/routes/routes'))
 router.use('/webcaf/v1', require('./views/webcaf/v1/routes/routes'))
 router.use('/webcaf/v-1-3', require('./views/webcaf/v1-3/routes/routes'))
+router.use('/webcaf/v2', require('./views/webcaf/v2/routes/routes'))
+
+
+
+
+
 module.exports = router

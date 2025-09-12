@@ -1,0 +1,876 @@
+{% extends "layouts/webcaf.html" %}
+{% block pageTitle %}
+B4.b Statements – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+ 
+
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "#"
+      },
+      {
+        text: "Create a new assessment
+        ",
+        href: "#"
+      },
+      {
+        text: "Objective B - Protecting against cyber attacks and data breaches
+        ",
+        href: "#"
+      },
+      
+      {
+        text: "B4.b Secure configuration"
+      }
+    ]
+  }) }}
+  <div class="proto-admin">
+   <div id="changedName-hint" class="govuk-hint">
+      Principle 4 of 6<br>
+      <strong>Principle: B4 System security</strong>
+    </div>     
+         <p id="progress-pages"><strong>You have completed 28% of your CAF self-assessment</strong></p>
+         <div class="progress-inactive"><div class="progress-active" style="width: 28%"></div></div>
+      </div>
+  
+{% endblock %}
+{% block content %}
+
+    <h3 class="govuk-heading-l">B4.b Secure configuration</h3>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+    
+    <h3 class="govuk-heading-m">Read each statement on all tabs and select what's true about your system or organisation.</h3>
+    <form class="form" action="b4b-answer" method="post">
+          
+      {% set giveReason %}
+      {{ govukTextarea({
+        name: "give",
+        id: "give",
+        label: {
+          text: "Tell us your justifications"
+        }
+      }) }}
+      {% endset -%}
+
+
+            {% set achievedHtml %}
+              <h1 class="govuk-heading-s">Achieved statements</h1>
+              <div id="signIn-hint" class="govuk-hint">To achieve this outcome you must answer true to all statements.
+              </div> 
+              {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+              {{ govukWarningText({
+                text: "If any statement is not true, you must provide a justification. Otherwise, your status for this outcome will be not achieved.",
+                iconFallbackText: "Warning"
+              }) }}
+               
+                  
+              {{ govukRadios({
+              name: "b4b-outcome1-achieved",  
+              fieldset: {
+                legend: {
+                  text: "1. You have identified,
+                      documented and actively
+                      manage (e.g. maintain security
+                      configurations, patching,
+                      updating according to good
+                      practice) the assets that need to
+                      be carefully configured to
+                      maintain the security of the
+                      essential function(s).",
+                  isPageHeading: true,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "True ",
+                  checked: checked("b4b-outcome1-achieved", "yes")
+                },
+                {
+                  value: "na",
+                  text: "Not true, but I do have justifications",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("b4b-outcome1-achieved", "na")
+                },
+                {
+                  value: "no",
+                  text: " Not true and I have no justifications",
+                  checked: checked("b4b-outcome1-achieved", "no")
+                }
+              ]
+            }) }}
+
+            {{ govukRadios({
+              name: "b4b-outcome2-achieved",
+              
+              fieldset: {
+                legend: {
+                  text: "2. All platforms conform to your secure, defined baseline build,
+                      or the latest known good configuration version for that environment.",
+                  isPageHeading: true,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "True",
+                  checked: checked("b4b-outcome2-achieved", "yes")
+                },
+                {
+                  value: "na",
+                  text: "Not true, but I do have justifications",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("b4b-outcome2-achieved", "na")
+                },
+                {
+                  value: "no",
+                  text: "Not true and I have no justifications",
+                  checked: checked("b4b-outcome2-achieved", "no")
+                }
+                
+              ]
+            }) }}
+
+            {{ govukRadios({
+              name: "b4b-outcome3-achieved",
+              
+              fieldset: {
+                legend: {
+                  text: "3. You closely and effectively
+                      manage changes in your
+                      environment, ensuring that
+                      network and system configurations are secure and
+                      documented.",
+                  isPageHeading: true,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "True",
+                  checked: checked("b4b-outcome3-achieved", "yes")
+                },
+                
+                {
+                  value: "na",
+                  text: "Not true, but I do have justifications",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("b4b-outcome3-achieved", "na")
+                },
+                {
+                  value: "no",
+                  text: "Not true and I have no justifications",
+                  checked: checked("b4b-outcome3-achieved", "no")
+                }
+              ]
+            }) }}
+
+            {{ govukRadios({
+              name: "b4b-outcome4-achieved",
+              
+              fieldset: {
+                legend: {
+                  text: "4. You regularly review and
+                      validate that your network and
+                      information systems have the
+                      expected, secure settings and
+                      configuration.",
+                  isPageHeading: true,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "True",
+                  checked: checked("b4b-outcome4-achieved", "yes")
+                },
+                {
+                  value: "na",
+                  text: "Not true, but I do have justifications",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("b4b-outcome4-achieved", "na")
+                },
+                {
+                  value: "no",
+                  text: "Not true and I have no justifications",
+                  checked: checked("b4b-outcome4-achieved", "no")
+                }
+                
+              ]
+            }) }}
+            {{ govukRadios({
+              name: "b4b-outcome5-achieved",
+              
+              fieldset: {
+                legend: {
+                  text: "5. Only permitted software can be
+                      installed.",
+                  isPageHeading: true,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "True",
+                  checked: checked("b4b-outcome5-achieved", "yes")
+                },
+                {
+                  value: "na",
+                  text: "Not true, but I do have justifications",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("b4b-outcome5-achieved", "na")
+                },
+                {
+                  value: "no",
+                  text: "Not true and I have no justifications",
+                  checked: checked("b4b-outcome5-achieved", "no")
+                }
+                
+              ]
+            }) }}
+            {{ govukRadios({
+              name: "b4b-outcome6-achieved",
+              
+              fieldset: {
+                legend: {
+                  text: "6. Standard users are not able to
+                      change settings that would
+                      impact security or the business
+                      operation.",
+                  isPageHeading: true,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "True",
+                  checked: checked("b4b-outcome6-achieved", "yes")
+                },
+                {
+                  value: "na",
+                  text: "Not true, but I do have justifications",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("b4b-outcome6-achieved", "na")
+                },
+                {
+                  value: "no",
+                  text: "Not true and I have no justifications",
+                  checked: checked("b4b-outcome6-achieved", "no")
+                }
+                
+              ]
+            }) }}
+            {{ govukRadios({
+              name: "b4b-outcome7-achieved",
+              
+              fieldset: {
+                legend: {
+                  text: "7. If automated decision-making
+                      technologies are in use, their
+                      operation is well understood,
+                      and decisions can be replicated.",
+                  isPageHeading: true,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "True",
+                  checked: checked("b4b-outcome7-achieved", "yes")
+                },
+                {
+                  value: "na",
+                  text: "Not true, but I do have justifications",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("b4b-outcome7-achieved", "na")
+                },
+                {
+                  value: "no",
+                  text: "Not true and I have no justifications",
+                  checked: checked("b4b-outcome7-achieved", "no")
+                }
+                
+              ]
+            }) }}
+            {{ govukRadios({
+              name: "b4b-outcome8-achieved",
+              
+              fieldset: {
+                legend: {
+                  text: "8. Generic, shared, default name
+                      and built-in accounts have been
+                      removed or disabled. Where this
+                      is not possible, credentials to
+                      these accounts have been
+                      changed.",
+                  isPageHeading: true,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "True",
+                  checked: checked("b4b-outcome8-achieved", "yes")
+                },
+                {
+                  value: "na",
+                  text: "Not true, but I do have justifications",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("b4b-outcome8-achieved", "na")
+                },
+                {
+                  value: "no",
+                  text: "Not true and I have no justifications",
+                  checked: checked("b4b-outcome8-achieved", "no")
+                }
+                
+              ]
+            }) }}
+            
+                
+            {% endset -%}
+{% set partiallyachievedHtml %}
+<h1 class="govuk-heading-s">Partially achieved statements</h1>
+<div id="signIn-hint" class="govuk-hint">To partially achieve this outcome you must answer true to all statements.
+</div>
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+    {{ govukWarningText({
+    text: "If any statement is not true, you must provide a justification. Otherwise, your status for this outcome will be not achieved.",
+    iconFallbackText: "Warning"
+    }) }}
+
+    {{ govukRadios({
+              name: "b4b-outcome1-partiallyachieved",  
+              fieldset: {
+                legend: {
+                  text: "1. You have identified and documented the assets that need to be carefully configured
+                     to maintain the security of the essential function(s).",
+                  isPageHeading: true,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "True ",
+                  checked: checked("b4b-outcome1-partiallyachieved", "yes")
+                },
+                {
+                  value: "na",
+                  text: "Not true, but I do have justifications",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("b4b-outcome1-partiallyachieved", "na")
+                },
+                {
+                  value: "no",
+                  text: "Not true and I have no justifications",
+                  checked: checked("b4b-outcome1-partiallyachieved", "no")
+                }
+              ]
+            }) }}
+
+            {{ govukRadios({
+              name: "b4b-outcome2-partiallyachieved",
+              
+              fieldset: {
+                legend: {
+                  text: "2. Secure platform and device builds are used across the estate.",
+                  isPageHeading: true,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "True",
+                  checked: checked("b4b-outcome2-partiallyachieved", "yes")
+                },
+                {
+                  value: "na",
+                  text: "Not true, but I do have justifications",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("b4b-outcome2-partiallyachieved", "na")
+                },
+                {
+                  value: "no",
+                  text: "Not true and I have no justifications",
+                  checked: checked("b4b-outcome2-partiallyachieved", "no")
+                }
+                
+              ]
+            }) }}
+
+            {{ govukRadios({
+              name: "b4b-outcome3-partiallyachieved",
+              
+              fieldset: {
+                legend: {
+                  text: "3. Consistent, secure and minimal system and device configurations
+                      are applied across the same types of environment.",
+                  isPageHeading: true,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "True",
+                  checked: checked("b4b-outcome3-partiallyachieved", "yes")
+                },
+                
+                {
+                  value: "na",
+                  text: "Not true, but I do have justifications",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("b4b-outcome3-partiallyachieved", "na")
+                },
+                {
+                  value: "no",
+                  text: "Not true and I have no justifications",
+                  checked: checked("b4b-outcome3-partiallyachieved", "no")
+                }
+              ]
+            }) }}
+
+            {{ govukRadios({
+              name: "b4b-outcome4-partiallyachieved",
+              
+              fieldset: {
+                legend: {
+                  text: "4. Changes and adjustments to
+                      security configuration at security
+                      boundaries with the network
+                      and information systems
+                      supporting your essential function(s) are approved and
+                      documented.",
+                  isPageHeading: true,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "True",
+                  checked: checked("b4b-outcome4-partiallyachieved", "yes")
+                },
+                {
+                  value: "na",
+                  text: "Not true, but I do have justifications",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("b4b-outcome4-partiallyachieved", "na")
+                },
+                {
+                  value: "no",
+                  text: "Not true and I have no justifications",
+                  checked: checked("b4b-outcome4-partiallyachieved", "no")
+                }
+                
+              ]
+            }) }}
+            {{ govukRadios({
+              name: "b4b-outcome5-partiallyachieved",
+              
+              fieldset: {
+                legend: {
+                  text: "5. You verify software before
+                      installation is permitted.",
+                  isPageHeading: true,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "True",
+                  checked: checked("b4b-outcome5-partiallyachieved", "yes")
+                },
+                {
+                  value: "na",
+                  text: "Not true, but I do have justifications",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("b4b-outcome5-partiallyachieved", "na")
+                },
+                {
+                  value: "no",
+                  text: "Not true and I have no justifications",
+                  checked: checked("b4b-outcome5-partiallyachieved", "no")
+                }
+                
+              ]
+            }) }}
+            {{ govukRadios({
+              name: "b4b-outcome6-partiallyachieved",
+              
+              fieldset: {
+                legend: {
+                  text: "6. Generic, shared, default name
+                      and built-in accounts have been
+                      removed or disabled. Where this
+                      is not possible, credentials to
+                      these accounts have been
+                      changed.",
+                  isPageHeading: true,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              items: [
+                {
+                  value: "yes",
+                  text: "True",
+                  checked: checked("b4b-outcome6-partiallyachieved", "yes")
+                },
+                {
+                  value: "na",
+                  text: "Not true, but I do have justifications",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("b4b-outcome6-partiallyachieved", "na")
+                },
+                {
+                  value: "no",
+                  text: "Not true and I have no justifications",
+                  checked: checked("b4b-outcome6-partiallyachieved", "no")
+                }
+                
+              ]
+            }) }}
+                
+            {% endset -%}
+            {% set notachievedHtml %}
+            <h1 class="govuk-heading-s">Not achieved statements</h1>
+              <div id="signIn-hint" class="govuk-hint">If any statement applies to your system or organisation in this section you must provide justifications otherwise you will fail this outcome.
+              </div> 
+
+            {{ govukRadios({
+              name: "b4b-outcome1-not-achieved",
+
+              fieldset: {
+              legend: {
+              html: "1. You haven't identified the assets that need to be carefully configured
+                  to maintain the security of the essential function(s).",
+              isPageHeading: true,
+              classes: "govuk"
+              }
+              },
+              hint: {
+              text: " "
+              },
+              items: [
+               
+                {
+                  value: "na",
+                  text: "This does apply to my system or organisation and I have justifications ",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("b4b-outcome1-not-achieved", "na")
+                },
+              {
+                  value: "yes",
+                  text: "This does apply to my system or organisation, but I have no justifications",
+                  checked: checked("b4b-outcome1-not-achieved", "yes")
+                },
+                {
+                  value: "no",
+                  text: "This does not apply to my system or organisation",
+                  checked: checked("b4b-outcome1-not-achieved", "no")
+                }
+                
+              ]
+              }) }}
+
+
+                {{ govukRadios({
+                name: "outcome2-not-achieved",
+
+                fieldset: {
+                legend: {
+                html: "2. Policies relating to the security of operating system builds
+                  or configuration are not applied consistently across your network
+                  and information systems relating to your essential function(s).",
+                isPageHeading: true,
+                classes: "govuk"
+                }
+                },
+                hint: {
+                text: ""
+                },
+                items: [
+                  
+                {
+                  value: "na",
+                  text: "This does apply to my system or organisation and I have justifications ",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("b4b-outcome2-not-achieved", "na")
+                },
+               {
+                  value: "yes",
+                  text: "This does apply to my system or organisation, but I have no justifications",
+                  checked: checked("b4b-outcome2-not-achieved", "yes")
+                },
+                {
+                  value: "no",
+                  text: "This does not apply to my system or organisation",
+                  checked: checked("b4b-outcome2-not-achieved", "no")
+                }
+                
+              ]
+                }) }}
+
+                {{ govukRadios({
+                name: "b4b-outcome3-not-achieved",
+
+                fieldset: {
+                legend: {
+                html: "3. Configuration details are not recorded or lack enough information
+                  to be able to rebuild the system or device.",
+                isPageHeading: true,
+                classes: "govuk"
+                }
+                },
+                hint: {
+                text: ""
+                },
+                items: [
+                
+                {
+                  value: "na",
+                  text: "This does apply to my system or organisation and I have justifications ",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("b4b-outcome3-not-achieved", "na")
+                },
+               {
+                  value: "yes",
+                  text: "This does apply to my system or organisation, but I have no justifications",
+                  checked: checked("b4b-outcome3-not-achieved", "yes")
+                },
+                {
+                  value: "no",
+                  text: "This does not apply to my system or organisation",
+                  checked: checked("b4b-outcome3-not-achieved", "no")
+                }
+                
+              ]
+                }) }}
+
+                {{ govukRadios({
+                name: "b4b-outcome4-not-achieved",
+
+                fieldset: {
+                legend: {
+                html: "4. The recording of security changes or adjustments that
+                      affect your essential function(s)
+                      is lacking or inconsistent.",
+                isPageHeading: true,
+                classes: "govuk"
+                }
+                },
+                hint: {
+                text: ""
+                },
+                items: [
+                 
+                {
+                  value: "na",
+                  text: "This does apply to my system or organisation and I have justifications ",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("b4b-outcome4-not-achieved", "na")
+                },
+               {
+                  value: "yes",
+                  text: "This does apply to my system or organisation, but I have no justifications",
+                  checked: checked("b4b-outcome4-not-achieved", "yes")
+                },
+                {
+                  value: "no",
+                  text: "This does not apply to my system or organisation",
+                  checked: checked("b4b-outcome4-not-achieved", "no")
+                }
+                
+              ]
+                }) }}
+                {{ govukRadios({
+                name: "b4b-outcome5-not-achieved",
+
+                fieldset: {
+                legend: {
+                html: "5. Generic, shared, default name
+                      and built-in accounts have not
+                      been removed or disabled.",
+                isPageHeading: true,
+                classes: "govuk"
+                }
+                },
+                hint: {
+                text: ""
+                },
+                items: [
+                
+                {
+                  value: "na",
+                  text: "This does apply to my system or organisation and I have justifications ",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("b4b-outcome5-not-achieved", "na")
+                },
+               {
+                  value: "yes",
+                  text: "This does apply to my system or organisation, but I have no justifications",
+                  checked: checked("b4b-outcome5-not-achieved", "yes")
+                },
+                {
+                  value: "no",
+                  text: "This does not apply to my system or organisation",
+                  checked: checked("b4b-outcome5-not-achieved", "no")
+                }
+                
+              ]
+                }) }}
+                {% endset -%}
+
+
+       {{ govukTabs({
+        items: [
+           {
+            label: "Achieved",
+            id: "achieved",
+            panel: {
+              html: achievedHtml
+            }
+          },
+          {
+            label: "Partially achieved",
+            id: "partiallyachieved",
+            panel: {
+              html: partiallyachievedHtml
+            }
+          },
+          {
+            label:  "Not achieved",
+            id: "notachieved",
+            panel: {
+              html: notachievedHtml
+            }
+          }
+        ]
+      }) }}
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-visually-hidden">Warning</span>
+    Before you save and continue you must answer all statements on all tabs.
+  </strong>
+</div>
+
+<div class="govuk-button-group">
+  {{ govukButton({
+    text: "Save and continue"
+  }) }}
+  </form>
+
+  <a class="govuk-link" href="#">Back to Objective B - Protecting against cyber attacks and data breaches </a>
+</div>
+    </div>    
+  </div>
+
+{% endblock %}

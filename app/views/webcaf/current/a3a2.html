@@ -1,0 +1,149 @@
+{% extends "layouts/webcaf.html" %}
+{% block pageTitle %}
+A3.a Statements – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+ 
+
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "#"
+      },
+      {
+        text: "Create a new assessment
+        ",
+        href: "#"
+      },
+      {
+        text: "Objective A - Managing security risk
+        ",
+        href: "#"
+      },
+      
+      {
+        text: "A3.a Asset management"
+      }
+    ]
+  }) }}
+
+ 
+  <div class="proto-admin">
+   <div id="changedName-hint" class="govuk-hint">
+      Principle 3 of 4<br>
+      <strong>Principle: A3 Asset management</strong>
+    </div>     
+         <p id="progress-pages"><strong>You have completed 5% of your CAF self-assessment</strong></p>
+         <div class="progress-inactive"><div class="progress-active" style="width: 5%"></div></div>
+      </div>
+  
+{% endblock %}
+{% block content %}
+
+
+{% if errorList %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: errorList
+      }) }}
+    {% endif %}
+ 
+    <form method="post" action="/webcaf/current/a3a" novalidate>
+
+    <h3 class="govuk-heading-l">A3.a Asset management</h3>
+    <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    
+    
+    
+
+    
+    
+          
+      {% set giveReason %}
+      {{ govukTextarea({
+        name: "give",
+        id: "give",
+        label: {
+          text: "Tell us your justifications"
+        }
+      }) }}
+      {% endset -%}
+
+
+           
+            
+              
+              {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+              {{ govukRadios({
+              idPrefix: "a3aAc1",
+                name: "a3aAc1",  
+              fieldset: {
+                legend: {
+                  text: "1. Do you identify and create inventories for all assets relevant to the secure operation of essential function(s) at a suitable level of detail)? ",
+                  isPageHeading: true,
+                  classes: "govuk"
+                }
+              },
+              hint: {
+                text: ""
+              },
+              errorMessage: errors.a3aAc1 if errors else null,
+              items: [
+                {
+                  value: "yes",
+                  text: "Yes, I have achieved this",
+                hint: {
+                text: "All assets relevant to the secure operation of essential function(s) are identified and inventoried (at a suitable level of detail). The inventory is kept up-to-date."
+              },
+                  checked: checked("a3aAc1", "yes" if values else false)
+                },
+                
+                {
+                  value: "na",
+                  text: "No, I have not achieved this",
+                  conditional: {
+                    html: giveReason
+                  },
+                  hint: {
+                text: " Inventories of assets relevant to the essential function(s) are incomplete, non-existent, or inadequately detailed."
+              },
+                  checked: checked("a3aAc1", "na" if values else false)
+                }
+              ]
+            }) }}
+
+           
+            
+            
+                
+
+
+            
+
+
+
+<div class="govuk-button-group">
+  {{ govukButton({
+    text: "Save and continue"
+  }) }}
+  </form>
+
+  <a class="govuk-link" href="#">Back to Objective A - Managing security risk </a>
+</div>
+    </div>    
+  </div>
+
+{% endblock %}

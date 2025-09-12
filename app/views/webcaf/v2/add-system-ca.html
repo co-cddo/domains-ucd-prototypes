@@ -1,0 +1,291 @@
+{% extends "/layouts/webcaf-cyber.html" %}
+
+{% block pageTitle %}
+Add system – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+
+
+
+{% endblock  %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+          
+<span class="govuk-caption-l">Civil Aviation Authority</span>
+      <h1 class="govuk-heading-l">
+        Add a new government system
+      </h1>
+     
+      <form class="form" action="check-system" id="mainForm" method="post">
+     
+       
+     
+          {{ govukInput({
+          label: {
+            html: '<span class="govuk-heading-m">System name</span>'
+          },
+          hint: {
+            text: "Add a new system name"
+          },
+          id: "govsysmanual",
+          name: "govsysmanual",
+          type: "string",
+          autocomplete: "string",
+          spellcheck: false,
+          value: data['govsysmanual']
+          
+        }) }}
+
+      <h2 class="govuk-heading-m">
+        System type
+      </h2>
+{{ govukRadios({
+  classes: "govuk-radios",
+  name: "systype",
+  fieldset: {
+    legend: {
+      text: "What best describes this system?",
+      isPageHeading: true,
+      classes: "govuk-body"
+    }
+  },
+  hint: {
+    text: "Select one option"
+  },
+  items: [
+    {
+      value: "The system directly supports the organisation mission",
+      text: "The system directly supports the organisation mission",
+      hint: {
+        text: "for example, Universal Credit"
+      },
+      checked: checked("systype", "The system directly supports the organisation mission")
+    },
+    {
+      value: "The system is a corporate or enterprise system or network that supports other critical systems",
+      text: "The system is a corporate or enterprise system or network that supports other critical systems",
+      hint: {
+        text: "for example, hosting platform or network, Active Directory"
+      },
+      checked: checked("systype", "The system is a corporate or enterprise system or network that supports other critical systems")
+    },
+    {
+      value: "The system is a corporate or enterprise system deemed critical for day-to-day operations",
+      text: "The system is a corporate or enterprise system deemed critical for day-to-day operations",
+      hint: {
+        text: "for example, Microsoft Office 365, telephony, corporate website"
+      },
+      checked: checked("systype", "The system is a corporate or enterprise system deemed critical for day-to-day operations")
+    },
+    {
+      value: "The system is hosted externally, including by commercial providers or other departments",
+      text: "The system is hosted externally, including by commercial providers or other departments",
+      hint: {
+        text: "for example, shared services"
+      },
+      checked: checked("systype", "The system is hosted externally, including by commercial providers or other departments")
+    }
+  ]
+}) }}
+
+        
+    {{ govukTextarea({
+    name: "govsysessentialservice",
+    id: "govsysessentialservice",
+    type: "string",
+    autocomplete: "string",
+    label: {
+      text: "What essential service does this system support?",
+      classes: "govuk-heading-s",
+      value: data['govsysessentialservice'],
+      isPageHeading: true
+    },
+    hint: {
+      text: "Describe what essential service this system supports."
+    }
+  }) }}
+
+<h2 class="govuk-heading-m">
+        System owner
+      </h2>
+
+{{ govukCheckboxes({
+  name: "sysowner",
+  fieldset: {
+    legend: {
+      text: "Who owns this system?",
+      isPageHeading: true,
+      classes: "govuk-body"
+    }
+  },
+  hint: {
+    text: "Select all that apply"
+  },
+  items: [
+    {
+      value: "The organisation being assessed",
+      text: "The organisation being assessed",
+      checked: checked("sysowner", "The organisation being assessed")
+    },
+    {
+      value: "Another government organisation",
+      text: "Another government organisation",
+      checked: checked("sysowner", "Another government organisation")
+    },
+    {
+      value: "Third-party company",
+      text: "Third-party company",
+      checked: checked("sysowner", "Third-party company")
+    },
+    {
+      value: "Other",
+      text: "Other",
+      checked: checked("sysowner", "Other")
+    }
+  ]
+}) }}
+
+<h2 class="govuk-heading-m">
+        System hosting and connectivity
+      </h2>
+
+{{ govukCheckboxes({
+  name: "hosting",
+  fieldset: {
+    legend: {
+      text: "How is the system hosted?",
+      isPageHeading: true,
+      classes: "govuk-body"
+    }
+  },
+  hint: {
+    text: "Select all that apply"
+  },
+  items: [
+    {
+      value: "On premises",
+      text: "On premises",
+      checked: checked("hosting", "On premises")
+    },
+    {
+      value: "Cloud hosted",
+      text: "Cloud hosted",
+      checked: checked("hosting", "Cloud hosted")
+    },
+    {
+      value: "Hybrid",
+      text: "Hybrid",
+      checked: checked("hosting", "Hybrid")
+    },
+    {
+      value: "Commercially hosted by third-party",
+      text: "Commercially hosted by third-party",
+      checked: checked("hosting", "Commercially hosted by third-party")
+    }
+  ]
+}) }}
+
+{{ govukRadios({
+  classes: "govuk-radios--inline",
+  name: "internetfacing",
+  fieldset: {
+    legend: {
+      text: "Is the system internet-facing?",
+      isPageHeading: true,
+      classes: "govuk-body"
+    }
+  },
+  hint: {
+    text: "Select one option"
+  },
+  items: [
+    {
+      value: "Yes",
+      text: "Yes",
+      checked: checked("internetfacing", "Yes")
+    },
+    {
+      value: "No",
+      text: "No",
+      checked: checked("internetfacing", "No")
+    }
+  ]
+}) }}
+<h2 class="govuk-heading-m">
+       Year when system was last GovAssure assessed 
+      </h2>
+
+{{ govukRadios({
+  name: "govassureYear",
+  fieldset: {
+    legend: {
+      text: "Has this system been assessed before 2025/26?",
+      isPageHeading: true,
+      classes: "govuk-body"
+    }
+  },
+  hint: {
+    text: "Select one option"
+  },
+  items: [
+    {
+      value: "2023/24",
+      text: "Yes, assessed in 2023/24",
+      checked: checked("govassureYear", "2023/24")
+    },
+    {
+      value: "2024/25",
+      text: "Yes, assessed in 2024/25",
+      checked: checked("govassureYear", "2024/25")
+    },
+    {
+      value: "2023/24 and 2024/25",
+      text: "Yes, assessed in both 2023/24 and 2024/25",
+      checked: checked("govassureYear", "2023/24 and 2024/25")
+    },
+    {
+      value: "No",
+      text: "No",
+      checked: checked("govassureYear", "No")
+    }
+  ]
+}) }}
+    
+          
+          <span class="govuk-body govuk-!-font-size-24">
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+         
+        
+        </div>
+    
+        
+        </form>
+
+    
+   </div>
+  
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+
+  {% block pageTitle %}
+  {% if hasErrors %}Error: {% endif %}Sample page
+{% endblock %}
+
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if errorList %}
+      {{ govukErrorSummary({ titleText: "There is a problem", errorList: errorList }) }}
+    {% endif %}
+
+    <form method="post" action="/outcome-answer" novalidate>
+      {{ govukRadios({
+        idPrefix: "a3a",
+        name: "a3a",
+        fieldset: {
+          legend: {
+            text: "Have you changed your name?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: { text: "This includes changing your last name or spelling your name differently" },
+        errorMessage: errors.a3a if errors else null,
+        items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: checked("a3a", "yes" if values else false)
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: checked("a3a", "no" if values else false)
+            }
+          ]
+        
+      
+      }) }}
+
+      {{ govukButton({ text: "Continue" }) }}
+    </form> 
+
+  </div>
+</div>
+{% endblock %}

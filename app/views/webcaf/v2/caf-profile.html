@@ -1,0 +1,80 @@
+{% extends "/layouts/webcaf.html" %}
+
+{% block pageTitle %}
+CAF government profile – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+   
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Choose your Government CAF profile
+      </h1>
+      <p>
+        Every system undergoing GovAssure must be assigned one of the two Government CAF profiles. These are baseline and enhanced. You will have agreed this with your cyber advisor during stage 2.
+      </p>
+      <p>You can read more in the <a href="https://www.security.gov.uk/policy-and-guidance/govassure/stage-2-in-scope-systems-and-assigning-target-caf-profile/#section_5_assign-caf-profiles-to-your-systems" target="new" class="govuk-lik"> CAF profiles to your systems guidance (opens in new tab). </a></p>
+      
+
+      <form class="form" action="/webcaf/current/review-type-answer" method="post">
+        
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        
+
+        {{ govukRadios({
+          name: "cafprofile",
+          fieldset: {
+            legend: {
+              text: "Choose a profile for this assessment",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "Select one"
+          },
+          items: [
+            {
+              value: "baseline",
+              text: "Baseline",
+              checked: checked("cafprofile", "baseline")
+            },
+            {
+              value: "enhanced",
+              text: "Enhanced",
+              checked: checked("cafprofile", "enhanced")
+            }
+          ]
+        }) }}
+      
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

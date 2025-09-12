@@ -1,0 +1,183 @@
+{% extends "layouts/webcaf.html" %}
+
+{% block pageTitle %}
+  Objective D - Submit a CAF self-assessment for a system
+  – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "My account",
+        href: "/webcaf/current/my-account-dept"
+      },
+      {
+        text: "Start a draft assessment",
+        href: "/webcaf/current/draft-assessment3"
+      },
+      {
+        text: "Objective D - Minimising the impact of cyber security incidents"
+      }
+    ]
+  }) }}
+  {% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Objective D - Minimising the impact of cyber security incidents
+      </h1>
+       
+<p>Please provide your answers for each principle. You can review the status of individual outcomes below each principle and change your answers if you need to.</p>
+
+      <h2 class="govuk-heading-m">
+        Principle: D1 Response and Recovery Planning
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              html: "D1.a Response plan",
+              classes: "govuk-!-width-one-half"
+            },
+            value: {
+              html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "D1.b Response and recovery capability"
+            },
+            value: {
+              html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "D1.c Testing and exercising"
+            },
+            value: {
+              html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Principle: D2 Lessons learned
+      </h2>
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "D2.a Incident root cause analysis",
+              classes: "govuk-!-width-one-half"
+            },
+            value: {
+              html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "D2.b Using incidents to drive improvements"
+            },
+            value: {
+              html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "D1.c Testing and exercising"
+            },
+            value: {
+              html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+     <form action="draft-assessment6" method="post" novalidate>
+
+      
+
+        {{ govukButton({
+          text: "Back to draft self-assessment",
+          classes: "govuk-button--secondary"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

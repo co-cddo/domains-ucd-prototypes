@@ -1,0 +1,171 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "/registration/webcaf/current"
+      },
+      {
+        text: "Create a new assessment
+        ",
+         href: "/registration/index"
+      },
+      {
+        text: "Objective A - Managing risk
+        "
+      }
+    ]
+  }) }}
+  {% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Objective A - Managing security risk
+      </h1>
+       
+<p>Based on your answers, you can review the status of individual outcomes below for each principle. You can go back and change your answers.</p>
+
+<h2 class="govuk-heading-m">
+        Principle: A1 Governance
+      </h2>
+
+      
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "A1.a Board direction "
+            },
+            value: {
+            html: '<strong class="govuk-tag govuk-tag--green" id="caf-status">Achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "A1.b Roles and responsibilities"
+            },
+            value: {
+              html: '<strong class="govuk-tag govuk-tag--yellow " id="caf-status">Partially chieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "A1.c Decision-making"
+            },
+            value: {
+              html: '<strong class="govuk-tag govuk-tag--red " id="caf-status">Not achieved</strong>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          }
+          
+        ]
+      }) }}
+      <h2 class="govuk-heading-m">
+        Principle: A2 Risk management
+      </h2>
+{{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "A2.a Risk management process"
+            },
+            value: {
+              html: '<a class="govuk-link" href="#">Add your answers</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "A2.b Assurance"
+            },
+            value: {
+              html: '<a class="govuk-link" href="#">Add your answers</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+         
+        ]
+      }) }}
+      <h2 class="govuk-heading-m">
+       
+      </h2>
+
+      <p>
+        
+      </p>
+
+      <form action="/confirmation" method="post" novalidate>
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

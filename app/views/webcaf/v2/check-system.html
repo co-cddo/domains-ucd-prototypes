@@ -1,0 +1,121 @@
+{% extends "/layouts/webcaf-cyber.html" %}
+
+{% block pageTitle %}
+Check system details – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+   {{ govukBackLink({
+    text: "Back",
+    href: "add-system-ca"
+  }) }}
+
+{% endblock  %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        Check your system details
+      </h1>
+
+        {{ govukSummaryList({
+          card: {
+            title: {
+              text: "Civil Aviation Authority"
+            },
+            actions: {
+              items: [
+                {
+                  href: "add-system-ca",
+                  text: "Change",
+                  visuallyHiddenText: "of Civil Aviation Authority"
+                }
+              ]
+            }
+          },
+          rows: [
+            {
+              key: {
+                text: "System name"
+              },
+              value: {
+                html: data['govsysmanual']
+              }
+            },
+            {
+              key: {
+                text: "System type"
+              },
+              value: {
+                html: data['systype']
+              }
+            },
+            {
+              key: {
+                text: "Essential services"
+              },
+              value: {
+                html: data['govsysessentialservice']
+              }
+            },
+            {
+              key: {
+                text: "System ownership"
+              },
+              value: {
+                html: data['sysowner']
+              }
+            },
+            {
+              key: {
+                text: "Hosting and connectivity"
+              },
+              value: {
+                html: data['hosting']
+              }
+            },
+            {
+              key: {
+                text: "Internet facing"
+              },
+              value: {
+                html: data['internetfacing']
+              }
+            },
+            {
+              key: {
+                text: "GovAssure year"
+              },
+              value: {
+                html: data['govassureYear']
+              }
+            }
+          ]
+        }) }}
+
+        
+      
+ 
+
+      <form action="/webcaf/current/view-systems" method="post" novalidate>
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

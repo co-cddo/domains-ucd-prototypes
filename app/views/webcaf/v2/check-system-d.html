@@ -1,0 +1,145 @@
+{% extends "/layouts/webcaf-cyber.html" %}
+
+{% block pageTitle %}
+Check system details – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+   {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock  %}
+
+
+{% block content %}
+<form class="form" action="/webcaf/current/pathAorB-answer" method="post">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        About your system details
+      </h1>
+
+        {{ govukSummaryList({
+          card: {
+            title: {
+              text: "of Civil Aviation Authority"
+            },
+            actions: {
+              items: [
+                {
+                  href: "add-system-ca",
+                  text: "Change",
+                  visuallyHiddenText: "of Civil Aviation Authority"
+                }
+              ]
+            }
+          },
+          rows: [
+            {
+              key: {
+                text: "System name"
+              },
+              value: {
+                html: "Multi-Vendor Contribution System (MVCS)"
+              }
+            },
+            {
+              key: {
+                text: "System type"
+              },
+              value: {
+                html: data['systype']
+              }
+            },
+            {
+              key: {
+                text: "Essential services"
+              },
+              value: {
+                html: data['govsysessentialservice']
+              }
+            },
+            {
+              key: {
+                text: "System ownership"
+              },
+              value: {
+                html: data['sysowner']
+              }
+            },
+            {
+              key: {
+                text: "Hosting and connectivity"
+              },
+              value: {
+                html: data['hosting']
+              }
+            },
+            {
+              key: {
+                text: "Internet facing"
+              },
+              value: {
+                html: data['internetfacing']
+              }
+            },
+            {
+              key: {
+                text: "GovAssure year"
+              },
+              value: {
+                html: data['govassureYear']
+              }
+            }
+          ]
+        }) }}
+       
+                
+          {{ govukRadios({
+          classes: "govuk-radios--inline",
+          name: "pathAorB",
+          fieldset: {
+            legend: {
+              text: "Do you want to start a self-assessment with this system?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: ""
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: checked("pathAorB", "yes")
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: checked("pathAorB", "no")
+            }
+          ]
+        }) }} 
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
