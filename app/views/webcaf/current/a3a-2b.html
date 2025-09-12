@@ -1,0 +1,216 @@
+{% extends "layouts/webcaf.html" %}
+{% block pageTitle %}
+A3.a Statements – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+ 
+
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "#"
+      },
+      {
+        text: "Create a new assessment
+        ",
+        href: "#"
+      },
+      {
+        text: "Objective A - Managing security risk
+        ",
+        href: "#"
+      },
+      
+      {
+        text: "A3.a Asset management"
+      }
+    ]
+  }) }}
+
+ 
+  <div class="proto-admin">
+   <div id="changedName-hint" class="govuk-hint">
+      Principle 3 of 4<br>
+      <strong>Principle: A3 Asset management</strong>
+    </div>     
+         <p id="progress-pages"><strong>You have completed 5% of your CAF self-assessment</strong></p>
+         <div class="progress-inactive"><div class="progress-active" style="width: 5%"></div></div>
+      </div>
+  
+{% endblock %}
+{% block content %}
+
+
+{% if errorList %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: errorList
+      }) }}
+    {% endif %}
+ 
+    <form method="post" action="/webcaf/current/a3a" novalidate>
+
+    <h3 class="govuk-heading-l">A3.a Asset management</h3>
+    <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    
+    <h3 class="govuk-body-l">Read each indicator of good practice (IGP) statement and select what's true about your system or organisation.</h3>
+    
+
+    
+    
+          
+      {% set giveReason %}
+      {{ govukTextarea({
+        name: "give",
+        id: "give",
+        label: {
+          text: "Tell us your justifications"
+        }
+      }) }}
+      {% endset -%}
+
+
+        
+              <h1 class="govuk-heading-m"></h1>
+              <div id="signIn-hint" class="govuk-hint">
+              </div> 
+              {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+            
+               
+                  
+              {{ govukCheckboxes({
+              idPrefix: "a3aAc",
+                name: "a3aAc1",  
+              fieldset: {
+                legend: {
+                  text: "Achieved statements ",
+                  isPageHeading: true,
+                  classes: "govuk-fieldset__legend--m"
+                }
+              },
+              hint: {
+                text: "To achieve this outcome you must select all achieved statements."
+              },
+              errorMessage: errors.a3aAc if errors else null,
+              items: [
+                {
+                  value: "yes",
+                  text: "1. All assets relevant to the secure operation of essential function(s) are identified and inventoried (at a suitable level of detail). The inventory is kept up-to-date.",
+                  checked: checked("a3aAc", "yes" if values else false)
+                },
+                {
+                  value: "yes",
+                  text: "2. Dependencies on supporting infrastructure (e.g. power, cooling etc) are recognised and recorded.",
+                  checked: checked("a3aAc", "yes" if values else false)
+                },
+                {
+                  value: "yes",
+                  text: "3. You have prioritised your assets according to their importance to the operation of the essential function(s).",
+                  checked: checked("a3aAc", "yes" if values else false)
+                },
+                {
+                  value: "yes",
+                  text: "4. You have assigned responsibility for managing all assets, including physical assets, relevant to the operation of the essential function(s).",
+                  checked: checked("a3aAc", "yes" if values else false)
+                },
+                {
+                  value: "yes",
+                  text: "5. Assets relevant to the essential function(s) are managed with cyber security in mind throughout their lifecycle, from creation through to eventual decommissioning or disposal.",
+                  checked: checked("a3aAc", "yes" if values else false)
+                }
+              ]
+            }) }}
+
+            
+
+          
+            
+            {{ govukCheckboxes({
+              name: "a3aNa",
+
+              fieldset: {
+              legend: {
+              html: "Not achieved statements",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+              }
+              },
+              hint: {
+              text: "If you select any statement that applies to your system or organisation in this section you must provide justifications otherwise you will fail this outcome. "
+              },
+              errorMessage: errors.a3aNa if errors else null,
+              items: [
+               {
+                  value: "na",
+                  text: "1. Inventories of assets relevant to the essential function(s) are incomplete, non-existent, or inadequately detailed.",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("a3aNa", "na" if values else false)
+                },
+                {
+                  value: "na",
+                  text: "2. Only certain domains or types of asset are documented and understood. Dependencies between assets are not understood (such as the dependencies between IT and OT).",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("a3aNa", "na" if values else false)
+                },
+                {
+                  value: "na",
+                  text: "3. Information assets, which could include personally identifiable information and / or important / critical data, are stored for long periods of time with no clear business need or retention policy.",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("a3aNa", "na" if values else false)
+                },
+                {
+                  value: "na",
+                  text: "4. Knowledge critical to the management, operation, or recovery of the essential function(s) is held by one or two key individuals with no succession plan.",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("a3aNa", "na" if values else false)
+                },
+                {
+                  value: "na",
+                  text: "5. Asset inventories are neglected and out of date.",
+                  conditional: {
+                    html: giveReason
+                  },
+                  checked: checked("a3aNa", "na" if values else false)
+                }
+                
+              ]
+              }) }}
+
+
+             
+
+
+
+<div class="govuk-button-group">
+  {{ govukButton({
+    text: "Save and continue"
+  }) }}
+  </form>
+
+  <a class="govuk-link" href="#">Back to Objective A - Managing security risk </a>
+</div>
+    </div>    
+  </div>
+
+{% endblock %}
