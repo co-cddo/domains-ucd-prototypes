@@ -65,18 +65,15 @@ A3.a Statements – GOV.UK Prototype Kit
     <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
     
-    <h3 class="govuk-body-l">Read each indicator of good practice (IGP) statement and select what's true about your system or organisation.</h3>
-    
-
-    
-    
-          
+    <span class="govuk-body-l">
+You must read each indicator of good practice (IGP). 
+</span>
       {% set giveReason %}
       {{ govukTextarea({
         name: "give",
         id: "give",
         label: {
-          text: "Tell us your justifications (optional)"
+          text: "Please provide any justifications (optional)"
         }
       }) }}
       {% endset -%}
@@ -87,9 +84,6 @@ A3.a Statements – GOV.UK Prototype Kit
               <div id="signIn-hint" class="govuk-hint">
               </div> 
               {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
-
-            
-               
                   
               {{ govukCheckboxes({
               idPrefix: "a3aAc",
@@ -102,41 +96,135 @@ A3.a Statements – GOV.UK Prototype Kit
                 }
               },
               hint: {
-                text: "To achieve this outcome you must select all achieved statements."
+                html: 'You must select all statements to meet this outcome or add a comment to explain why you are not selecting a statement. This could be because your organisation meets the IGP in a different way.
+                  <div class="govuk-warning-text">
+                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                <strong class="govuk-warning-text__text">
+                  <span class="govuk-visually-hidden">Warning</span>
+                  Failure to add a comment in this section when you do not select a statement will result in this IGP not being met.
+                </strong>
+              </div>
+                '
               },
               errorMessage: errors.a3aAc if errors else null,
               items: [
                 {
                   value: "yes",
-                  text: "1. All assets relevant to the secure operation of essential function(s) are identified and inventoried (at a suitable level of detail). The inventory is kept up-to-date.",
+                  html: '1. All assets relevant to the secure operation of essential function(s) are identified and inventoried (at a suitable level of detail). The inventory is kept up-to-date.
+                  <details class="govuk-details govuk-!-margin-bottom-0">
+                    <summary class="govuk-details__summary">
+                      <span class="govuk-details__summary-text">
+                        Add a comment
+                      </span>
+                    </summary>
+ 
+                      <div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="200">
+                  <div id="with-hint-hint" class="govuk-hint">
+                    Please explain why you have not selected this statement.
+                  </div>
+                  <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="withHint" rows="5" aria-describedby="with-hint-info with-hint-hint"></textarea>
+                  <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
+                    You can enter up to 200 characters
+                  </div>
+                </div>
+                </details>
+                  ',
                   checked: checked("a3aAc", "yes" if values else false)
                 },
                 {
                   value: "yes",
-                  text: "2. Dependencies on supporting infrastructure (e.g. power, cooling etc) are recognised and recorded.",
+                  html: '2. Dependencies on supporting infrastructure (e.g. power, cooling etc) are recognised and recorded.
+                  <details class="govuk-details govuk-!-margin-bottom-0">
+                    <summary class="govuk-details__summary">
+                      <span class="govuk-details__summary-text ">
+                        Add a comment
+                      </span>
+                    </summary>
+ 
+                      <div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="200">
+                  <div id="with-hint-hint" class="govuk-hint">
+                    Please explain why you have not selected this statement.
+                  </div>
+                  <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="withHint" rows="5" aria-describedby="with-hint-info with-hint-hint"></textarea>
+                  <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
+                    You can enter up to 200 characters
+                  </div>
+                </div>
+                </details>
+                  ',
                   checked: checked("a3aAc", "yes" if values else false)
                 },
                 {
                   value: "yes",
-                  text: "3. You have prioritised your assets according to their importance to the operation of the essential function(s).",
+                  html: '3. You have prioritised your assets according to their importance to the operation of the essential function(s).
+                  <details class="govuk-details govuk-!-margin-bottom-0">
+                    <summary class="govuk-details__summary">
+                      <span class="govuk-details__summary-text ">
+                        Add a comment
+                      </span>
+                    </summary>
+ 
+                      <div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="200">
+                  <div id="with-hint-hint" class="govuk-hint">
+                    Please explain why you have not selected this statement.
+                  </div>
+                  <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="withHint" rows="5" aria-describedby="with-hint-info with-hint-hint"></textarea>
+                  <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
+                    You can enter up to 200 characters
+                  </div>
+                </div>
+                </details>
+                  ',
                   checked: checked("a3aAc", "yes" if values else false)
                 },
                 {
                   value: "yes",
-                  text: "4. You have assigned responsibility for managing all assets, including physical assets, relevant to the operation of the essential function(s).",
+                  html: '4. You have assigned responsibility for managing all assets, including physical assets, relevant to the operation of the essential function(s).
+                  <details class="govuk-details govuk-!-margin-bottom-0">
+                    <summary class="govuk-details__summary">
+                      <span class="govuk-details__summary-text ">
+                        Add a comment
+                      </span>
+                    </summary>
+ 
+                      <div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="200">
+                  <div id="with-hint-hint" class="govuk-hint">
+                    Please explain why you have not selected this statement.
+                  </div>
+                  <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="withHint" rows="5" aria-describedby="with-hint-info with-hint-hint"></textarea>
+                  <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
+                    You can enter up to 200 characters
+                  </div>
+                </div>
+                </details>
+                  ',
                   checked: checked("a3aAc", "yes" if values else false)
                 },
                 {
                   value: "yes",
-                  text: "5. Assets relevant to the essential function(s) are managed with cyber security in mind throughout their lifecycle, from creation through to eventual decommissioning or disposal.",
+                  html: '5. Assets relevant to the essential function(s) are managed with cyber security in mind throughout their lifecycle, from creation through to eventual decommissioning or disposal.
+                  <details class="govuk-details govuk-!-margin-bottom-0">
+                    <summary class="govuk-details__summary">
+                      <span class="govuk-details__summary-text ">
+                        Add a comment
+                      </span>
+                    </summary>
+ 
+                      <div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="200">
+                  <div id="with-hint-hint" class="govuk-hint">
+                    Please explain why you have not selected this statement.
+                  </div>
+                  <textarea class="govuk-textarea govuk-js-character-count" id="with-hint" name="withHint" rows="5" aria-describedby="with-hint-info with-hint-hint"></textarea>
+                  <div id="with-hint-info" class="govuk-hint govuk-character-count__message">
+                    You can enter up to 200 characters
+                  </div>
+                </div>
+                </details>
+                  ',
                   checked: checked("a3aAc", "yes" if values else false)
                 }
               ]
             }) }}
-
-            
-
-          
             
             {{ govukCheckboxes({
               name: "a3aNa",
@@ -149,7 +237,9 @@ A3.a Statements – GOV.UK Prototype Kit
               }
               },
               hint: {
-              text: "If you select any statement that applies to your system or organisation in this section you must provide justifications otherwise you will fail this outcome. "
+              html: "If you select any statements without justifications, you will not meet this IGP.<br><br>
+              If you justify any statements you select in the comment box, you will meet this IGP. 
+ "
               },
               errorMessage: errors.a3aNa if errors else null,
               items: [
@@ -212,5 +302,11 @@ A3.a Statements – GOV.UK Prototype Kit
 </div>
     </div>    
   </div>
+
+  <script>
+  function myFunction() {
+    document.getElementById("demo").innerHTML = "www.google.com";
+    }
+  </script>
 
 {% endblock %}
