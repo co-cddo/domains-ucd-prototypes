@@ -52,7 +52,14 @@ B3.a Understanding data – GOV.UK Prototype Kit
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
     
-    <h3 class="govuk-body-l">Read each indicator of good practice (IGP) statement and select what's true about your system or organisation.</h3>
+    <p class="govuk-body-l">
+You must read each indicator of good practice (IGP). 
+    </p>
+      {{ govukWarningText({
+        text: "Some achieved and partially-achieved statements are identical.
+Please make sure that your selections for these statements do not conflict.",
+        iconFallbackText: "Warning"
+      }) }}
     
     <form class="form" action="b3a-answer" method="post">
           
@@ -94,7 +101,7 @@ B3.a Understanding data – GOV.UK Prototype Kit
                   value: "yes",
                   html: '1. You have identified and catalogued all the data important to the operation of the essential function(s), or that would assist an attacker.
                   
-                  <br>  <strong class="govuk-tag govuk-tag--green">Partially achieved </strong>
+                  <br>  <strong>Check partially-achieved statement 1 </strong>
                   ' ,
                   checked: checked("b3aAc", "yes" if values else false),
                   conditional: {
@@ -161,7 +168,8 @@ B3.a Understanding data – GOV.UK Prototype Kit
               items: [
                 {
                   value: "yes",
-                  text: "1. You have identified and catalogued all the data important to the operation of the essential function(s), or that would assist an attacker.",
+                  html: "1. You have identified and catalogued all the data important to the operation of the essential function(s), or that would assist an attacker.
+                  <br>  <strong>Check partially-achieved statement 1 </strong>",
                   checked: checked("b3aPAc", "yes" if values else false)
                 },
                 {
