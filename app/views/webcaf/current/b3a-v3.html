@@ -93,7 +93,7 @@ Please make sure that your selections for these statements do not conflict.",
                 }
               },
               hint: {
-                text: "To achieve this outcome you must select all achieved statements."
+                text: "You must select all statements to meet this outcome or add a comment if you have a justification for meeting the IGP in a different way."
               },
               errorMessage: errors.b3aAc if errors else null,
               items: [
@@ -101,7 +101,7 @@ Please make sure that your selections for these statements do not conflict.",
                   value: "yes",
                   html: '1. You have identified and catalogued all the data important to the operation of the essential function(s), or that would assist an attacker.
                   
-                  <br>  <strong>Check partially-achieved statement 1 </strong>
+                <br><strong class="govuk-tag--grey">identical to partially-achieved statement 1 </strong>
                   ' ,
                   checked: checked("b3aAc", "yes" if values else false),
                   conditional: {
@@ -110,7 +110,8 @@ Please make sure that your selections for these statements do not conflict.",
                 },
                 {
                   value: "yes",
-                  text: "2. You have identified and catalogued who has access to the data important to the operation of the essential function(s).",
+                  html: '2. You have identified and catalogued who has access to the data important to the operation of the essential function(s).
+                  <br><strong class="govuk-tag--grey">identical to partially-achieved statement 2 </strong>',
                   checked: checked("b3aAc", "yes" if values else false)
                 },
                 {
@@ -162,19 +163,21 @@ Please make sure that your selections for these statements do not conflict.",
                 }
               },
               hint: {
-                text: "To partially achieve this outcome you must select all partially achieved statements."
+                text: "You must select all statements to meet this outcome or add a comment if you have a justification for meeting the IGP in a different way.
+"
               },
               errorMessage: errors.b3aPAc if errors else null,
               items: [
                 {
                   value: "yes",
-                  html: "1. You have identified and catalogued all the data important to the operation of the essential function(s), or that would assist an attacker.
-                  <br>  <strong>Check partially-achieved statement 1 </strong>",
+                  html: '1. You have identified and catalogued all the data important to the operation of the essential function(s), or that would assist an attacker.
+                     <br><strong class="govuk-tag--grey">identical to achieved statement 1 </strong>',
                   checked: checked("b3aPAc", "yes" if values else false)
                 },
                 {
                   value: "yes",
-                  text: "2. You have identified and catalogued who has access to the data important to the operation of the essential function(s).",
+                  html: '2. You have identified and catalogued who has access to the data important to the operation of the essential function(s).
+                  <br><strong class="govuk-tag--grey">identical to achieved statement 2 </strong>',
                   checked: checked("b3aPAc", "yes" if values else false)
                 },
                 {
@@ -212,7 +215,8 @@ Please make sure that your selections for these statements do not conflict.",
                 }
               },
               hint: {
-                text: "Justifications are optional. If any statement applies to your system or organisation in this section you must provide justifications otherwise you will fail this outcome."
+                text: "If you select any statements without justifications, you will not meet this IGP.
+If you justify any statements you select in the comment box, you will meet this IGP."
               },
               errorMessage: errors.b3aNAc if errors else null,
               items: [
