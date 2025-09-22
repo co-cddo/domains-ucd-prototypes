@@ -30,6 +30,4 @@ router.use('/webcaf/v2', require('./views/webcaf/v2/routes/routes'))
 
 
 
-
-
 module.exports = router

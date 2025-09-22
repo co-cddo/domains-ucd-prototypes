@@ -5,6 +5,7 @@
 //var NotifyClient = require('notifications-node-client').NotifyClient,
 //    notify = new NotifyClient(process.env.NOTIFYAPIKEY);
 
+
     
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
@@ -20,7 +21,6 @@ router.post('/review-type-answer', function(request, response) {
         response.redirect("enhanced-review")
     }
 })
-
 
 
 // Q: Objective A navigation routing
@@ -97,48 +97,6 @@ router.post('/b3a-answer', function(request, response) {
     }
 })
 
-// Q: b3a - routing
-router.post('/b4b-answer', function(request, response) {
-
-    var achieved1 = request.session.data['b4b-outcome1-achieved']
-    var achieved2 = request.session.data['b4b-outcome2-achieved']
-    var achieved3 = request.session.data['b4b-outcome3-achieved']
-    var achieved4 = request.session.data['b4b-outcome4-achieved']
-    var achieved5 = request.session.data['b4b-outcome5-achieved']
-    var achieved6 = request.session.data['b4b-outcome6-achieved']
-    var achieved7 = request.session.data['b4b-outcome7-achieved']
-    var achieved8 = request.session.data['b4b-outcome8-achieved']
-    var partiallyachieved1 = request.session.data['b4b-outcome1-partiallyachieved']
-    var partiallyachieved2 = request.session.data['b4b-outcome2-partiallyachieved']
-    var partiallyachieved3 = request.session.data['b4b-outcome3-partiallyachieved']
-    var partiallyachieved4 = request.session.data['b4b-outcome4-partiallyachieved']
-    var partiallyachieved5 = request.session.data['b4b-outcome5-partiallyachieved']
-    var partiallyachieved6 = request.session.data['b4b-outcome6-partiallyachieved']
-    var notachieved1 = request.session.data['b4b-outcome1-not-achieved']
-    var notachieved2 = request.session.data['b4b-outcome2-not-achieved']
-    var notachieved3 = request.session.data['b4b-outcome3-not-achieved']
-    var notachieved4 = request.session.data['b4b-outcome4-not-achieved']
-    var notachieved5 = request.session.data['b4b-outcome5-not-achieved']
-    
-    
-    
-    
-    if (achieved1 == "yes" &&  achieved2 == "yes" &&  achieved3 == "yes" &&  achieved4 == "yes" &&  achieved5 == "yes" &&  achieved6 == "yes" &&  achieved7 == "yes"&&  achieved8 == "yes" &&  notachieved1 == "no" &&  notachieved2 == "no" &&  notachieved3 == "no" &&  notachieved4 == "no" &&  notachieved5 == "no" ) {
-        response.redirect("b4b-outcome-achieved")
-    }
-    else if (partiallyachieved1 == "yes" &&  partiallyachieved2 == "yes" &&  partiallyachieved3 == "yes" &&  partiallyachieved4 == "yes" &&  partiallyachieved5 == "yes" &&  partiallyachieved6 == "yes" &&  notachieved1 == "no" &&  notachieved2 == "no" &&  notachieved3 == "no" &&  notachieved4 == "no" &&  notachieved5 == "no")
-     {
-        response.redirect("b4b-outcome-partially-achieved")
-    }
-    else 
-     {
-        response.redirect("b4b-outcome-not-achieved")
-    }
-})
-
-
-
-
 
 // Q: Started assessment routing
 router.post('/pathAorB-answer', function(request, response) {
@@ -192,134 +150,110 @@ router.get('/pathMyaccountRemoveUser', function (req, res) {
   })
 })
 
-//ERROR Messaging
-const FIELDS = [
-  { name: 'a3aAc1',  msg: 'You must respond to Achieved statement 1' },
-  { name: 'a3aAc2',  msg: 'You must respond to Achieved statement 2' },
-  { name: 'a3aAc3',  msg: 'You must respond to Achieved statement 3' },
-  { name: 'a3aAc4',  msg: 'You must respond to Achieved statement 4' },
-  { name: 'a3aAc5',  msg: 'You must respond to Achieved statement 5' },
-  { name: 'a3aNac1', msg: 'You must respond to Not achieved statement 1' },
-  { name: 'a3aNac2', msg: 'You must respond to Not achieved statement 2' },
-  { name: 'a3aNac3', msg: 'You must respond to Not achieved statement 3' },
-  { name: 'a3aNac4', msg: 'You must respond to Not achieved statement 4' },
-  { name: 'a3aNac5', msg: 'You must respond to Not achieved statement 5' }
-];
 
-// Use these for the legends (feel free to edit text)
-const GROUPS = [
-  { name: 'a3aAc1',  legend: 'Achieved statement 1' },
-  { name: 'a3aAc2',  legend: 'Achieved statement 2' },
-  { name: 'a3aAc3',  legend: 'Achieved statement 3' },
-  { name: 'a3aAc4',  legend: 'Achieved statement 4' },
-  { name: 'a3aAc5',  legend: 'Achieved statement 5' },
-  { name: 'a3aNac1', legend: 'Not achieved statement 1' },
-  { name: 'a3aNac2', legend: 'Not achieved statement 2' },
-  { name: 'a3aNac3', legend: 'Not achieved statement 3' },
-  { name: 'a3aNac4', legend: 'Not achieved statement 4' },
-  { name: 'a3aNac5', legend: 'Not achieved statement 5' }
-];
 
-const ACHIEVED_FIELDS = ['a3aAc1','a3aAc2','a3aAc3','a3aAc4','a3aAc5'];
-const NOT_ACH_FIELDS = ['a3aNac1','a3aNac2','a3aNac3','a3aNac4','a3aNac5'];
+// a3a ERROR Messaging and routing
+const TEMPLATE = 'webcaf/current/a3a'; // your actual view path
 
-const ALLOWED = new Set(['yes', 'no', 'na']);
-const normalise = v => (typeof v === 'string' ? v.trim().toLowerCase() : undefined);
+// Helpers
+const toArray = v => Array.isArray(v) ? v : (v ? [v] : []);
+const clean = arr =>
+  toArray(arr)
+    .map(s => String(s).trim())
+    .filter(s => s !== '' && s !== '_unchecked');
 
-// ---------- Routes ----------
 
-// GET /a3a – render page (prefill from session)
-router.get('/webcaf/current/a3a', (req, res) => {
-  const values = { ...(req.session.data || {}) };
-  res.render('/webcaf/current/a3a', {
+const equalsSet = (arr, target) => {
+  const s = new Set(arr);
+  if (s.size !== target.length) return false;
+  for (const v of target) if (!s.has(v)) return false;
+  return true;
+};
+
+// “All achieved” exact set (order-independent)
+const ALL_ACHIEVED = ['yes-1','yes-2','yes-3','yes-4','yes-5'];
+
+// ---------- GET /a3a ----------
+router.get('/a3a', (req, res) => {
+  const values = {
+    a3aAc: toArray(req.session?.data?.a3aAc),
+    a3aNa: toArray(req.session?.data?.a3aNa)
+  };
+
+  res.render(TEMPLATE, {
     hasErrors: false,
     errors: null,
     errorList: null,
-    groups: GROUPS,
     values
   });
 });
 
-// POST /a3a – validate; on error re-render same page with selections; on success route based on combo
-router.post('/webcaf/current/a3a', (req, res) => {
-  const errors = {};
-  const errorList = [];
-  const values = {};
+// ---------- POST /a3a ----------
+router.post('/a3a', (req, res) => {
+  // Read + clean arrays (remove the hidden empty string)
+  const ac = clean(req.body.a3aAc); // e.g. ['yes-2','yes-5'] or []
+  const na = clean(req.body.a3aNa); // e.g. ['na','na'] or []
 
-  // Build values from this POST and validate each field
-  for (const { name, msg } of FIELDS) {
-    const v = values[name] = normalise(req.body[name]); // "yes" | "no" | "na" | undefined
-    if (!v || !ALLOWED.has(v)) {
-      errors[name] = { text: msg };
-      errorList.push({ text: msg, href: `#${name}` });
-    }
-  }
+  // add this single line:
+console.log(`[A3A] ac=${JSON.stringify(ac)} na=${JSON.stringify(na)} anyNot=${na.length>0} allAch=${equalsSet(ac, ALL_ACHIEVED)}`);
 
-  if (errorList.length) {
-    // Stay on /a3a and show current selections + errors
-    return res.status(400).render('/webcaf/current/a3a', {
+  // Uncomment once to sanity-check incoming values:
+  // console.log('RAW:', req.body.a3aAc, req.body.a3aNa, 'CLEAN:', ac, na);
+
+  // 1) VALIDATION: require at least one selection anywhere
+  if (ac.length === 0 && na.length === 0) {
+    const msg = 'If you are using alternative controls or exemptions for any IGP you must select the statement and provide details.';
+
+    if (!req.session.data) req.session.data = {};
+    req.session.data.a3aAc = ac;
+    req.session.data.a3aNa = na;
+
+    return res.status(400).render(TEMPLATE, {
       hasErrors: true,
-      errors,
-      errorList,
-      groups: GROUPS,
-      values
+      errors: {
+        a3aAc: { text: msg },
+        a3aNa: { text: msg }
+      },
+      // ids from govukCheckboxes are "<name>-<value>"
+      errorList: [{ text: msg, href: '#a3aAc-yes-1' }],
+      values: { a3aAc: ac, a3aNa: na }
     });
   }
 
-  // Success: save to session (optional, if you need it later)
+  // 2) Persist (optional, helps checked() + later pages)
   if (!req.session.data) req.session.data = {};
-  for (const { name } of FIELDS) req.session.data[name] = values[name];
+  req.session.data.a3aAc = ac;
+  req.session.data.a3aNa = na;
 
-  // ---------- NEW ROUTING LOGIC ----------
-  // Achieved block passes if every Achieved field is "yes" OR "na" (i.e., no "no")
-  const achievedBlockOK = ACHIEVED_FIELDS.every(n => values[n] === 'yes' || values[n] === 'na');
-
-  // Not-achieved block passes if every Not-achieved field is "no" OR "na" (i.e., no "yes")
-  const notAchievedBlockOK = NOT_ACH_FIELDS.every(n => values[n] === 'no' || values[n] === 'na');
-
-  if (achievedBlockOK && notAchievedBlockOK) {
-    // Examples that now route here:
-    // - 5×"yes" on Achieved + 5×"no" on Not achieved
-    // - 4×"yes"+1×"na" on Achieved + 4×"no"+1×"na" on Not achieved
-    // - 5×"na" on Achieved + 5×"na" on Not achieved (still OK by your rule)
-    return res.redirect('/webcaf/current/a3a-outcome-achieved');
+  // 3) ROUTING
+  // Any “Not achieved” ticked → Not achieved
+  if (na.length > 0) {
+    return res.redirect('/webcaf/current/a3a-outcome-not-achieved'); // ABSOLUTE path
   }
 
-  return res.redirect('/webcaf/current/a3a-outcome-not-achieved');
+  // All 5 Achieved ticked (order-independent) → Achieved
+  if (equalsSet(ac, ALL_ACHIEVED)) {
+    return res.redirect('/webcaf/current/a3a-outcome-achieved'); // ABSOLUTE path
+  }
+
+  // Fallback (until you add “Partially achieved”)
+  return res.redirect('/webcaf/current/a3a-outcome-not-achieved'); // ABSOLUTE path
 });
 
-// (Optional) Back-compat for old forms posting to /a3a-answer:
-router.post('/webcaf/current/a3a-answer', (req, res) => {
-  // Forward the same POST to /a3a, preserving method & body
-  return res.redirect(307, '/webcaf/current/a3a');
+// (Optional) legacy endpoint if anything still posts here
+router.post('/a3a-answer2', function (request, response) {
+  const notachieved = request.session.data['a3aNa'];
+  if (notachieved == 'yes') {
+    response.redirect('/webcaf/current/a3a-outcome-not-achieved'); // ABSOLUTE
+  } else {
+    response.redirect('/webcaf/current/a3a-outcome-achieved');     // ABSOLUTE
+  }
 });
 
 
-// Q: a3a - routing
-router.post('/a3a-answer', function(request, response) {
 
-    var achieved1 = request.session.data['a3aAc1']
-    var achieved2 = request.session.data['a3aAc2']
-    var achieved3 = request.session.data['a3aAc3']
-    var achieved4 = request.session.data['a3aAc4']
-    var achieved5 = request.session.data['a3aAc5']
-    var notachieved1 = request.session.data['a3aNac1']
-    var notachieved2 = request.session.data['a3aNac2']
-    var notachieved3 = request.session.data['a3aNac3']
-    var notachieved4 = request.session.data['a3aNac4']
-    var notachieved5 = request.session.data['a3aNac5']
-    
-    
-    
-    
-    if (achieved1 == "yes" &&  achieved2 == "yes" &&  achieved3 == "yes" &&  achieved4 == "yes" &&  achieved5 == "yes" &&  notachieved1 == "no" &&  notachieved2 == "no" &&  notachieved3 == "no" &&  notachieved4 == "no" &&  notachieved5 == "no" ) {
-        response.redirect("a3a-outcome-achieved")
-    }
-    else 
-     {
-        response.redirect("a3a-outcome-not-achieved")
-    }
-})
+
+
 
 
 //End of Routes.js

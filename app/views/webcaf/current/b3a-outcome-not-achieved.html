@@ -52,58 +52,15 @@
 <h1 class="govuk-heading-l">B3.a Understanding data outcome</h1>
 <h1 class="govuk-heading-m">Status: Not achieved</h1>
 
-{% set changeStatus %}
-{{ govukTextarea({
-  name: "moreDetail",
-  id: "more-detail",
+{% set AddSummary %}
+  
+  {{ govukCharacterCount({
+  id: "b3aOutcomeNotAchived",
+  name: "b3aOutcomeNotAchived",
+  maxwords: 1500,
   label: {
-    text: "Explain why you've changed the outcome"
-  }
-}) }}
-{% endset -%}
-
-{{ govukRadios({
-  classes: "",
-  name: "b3a-not-achieved",
-  fieldset: {
-    legend: {
-      text: "",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--m"
-    }
-  },
-  hint: {
-    html: "This may be because you answered 'true' to one or more not achieved statements, or you selected ‘not true’ for one or more achieved statements. 
-<br>
-Please confirm you agree with this status, or you can choose to change the outcome."
-  },
-  items: [
-    {
-      value: "no",
-      text: "Confirm",
-      checked: checked("b3a-not-achieved", "no")
-    },
-    {
-      value: "yes",
-      text: "Change to Achieved",
-      conditional: {
-        html: changeStatus
-      },
-      checked: checked("b3a-not-achieved", "yes")
-    },
-    {
-      value: "pa",
-      text: "Change to Partially achieved",
-      conditional: {
-        html: changeStatus
-      },
-      checked: checked("b3a-not-achieved", "pa")
-    }
-  ]
-}) }}
-
-  <h3 class="govuk-heading-m">Please write a contributing outcome summary</h3>
-  <details class="govuk-details">
+    html: '
+     <details class="govuk-details">
   <summary class="govuk-details__summary">
     <span class="govuk-details__summary-text">
       How to write a good summary
@@ -127,17 +84,42 @@ Before submission, check that your overall contributing outcome achievement stat
 For more detailed guidance on what is expected for each contributing outcome, please visit security.gov.uk.
 
 </p></div>
-</details>               
-      
-
-{{ govukCharacterCount({
-  id: "label-as-page-heading",
-  name: "labelAsPageHeading",
-  maxwords: 1500,
-  label: {
-    html: 'Please write a contributing outcome summary'
+</details>'
   }
 }) }}      
+      {% endset -%}
+
+{{ govukRadios({
+  classes: "",
+  name: "b3a-not-achieved",
+  fieldset: {
+    legend: {
+      text: "",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  hint: {
+    html: 'Confirm you agree with this status, or go back and change your response to the IGP statements.'      
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Confirm, and write a contributing outcome summary",
+      conditional:   {
+        html: AddSummary
+      },
+      checked: checked("b3a-not-achieved", "yes")
+    },
+    {
+      value: "no",
+      text: "Change your response",
+      checked: checked("b3a-not-achieved", "no")
+    }
+    
+  ]
+}) }}
+    
  
 
 <div class="govuk-button-group">
@@ -145,8 +127,6 @@ For more detailed guidance on what is expected for each contributing outcome, pl
     text: "Save and continue"
   }) }}
   </form>
-
-  <a class="govuk-link" href="b3a">Back to statements </a>
 </div>
     </div>    
   </div>

@@ -51,6 +51,7 @@ A3.a Statements – GOV.UK Prototype Kit
 {% endblock %}
 {% block content %}
 
+
 {% if errorList %}
       {{ govukErrorSummary({
         titleText: "There is a problem",
@@ -64,443 +65,131 @@ A3.a Statements – GOV.UK Prototype Kit
     <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
     
-    <h3 class="govuk-heading-m">Read each indicator of good practice (IGP) statement on all tabs and select what's true about your system or organisation.</h3>
-    
-
-    
-    
-          
+    <span class="govuk-body-l">
+You must read each indicator of good practice (IGP). You must select at least one statement. 
+</span>
       {% set giveReason %}
       {{ govukTextarea({
         name: "give",
         id: "give",
         label: {
-          text: "Tell us your justifications"
+          text: "If you are using alternative controls or exemptions explain them here"
         }
       }) }}
       {% endset -%}
 
 
-            {% set achievedHtml %}
-              <h1 class="govuk-heading-s">Achieved statements</h1>
-              <div id="signIn-hint" class="govuk-hint">To achieve this outcome you must answer true to all statements.
+        
+              <h1 class="govuk-heading-m"></h1>
+              <div id="signIn-hint" class="govuk-hint">
               </div> 
               {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
-
-              {{ govukWarningText({
-                text: "If any statement is not true, you must provide a justification. Otherwise, your status for this outcome will be not achieved.",
-                iconFallbackText: "Warning"
-              }) }}
-               
-                  
-              {{ govukRadios({
-              idPrefix: "a3aAc1",
-                name: "a3aAc1",  
+                 
+              {{ govukCheckboxes({
+                name: "a3aAc",  
               fieldset: {
                 legend: {
-                  text: "1. All assets relevant to the secure operation of essential function(s) are identified and inventoried (at a suitable level of detail). The inventory is kept up-to-date.  ",
+                  text: "Achieved statements",
                   isPageHeading: true,
-                  classes: "govuk"
+                  classes: "govuk-fieldset__legend--m"
                 }
               },
               hint: {
-                text: ""
+                html: 'You must select all statements to meet this outcome. If you have alternative controls or exemptions which override an IGP, you should select the statement and explain what they are.'
               },
-              errorMessage: errors.a3aAc1 if errors else null,
+              errorMessage: errors.a3aAc if errors else null,
               items: [
                 {
-                  value: "yes",
-                  text: "True",
-                  checked: checked("a3aAc1", "yes" if values else false)
-                },
-                {
-                  value: "no",
-                  text: "Not true",
-                  checked: checked("a3aAc1", "no" if values else false)
-                },
-                {
-                  value: "na",
-                  text: "Not true, but I have justifications",
+                  value: "yes-1",
+                  html: '1. All assets relevant to the secure operation of essential function(s) are identified and inventoried (at a suitable level of detail). The inventory is kept up-to-date.',
+                  checked: checked("a3aAc", "yes-1" if values else false),
                   conditional: {
                     html: giveReason
-                  },
-                  checked: checked("a3aAc1", "na" if values else false)
-                }
-              ]
-            }) }}
-
-            
-
-            {{ govukRadios({
-              name: "a3aAc2",
-              
-              fieldset: {
-                legend: {
-                  text: "2. Dependencies on supporting infrastructure (e.g. power, cooling etc) are recognised and recorded.",
-                  isPageHeading: true,
-                  classes: "govuk"
-                }
-              },
-              hint: {
-                text: ""
-              },
-              errorMessage: errors.a3aAc2 if errors else null,
-              items: [
-                {
-                  value: "yes",
-                  text: "True",
-                  checked: checked("a3aAc2", "yes" if values else false)
+                  }
                 },
                 {
-                  value: "no",
-                  text: "Not true",
-                  checked: checked("a3aAc2", "no" if values else false)
-                },
-                {
-                  value: "na",
-                  text: "Not true, but I have justifications",
+                  value: "yes-2",
+                  html: '2. Dependencies on supporting infrastructure (e.g. power, cooling etc) are recognised and recorded.',
+                  checked: checked("a3aAc", "yes-2" if values else false),
                   conditional: {
                     html: giveReason
-                  },
-                  checked: checked("a3aAc2", "na" if values else false)
-                }
-                
-              ]
-            }) }}
-
-            {{ govukRadios({
-              name: "a3aAc3",
-              
-              fieldset: {
-                legend: {
-                  text: "3. You have prioritised your assets according to their importance to the operation of the essential function(s).",
-                  isPageHeading: true,
-                  classes: "govuk"
-                }
-              },
-              hint: {
-                text: ""
-              },
-              errorMessage: errors.a3aAc3 if errors else null,
-              items: [
-                {
-                  value: "yes",
-                  text: "True",
-                  checked: checked("a3aAc3", "yes" if values else false)
+                  }
                 },
                 {
-                  value: "no",
-                  text: "Not true",
-                  checked: checked("a3aAc3", "no" if values else false)
-                },
-                 {
-                  value: "na",
-                  text: "Not true, but I have justifications",
+                  value: "yes-3",
+                  html: '3. You have prioritised your assets according to their importance to the operation of the essential function(s).',
+                  checked: checked("a3aAc", "yes-3" if values else false),
                   conditional: {
                     html: giveReason
-                  },
-                  checked: checked("a3aAc3", "na" if values else false)
-                }
-              ]
-            }) }}
-
-            {{ govukRadios({
-              name: "a3aAc4",
-              
-              fieldset: {
-                legend: {
-                  text: "4. You have assigned responsibility for managing all assets, including physical assets, relevant to the operation of the essential function(s).",
-                  isPageHeading: true,
-                  classes: "govuk"
-                }
-              },
-              hint: {
-                text: ""
-              },
-              errorMessage: errors.a3aAc4 if errors else null,
-              items: [
-                {
-                  value: "yes",
-                  text: "True",
-                  checked: checked("a3aAc4", "yes" if values else false)
+                  }
                 },
                 {
-                  value: "no",
-                  text: "Not true",
-                  checked: checked("a3aAc4", "no" if values else false)
-                },
-                {
-                  value: "na",
-                  text: "Not true, but I have justifications",
+                  value: "yes-4",
+                  html: '4. You have assigned responsibility for managing all assets, including physical assets, relevant to the operation of the essential function(s).',
+                  checked: checked("a3aAc", "yes-4" if values else false),
                   conditional: {
                     html: giveReason
-                  },
-                  checked: checked("a3aAc4", "na" if values else false)
-                }
-                
-              ]
-            }) }}
-            {{ govukRadios({
-              name: "a3aAc5",
-              
-              fieldset: {
-                legend: {
-                  text: "5. Assets relevant to the essential function(s) are managed with cyber security in mind throughout their lifecycle, from creation through to eventual decommissioning or disposal.",
-                  isPageHeading: true,
-                  classes: "govuk"
-                }
-              },
-              hint: {
-                text: ""
-              },
-              errorMessage: errors.a3aAc5 if errors else null,
-              items: [
-                {
-                  value: "yes",
-                  text: "True",
-                  checked: checked("a3aAc5", "yes" if values else false)
+                  }
                 },
                 {
-                  value: "no",
-                  text: "Not true",
-                  checked: checked("a3aAc5", "no" if values else false)
-                },
-                {
-                  value: "na",
-                  text: "Not true, but I have justifications",
+                  value: "yes-5",
+                  html: '5. Assets relevant to the essential function(s) are managed with cyber security in mind throughout their lifecycle, from creation through to eventual decommissioning or disposal.',
+                  checked: checked("a3aAc", "yes-5" if values else false),
                   conditional: {
                     html: giveReason
-                  },
-                  checked: checked("a3aAc5", "na" if values else false)
+                  }
                 }
-                
               ]
             }) }}
             
-            
-                
-            {% endset -%}
-
-            {% set notachievedHtml %}
-            <h1 class="govuk-heading-s">Not achieved statements</h1>
-              <div id="signIn-hint" class="govuk-hint">If any statement applies to your system or organisation in this section you must provide justifications otherwise you will fail this outcome.
-              </div> 
-
-            {{ govukRadios({
-              name: "a3aNac1",
+            {{ govukCheckboxes({
+              name: "a3aNa",
 
               fieldset: {
               legend: {
-              html: "1. Inventories of assets relevant to the essential function(s) are incomplete, non-existent, or inadequately detailed.",
+              html: "Not achieved statements",
               isPageHeading: true,
-              classes: "govuk"
+              classes: "govuk-fieldset__legend--m"
               }
               },
               hint: {
-              text: " "
+              html: "If you select any of these statements, you will not achieve this outcome."
               },
-              errorMessage: errors.a3aNac1 if errors else null,
+              errorMessage: errors.a3aNa if errors else null,
               items: [
                {
-                  value: "no",
-                  text: "This does not apply to my system or organisation",
-                  checked: checked("a3aNac1", "no" if values else false)
-                },
-                {
-                  value: "yes",
-                  text: "This does apply to my system or organisation",
-                  checked: checked("a3aNac1", "yes" if values else false)
+                  value: "na",
+                  text: "1. Inventories of assets relevant to the essential function(s) are incomplete, non-existent, or inadequately detailed.",
+                  checked: checked("a3aNa", "na" if values else false)
                 },
                 {
                   value: "na",
-                  text: "This does apply to my system or organisation, but I have justifications ",
-                  conditional: {
-                    html: giveReason
-                  },
-                  checked: checked("a3aNac1", "na" if values else false)
+                  text: "2. Only certain domains or types of asset are documented and understood. Dependencies between assets are not understood (such as the dependencies between IT and OT).",
+                  checked: checked("a3aNa", "na" if values else false)
+                },
+                {
+                  value: "na",
+                  text: "3. Information assets, which could include personally identifiable information and / or important / critical data, are stored for long periods of time with no clear business need or retention policy.",
+                  checked: checked("a3aNa", "na" if values else false)
+                },
+                {
+                  value: "na",
+                  text: "4. Knowledge critical to the management, operation, or recovery of the essential function(s) is held by one or two key individuals with no succession plan.",
+                  checked: checked("a3aNa", "na" if values else false)
+                },
+                {
+                  value: "na",
+                  text: "5. Asset inventories are neglected and out of date.",
+                  checked: checked("a3aNa", "na" if values else false)
                 }
+                
               ]
               }) }}
 
 
-                {{ govukRadios({
-                name: "a3aNac2",
-
-                fieldset: {
-                legend: {
-                html: "2. Only certain domains or types of asset are documented and understood. Dependencies between assets are not understood (such as the dependencies between IT and OT).",
-                isPageHeading: true,
-                classes: "govuk"
-                }
-                },
-                hint: {
-                text: ""
-                },
-                errorMessage: errors.a3aNac2 if errors else null,
-                items: [
-                  {
-                  value: "no",
-                  text: "This does not apply to my system or organisation",
-                  checked: checked("a3aNac2", "no" if values else false)
-                },
-                {
-                  value: "yes",
-                  text: "This does apply to my system or organisation",
-                  checked: checked("a3aNac2", "yes" if values else false)
-                },
-                {
-                  value: "na",
-                  text: "This does apply to my system or organisation, but I have justifications ",
-                  conditional: {
-                    html: giveReason
-                  },
-                  checked: checked("a3aNac2", "na" if values else false)
-                }
-               
-              ]
-                }) }}
-
-                {{ govukRadios({
-                name: "a3aNac3",
-
-                fieldset: {
-                legend: {
-                html: "3.  Information assets, which could include personally identifiable information and / or important / critical data, are stored for long periods of time with no clear business need or retention policy.",
-                isPageHeading: true,
-                classes: "govuk"
-                }
-                },
-                hint: {
-                text: ""
-                },
-                errorMessage: errors.a3aNac3 if errors else null,
-                items: [
-                {
-                  value: "no",
-                  text: "This does not apply to my system or organisation",
-                  checked: checked("a3aNac3", "no" if values else false)
-                },
-                {
-                  value: "yes",
-                  text: "This does apply to my system or organisation",
-                  checked: checked("a3aNac3", "yes" if values else false)
-                },
-                {
-                  value: "na",
-                  text: "This does apply to my system or organisation, but I have justifications ",
-                  conditional: {
-                    html: giveReason
-                  },
-                  checked: checked("a3aNac3", "na" if values else false)
-                }
-              ]
-                }) }}
-
-                {{ govukRadios({
-                name: "a3aNac4",
-
-                fieldset: {
-                legend: {
-                html: "4. Knowledge critical to the management, operation, or recovery of the essential function(s) is held by one or two key individuals with no succession plan.",
-                isPageHeading: true,
-                classes: "govuk"
-                }
-                },
-                hint: {
-                text: ""
-                },
-                errorMessage: errors.a3aNac4 if errors else null,
-                items: [
-                 {
-                  value: "no",
-                  text: "This does not apply to my system or organisation",
-                  checked: checked("a3aNac4", "no" if values else false)
-                },
-                 {
-                  value: "yes",
-                  text: "This does apply to my system or organisation",
-                  checked: checked("a3aNac4", "yes" if values else false)
-                },
-                {
-                  value: "na",
-                  text: "This does apply to my system or organisation, but I have justifications",
-                  conditional: {
-                    html: giveReason
-                  },
-                  checked: checked("a3aNac4", "na" if values else false)
-                }
-              
-                
-                
-              ]
-                }) }}
-                {{ govukRadios({
-                name: "a3aNac5",
-
-                fieldset: {
-                legend: {
-                html: "5. Asset inventories are neglected and out of date.",
-                isPageHeading: true,
-                classes: "govuk"
-                }
-                },
-                hint: {
-                text: ""
-                },
-                errorMessage: errors.a3aNac5 if errors else null,
-                items: [
-                {
-                  value: "no",
-                  text: "This does not apply to my system or organisation",
-                  checked: checked("a3aNac5", "no" if values else false)
-                },
-                {
-                  value: "yes",
-                  text: "This does apply to my system or organisation",
-                  checked: checked("a3aNac5", "yes" if values else false)
-                },
-                {
-                  value: "na",
-                  text: "This does apply to my system or organisation, but I have justifications ",
-                  conditional: {
-                    html: giveReason
-                  },
-                  checked: checked("a3aNac5", "na" if values else false)
-                }
-               
-                
-                
-              ]
-                }) }}
-                {% endset -%}
+             
 
 
-       {{ govukTabs({
-        items: [
-           {
-            label: "Achieved",
-            id: "achieved",
-            panel: {
-              html: achievedHtml
-            }
-          },
-          
-          {
-            label:  "Not achieved",
-            id: "notachieved",
-            panel: {
-              html: notachievedHtml
-            }
-          }
-        ]
-      }) }}
-<div class="govuk-warning-text">
-  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-  <strong class="govuk-warning-text__text">
-    <span class="govuk-visually-hidden">Warning</span>
-    Before you save and continue you must answer all statements on all tabs.
-  </strong>
-</div>
 
 <div class="govuk-button-group">
   {{ govukButton({
@@ -512,5 +201,7 @@ A3.a Statements – GOV.UK Prototype Kit
 </div>
     </div>    
   </div>
+
+ 
 
 {% endblock %}

@@ -932,32 +932,6 @@ Objective B - Protecting against cyber attacks
         ]
       }) }}
 
-      <h2 class="govuk-heading-l">Confirm the date you are completing your self-assessment</h2>
- <p>For it to be assessed in GovAssure Year 3, 2025/26 you must complete your self-assessment before 11:59pm on 31 March 2026.<br>If you complete your self-assessment after this date, it will be filed for Year 4 2025/26.
-</p>
-    
-      {{ govukRadios({
-  classes: "govuk-radios--inline",
-  name: "sectioncompleted",
-  fieldset: {
-    legend: {
-      text: "Are you completing your self-assessment before the closing date of 11:59pm on 31 March 2026?
-",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--s"
-    }
-  },
-  items: [
-    {
-      value: "yes",
-      text: "Yes"
-    },
-    {
-      value: "no",
-      text: "No"
-    }
-  ]
-}) }}
       
       <form action="/confirmation" method="post" novalidate>
 
