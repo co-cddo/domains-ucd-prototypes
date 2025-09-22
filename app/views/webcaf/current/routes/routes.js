@@ -202,7 +202,7 @@ console.log(`[A3A] ac=${JSON.stringify(ac)} na=${JSON.stringify(na)} anyNot=${na
 
   // 1) VALIDATION: require at least one selection anywhere
   if (ac.length === 0 && na.length === 0) {
-    const msg = 'If you are using alternative controls or exemptions for any IGP you must select the statement and provide details.';
+    const msg = 'You must select at least one statement. ';
 
     if (!req.session.data) req.session.data = {};
     req.session.data.a3aAc = ac;
@@ -250,12 +250,30 @@ router.post('/a3a-answer2', function (request, response) {
   }
 });
 
+// a3a Outcome achieved answer routing
+router.post('/a3a-outcome-achieved-answer', function(request, response) {
+    var a3aAchieved = request.session.data['a3a-achieved']
+    if (a3aAchieved === "no") {
+        response.redirect("a3a")
+    }
+    else {
+        response.redirect("objective-a-status")
+    }
+})
 
 
+// a3a Outcome not achieved answer routing
+router.post('/a3a-outcome-not-achieved-answer', function(request, response) {
+    var a3aNotAchieved = request.session.data['a3a-not-achieved']
+    if (a3aNotAchieved === "no") {
+        response.redirect("a3a")
+    }
+    else {
+        response.redirect("objective-a-status")
+    }
+})
 
-
-
-
+ 
 //End of Routes.js
 module.exports = router
 
