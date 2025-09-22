@@ -161,7 +161,7 @@ console.log(`[A3A] ac=${JSON.stringify(ac)} na=${JSON.stringify(na)} anyNot=${na
 
   // 1) VALIDATION: require at least one selection anywhere
   if (ac.length === 0 && na.length === 0) {
-    const msg = 'You must select at least one statement. ';
+    const msg = 'If you are using alternative controls or exemptions for any IGP you must select the statement and provide details.';
 
     if (!req.session.data) req.session.data = {};
     req.session.data.a3aAc = ac;
