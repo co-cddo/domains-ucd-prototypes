@@ -45,12 +45,28 @@
   
 {% endblock %}
 {% block content %}
-<form class="form" action="objective-b-status" id="mainForm" method="post">
+<form class="form" action="b3a-outcome-not-achieved-answer" id="mainForm" method="post">
 <div class="govuk-grid-row">
 
       <div class="govuk-grid-column-two-thirds">
 <h1 class="govuk-heading-l">B3.a Understanding data outcome</h1>
 <h1 class="govuk-heading-m">Status: Not achieved</h1>
+
+
+{% if (data['b3aNAc'] == "yes") %}
+
+{{ govukInsetText({
+  text: "You have received this status because you have selected one or more not achieved IGP statements."
+}) }}
+
+{% else %}
+{{ govukInsetText({
+  text: "You have received this status because not all of the achieved or partially achieved IGP statements have been selected. If you believe this is incorrect, you should review the IGP statements again and select all that are appropriate, providing comments where alternative controls or exemptions are in place."
+}) }}
+
+{% endif %}
+
+
 
 {% set AddSummary %}
   

@@ -58,46 +58,6 @@ router.post('/objective-c-nav-answer', function(request, response) {
 
 
 
-  
-// Q: b3a - routing
-router.post('/b3a-answer', function(request, response) {
-
-    var achieved1 = request.session.data['outcome1-achieved']
-    var achieved2 = request.session.data['outcome2-achieved']
-    var achieved3 = request.session.data['outcome3-achieved']
-    var achieved4 = request.session.data['outcome4-achieved']
-    var achieved5 = request.session.data['outcome5-achieved']
-    var achieved6 = request.session.data['outcome6-achieved']
-    var achieved7 = request.session.data['outcome7-achieved']
-    var achieved8 = request.session.data['outcome8-achieved']
-    var achieved9 = request.session.data['outcome9-achieved']
-    var partiallyachieved1 = request.session.data['outcome1-partiallyachieved']
-    var partiallyachieved2 = request.session.data['outcome2-partiallyachieved']
-    var partiallyachieved3 = request.session.data['outcome3-partiallyachieved']
-    var partiallyachieved4 = request.session.data['outcome4-partiallyachieved']
-    var partiallyachieved5 = request.session.data['outcome5-partiallyachieved']
-    var partiallyachieved6 = request.session.data['outcome6-partiallyachieved']
-    var notachieved1 = request.session.data['outcome1-not-achieved']
-    var notachieved2 = request.session.data['outcome2-not-achieved']
-    var notachieved3 = request.session.data['outcome3-not-achieved']
-    var notachieved4 = request.session.data['outcome4-not-achieved']
-    
-    
-    
-    if (achieved1 == "yes" &&  achieved2 == "yes" &&  achieved3 == "yes" &&  achieved4 == "yes" &&  achieved5 == "yes" &&  achieved6 == "yes" &&  achieved7 == "yes"&&  achieved8 == "yes" &&  achieved9 == "yes" &&  notachieved1 == "no" &&  notachieved2 == "no" &&  notachieved3 == "no" &&  notachieved4 == "no" ) {
-        response.redirect("b3a-outcome-achieved")
-    }
-    else if (partiallyachieved1 == "yes" &&  partiallyachieved2 == "yes" &&  partiallyachieved3 == "yes" &&  partiallyachieved4 == "yes" &&  partiallyachieved5 == "yes" &&  partiallyachieved6 == "yes" &&  notachieved1 == "no" &&  notachieved2 == "no" &&  notachieved3 == "no" &&  notachieved4 == "no")
-     {
-        response.redirect("b3a-outcome-partially-achieved")
-    }
-    else 
-     {
-        response.redirect("b3a-outcome-not-achieved")
-    }
-})
-
-
 // Q: Started assessment routing
 router.post('/pathAorB-answer', function(request, response) {
 
@@ -151,8 +111,7 @@ router.get('/pathMyaccountRemoveUser', function (req, res) {
 })
 
 
-
-// a3a ERROR Messaging and routing
+// ===== a3a: validation + routing (checkbox groups) =====
 const TEMPLATE = 'webcaf/current/a3a'; // your actual view path
 
 // Helpers
@@ -272,6 +231,129 @@ router.post('/a3a-outcome-not-achieved-answer', function(request, response) {
         response.redirect("objective-a-status")
     }
 })
+
+
+// ===== b3a: validation + routing (checkbox groups) =====
+
+// 1) Set this to where your template lives under app/views.
+//    e.g. 'b3a'  → app/views/b3a.html
+//         'webcaf/current/b3a' → app/views/webcaf/current/b3a.html
+const TEMPLATE_B3A = 'webcaf/current/b3a';
+
+// 2) Helpers (same pattern as a3a)
+const toArrayB3A = v => Array.isArray(v) ? v : (v ? [v] : []);
+const cleanB3A = arr =>
+  toArray(arr)
+    .map(s => String(s).trim())
+    .filter(s => s !== '' && s !== '_unchecked'); // strip hidden empty + _unchecked
+
+// 3) GET /b3a – render (prefill from session if present)
+router.get('/b3a', (req, res) => {
+  const values = {
+    b3aAc:  toArrayB3A(req.session?.data?.b3aAc),
+    b3aPAc: toArrayB3A(req.session?.data?.b3aPAc),
+    b3aNAc: toArrayB3A(req.session?.data?.b3aNAc)
+  };
+
+  res.render(TEMPLATE_B3A, {
+    hasErrors: false,
+    errors: null,
+    errorList: null,
+    values
+  });
+});
+
+// 4) POST /b3a – validate + route
+router.post('/b3a', (req, res) => {
+  const ac  = cleanB3A(req.body.b3aAc);   // Achieved selections (values are "yes")
+  const pac = cleanB3A(req.body.b3aPAc);  // Partially achieved selections ("yes")
+  const nac = cleanB3A(req.body.b3aNAc);  // Not achieved selections ("yes")
+
+  // ✳️ one-line debug (keep while testing):
+  // console.log(`[B3A] ac=${ac.length} pac=${pac.length} nac=${nac.length}`);
+
+  // --- Validation: at least one box anywhere ---
+  if (ac.length === 0 && pac.length === 0 && nac.length === 0) {
+    const msg = 'If you are using alternative controls or exemptions for any IGP you must select the statement and provide details.';
+
+    // Persist current (empty) state for Prototype Kit helpers
+    if (!req.session.data) req.session.data = {};
+    req.session.data.b3aAc  = ac;
+    req.session.data.b3aPAc = pac;
+    req.session.data.b3aNAc = nac;
+
+    return res.status(400).render(TEMPLATE_B3A, {
+      hasErrors: true,
+      // Show the same inline error on all three groups so the user can fix it anywhere
+      errors: { b3aAc: { text: msg }, b3aPAc: { text: msg }, b3aNAc: { text: msg } },
+      // Link to the first Achieved checkbox (id is <name>-<value>):
+      errorList: [{ text: msg, href: '#b3aAc-yes' }],
+      values: { b3aAc: ac, b3aPAc: pac, b3aNAc: nac }
+    });
+  }
+
+  // --- Persist for later pages / sticky checkboxes ---
+  if (!req.session.data) req.session.data = {};
+  req.session.data.b3aAc  = ac;
+  req.session.data.b3aPAc = pac;
+  req.session.data.b3aNAc = nac;
+
+  // --- Routing rules ---
+  // 1) Any Not achieved → Not achieved
+  if (nac.length > 0) {
+    return res.redirect('b3a-outcome-not-achieved');
+  }
+
+  // 2) All 9 Achieved → Achieved
+  if (ac.length === 9) {
+    return res.redirect('b3a-outcome-achieved');
+  }
+
+  // 3) All 6 Partially achieved → Partially achieved
+  if (pac.length === 6) {
+    return res.redirect('b3a-outcome-partially-achieved');
+  }
+
+  // 4) Otherwise → Not achieved (e.g., some Achieved and/or some Partially, but not all)
+  return res.redirect('b3a-outcome-not-achieved');
+});
+
+// b3a Outcome achieved answer routing
+router.post('/b3a-outcome-achieved-answer', function(request, response) {
+    var b3aAchieved = request.session.data['b3a-achieved'] 
+    if (b3aAchieved === "no") {
+        response.redirect("b3a")
+    }
+    else {
+        response.redirect("objective-b-status")
+    }
+})
+
+
+// a3a Outcome not achieved answer routing
+router.post('/b3a-outcome-not-achieved-answer', function(request, response) {
+    var b3aNotAchieved = request.session.data['b3a-not-achieved']
+    if (b3aNotAchieved === "no") {
+        response.redirect("b3a")
+    }
+    else {
+        response.redirect("objective-b-status")
+    }
+})
+
+// a3a Outcome not achieved answer routing
+router.post('/b3a-outcome-partially-achieved-answer', function(request, response) {
+    var b3aParAchieved = request.session.data['b3a-partially-achieved']
+    if (b3aParAchieved === "no") {
+        response.redirect("b3a")
+    }
+    else {
+        response.redirect("objective-b-status")
+    }
+})
+
+
+
 
  
 //End of Routes.js

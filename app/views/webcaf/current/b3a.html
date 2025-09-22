@@ -53,11 +53,11 @@ B3.a Understanding data – GOV.UK Prototype Kit
       <div class="govuk-grid-column-two-thirds">
     
     <p class="govuk-body-l">
-You must read each indicator of good practice (IGP). 
+You must read each indicator of good practice (IGP). You must select at least one statement.
     </p>
     
     
-    <form class="form" action="b3a-answer" method="post">
+    <form class="form" action="b3a" method="post">
           
       {% set giveReason %}
       {{ govukCharacterCount({
@@ -80,7 +80,7 @@ You must read each indicator of good practice (IGP).
 
               {{ govukCheckboxes({
               idPrefix: "b3aAc",
-                name: "b3aAc1",  
+                name: "b3aAc",  
               fieldset: {
                 legend: {
                   text: "Achieved statements ",

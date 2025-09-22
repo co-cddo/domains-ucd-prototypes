@@ -45,12 +45,18 @@
   
 {% endblock %}
 {% block content %}
-<form class="form" action="objective-b-status" id="mainForm" method="post">
+<form class="form" action="b3a-outcome-achieved-answer" id="mainForm" method="post">
 <div class="govuk-grid-row">
 
       <div class="govuk-grid-column-two-thirds">
 <h1 class="govuk-heading-l">B3.a Understanding data outcome</h1>
 <h1 class="govuk-heading-m">Status: Achieved</h1>
+
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{{ govukInsetText({
+  text: "You have received this status because you have selected all achieved IGP statements."
+}) }}
 
 {% set AddSummary %}
   
