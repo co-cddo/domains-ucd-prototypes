@@ -274,7 +274,7 @@ router.post('/b3a', (req, res) => {
 
   // --- Validation: at least one box anywhere ---
   if (ac.length === 0 && pac.length === 0 && nac.length === 0) {
-    const msg = 'If you are using alternative controls or exemptions for any IGP you must select the statement and provide details.';
+    const msg = 'You must select at least one statement.';
 
     // Persist current (empty) state for Prototype Kit helpers
     if (!req.session.data) req.session.data = {};
