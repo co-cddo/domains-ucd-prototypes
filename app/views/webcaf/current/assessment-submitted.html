@@ -1,0 +1,1250 @@
+{% extends "layouts/webcaf.html" %}
+
+{% block pageTitle %}
+  Complete the full assessment
+ – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+   {{ govukBackLink({
+  text: "Back",
+  href: "assessments"
+}) }}
+  {% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="my-account-dept-draft-submitted" method="post">
+        <span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)
+</span> 
+      <h1 class="govuk-heading-l">
+       Self-assessment summary
+      </h1>
+      
+
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list",
+  card: {
+    title: {
+      html: '<span class="govuk-heading-m">About the self-assessment</span>'
+    }
+  },
+  rows: [
+    {
+      key: {
+        text: "Self-assessment status",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        text: "Sent for review"
+      }
+    },
+    {
+      key: {
+        text: "Reference number",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        text: "CAF24092025FDMH"
+      }
+    },
+    {
+      key: {
+        text: "Organisation name",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        text: "Cabinet office"
+      }
+    },
+    {
+      key: {
+        text: "System details",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        text: "Microsoft CS version 3"
+      }
+    },
+    {
+      key: {
+        text: "Government CAF profile"
+      },
+      value: {
+        text: "Baseline"
+      }
+    },
+    {
+      key: {
+        text: "Review type"
+      },
+      value: {
+        html: "Independent assurance review"
+      }
+    },
+    {
+      key: {
+        text: "CAF version"
+      },
+      value: {
+        html: "CAF v3.2 GovAssure "
+      }
+    },
+    {
+      key: {
+        text: "Sent for review by"
+      },
+      value: {
+        html: "robert.law@digital.cabinet-office.gov.uk"
+      }
+    }
+  ]
+}) }}
+
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list",
+  card: {
+    title: {
+      html: '<span class="govuk-heading-m">Objective A</span><span>Principle: A1 Governance</span>'
+    }
+  },
+  rows: [
+    {
+      key: {
+        html: '<span class="govuk-heading-s">A1.a Board direction outcome status</span>' ,
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: "<strong class='govuk-tag govuk-tag--green'>Achieved</strong>"
+      }
+    },  
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 1</span>'
+      },
+      value: {
+        text: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 2 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 3 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 4 
+  <div class="govuk-inset-text ">
+  <strong>Alternative controls:<Br></strong> We have monthly board-level meetings to discuss the security of
+network and information systems.
+</div>'
+
+      },
+      value: {
+        html: 'Selected'
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Not achieved statements 1 to 4 </span>'
+      },
+      value: {
+        html: "None selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Contributing outcome summary </span>'
+      },
+      value: {
+        html: "Your board, or equivalent members of senior management, should take overall accountability for the data protection and security risks your organisation faces. They should provide direction on cyber security and IG, which is then disseminated through your organisation’s policies, projects and procedures."
+      }
+    },
+    {
+      key: {
+        html: '<br><br><span class="govuk-heading-s">A1.b Roles and responsibilities outcome status</span>' ,
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: "<Br><br><strong class='govuk-tag govuk-tag--green'>Achieved</strong>"
+      }
+    },  
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 1</span>'
+      },
+      value: {
+        text: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 2 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 3 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+     {
+      key: {
+       html: '<span class="govuk-body">Not achieved statements 1 to 3 </span>'
+      },
+      value: {
+        html: "None selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Contributing outcome summary </span>'
+      },
+      value: {
+        html: "Your board, or equivalent members of senior management, should take overall accountability for the data protection and security risks your organisation faces. They should provide direction on cyber security and IG, which is then disseminated through your organisation’s policies, projects and procedures."
+      }
+    },
+    {
+      key: {
+        html: '<Br><br>
+        <span class="govuk-heading-s">A1.c Decision-making outcome status</span>' ,
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: '<Br><br><strong class="govuk-tag govuk-tag--red">Not achieved</strong><Br><br><strong>Baseline profile</strong><br><strong class="govuk-tag govuk-tag--grey govuk-!-margin-top-1">Not met</strong>'
+      }
+    },  
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 1</span>'
+      },
+      value: {
+        text: "Selected"
+      }
+    },
+    
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 4 
+  <div class="govuk-inset-text ">
+  <strong>Alternative controls:<Br></strong> We have wekly meetings to make risk management decisions.
+</div>'
+
+      },
+      value: {
+        html: 'Selected'
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Not achieved statement 1 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Contributing outcome summary </span>'
+      },
+      value: {
+        html: "Risks to network and information systems related
+to the operation of your essential function(s) are considered in the context of other organisational risks. "
+      }
+    }
+    
+  ]
+}) }}
+
+
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list",
+  card: {
+    title: {
+      html: '<span>Principle: A2 Risk management</span>'
+   
+  },
+  actions: {
+      items: [
+        {
+          href: "#",
+          text: "",
+          visuallyHiddenText: "Download principle A2"
+        }
+      ]
+    }
+  },
+  rows: [
+    {
+      key: {
+        html: '<span class="govuk-heading-s">A2.a Risk management process</span>' ,
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: "<strong class='govuk-tag govuk-tag--green'>Achieved</strong>"
+      }
+    },  
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 1</span>'
+      },
+      value: {
+        text: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 2 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 3 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 4 
+  <div class="govuk-inset-text ">
+  <strong>Alternative controls:<Br></strong> We have monthly board-level meetings to discuss the security of
+network and information systems.
+</div>'
+
+      },
+      value: {
+        html: 'Selected'
+      }
+    },
+     {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 5 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Partially achieved statements 1 to 6 </span>'
+      },
+      value: {
+        html: "None selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Not achieved statements 1 to 8 </span>'
+      },
+      value: {
+        html: "None selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Contributing outcome summary </span>'
+      },
+      value: {
+        html: "Your board, or equivalent members of senior management, should take overall accountability for the data protection and security risks your organisation faces. They should provide direction on cyber security and IG, which is then disseminated through your organisation’s policies, projects and procedures."
+      }
+    },
+    {
+      key: {
+        html: '<br><br><span class="govuk-heading-s">A2.b Assurance</span>' ,
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: "<Br><br><strong class='govuk-tag govuk-tag--green'>Achieved</strong>"
+      }
+    },  
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 1</span>'
+      },
+      value: {
+        text: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 2 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 3 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 4 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 5 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+     {
+      key: {
+       html: '<span class="govuk-body">Not achieved statements 1 to 3 </span>'
+      },
+      value: {
+        html: "None selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Contributing outcome summary </span>'
+      },
+      value: {
+        html: "Your board, or equivalent members of senior management, should take overall accountability for the data protection and security risks your organisation faces. They should provide direction on cyber security and IG, which is then disseminated through your organisation’s policies, projects and procedures."
+      }
+    }
+    
+  ]
+}) }}
+
+
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list",
+  card: {
+    title: {
+      html: '<span>Principle: A3 Asset management</span>'
+   
+  },
+  actions: {
+      items: [
+        {
+          href: "#",
+          text: "",
+          visuallyHiddenText: "Download principle A3"
+        }
+      ]
+    }
+  },
+  rows: [
+    {
+      key: {
+        html: '<span class="govuk-heading-s">A3.a Asset management</span>' ,
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: "<strong class='govuk-tag govuk-tag--green'>Achieved</strong>"
+      }
+    },  
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 1</span>'
+      },
+      value: {
+        text: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 2 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 3 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 4 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+   
+     {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 5 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Not achieved statements 1 to 5 </span>'
+      },
+      value: {
+        html: "None selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Contributing outcome summary </span>'
+      },
+      value: {
+        html: "Assets relevant to the essential function(s) are
+managed with cyber security in mind throughout."
+      }
+    }
+    
+  ]
+}) }}
+
+
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list",
+  card: {
+    title: {
+      html: '<span>Principle: A4 Supply chain</span>'
+   
+  },
+  actions: {
+      items: [
+        {
+          href: "#",
+          text: "",
+          visuallyHiddenText: "Download principle A4"
+        }
+      ]
+    }
+  },
+  rows: [
+    {
+      key: {
+        html: '<span class="govuk-heading-s">A4.a Supply chain</span>' ,
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: "<strong class='govuk-tag govuk-tag--green'>Achieved</strong>"
+      }
+    },  
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 1</span>'
+      },
+      value: {
+        text: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 2 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 3 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 4 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+   
+     {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 5 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+     {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 6 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+     {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 7 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Partially achieved statements 1 to 6 </span>'
+      },
+      value: {
+        html: "None selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Not achieved statements 1 to 4 </span>'
+      },
+      value: {
+        html: "None selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Contributing outcome summary </span>'
+      },
+      value: {
+        html: "We understand which contracts are
+relevant and we include
+appropriate security obligations in
+relevant contracts. We have a
+proactive approach to contract
+management which may include a
+contract management"
+      }
+    }
+    
+  ]
+}) }}
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list",
+  card: {
+    title: {
+      html: '<span class="govuk-heading-m">Objective C</span><span>Principle: C1 Security monitoring</span>'
+  },
+  actions: {
+      items: [
+        {
+          href: "#",
+          text: "",
+          visuallyHiddenText: "Download principle A4"
+        }
+      ]
+    }
+  },
+  rows: [
+    {
+      key: {
+        html: '<span class="govuk-heading-s">C1.a Monitoring coverage</span>' , 
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: "<strong class='govuk-tag govuk-tag--green'>Achieved</strong>"
+      }
+    },  
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 1</span>'
+      },
+      value: {
+        text: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 2 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 3 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 4 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+   
+     {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 5 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+     {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 6 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+     
+    {
+      key: {
+       html: '<span class="govuk-body">Partially achieved statements 1 to 4 </span>'
+      },
+      value: {
+        html: "None selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Not achieved statements 1 to 4 </span>'
+      },
+      value: {
+        html: "None selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Contributing outcome summary </span>'
+      },
+      value: {
+        html: "We have extensive monitoring
+coverage that includes host-based
+monitoring and network gateways. "
+      }
+    },
+    {
+      key: {
+        html: '<Br><br><span class="govuk-heading-s">C1.b Securing logs</span>' ,
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: "<br><br><strong class='govuk-tag govuk-tag--green'>Achieved</strong>"
+      }
+    },  
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 1</span>'
+      },
+      value: {
+        text: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 2 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 3 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 4 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+   
+     {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 5 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+     {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 6 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+     {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 7 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Partially achieved statements 1 to 3 </span>'
+      },
+      value: {
+        html: "None selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Not achieved statements 1 to 5 </span>'
+      },
+      value: {
+        html: "None selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Contributing outcome summary </span>'
+      },
+      value: {
+        html: "Legitimate reasons for accessing
+log data are given in use policies. "
+      }
+    },
+    {
+      key: {
+        html: '<br><br><span class="govuk-heading-s">C1.c Generating alerts</span>' ,
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: "<br><br><strong class='govuk-tag govuk-tag--green'>Achieved</strong>"
+      }
+    },  
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 1</span>'
+      },
+      value: {
+        text: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 2 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 3 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 4 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+   
+     {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 5 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+     {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 6 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+     
+    {
+      key: {
+       html: '<span class="govuk-body">Partially achieved statements 1 to 5 </span>'
+      },
+      value: {
+        html: "None selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Not achieved statements 1 to 5 </span>'
+      },
+      value: {
+        html: "None selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Contributing outcome summary </span>'
+      },
+      value: {
+        html: "Legitimate reasons for accessing
+log data are given in use policies. "
+      }
+    },
+    {
+      key: {
+        html: '<br><br><span class="govuk-heading-s">C1.d Identifying security incidents</span>' ,
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: "<br><br><strong class='govuk-tag govuk-tag--green'>Achieved</strong>"
+      }
+    },  
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 1</span>'
+      },
+      value: {
+        text: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 2 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 3 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 4 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+     
+    {
+      key: {
+       html: '<span class="govuk-body">Partially achieved statements 1 to 4 </span>'
+      },
+      value: {
+        html: "None selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Not achieved statements 1 to 4 </span>'
+      },
+      value: {
+        html: "None selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Contributing outcome summary </span>'
+      },
+      value: {
+        html: "Legitimate reasons for accessing
+log data are given in use policies. "
+      }
+    },
+    {
+      key: {
+        html: '<br><br><span class="govuk-heading-s">C1.e Monitoring tools and skills</span>' ,
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: "<br><br><strong class='govuk-tag govuk-tag--green'>Achieved</strong>"
+      }
+    },  
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 1</span>'
+      },
+      value: {
+        text: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 2 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 3 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 4 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+   
+     {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 5 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+     {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 6 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+     {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 7 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+     
+    {
+      key: {
+       html: '<span class="govuk-body">Partially achieved statements 1 to 5 </span>'
+      },
+      value: {
+        html: "None selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Not achieved statements 1 to 5 </span>'
+      },
+      value: {
+        html: "None selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Contributing outcome summary </span>'
+      },
+      value: {
+        html: "Legitimate reasons for accessing
+log data are given in use policies. "
+      }
+    }
+    
+  ]
+}) }}
+
+
+
+
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list",
+  card: {
+    title: {
+      html: '<span>Principle: C2 Proactive security event discover</span>'
+   
+  },
+  actions: {
+      items: [
+        {
+          href: "#",
+          text: "",
+          visuallyHiddenText: "Download principle A3"
+        }
+      ]
+    }
+  },
+  rows: [
+    {
+      key: {
+        html: '<span class="govuk-heading-s">C2.a System abnormalities for attack detection</span>' ,
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: "<strong class='govuk-tag govuk-tag--green'>Achieved</strong>"
+      }
+    },  
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 1</span>'
+      },
+      value: {
+        text: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 2 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 3 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 4 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+  
+    {
+      key: {
+       html: '<span class="govuk-body">Not achieved statements 1 to 2 </span>'
+      },
+      value: {
+        html: "None selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Contributing outcome summary </span>'
+      },
+      value: {
+        html: "Assets relevant to the essential function(s) are
+managed with cyber security in mind throughout."
+      }
+    },
+     {
+      key: {
+        html: '<br><br><span class="govuk-heading-s">C2.b Proactive atack discovery</span>' ,
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: "<br><br><strong class='govuk-tag govuk-tag--green'>Achieved</strong>"
+      }
+    },  
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 1</span>'
+      },
+      value: {
+        text: "Selected"
+      }
+    },
+    {
+      key: {
+        html: '<span class="govuk-body">Achieved statement 2 </span>'
+      },
+      value: {
+        html: "Selected"
+      }
+    },
+  
+    {
+      key: {
+       html: '<span class="govuk-body">Not achieved statement 1 </span>'
+      },
+      value: {
+        html: "None selected"
+      }
+    },
+    {
+      key: {
+       html: '<span class="govuk-body">Contributing outcome summary </span>'
+      },
+      value: {
+        html: "Assets relevant to the essential function(s) are
+managed with cyber security in mind throughout."
+      }
+    }
+    
+  ]
+}) }}
+
+
+
+
+
+
+
+
+{{ govukButton({
+  text: "Back to my account",
+  classes: "govuk-button--secondary"
+}) }}
+
+    </div>
+  </div>
+{% endblock %}

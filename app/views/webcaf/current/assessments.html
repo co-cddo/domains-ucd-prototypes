@@ -31,12 +31,12 @@ Your draft self-assessments
     
   
   <h1 class="govuk-heading-l">
-        Your draft assessments
+        Your assessments sent for review
       </h1>
   
 
   {{ govukTable({
-  caption: "Continue a draft assessment ",
+  caption: "View a sent assessment ",
   captionClasses: "govuk-table__caption--m",
   firstCellIsHeader: false,
   head: [
@@ -46,7 +46,7 @@ Your draft self-assessments
     },
     
     {
-      text: "Last updated on",
+      text: "Sent on",
       classes: "app-custom-class"
     },
     {
@@ -57,26 +57,14 @@ Your draft self-assessments
   rows: [
     [
       {
-        html: data['systemauto']
+        html:"Microsoft CS version 3 (CAF24092025FDMH)"        
       },
       
       {
         html: "1:15am on 1 August 2025"
       },
       {
-        html: '<a href="draft-assessment7">View</a>'
-      }
-    ],
-    [
-      {
-        text: "Microsoft 365 - Cabinet Office ver 3.4"
-      },
-      
-      {
-        html: "3:45pm on 31 July 2025"
-      },
-      {
-        html: '<a href="#">View</a>'
+        html: '<a href="assessment-submitted">View</a>'
       }
     ]
   ]
