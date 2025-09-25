@@ -65,15 +65,17 @@ A3.a Statements – GOV.UK Prototype Kit
     <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
     
-    <span class="govuk-body-l">
-You must read each indicator of good practice (IGP). You must select at least one statement. 
+    <span class="govuk-body">
+You must read each indicator of good practice (IGP). Select the statements that apply to your systems. If you have alternative controls and exemptions you must still select the statements and add your comments to explain this.
+
 </span>
       {% set giveReason %}
-      {{ govukTextarea({
+      {{ govukCharacterCount({
         name: "give",
         id: "give",
+        maxwords: 1500,
         label: {
-          text: "If you are using alternative controls or exemptions explain them here"
+          text: "You only need to add a comment if you are using alternative controls or exemptions (optional)"
         }
       }) }}
       {% endset -%}
@@ -95,7 +97,7 @@ You must read each indicator of good practice (IGP). You must select at least on
                 }
               },
               hint: {
-                html: 'You must select all statements to meet this outcome. If you have alternative controls or exemptions which override an IGP, you should select the statement and explain what they are.'
+                text: "You will achieve this outcome if you select all statements."
               },
               errorMessage: errors.a3aAc if errors else null,
               items: [
@@ -153,7 +155,7 @@ You must read each indicator of good practice (IGP). You must select at least on
               }
               },
               hint: {
-              html: "If you select any of these statements, you will not achieve this outcome."
+              text: "You will not achieve this outcome if you select any of these statements."
               },
               errorMessage: errors.a3aNa if errors else null,
               items: [
