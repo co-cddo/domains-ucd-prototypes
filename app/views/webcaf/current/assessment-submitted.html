@@ -43,6 +43,7 @@
       html: '<span class="govuk-heading-m">About the self-assessment</span>'
     }
   },
+  
   rows: [
     {
       key: {
@@ -116,13 +117,25 @@
 }) }}
 
 
+
+
 {{ govukSummaryList({
   classes: "govuk-summary-list",
   card: {
     title: {
       html: '<span class="govuk-heading-m">Objective A</span><span>Principle: A1 Governance</span>'
+  },
+  actions: {
+      items: [
+        {
+          href: "#",
+          text: "Download as PDF",
+          visuallyHiddenText: "Download principle A2"
+        }
+      ]
     }
   },
+  
   rows: [
     {
       key: {
@@ -294,13 +307,12 @@ to the operation of your essential function(s) are considered in the context of 
   card: {
     title: {
       html: '<span>Principle: A2 Risk management</span>'
-   
   },
   actions: {
       items: [
         {
           href: "#",
-          text: "",
+          text: "Download as PDF",
           visuallyHiddenText: "Download principle A2"
         }
       ]
@@ -467,7 +479,7 @@ network and information systems.
       items: [
         {
           href: "#",
-          text: "",
+          text: "Download as PDF",
           visuallyHiddenText: "Download principle A3"
         }
       ]
@@ -558,7 +570,7 @@ managed with cyber security in mind throughout."
       items: [
         {
           href: "#",
-          text: "",
+          text: "Download as PDF",
           visuallyHiddenText: "Download principle A4"
         }
       ]
@@ -675,7 +687,7 @@ contract management"
       items: [
         {
           href: "#",
-          text: "",
+          text: "Download as PDF",
           visuallyHiddenText: "Download principle A4"
         }
       ]
@@ -1120,7 +1132,7 @@ log data are given in use policies. "
       items: [
         {
           href: "#",
-          text: "",
+          text: "Download as PDF",
           visuallyHiddenText: "Download principle A3"
         }
       ]
@@ -1245,7 +1257,7 @@ managed with cyber security in mind throughout."
       items: [
         {
           href: "#",
-          text: "",
+          text: "Download as PDF",
           visuallyHiddenText: "Download principle A4"
         }
       ]
@@ -1478,7 +1490,7 @@ normal function(s) levels).  "
       items: [
         {
           href: "#",
-          text: "",
+          text: "Download as PDF",
           visuallyHiddenText: "Download principle A3"
         }
       ]
