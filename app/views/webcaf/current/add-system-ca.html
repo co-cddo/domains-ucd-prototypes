@@ -124,114 +124,8 @@ Add system – GOV.UK Prototype Kit
     }
   }) }}
 
-<h2 class="govuk-heading-m">
-        System owner
-      </h2>
-
-{{ govukCheckboxes({
-  name: "sysowner",
-  fieldset: {
-    legend: {
-      text: "Who owns this system?",
-      isPageHeading: true,
-      classes: "govuk-body"
-    }
-  },
-  hint: {
-    text: "Select all that apply"
-  },
-  items: [
-    {
-      value: "The organisation being assessed",
-      text: "The organisation being assessed",
-      checked: checked("sysowner", "The organisation being assessed")
-    },
-    {
-      value: "Another government organisation",
-      text: "Another government organisation",
-      checked: checked("sysowner", "Another government organisation")
-    },
-    {
-      value: "Third-party company",
-      text: "Third-party company",
-      checked: checked("sysowner", "Third-party company")
-    },
-    {
-      value: "Other",
-      text: "Other",
-      checked: checked("sysowner", "Other")
-    }
-  ]
-}) }}
-
-<h2 class="govuk-heading-m">
-        System hosting and connectivity
-      </h2>
-
-{{ govukCheckboxes({
-  name: "hosting",
-  fieldset: {
-    legend: {
-      text: "How is the system hosted?",
-      isPageHeading: true,
-      classes: "govuk-body"
-    }
-  },
-  hint: {
-    text: "Select all that apply"
-  },
-  items: [
-    {
-      value: "On premises",
-      text: "On premises",
-      checked: checked("hosting", "On premises")
-    },
-    {
-      value: "Cloud hosted",
-      text: "Cloud hosted",
-      checked: checked("hosting", "Cloud hosted")
-    },
-    {
-      value: "Hybrid",
-      text: "Hybrid",
-      checked: checked("hosting", "Hybrid")
-    },
-    {
-      value: "Commercially hosted by third-party",
-      text: "Commercially hosted by third-party",
-      checked: checked("hosting", "Commercially hosted by third-party")
-    }
-  ]
-}) }}
-
-{{ govukRadios({
-  classes: "govuk-radios--inline",
-  name: "internetfacing",
-  fieldset: {
-    legend: {
-      text: "Is the system internet-facing?",
-      isPageHeading: true,
-      classes: "govuk-body"
-    }
-  },
-  hint: {
-    text: "Select one option"
-  },
-  items: [
-    {
-      value: "Yes",
-      text: "Yes",
-      checked: checked("internetfacing", "Yes")
-    },
-    {
-      value: "No",
-      text: "No",
-      checked: checked("internetfacing", "No")
-    }
-  ]
-}) }}
-<h2 class="govuk-heading-m">
-       Year when system was last GovAssure assessed 
+  <h2 class="govuk-heading-m">
+       Previous GovAssure assessments
       </h2>
 
 {{ govukRadios({
@@ -269,6 +163,159 @@ Add system – GOV.UK Prototype Kit
     }
   ]
 }) }}
+
+
+<h2 class="govuk-heading-m">
+        System owner
+      </h2>
+
+{{ govukRadios({
+  name: "sysowner",
+  fieldset: {
+    legend: {
+      text: "Who owns this system?",
+      isPageHeading: true,
+      classes: "govuk-body"
+    }
+  },
+  hint: {
+    text: "Select one option"
+  },
+  items: [
+    {
+      value: "The organisation being assessed",
+      text: "The organisation being assessed",
+      checked: checked("sysowner", "The organisation being assessed")
+    },
+    {
+      value: "Another government organisation",
+      text: "Another government organisation",
+      checked: checked("sysowner", "Another government organisation")
+    },
+    {
+      value: "Third-party company",
+      text: "Third-party company",
+      checked: checked("sysowner", "Third-party company")
+    }
+  ]
+}) }}
+
+<h2 class="govuk-heading-m">
+        System hosting and connectivity
+      </h2>
+
+{{ govukRadios({
+  name: "hosting",
+  fieldset: {
+    legend: {
+      text: "How is the system hosted?",
+      isPageHeading: true,
+      classes: "govuk-body"
+    }
+  },
+  hint: {
+    text: "Select one option"
+  },
+  items: [
+    {
+      value: "On premises",
+      text: "On premises",
+      checked: checked("hosting", "On premises")
+    },
+    {
+      value: "Cloud hosted",
+      text: "Cloud hosted",
+      checked: checked("hosting", "Cloud hosted")
+    },
+    {
+      value: "Hybrid",
+      text: "Hybrid",
+      checked: checked("hosting", "Hybrid")
+    }
+  ]
+}) }}
+
+<h2 class="govuk-heading-m">
+        Corporate services
+      </h2>
+{{ govukCheckboxes({
+  name: "corporateServices",
+  fieldset: {
+    legend: {
+      text: "What corporate or internal end-user services does this system provide?",
+      isPageHeading: true,
+      classes: "govuk-body"
+    }
+  },
+  hint: {
+    text: "Select all that apply"
+  },
+  items: [
+    {
+      value: "Email and communication",
+      text: "Email and communication",
+      checked: ("corporateServices", "Email and communication")
+    },
+    {
+      value: "Office productivity",
+      text: "Office productivity",
+      checked: ("corporateServices", "Office productivity")
+    },
+    {
+      value: "Document storage and management",
+      text: "Document storage and management",
+      checked: ("corporateServices", "Document storage and management")
+    },
+    {
+      value: "HR",
+      text: "HR",
+      checked: ("corporateServices", "HR")
+    },
+    {
+      value: "Payroll",
+      text: "Payroll",
+      checked: ("corporateServices", "Payroll")
+    },
+    {
+      value: "Procurement and contract management",
+      text: "Procurement and contract management",
+      checked: ("corporateServices", "Procurement and contract management")
+    },
+    {
+      value: "Customer relationship management",
+      text: "Customer relationship management",
+      checked: ("corporateServices", "Customer relationship management")
+    },
+    {
+      value: "Help desk / IT support",
+      text: "Help desk / IT support",
+      checked: ("corporateServices", "Help desk / IT support")
+    },
+    {
+      value: "Data management / analytics",
+      text: "Data management / analytics",
+      checked: ("corporateServices", "Data management / analytics")
+    },
+    {
+      value: "Other",
+      text: "Other",
+      checked: ("corporateServices", "Other")
+    },
+    {
+      divider: "or"
+    },
+    {
+      value: "none",
+      text: "None - this system does not provide any corporate or internal end-user services",
+      checked: true,
+      behaviour: "exclusive"
+    }
+
+
+  ]
+}) }}
+
+
     
           
           <span class="govuk-body govuk-!-font-size-24">
