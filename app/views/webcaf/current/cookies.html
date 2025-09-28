@@ -1,0 +1,69 @@
+{% extends "/layouts/webcaf.html" %}
+
+{% block pageTitle %}
+Data usage policy – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Cookies
+      <br><span class="govuk-body govuk-!-font-size-16  ">Last updated on 27 September 2025.
+            </span></h1>
+        
+      
+      
+
+
+  
+    </div>
+  </div>
+
+{% endblock %}
+{% block footer %}
+ {{ govukFooter({
+   meta: {
+     items: [
+       {
+         href: "https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/current/privacy",
+         text: "Privacy"
+       },
+       {
+        href: "https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/current/cookies",
+        text: "Cookies"
+      },
+       {
+         href: "#",
+         text: "Accessibility statement"
+       },
+       {
+        href: "https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/current/data",
+        text: "Data usage policy"
+      },
+      {
+        href: "https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/current/help",
+        text: "Help"
+      }
+       
+      
+     ],
+     visuallyHiddenTitle: "Footer links"
+   }
+ }) }}
+{% endblock %}
+
