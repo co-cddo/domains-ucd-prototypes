@@ -56,16 +56,16 @@ Add system – GOV.UK Prototype Kit
         }) }}
 
       <h2 class="govuk-heading-m">
-        System type
+        System description
       </h2>
 {{ govukRadios({
   classes: "govuk-radios",
   name: "systype",
   fieldset: {
     legend: {
-      text: "What best describes this system?",
-      isPageHeading: true,
-      classes: "govuk-body"
+      text: "What does this system do?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
     }
   },
   hint: {
@@ -73,56 +73,26 @@ Add system – GOV.UK Prototype Kit
   },
   items: [
     {
-      value: "The system directly supports the organisation mission",
-      text: "The system directly supports the organisation mission",
-      hint: {
-        text: "For example, Universal Credit"
-      },
-      checked: checked("systype", "The system directly supports the organisation mission")
+      value: "This system directly delivers public services",
+      text: "This system directly delivers public services",
+      checked: checked("systype", "This system directly delivers public services")
     },
     {
-      value: "The system is a corporate or enterprise system or network that supports other critical systems",
-      text: "The system is a corporate or enterprise system or network that supports other critical systems",
-      hint: {
-        text: "For example, hosting platform or network, Active Directory"
-      },
-      checked: checked("systype", "The system is a corporate or enterprise system or network that supports other critical systems")
+      value: "This system provides core infrastructure essential for other critical systems to function",
+      text: "This system provides core infrastructure essential for other critical systems to function",
+      checked: checked("systype", "This system provides core infrastructure essential for other critical systems to function")
     },
     {
-      value: "The system is a corporate or enterprise system deemed critical for day-to-day operations",
-      text: "The system is a corporate or enterprise system deemed critical for day-to-day operations",
-      hint: {
-        text: "For example, Microsoft Office 365, telephony, corporate website"
-      },
-      checked: checked("systype", "The system is a corporate or enterprise system deemed critical for day-to-day operations")
-    },
-    {
-      value: "The system is hosted externally, including by commercial providers or other departments",
-      text: "The system is hosted externally, including by commercial providers or other departments",
-      hint: {
-        text: "For example, shared services"
-      },
-      checked: checked("systype", "The system is hosted externally, including by commercial providers or other departments")
+      value: "This system provides corporate services or functions required for day-to-day operations
+              for example, payroll",
+      text: "This system provides corporate services or functions required for day-to-day operations
+              for example, payroll",
+      checked: checked("systype", "This system provides corporate services or functions required for day-to-day operations
+              for example, payroll")
     }
   ]
 }) }}
 
-        
-    {{ govukTextarea({
-    name: "govsysessentialservice",
-    id: "govsysessentialservice",
-    type: "string",
-    autocomplete: "string",
-    label: {
-      text: "What essential service does this system support?",
-      classes: "govuk-heading-s",
-      value: data['govsysessentialservice'],
-      isPageHeading: true
-    },
-    hint: {
-      text: "Describe what essential service this system supports."
-    }
-  }) }}
 
   <h2 class="govuk-heading-m">
        Previous GovAssure assessments
@@ -133,8 +103,8 @@ Add system – GOV.UK Prototype Kit
   fieldset: {
     legend: {
       text: "Has this system been assessed before 2025/26?",
-      isPageHeading: true,
-      classes: "govuk-body"
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
     }
   },
   hint: {
@@ -142,24 +112,27 @@ Add system – GOV.UK Prototype Kit
   },
   items: [
     {
-      value: "2023 to 24",
-      text: "Yes, assessed in 2023 to 24",
-      checked: checked("govassureYear", "2023 to 24")
+      value: "2023/24",
+      text: "Yes, assessed in 2023/24",
+      checked: checked("govassureYear", "2023/24")
     },
     {
-      value: "2024 to 25",
-      text: "Yes, assessed in 2024 to 25",
-      checked: checked("govassureYear", "2024 to 25")
+      value: "2024/25",
+      text: "Yes, assessed in 2024/25",
+      checked: checked("govassureYear", "2024/25")
     },
     {
-      value: "2023 to 24 and 2024 to 25",
-      text: "Yes, assessed in both 2023 to 24 and 2024 to 25",
-      checked: checked("govassureYear", "2023 to 24 and 2024 to 25")
+      value: "2023/24 and 2024/25",
+      text: "Yes, assessed in both 2023/24 and 2024/25",
+      checked: checked("govassureYear", "2023/24 and 2024/25")
     },
     {
-      value: "No",
-      text: "No",
-      checked: checked("govassureYear", "No")
+      divider: "or"
+    },
+    {
+      value: "No, not assessed before",
+      text: "No, not assessed before",
+      checked: checked("govassureYear", "No, not assessed before")
     }
   ]
 }) }}
@@ -174,8 +147,8 @@ Add system – GOV.UK Prototype Kit
   fieldset: {
     legend: {
       text: "Who owns this system?",
-      isPageHeading: true,
-      classes: "govuk-body"
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
     }
   },
   hint: {
@@ -209,8 +182,8 @@ Add system – GOV.UK Prototype Kit
   fieldset: {
     legend: {
       text: "How is the system hosted?",
-      isPageHeading: true,
-      classes: "govuk-body"
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
     }
   },
   hint: {
@@ -243,8 +216,8 @@ Add system – GOV.UK Prototype Kit
   fieldset: {
     legend: {
       text: "What corporate or internal end-user services does this system provide?",
-      isPageHeading: true,
-      classes: "govuk-body"
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
     }
   },
   hint: {
