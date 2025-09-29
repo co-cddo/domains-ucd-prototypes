@@ -24,11 +24,11 @@ GovAssure Lead - My account – GOV.UK Prototype Kit
     <div class="govuk-grid-column-two-thirds">
 
      <form class="form" action="start-draft-assessment" method="post">
-    
-      {% set html %}
-  <p class="govuk-notification-banner__heading">
-    Before starting a new CAF self-assessment, you must have completed your scoping document for stage 1 and 2 of the GovAssure process.
-  </p>
+
+{% set html %}
+ <p class="govuk-notification-banner__heading">
+  You cannot start a new draft assessment, until your scoping document is signed off and your system has been added to WebCAF by a cyber adviser.
+ </p>
 {% endset %}
 
 {{ govukNotificationBanner({
