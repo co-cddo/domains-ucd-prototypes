@@ -304,20 +304,17 @@ Add system – GOV.UK Prototype Kit
     {
       divider: "or"
     },
+    
     {
       value: "none",
-      text: "None - this system does not provide any corporate or internal end-user services",
-      checked: false,
-      behaviour: "exclusive"
+      text: "None of the above",
+      hint: {
+        text: "For example, this system does not provide any corporate or internal end-user services"
+      }
     }
-
-
   ]
 }) }}
-
-
-    
-          
+       
           <span class="govuk-body govuk-!-font-size-24">
         <div class="govuk-button-group">
           {{ govukButton({
