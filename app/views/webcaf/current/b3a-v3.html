@@ -52,8 +52,8 @@ B3.a Understanding data – GOV.UK Prototype Kit
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
     
-    <p class="govuk-body-l">
-You must read each indicator of good practice (IGP). 
+    <p class="govuk-body">
+You must read each indicator of good practice (IGP). Select the statements that apply to your systems. If you have alternative controls and exemptions you must still select the statements and add your comments to explain this.
     </p>
       {{ govukWarningText({
         text: "Some achieved and partially-achieved statements are identical.
@@ -69,7 +69,7 @@ Please make sure that your selections for these statements do not conflict.",
         id: "give",
         maxwords: 1500,
         label: {
-          text: "Tell us your justifications (optional)"
+          text: "You only need to add a comment if you are using alternative controls or exemptions (optional)"
         }
       }) }}
       {% endset -%}
@@ -93,7 +93,7 @@ Please make sure that your selections for these statements do not conflict.",
                 }
               },
               hint: {
-                text: "You must select all statements to meet this outcome or add a comment if you have a justification for meeting the IGP in a different way."
+                text: "You will achieve this outcome if you select all statements."
               },
               errorMessage: errors.b3aAc if errors else null,
               items: [
@@ -163,7 +163,7 @@ Please make sure that your selections for these statements do not conflict.",
                 }
               },
               hint: {
-                text: "You must select all statements to meet this outcome or add a comment if you have a justification for meeting the IGP in a different way.
+                text: "You will partially achieve this outcome if you select all statements.
 "
               },
               errorMessage: errors.b3aPAc if errors else null,
@@ -215,8 +215,7 @@ Please make sure that your selections for these statements do not conflict.",
                 }
               },
               hint: {
-                text: "If you select any statements without justifications, you will not meet this IGP.
-If you justify any statements you select in the comment box, you will meet this IGP."
+                text: "You will not achieve this outcome if you select any of these statements."
               },
               errorMessage: errors.b3aNAc if errors else null,
               items: [
