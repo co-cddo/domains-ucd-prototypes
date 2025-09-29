@@ -1,0 +1,41 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Service currently down for maintenance – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+ 
+  {% endblock %}
+
+{% block content %}
+
+{% set mainClasses = "govuk-main-wrapper--l" %}
+<form class="form" action="start" id="mainForm" method="post">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">Your session has ended due to inactivity</h1>
+        <p class="govuk-body">
+          Your session has ended because you haven't done anything for 90 minutes.</p>
+        
+        {{ govukInsetText({
+          text: "We have deleted your answers to protect your security."
+        }) }}
+
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+        </form>
+        
+    </div>
+  </div>
+{% endblock %}

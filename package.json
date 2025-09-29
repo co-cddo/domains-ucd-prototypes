@@ -1,19 +1,19 @@
 {
-  "scripts": {
-    "dev": "node node_modules/govuk-prototype-kit/bin/cli dev",
-    "serve": "node node_modules/govuk-prototype-kit/bin/cli serve",
-    "start": "node node_modules/govuk-prototype-kit/bin/cli start"
-  },
-  "dependencies": {
-    "@govuk-prototype-kit/common-templates": "2.0.1",
-    "@govuk-prototype-kit/step-by-step": "2.2.3",
-    "@govuk-prototype-kit/task-list": "2.0.0",
-    "@ministryofjustice/frontend": "3.0.1",
-    "accessible-autocomplete": "^2.0.4",
-    "govuk-frontend": "5.7.1",
-    "govuk-prototype-kit": "13.16.2",
-    "hmrc-frontend": "6.37.0",
-    "jquery": "3.7.1",
-    "notifications-node-client": "^8.2.1"
-  }
+   "scripts": {
+      "dev": "govuk-prototype-kit dev",
+      "serve": "govuk-prototype-kit serve",
+      "start": "govuk-prototype-kit start"
+   },
+   "dependencies": {
+      "@govuk-prototype-kit/common-templates": "2.0.1",
+      "@govuk-prototype-kit/step-by-step": "2.2.3",
+      "@govuk-prototype-kit/task-list": "2.0.0",
+      "@ministryofjustice/frontend": "5.2.1",
+      "accessible-autocomplete": "^2.0.4",
+      "govuk-frontend": "5.12.0",
+      "govuk-prototype-kit": "13.18.1",
+      "hmrc-frontend": "6.95.0",
+      "jquery": "3.7.1",
+      "notifications-node-client": "^8.2.1"
+   }
 }

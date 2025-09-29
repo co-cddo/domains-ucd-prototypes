@@ -1,7 +1,22 @@
 {% extends "layouts/webcaf-home.html" %}
+
 {% block pageTitle %}
-My account with draft  - System user (submitted) – GOV.UK Prototype Kit
+GovAssure Lead - My account – GOV.UK Prototype Kit
 {% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+   
+{% endblock %}
+
 {% block content %}
 
 
@@ -33,9 +48,6 @@ My account with draft  - System user (submitted) – GOV.UK Prototype Kit
 <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
        Continue a draft assessment
       </h3>
-      
-
-    
      <p class="govuk-body govuk-!-margin-bottom-2 govuk-hint">You do not have any draft assessments<p>
 
 <Br>

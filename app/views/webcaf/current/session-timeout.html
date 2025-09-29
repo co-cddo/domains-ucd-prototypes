@@ -1,0 +1,227 @@
+{% extends "layouts/webcaf.html" %}
+{% block pageTitle %}
+A3.a Statements – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+ 
+
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Home",
+        href: "#"
+      },
+      {
+        text: "Create a new assessment
+        ",
+        href: "#"
+      },
+      {
+        text: "Objective A - Managing security risk
+        ",
+        href: "#"
+      },
+      
+      {
+        text: "A3.a Asset management"
+      }
+    ]
+  }) }}
+
+ 
+  <div class="proto-admin">
+   <div id="changedName-hint" class="govuk-hint">
+      Principle 3 of 4<br>
+      <strong>Principle: A3 Asset management</strong>
+    </div>     
+         <p id="progress-pages"><strong>You have completed 5% of your CAF self-assessment</strong></p>
+         <div class="progress-inactive"><div class="progress-active" style="width: 5%"></div></div>
+      </div>
+  
+{% endblock %}
+{% block content %}
+
+{%- from  "hmrc/components/timeout-dialog/macro.njk" import hmrcTimeoutDialog -%}
+   <meta
+  name="hmrc-timeout-dialog"
+  content="hmrc-timeout-dialog"
+  data-timeout="70"
+  data-countdown="64"
+  data-keep-alive-url="?continue=true"
+  data-sign-out-url="session-ended"
+  data-title="You have been inactive for 90 minutes."
+  data-message="This session will time out after 90 minutes of inactivity and your answers will not be saved. We do this to keep your information secure."
+  data-message-suffix=""
+  data-keep-alive-button-text="Continue session"
+  data-sign-out-button-text="Sign out"
+  data-synchronise-tabs=""
+/>
+
+
+{% if errorList %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: errorList
+      }) }}
+    {% endif %}
+
+ 
+ 
+    <form method="post" action="/webcaf/current/a3a" novalidate>
+
+    <h3 class="govuk-heading-l">A3.a Asset management</h3>
+    <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+    
+    <span class="govuk-body">
+You must read each indicator of good practice (IGP). Select the statements that apply to your systems. If you have alternative controls and exemptions you must still select the statements and add your comments to explain this.
+
+</span>
+      {% set giveReason %}
+      {{ govukCharacterCount({
+        name: "give",
+        id: "give",
+        maxwords: 1500,
+        label: {
+          text: "You only need to add a comment if you are using alternative controls or exemptions (optional)"
+        }
+      }) }}
+      {% endset -%}
+
+
+        
+              <h1 class="govuk-heading-m"></h1>
+              <div id="signIn-hint" class="govuk-hint">
+              </div> 
+              {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+                 
+              {{ govukCheckboxes({
+                name: "a3aAc",  
+              fieldset: {
+                legend: {
+                  text: "Achieved statements",
+                  isPageHeading: true,
+                  classes: "govuk-fieldset__legend--m"
+                }
+              },
+              hint: {
+                text: "You will achieve this outcome if you select all statements."
+              },
+              errorMessage: errors.a3aAc if errors else null,
+              items: [
+                {
+                  value: "yes-1",
+                  html: '1. All assets relevant to the secure operation of essential function(s) are identified and inventoried (at a suitable level of detail). The inventory is kept up-to-date.',
+                  checked: checked("a3aAc", "yes-1" if values else false),
+                  conditional: {
+                    html: giveReason
+                  }
+                },
+                {
+                  value: "yes-2",
+                  html: '2. Dependencies on supporting infrastructure (e.g. power, cooling etc) are recognised and recorded.',
+                  checked: checked("a3aAc", "yes-2" if values else false),
+                  conditional: {
+                    html: giveReason
+                  }
+                },
+                {
+                  value: "yes-3",
+                  html: '3. You have prioritised your assets according to their importance to the operation of the essential function(s).',
+                  checked: checked("a3aAc", "yes-3" if values else false),
+                  conditional: {
+                    html: giveReason
+                  }
+                },
+                {
+                  value: "yes-4",
+                  html: '4. You have assigned responsibility for managing all assets, including physical assets, relevant to the operation of the essential function(s).',
+                  checked: checked("a3aAc", "yes-4" if values else false),
+                  conditional: {
+                    html: giveReason
+                  }
+                },
+                {
+                  value: "yes-5",
+                  html: '5. Assets relevant to the essential function(s) are managed with cyber security in mind throughout their lifecycle, from creation through to eventual decommissioning or disposal.',
+                  checked: checked("a3aAc", "yes-5" if values else false),
+                  conditional: {
+                    html: giveReason
+                  }
+                }
+              ]
+            }) }}
+            
+            {{ govukCheckboxes({
+              name: "a3aNa",
+
+              fieldset: {
+              legend: {
+              html: "Not achieved statements",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--m"
+              }
+              },
+              hint: {
+              text: "You will not achieve this outcome if you select any of these statements."
+              },
+              errorMessage: errors.a3aNa if errors else null,
+              items: [
+               {
+                  value: "na",
+                  text: "1. Inventories of assets relevant to the essential function(s) are incomplete, non-existent, or inadequately detailed.",
+                  checked: checked("a3aNa", "na" if values else false)
+                },
+                {
+                  value: "na",
+                  text: "2. Only certain domains or types of asset are documented and understood. Dependencies between assets are not understood (such as the dependencies between IT and OT).",
+                  checked: checked("a3aNa", "na" if values else false)
+                },
+                {
+                  value: "na",
+                  text: "3. Information assets, which could include personally identifiable information and / or important / critical data, are stored for long periods of time with no clear business need or retention policy.",
+                  checked: checked("a3aNa", "na" if values else false)
+                },
+                {
+                  value: "na",
+                  text: "4. Knowledge critical to the management, operation, or recovery of the essential function(s) is held by one or two key individuals with no succession plan.",
+                  checked: checked("a3aNa", "na" if values else false)
+                },
+                {
+                  value: "na",
+                  text: "5. Asset inventories are neglected and out of date.",
+                  checked: checked("a3aNa", "na" if values else false)
+                }
+                
+              ]
+              }) }}
+
+
+             
+
+
+
+<div class="govuk-button-group">
+  {{ govukButton({
+    text: "Save and continue"
+  }) }}
+  </form>
+
+  <a class="govuk-link" href="#">Back to Objective A - Managing security risk </a>
+</div>
+    </div>    
+  </div>
+
+ 
+
+{% endblock %}

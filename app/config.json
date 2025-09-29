@@ -1,5 +1,9 @@
 {
-  "serviceName": "Get approval to use a .gov.uk domain name",
-    "serviceName2": "Webcaf 2"
-
+  "serviceName": "",
+  "plugins": {
+    "govuk-frontend": {
+      "rebrand": true
+    }
+  }
 }
+

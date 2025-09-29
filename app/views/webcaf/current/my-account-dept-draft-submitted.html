@@ -1,7 +1,22 @@
 {% extends "layouts/webcaf-home.html" %}
+
 {% block pageTitle %}
-My account with draft  - System user (submitted) – GOV.UK Prototype Kit
+GovAssure Lead - My account (Submittedf) – GOV.UK Prototype Kit
 {% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+   
+{% endblock %}
+
 {% block content %}
 
 
@@ -10,14 +25,7 @@ My account with draft  - System user (submitted) – GOV.UK Prototype Kit
 
      <form class="form" action="start-draft-assessment" method="post">
      
-      {% set html %}
-  <p class="govuk-notification-banner__heading">
-    Before starting a new CAF self-assessment, you must have completed your scoping document for stage 1 and 2 of the GovAssure process.
-{% endset %}
-
-{{ govukNotificationBanner({
-  html: html
-}) }}
+   
 </form>
  <h2 class="govuk-heading-l">
         My account
