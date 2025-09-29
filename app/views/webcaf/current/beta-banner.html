@@ -8,10 +8,10 @@ Start a draft assessment – GOV.UK Prototype Kit
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
   {{ govukPhaseBanner({
     tag: {
-    text: "prototype",
-    classes: "govuk-tag--pink"
+    text: "Beta",
+    classes: "govuk-tag--blue"
     },
-      html: 'This is not a full service. It is not production code and you might experience problems.'
+      html: 'This is a new service. Help us improve this service by <a class="govuk-link" href="https://surveys.domains.gov.uk/s/webcaf-feedback/" target="new">reporting a problem or giving your feedback (opens in a new tab)</a>'
   }) }}
 
    {{ govukBreadcrumbs({
@@ -37,22 +37,12 @@ Start a draft assessment – GOV.UK Prototype Kit
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-        Heading or question goes here
+        Beta phase banner
       </h1>
 
-      <form class="form" action="/path/of/next/page" method="post">
-
-        <p>
-          [Insert question content here - see the
-          <a href="https://design-system.service.gov.uk">GOV.UK Design System</a>
-          for examples]
+      <p>Beta phase banner is shown to users. There is a 
+          <a class="govuk-link" href="https://surveys.domains.gov.uk/s/webcaf-feedback/" target="new">survey link</a> to add feedback too. 
         </p>
-
-        {{ govukButton({
-          text: "Continue"
-        }) }}
-
-      </form>
 
     </div>
   </div>
