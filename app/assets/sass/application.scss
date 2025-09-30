@@ -1,3 +1,14 @@
+// Custom spacing fix for WebCAF header
+.govuk-header__content {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.govuk-header__link--service-name {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  display: inline-block;
+}
 //
 // For guidance on how to add CSS and SCSS see:
 // https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images

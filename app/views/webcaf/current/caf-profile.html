@@ -23,11 +23,22 @@ CAF government profile – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block content %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+      {% if errorMessage %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: errorMessage,
+              href: "#cafprofile"
+            }
+          ]
+        }) }}
+      {% endif %}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-      <span class="govuk-caption-l">Microsoft CS version 3</span> 
+      <span class="govuk-caption-l">Microsoft CS version 3</span>
       <h1 class="govuk-heading-l">
         Choose your Government CAF profile
       </h1>
@@ -35,14 +46,11 @@ CAF government profile – GOV.UK Prototype Kit
         Every system undergoing GovAssure must be assigned one of the two Government CAF profiles. These are baseline and enhanced. You will have agreed this during stage 2.
       </p>
       <p>You can read more in the <a href="https://www.security.gov.uk/policy-and-guidance/govassure/stage-2-in-scope-systems-and-assigning-target-caf-profile/#section_5_assign-caf-profiles-to-your-systems" target="new" class="govuk-lik"> assign CAF profiles to your systems guidance (opens in new tab). </a></p>
+
       
 
       <form class="form" action="/webcaf/current/review-type-answer" method="post">
-        
         {% from "govuk/components/radios/macro.njk" import govukRadios %}
-
-        
-
         {{ govukRadios({
           name: "cafprofile",
           fieldset: {
@@ -68,13 +76,10 @@ CAF government profile – GOV.UK Prototype Kit
             }
           ]
         }) }}
-      
         {{ govukButton({
           text: "Save and continue"
         }) }}
-
       </form>
-
     </div>
   </div>
 

@@ -14,12 +14,18 @@ const router = govukPrototypeKit.requests.setupRouter()
 // Q: Review type answer
 router.post('/review-type-answer', function(request, response) {
 
-    var cafPr = request.session.data['cafprofile']
-    if (cafPr == "baseline"){
-        response.redirect("draft-assessment3")
-    } else {
-        response.redirect("enhanced-review")
-    }
+  var cafPr = request.session.data['cafprofile']
+  if (!cafPr) {
+    // No selection made, show error
+    response.render('webcaf/current/caf-profile', {
+      errorMessage: 'Select a profile for this assessment',
+      cafprofile: cafPr
+    })
+  } else if (cafPr == "baseline") {
+    response.redirect("draft-assessment3")
+  } else {
+    response.redirect("enhanced-review")
+  }
 })
 
 
