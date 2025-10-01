@@ -55,7 +55,7 @@ Check system details – GOV.UK Prototype Kit
             },
             {
               key: {
-                text: "System type"
+                text: "System description"
               },
               value: {
                 html: data['systype']
@@ -63,15 +63,15 @@ Check system details – GOV.UK Prototype Kit
             },
             {
               key: {
-                text: "Essential services"
+                text: "Previous GovAssure assessments"
               },
               value: {
-                html: data['govsysessentialservice']
+                html: data['govassureYear']
               }
             },
             {
               key: {
-                text: "System ownership"
+                text: "System owner"
               },
               value: {
                 html: data['sysowner']
@@ -87,18 +87,10 @@ Check system details – GOV.UK Prototype Kit
             },
             {
               key: {
-                text: "Internet facing"
+                text: "Corporate services"
               },
               value: {
-                html: data['internetfacing']
-              }
-            },
-            {
-              key: {
-                text: "GovAssure year"
-              },
-              value: {
-                html: data['govassureYear']
+                html: data['corporateServices']
               }
             }
           ]
