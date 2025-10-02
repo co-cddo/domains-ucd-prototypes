@@ -52,31 +52,31 @@ Check system details – GOV.UK Prototype Kit
                 text: "System name"
               },
               value: {
-                html: data['govsysmanual']
+                html: "SYS-0002 Microsoft 365 system"
               }
             },
             {
               key: {
-                text: "System type"
+                text: "System description"
               },
               value: {
-                html: data['systype']
+                html: "It directly delivers public services"
               }
             },
             {
               key: {
-                text: "Essential services"
+                text: "Previous GovAssure assessments"
               },
               value: {
-                html: data['govsysessentialservice']
+                html: "Yes, in 2023/24"
               }
             },
             {
               key: {
-                text: "System ownership"
+                text: "System owner"
               },
               value: {
-                html: data['sysowner']
+                html:"The organisation being assessed"
               }
             },
             {
@@ -84,27 +84,24 @@ Check system details – GOV.UK Prototype Kit
                 text: "Hosting and connectivity"
               },
               value: {
-                html: data['hosting']
+                html: "On premises"
               }
             },
             {
               key: {
-                text: "Internet facing"
+                text: "Corporate services"
               },
               value: {
-                html: data['internetfacing']
-              }
-            },
-            {
-              key: {
-                text: "GovAssure year"
-              },
-              value: {
-                html: data['govassureYear']
+                html: "Email and communication"
               }
             }
           ]
         }) }}
+
+
+
+
+
 {{ govukWarningText({
   text: "There is self-assessment started with this system.",
   iconFallbackText: "Warning"
