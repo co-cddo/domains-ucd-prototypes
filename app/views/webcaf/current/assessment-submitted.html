@@ -25,12 +25,12 @@
 
   {% endblock %}
 {% block content %}
-<div style="display: flex; justify-content: center;">
+
   {{ govukWarningText({
-    html: 'OFFICIAL-SENSITIVE',
+    html: 'This information is classified OFFICIAL-SENSITIVE',
     iconFallbackText: "Warning"
   }) }}
-</div>
+
 
 
 
@@ -1662,7 +1662,10 @@ improvement. </span>'
 </div>
 
 <br><br>
-
+  {{ govukWarningText({
+    html: 'This information is classified OFFICIAL-SENSITIVE',
+    iconFallbackText: "Warning"
+  }) }}
 
 <div class="govuk-button-group">
   {{ govukButton({
@@ -1677,14 +1680,5 @@ improvement. </span>'
 
     </div>
   </div>
-  <hr class="govuk-section-break govuk-section-break--visible">
-  <div style="display: flex; justify-content: center; margin-top: 1.5rem;">
-  <div class="govuk-warning-text">
-  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-  <strong class="govuk-warning-text__text">
-    <span class="govuk-visually-hidden">Warning</span>
-   OFFICIAL-SENSITIVE
-  </strong>
-</div>
-</div>
+ 
 {% endblock %}
