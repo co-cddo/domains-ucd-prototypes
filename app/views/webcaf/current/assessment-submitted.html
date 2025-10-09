@@ -15,19 +15,26 @@
       html: 'This is not a full service. It is not production code and you might experience problems.'
   }) }}
 
+  <div style="display: flex; justify-content: center; margin-top: 1.5rem;">
+  {{ govukWarningText({
+    html: 'OFFICIAL-SENSITIVE',
+    iconFallbackText: "Warning"
+  }) }}
+</div>
+  
+
    {{ govukBackLink({
   text: "Back",
   href: "assessments"
 }) }}
   {% endblock %}
+  
 
 {% block content %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-{{ govukWarningText({
-  html: 'OFFICIAL-SENSITIVE' ,
-  iconFallbackText: "Warning"
-}) }}
+
       
       <form class="form" action="my-account-dept-draft-submitted" method="post">
         <span class="govuk-caption-l">SYS-0001 Microsoft CS version 3 (CAF24092025FDMH)
@@ -1652,10 +1659,7 @@ improvement. </span>'
 </div>
 
 <br><br>
-{{ govukWarningText({
-  html: 'OFFICIAL-SENSITIVE' ,
-  iconFallbackText: "Warning"
-}) }}
+
 
 <div class="govuk-button-group">
   {{ govukButton({
@@ -1670,4 +1674,11 @@ improvement. </span>'
 
     </div>
   </div>
+  <hr class="govuk-section-break govuk-section-break--visible">
+  <div style="display: flex; justify-content: center; margin-top: 1.5rem;">
+  {{ govukWarningText({
+    html: 'OFFICIAL-SENSITIVE',
+    iconFallbackText: "Warning"
+  }) }}
+</div>
 {% endblock %}
