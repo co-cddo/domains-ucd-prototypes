@@ -5,6 +5,7 @@
  – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
+  
 {% block beforeContent %}
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
   {{ govukPhaseBanner({
@@ -15,22 +16,24 @@
       html: 'This is not a full service. It is not production code and you might experience problems.'
   }) }}
 
-  <div style="display: flex; justify-content: center; margin-top: 1.5rem;">
-  {{ govukWarningText({
-    html: 'OFFICIAL-SENSITIVE',
-    iconFallbackText: "Warning"
-  }) }}
-</div>
   
 
    {{ govukBackLink({
   text: "Back",
   href: "assessments"
 }) }}
-  {% endblock %}
-  
 
+  {% endblock %}
 {% block content %}
+<div style="display: flex; justify-content: center;">
+  {{ govukWarningText({
+    html: 'OFFICIAL-SENSITIVE',
+    iconFallbackText: "Warning"
+  }) }}
+</div>
+
+
+
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
@@ -1676,9 +1679,12 @@ improvement. </span>'
   </div>
   <hr class="govuk-section-break govuk-section-break--visible">
   <div style="display: flex; justify-content: center; margin-top: 1.5rem;">
-  {{ govukWarningText({
-    html: 'OFFICIAL-SENSITIVE',
-    iconFallbackText: "Warning"
-  }) }}
+  <div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-visually-hidden">Warning</span>
+   OFFICIAL-SENSITIVE
+  </strong>
+</div>
 </div>
 {% endblock %}
