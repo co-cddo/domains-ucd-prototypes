@@ -1,0 +1,95 @@
+{% extends "/layouts/webcaf.html" %}
+
+{% block pageTitle %}
+Help – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Help</h1>
+     
+      <p>
+       This version of WebCAF is no longer in use. Organisations taking part in GovAssure cannot use this version to complete CAF submissions for the financial year 25 to 26.
+      </p>
+      <p>Use the latest version of the Complete a WebCAF self-assessment service.</p>
+
+      <h2 class="govuk-heading-m">Contact the GovAssure team</h2>
+
+      <h3 class="govuk-heading-s">Email</h3>
+<ul class="govuk-list">
+  <li><a class="govuk-link" href="#">cybergovassure@cabinetoffice.gov.uk</a></li>
+  <li>For general GovAssure enquiries</li>
+</ul>
+
+<ul class="govuk-list">
+  <li><a class="govuk-link" href="#">webcaf@cabinetoffice.gov.uk</a></li>
+  <li>For feedback or issues with WebCAF</li>
+</ul>
+
+
+     
+
+      <h3 class="govuk-heading-m">
+     What happens to our CAF returns following submission?
+
+      </h3>
+
+      <p>Following completion of each CAF return, you will be presented with the option to download a file for your organisation's records, and store in-line with your organisation's risk appetite. <Br><br>Owing to the aggregate risk of multiple Government organisations using WebCAF, we will transfer the CAF return to a SECRET classification two weeks from submission. <Br><Br>The data will then not be available to view through WebCAF, however progress and limited metadata will be visible to show what was submitted and when for your records. <Br>GSG will hold these returns for data analysis at SECRET level, and further edits will not be possible.
+
+      </p>
+      
+
+
+
+    </div>
+  </div>
+
+{% endblock %}
+{% block footer %}
+ {{ govukFooter({
+   meta: {
+     items: [
+       {
+         href: "https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/current/privacy",
+         text: "Privacy"
+       },
+       {
+        href: "https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/current/cookies",
+        text: "Cookies"
+      },
+       {
+         href: "https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/current/accessibility-statement",
+         text: "Accessibility statement"
+       },
+       {
+        href: "https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/current/data",
+        text: "Data usage policy"
+      },
+      {
+        href: "https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/current/help",
+        text: "Help"
+      }
+       
+      
+     ],
+     visuallyHiddenTitle: "Footer links"
+   }
+ }) }}
+{% endblock %}
+
