@@ -1,12 +1,13 @@
 {% extends "layouts/webcaf.html" %}
 
 {% block pageTitle %}
-  Complete the full assessment
+Complete the full assessment
  – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
   
 {% block beforeContent %}
+
 {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
   {{ govukPhaseBanner({
     tag: {
@@ -32,7 +33,7 @@
 {{ govukWarningText({
       text: "UK OFFICIAL-SENSITIVE"
       }) }}
-
+<ic-classification-banner classification="official-sensitive"></ic-classification-banner>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
       
@@ -59,7 +60,7 @@
   <body>
   
   
-  <ic-classification-banner classification="official-sensitive"></ic-classification-banner>
+  
   
     <script defer>
       import('https://unpkg.com/@ukic/web-components@3.12.0/loader').then((module) => {
