@@ -37,7 +37,7 @@
         },
         {
           text: "View cookies",
-          href: "https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/current/cookies"
+          href: "cookies"
         }
       ]
     },
@@ -73,25 +73,51 @@
  {% endblock %}
 
 {% block pageTitle %}
-Cookies – GOV.UK Prototype Kit
+  Cookies updated - {{ serviceName }} - GOV.UK Prototype Kit
 {% endblock %}
- 
+
 {% block beforeContent %}
-{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
-  {{ govukPhaseBanner({
-    tag: {
-    text: "prototype",
-    classes: "govuk-tag--pink"
-    },
-      html: 'This is not a full service. It is not production code and you might experience problems.'
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
   }) }}
 {% endblock %}
+
 
 {% block content %}
 
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+
+
+  
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% set html %}
+  <h3 class="govuk-notification-banner__heading">
+   Your cookie settings were saved
+<br>
+    
+  </h3>
+  <p>Government services may set additional cookies and, if so, will have their own cookie policy and banner.
+</p>
+<a href="cookies" target="new" class="govuk-link">Go back to the page you were looking at</a> 
+  
+{% endset %}
+
+
+
+
+{{ govukNotificationBanner({
+  html: html,
+  type: "success"
+}) }}
+
+
+
+
 
       <h1 class="govuk-heading-xl">
         Cookies on the Complete a WebCAF self-assessment service
@@ -162,6 +188,10 @@ Cookies – GOV.UK Prototype Kit
   text: "Save changes"
 }) }}
 
+
+
+</form>
+
 <h2 class="govuk-heading-m">
         Essential cookies
 
@@ -210,7 +240,6 @@ Cookies – GOV.UK Prototype Kit
     </div>
   </div>
 
-
 {% endblock %}
 {% block footer %}
  {{ govukFooter({
@@ -243,4 +272,3 @@ Cookies – GOV.UK Prototype Kit
    }
  }) }}
 {% endblock %}
-
