@@ -26,17 +26,49 @@
   {% endblock %}
 {% block content %}
 
-  {{ govukWarningText({
-    html: 'This information is classified OFFICIAL-SENSITIVE',
-    iconFallbackText: "Warning"
-  }) }}
 
 
 
-
+{{ govukWarningText({
+      text: "UK OFFICIAL-SENSITIVE"
+      }) }}
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      
+
+       <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/@ukic/fonts@3.2.4/dist/fonts.css"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/@ukic/web-components@3.12.0/dist/core/core.css"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/@ukic/web-components@3.12.0/dist/core/normalize.css"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+  
+  
+  <ic-classification-banner classification="official-sensitive"></ic-classification-banner>
+  
+    <script defer>
+      import('https://unpkg.com/@ukic/web-components@3.12.0/loader').then((module) => {
+        module.defineCustomElements();
+      });
+      // The ICDS has types available if your JavaScript framework allows for use with TypeScript
+      // Below is an example of how to import an ICDS type
+      // import type { IcAlignment } from 'https://unpkg.com/@ukic/web-components/';
+    </script>
 
       
       <form class="form" action="my-account-dept-draft-submitted" method="post">
@@ -1662,10 +1694,7 @@ improvement. </span>'
 </div>
 
 <br><br>
-  {{ govukWarningText({
-    html: 'This information is classified OFFICIAL-SENSITIVE',
-    iconFallbackText: "Warning"
-  }) }}
+ 
 
 <div class="govuk-button-group">
   {{ govukButton({
