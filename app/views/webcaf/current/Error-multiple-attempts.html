@@ -1,0 +1,33 @@
+{% extends "layouts/webcaf.html" %}
+
+{% block pageTitle %}
+Problem with the service – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+  {% endblock %}
+  
+
+{% block content %}
+{% set mainClasses = "govuk-main-wrapper--l" %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">Sorry, there is a problem with the service</h1>
+        <p class="govuk-body">You have been locked out of this session because you had 5 failed login attempts.</p>
+        <p class="govuk-body">You will be able to login again after 1 hour. </p>
+        
+        <p class="govuk-body">
+        To reset your login details email: <code class="govspeak-code">webcaf@cabinetoffice.gov.uk</code> </p>        
+    </div>
+  </div>
+{% endblock %}
