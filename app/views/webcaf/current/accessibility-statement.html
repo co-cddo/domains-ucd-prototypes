@@ -1,13 +1,17 @@
-{% extends "layouts/main.html" %}
+{% extends "/layouts/webcaf.html" %}
 
 {% block pageTitle %}
-  Accessibility statement – {{ serviceName }} – GOV.UK Prototype Kit
+Data usage policy – GOV.UK Prototype Kit
 {% endblock %}
-
+ 
 {% block beforeContent %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
   }) }}
 {% endblock %}
 
