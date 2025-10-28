@@ -21,10 +21,11 @@
       </h1>
 
       {{ govukInsetText({
-        html: "We have sent a code to your email address registered with <b>WebCAF</b>."
+        html: "We have sent a one-time code to the email address you registered with <b>WebCAF</b>."
       }) }}
       <p>
-        It might take a few minutes to arrive. The code will expire after 5 minutes.
+        It might take a few minutes to arrive. The code will expire after 5 minutes. <br>
+        If you request a new code it will be sent 1 minute after the last request.
       </p>
 {{ govukInput({
   label: {
@@ -42,13 +43,12 @@
     text: "Continue"
   }) }}
 
-  <a class="govuk-link" href="#">Get the code again</a>
+  <a class="govuk-link" href="#">Resend the code</a> 
 </div>
 
-{{ govukDetails({
-  summaryText: "Problems with the code?",
-  text: "We can send the code again if the code is not working or you did not received it. You can request multiple codes, but only 1 minute after the previous code was sent out."
-}) }}
+
+
+<p></p>
 
     </div>
   </div>
