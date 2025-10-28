@@ -1,0 +1,284 @@
+{% extends "layouts/webcaf.html" %}
+
+{% block pageTitle %}
+  Objective A - Managing security risk - Submit a CAF self-assessment for a government system - GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "My account",
+        href: "/webcaf/current/my-account-dept"
+      },
+      {
+        text: "Start a draft assessment",
+        href: "/webcaf/current/draft-assessment3"
+      },
+      {
+        text: "Objective A - Managing security risk
+        "
+      }
+    ]
+  }) }}
+<div class="proto-admin">
+  <p id="progress-pages"><strong>You have completed 25% of your self-assessment</strong></p>
+  <div class="progress-inactive"><div class="progress-active" style="width: 25%"></div></div>
+</div>
+  {% endblock %}
+
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Objective A - Managing security risk
+      </h1>
+       
+<p>Please provide your answers for each principle. You can review the status of individual outcomes below each principle and change your answers if you need to.</p>
+
+      <h2 class="govuk-heading-m">
+        Principle: A1 Governance
+      </h2>
+
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "A1.a Board direction",
+              classes: "govuk-!-width-one-half"
+            },
+            value: {
+              html: '<a class="govuk-link" href="#">Add your answers</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "A1.b Roles and responsibilities"
+            },
+            value: {
+              html: '<a class="govuk-link" href="#">Add your answers</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "A1.c Decision-making"
+            },
+            value: {
+              html: '<a class="govuk-link" href="#">Add your answers</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "",
+                  visuallyHiddenText: "Question 3"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Principle: A2 Risk management
+      </h2>
+
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "A2.a Risk Management Process",
+              classes: "govuk-!-width-one-half"
+            },
+            value: {
+              html: '<a class="govuk-link" href="#">Add your answers</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          }
+          ,
+          {
+            key: {
+              text: "A2.b Assurance"
+            },
+            value: {
+              html: '<a class="govuk-link" href="#">Add your answers</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "",
+                  visuallyHiddenText: "Question 2"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        Principle: A3 Asset management
+      </h2>
+
+      {% if (data['a3a-achieved'] == "yes") %}
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "A3.a Asset managements",
+              classes: "govuk-!-width-one-half"
+            },
+            value: {
+              html: " <strong class='govuk-tag govuk-tag--green'>Achieved</strong>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "a3a",
+                  text: "Change",
+                  visuallyHiddenText: "Change"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+     
+      {% else %}
+      
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "A3.a Asset managements",
+              classes: "govuk-!-width-one-half"
+            },
+            value: {
+              html: " <strong class='govuk-tag govuk-tag--red'>Not achieved</strong>"
+            },
+            actions: {
+              items: [
+                {
+                  href: "a3a",
+                  text: "Change",
+                  visuallyHiddenText: "Change"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      
+      {% endif %}
+
+      
+
+      <h2 class="govuk-heading-m">
+        Principle: A4 Supply chain
+      </h2>
+
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "A4.a Supply chain",
+              classes: "govuk-!-width-one-half"
+            },
+            value: {
+              html: '<a class="govuk-link" href="#">Add your answers</a>'
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "",
+                  visuallyHiddenText: "Question 1"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+<form action="objective-a-nav-answer" method="post" novalidate>
+
+ {{ govukRadios({
+        classes: "govuk-radios--inline",
+        name: "objective-a-nav",
+        fieldset: {
+          legend: {
+            text: "Do you want to go to the next objective?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes",
+            checked: checked("objective-a-nav", "yes")
+          },
+          {
+            value: "no",
+            text: "No",
+            checked: checked("objective-a-nav", "no")
+          }
+        ]
+      }) }}
+      
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

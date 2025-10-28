@@ -1,0 +1,318 @@
+{% extends "layouts/webcaf-review.html" %}
+
+{% block pageTitle %}
+GovAssure Lead - My account – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+   <script type="text/javascript" src="assets/js/accessible-autocomplete.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+     <form class="form" action="start-draft-assessment" method="post">
+
+{% set html %}
+ <p class="govuk-notification-banner__heading">
+  This is important.
+ </p>
+{% endset %}
+
+
+{%- from "moj/components/identity-bar/macro.njk" import mojIdentityBar -%}
+
+{{ mojIdentityBar({
+  title: {
+    html: "Logged in: <b>Simon Wolensky</b> as an <b>Independent assessor</b>"
+  }
+}) }}
+
+       <br>
+
+ <h2 class="govuk-heading-l">
+        Review all self-assessments
+      </h2>
+ 
+  </div>
+  
+  
+    <div class="govuk-grid-column-one-half">
+  
+
+        <form class="form" action="#" id="mainForm" method="post">
+        <link rel="stylesheet" href="../dist/location-autocomplete.min.css" />
+        <style>
+        html {
+          color: #111;
+          background: #FFF;
+          font-family: -apple-system, BlinkMacSystemFont, 'avenir next', avenir, 'helvetica neue', helvetica, ubuntu, roboto, noto, 'segoe ui', arial, sans-serif;
+          font-size: 16px;
+          line-height: 1.5;
+        }
+  
+        body {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+  
+        h1, h2, h3, h4, h5, h6 {
+          line-height: normal;
+        }
+  
+        label {
+          display: block;
+          margin-bottom: .5rem;
+        }
+  
+        .autocomplete-wrapper {
+          max-width: 40em;
+          margin-bottom: 4rem;
+        }
+      </style>
+
+
+      <h2 class="govuk-heading-s">
+        Search
+        <p class="govuk-body govuk-!-margin-bottom-2 govuk-hint">You can search by organisation name or reference number</p>
+      </h2>
+ 
+         <div class="govuk-form-group autocomplete-wrapper">
+         <label class="govuk-label" for="default">
+            
+          </label>
+          <select class="govuk-select" id="default" name="registrar" value="{{ data['search'] }}">
+            
+            <option value="choose" selected>Start typing...</option>
+            <option value="1 Click Services Limited">Government Digital Service	</option>
+            <option value="eastofengland">Civil Nuclear Constabulary	</option>
+            <option value="20i Ltd">Department for Work and Pensions	</option>
+            <option value="20i Ltd">CAF11392025HJKI</option>
+            <option value="20i Ltd">CAF23472025SSDI</option>
+            <option value="20i Ltd">CAF67092025FDMH</option>
+            <option value="20i Ltd">CAF89912025ZZRY</option>
+            
+            
+            
+
+
+
+          </select>
+    </form>
+          </div>
+          </div>
+   
+
+
+  <div class="govuk-grid-column-full">
+
+{%- from "govuk/components/table/macro.njk" import govukTable -%}
+
+{{ govukTable({
+  attributes: {
+    "data-module": "moj-sortable-table"
+  },
+  caption: "",
+  head: [
+    {
+      text: "System name and reference",
+      attributes: {
+        "aria-sort": "ascending"
+      }
+    },
+     
+    {
+      text: "Organisation name",
+      attributes: {
+        "aria-sort": "none"
+      }
+    },
+    {
+      text: "Sent for review date",
+      attributes: {
+        "aria-sort": "none"
+      }
+    },
+    {
+      text: "Review status",
+      attributes: {
+        "aria-sort": "none"
+      },
+      format: "numeric"
+    },
+    {
+      text: "Action"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "Salesforece 2 GOVSys (CAF67092025FDMH)"
+      },
+      
+      {
+        text: "Civil Nuclear Constabulary",
+        attributes: {
+          "data-sort-value": "6961"
+        }
+      },
+      {
+        text: "17/12/2025"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Submitted</strong>',
+        format: "numeric",
+        attributes: {
+          "data-sort-value": "3"
+        }
+      },
+      {
+        html: '<a href="draft-assessment7">View</a>'
+      }
+    ],
+    [
+      {
+        text: "Pension scheme DATA sys01 (CAF23472025SSDI)"
+      },
+      {
+        text: "Department for Work and Pensions",
+        attributes: {
+          "data-sort-value": "6194"
+        }
+      },
+      {
+        text: "1/11/2025"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--blue">Review to do</strong>',
+        format: "numeric",
+        attributes: {
+          "data-sort-value": "1"
+        }
+      },
+      {
+        html: '<a href="draft-assessment7">View</a>'
+      }
+    ],
+    [
+      {
+        text: "Office 365 GDS-premise (CAF67092025FDMH)"
+      },
+      {
+        text: "Government Digital Service",
+        attributes: {
+          "data-sort-value": "5642"
+        }
+      },
+      {
+        text: "29/10/2025"
+      },
+      
+      {
+        html: '<strong class="govuk-tag govuk-tag--blue">Review to do</strong>',
+        format: "numeric",
+        attributes: {
+          "data-sort-value": "1"
+        }
+      },
+      {
+        html: '<a href="draft-assessment7">View</a>'
+      }
+    ],
+    [
+      {
+        text: "GOV.UK website LIVE env (CAF89912025ZZRY)"
+      },
+      {
+        text: "Government Digital Service",
+        attributes: {
+          "data-sort-value": "5642"
+        }
+      },
+      {
+        text: "31/12/2025"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--yellow">Waiting on </strong>',
+        format: "numeric",
+        attributes: {
+          "data-sort-value": "2"
+        }
+      },
+      {
+        html: '<a href="draft-assessment7">View</a>'
+      }
+    ]
+  ]
+}) }}
+
+
+</div>
+
+
+
+
+
+      
+
+        <script type="text/javascript" src="https://alphagov.github.io/govuk-country-and-territory-autocomplete/dist/location-autocomplete.min.js"></script>
+        <script type="text/javascript">
+          openregisterLocationPicker({
+            additionalSynonyms: [
+              { name: 'Albion', code: 'country:GB' }
+            ],
+            defaultValue: '',
+            selectElement: document.getElementById('default'),
+            url: '../dist/location-autocomplete-graph.json'
+          })
+    
+          openregisterLocationPicker({
+            additionalSynonyms: [
+              { name: 'Albion', code: 'country:GB' }
+            ],
+            defaultValue: 'country:GB',
+            selectElement: document.getElementById('preselected'),
+            url: '../dist/location-autocomplete-graph.json'
+          })
+        </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+    
+  </div>
+  </div>
+
+{% endblock %}
