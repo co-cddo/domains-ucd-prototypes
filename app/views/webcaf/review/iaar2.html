@@ -1,0 +1,1285 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+ Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS version 3 (CAF24092025FDMH)
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for this page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "#"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+
+  <header class="gem-c-inverse-header ">
+    
+  
+<div class="gem-c-heading  gem-c-heading--inverse">
+      <span class="govuk-caption-xl gem-c-heading__context gem-c-heading__xl_caption">
+     SYS-0001 Microsoft CS version 3 (CAF24092025FDMH)
+  </span>
+  
+  <span class="gem-c-heading__xl govuk-heading-xl">
+    GovAssure Independent Assurance Review Report (IARR)</span>
+  <span class="gem-c-inverse-header__subtext">Updated 16 October 2014</span>
+</header>
+
+    <section aria-label="Notice" class="govuk-notification-banner gem-c-notice govuk-!-margin-bottom-8" role="region" title='This is a notice we want to put on.'>
+        <div class="govuk-notification-banner__content">
+      
+      <span class="gem-c-notice__title govuk-notification-banner__heading"> <span lang="en" dir="ltr">This content is UK OFFICIAL-SENSITIVE.</span></span>
+      
+
+      
+</div></section>
+
+
+<div id="contents">
+  <div class="govuk-grid-row gem-print-columns-none">
+      <div class="govuk-grid-column-one-quarter-from-desktop contents-list-container">
+          <nav data-module="ga4-link-tracker" aria-label="Contents" class="gem-c-contents-list govuk-!-margin-bottom-4">
+    <h2 class="gem-c-contents-list__title">
+      Contents
+</h2>
+    <ol class="gem-c-contents-list__list">
+        <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--numbered">
+          <span class="gem-c-contents-list__list-item-dash" aria-hidden="true"></span>
+          <a class="gem-c-contents-list__link govuk-link gem-print-force-link-styles govuk-link--no-underline" data-ga4-link='{"event_name":"select_content","section":"Contents","type":"contents list","index_total":12,"index_link":1}' href="#introduction">Introduction</a>
+        </li>
+        <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--numbered">
+          <span class="gem-c-contents-list__list-item-dash" aria-hidden="true"></span>
+          <a class="gem-c-contents-list__link govuk-link gem-print-force-link-styles govuk-link--no-underline" data-ga4-link='{"event_name":"select_content","section":"Contents","type":"contents list","index_total":12,"index_link":1}' href="#system-summary">System summary</a>
+        </li>
+        <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--numbered">
+          <span class="gem-c-contents-list__list-item-dash" aria-hidden="true"></span>
+          <a class="gem-c-contents-list__link govuk-link gem-print-force-link-styles govuk-link--no-underline" data-ga4-link='{"event_name":"select_content","section":"Contents","type":"contents list","index_total":12,"index_link":2}' href="#review-summary">Independent Assurance Review (IAR) summary</a>
+        </li>
+        <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--numbered">
+          <span class="gem-c-contents-list__list-item-dash" aria-hidden="true"></span>
+          <a class="gem-c-contents-list__link govuk-link gem-print-force-link-styles govuk-link--no-underline" data-ga4-link='{"event_name":"select_content","section":"Contents","type":"contents list","index_total":12,"index_link":3}' href="#key-recommendations">Key recommendations (top level)</a>
+        </li>
+        <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--numbered">
+          <span class="gem-c-contents-list__list-item-dash" aria-hidden="true"></span>
+          <a class="gem-c-contents-list__link govuk-link gem-print-force-link-styles govuk-link--no-underline" data-ga4-link='{"event_name":"select_content","section":"Contents","type":"contents list","index_total":12,"index_link":4}' href="#Objective-level-recommendations">Objective-level recommendations</a>
+        </li>
+        <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--numbered">
+          <span class="gem-c-contents-list__list-item-dash" aria-hidden="true"></span>
+          <a class="gem-c-contents-list__link govuk-link gem-print-force-link-styles govuk-link--no-underline" data-ga4-link='{"event_name":"select_content","section":"Contents","type":"contents list","index_total":12,"index_link":5}' href="#Principle-level-recommendations">Principle-level recommendations</a>
+        </li>
+        <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--numbered">
+          <span class="gem-c-contents-list__list-item-dash" aria-hidden="true"></span>
+          <a class="gem-c-contents-list__link govuk-link gem-print-force-link-styles govuk-link--no-underline" data-ga4-link='{"event_name":"select_content","section":"Contents","type":"contents list","index_total":12,"index_link":6}' href="#Outcome-level-summary">Outcome-level summary</a>
+        </li>
+        <li class="gem-c-contents-list__list-item gem-c-contents-list__list-item--numbered">
+          <span class="gem-c-contents-list__list-item-dash" aria-hidden="true"></span>
+          <a class="gem-c-contents-list__link govuk-link gem-print-force-link-styles govuk-link--no-underline" data-ga4-link='{"event_name":"select_content","section":"Contents","type":"contents list","index_total":12,"index_link":6}' href="#Outcome-level-detailed-findings">Outcome-level detailed findings</a>
+        </li>
+        
+        
+    </ol>
+</nav>
+
+        <div class="gem-c-print-link govuk-!-display-none-print govuk-!-margin-bottom-6">
+    <button class="govuk-link gem-c-print-link__button" data-module="print-link">Print this page</button>
+</div>
+      </div>
+
+   
+
+    <div class="govuk-grid-column-three-quarters-from-desktop contents-container">
+      <div class="gem-c-govspeak-html-publication">
+  <div data-module="govspeak" class="gem-c-govspeak govuk-govspeak gem-c-govspeak--direction-ltr govuk-!-margin-bottom-0">
+    
+
+
+
+<h2 id="introduction" class="govuk-heading-l">Introduction</h2>
+ 
+  <p>
+    This report presents the organisation’s independent assurance review of the self-assessment submitted on version 3.2 of the <a href="https://www.ncsc.gov.uk/files/Cyber%20Assessment%20Framework%20V3.2.pdf" target="_blank">National Cyber Security Centre's Cyber Assurance Framework (CAF) (opens in new tab)</a>, providing a structured
+    evaluation of how effectively cyber risks are managed across essential functions.
+    The assessment identifies strengths, areas for improvement, and priority actions
+    required to achieve alignment with the Government’s target CAF profile.
+  </p>
+
+  <p>The purpose of this report is twofold:</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>
+      To inform senior leadership and the Board</strong> of the organisation’s
+      current cyber maturity, ensuring strategic oversight and informed decision-making; and
+    </li>
+    <li>
+      To demonstrate assurance to regulators and oversight bodies</strong> that
+      appropriate governance, controls, and improvement plans are in place to protect
+      critical services.
+    </li>
+  </ul>
+
+  <p>
+    Findings are organised across:
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Key recommendations (top-level)</strong></li>            
+      <li>Objective-level recommendations</strong></li>
+                  <li>Principle-level recommendations</strong></li>
+                  <li>Outcome-level summaries and recommendations</strong> providing both a high-level strategic view
+    and detailed operational insights.</li>
+                </ul>
+  </p>
+
+  <p>
+    By implementing and tracking the recommended actions, the organisation will
+    strengthen its resilience, enhance compliance with CAF expectations, and build
+    confidence in its ongoing capability to manage and recover from cyber threats.
+  </p>
+
+
+
+
+
+
+<h2 id="review-summary" class="govuk-heading-m">About the organisation being reviewed</h2>
+<p>GDS is a business unit of Cabinet Office. GDS follow the CO
+governance structures and some of their policies but have flexibility
+more similar to that of an ALB. They have our own ways-of-working,
+tools, leadership, and suchlike. They have our own governance
+structures, and a number of directorates that operate live digital
+services for the UK public 24/7/365. These include Digital Identity,
+GOV.UK, and the Digital Service Platforms (Pay, Notify, Forms, etc).</p>
+
+
+<h2 id="system-summary" class="govuk-heading-l">System summary</h2>
+<p><section id="system-summary-introduction">
+  
+  <p>
+    The system summary provides an overview of the scope and context of this assessment,
+    outlining the key systems, services, and assets that support the organisation’s essential
+    functions. It defines the boundaries of what has been assessed and highlights any
+    dependencies on third parties or shared infrastructure.
+  </p>
+
+  <p>
+    This section establishes the foundation for interpreting assessment results by describing
+    how the systems interconnect, the criticality of each component, and their role in
+    delivering essential services. Understanding this context ensures that findings and
+    recommendations are considered in relation to operational importance and real-world
+    risk exposure.
+  </p>
+</section>
+</p>
+{{ govukSummaryList({
+  classes: "govuk-summary-list",
+  card: {
+    title: {
+      html: '<span class="govuk-heading-m">System specification in scope</span>'
+    }
+  },
+  
+  rows: [
+    {
+      key: {
+        text: "System name",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        text: "SYS-0001 Microsoft CS version 3"
+      }
+    },
+    {
+      key: {
+        text: "Self-assessment reference number",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        text: "CAF24092025FDMH"
+      }
+    },
+    {
+      key: {
+        text: "System description",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        text: "It directly delivers public services"
+      }
+    },
+    {
+      key: {
+        text: "Previous GovAssure self-assessments	",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        text: "No"
+      }
+    },
+    {
+      key: {
+        text: "System ownership"
+      },
+      value: {
+        text: "The organisation being assessed"
+      }
+    },
+     {
+      key: {
+        text: "Hosting and connectivity"
+      },
+      value: {
+        text: "On-premises"
+      }
+    },
+    
+     {
+      key: {
+        text: "Corporate services"
+      },
+      value: {
+        text: "Office productivity"
+      }
+    }
+  ]
+}) }}
+
+<h2 id="review-summary" class="govuk-heading-l">Independent Assurance Review (IAR) summary</h2>
+<section id="independent-assurance-review-summary">
+  
+  <p>
+    The independent assurance review provides an objective evaluation of the organisation’s
+    self-assessment against the <strong>NCSC Cyber Assessment Framework (CAF)</strong>.
+    It validates the accuracy, consistency, and evidence supporting the reported outcomes
+    and recommendations.
+  </p>
+
+  <p>
+    This review offers an impartial perspective on the organisation’s cyber resilience,
+    highlighting areas where assurance evidence is strong and where further validation or
+    improvement is required. The findings support transparency and confidence for both
+    internal governance and external oversight, ensuring that the assessment outcomes
+    reflect a true and reliable picture of the organisation’s cybersecurity posture.
+  </p>
+</section>
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list",
+  card: {
+    title: {
+      html: '<span class="govuk-heading-m">Independent Assurance Review (IAR) specifications</span>'
+    }
+  },
+  
+  rows: [
+  {
+      key: {
+        text: "Review type"
+      },
+      value: {
+        html: "Independent assurance review"
+      }
+    },
+    {
+      key: {
+        text: "Government CAF profile"
+      },
+      value: {
+        html: "Baseline<Br><br>
+          "
+      }
+    },
+    
+    {
+      key: {
+        text: "CAF version"
+      },
+      value: {
+        html: "CAF v3.2 GovAssure "
+      }
+    },
+    {
+      key: {
+        text: "Review by"
+      },
+      value: {
+        html: "2T Security<br>
+                Mr Michale Merch<br><Br>
+                
+                07700 900457<br>
+                michael.merch@2T.com"
+      }
+    },
+    {
+      key: {
+        text: "Purpose"
+      },
+      value: {
+        text: "To perform an Independent Assurance
+Review (IAR) of GovAssure Cyber
+Assessment Framework (CAF) self-assessment."
+      }
+    },
+    {
+      key: {
+        text: "Period"
+      },
+      value: {
+        html: "11 November 2024 to 29 November 2024"
+      }
+    },
+    {
+      key: {
+        text: "Workshops and meetings "
+      },
+      value: {
+        html: 'Meeting discussions were held on 12 December 2024 with Carlos Alcaraz, Security Strategy Lead,
+Jannik Sinner, Information Assurance Advisor, Alexander Zverev, Lead
+Security Architect, Taylor Fritz, Vulnerability Management Lead,
+Novak Djokovic, The Goat.'
+      }
+    },
+    {
+      key: {
+        text: "Scope"
+      },
+      value: {
+        html: '<p class="govuk-body">Areas in scope:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>review, validate and report on the organisations own self-
+assessment as to the achievement against the target
+government CAF profile assigned to each system (Baseline
+or Enhanced)</li>
+  <li>consider the design, implementation and operation of key
+controls supporting the completion of the indicators of good
+practice and achievement of overarching contributing
+outcomes based on supporting narrative statements and
+evidence to justify the narrative</li>
+  <li>undertake a combination of desk-based review as well as
+group workshops or individual one-to-one interviews with
+GDS personnel, to analyse and determine the information
+gaps against the GovAssure and Government Functional
+Standard GovS 007: Security and other related guidance</li>
+</ul>'
+      }
+    }
+  ]
+}) }}
+
+
+<h2 id="key-recommendations" class="govuk-heading-l">Key recommendations (top-level)</h2>
+<p>The key recommendations provide a high-level summary of the most critical actions the organisation should prioritise to strengthen its overall cyber resilience. These recommendations draw on the main findings from the Cyber Assessment Framework (CAF) review and highlight areas that have the greatest potential impact on safeguarding essential functions.
+
+<br><br>They represent strategic priorities that require senior management attention, clear ownership, and timely action. Progress against these key recommendations should be tracked closely to ensure measurable improvement and alignment with the organisation’s target CAF profile.</p>
+
+</p>
+{{ govukSummaryList({
+  classes: "govuk-summary-list",
+  card: {
+    title: {
+      html: '<span class="govuk-heading-m">List of 6 top-level key recommendations </span>'
+    }
+  },
+  
+  rows: [
+    
+    {
+      key: {
+        text: "Title of recommendation",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+       text: "Recommendation detail"
+      }
+    },
+    {
+      key: {
+        text: "1. Maintain an up-to-date asset register of systems, services",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: 'Maintain an up-to-date asset register of systems, services, information flows and suppliers which support the organisation’s essential functions — and link that register to risk assessments (Principle A3 Asset management). '
+      }
+    },
+    {
+      key: {
+        text: "2. Extend risk-assessment processes to include supply-chain and third-party dependencies",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: 'Extend risk-assessment processes to include supply-chain and third-party dependencies, with contractual and operational controls in place to mitigate those risks (Principle A4 Supply chain). '
+      }
+    },
+    {
+      key: {
+        text: "3. Deploy strong identity and access control mechanisms",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: 'Deploy strong identity and access control mechanisms (e.g., least-privilege, multifactor authentication) to ensure that access to critical services is appropriately managed (Principle B2 Identity and access control)'
+      }
+    },
+    {
+      key: {
+        text: "4. Ensure data-security controls — including encryption",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: 'Ensure data-security controls — including encryption, integrity checking, classification and secure disposal — are aligned to the sensitivity of the data and the impact on essential functions if compromised (Principle B3 Data security). '
+      }
+    },
+    {
+      key: {
+        text: "5. Harden systems and networks, build resilience",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: 'Harden systems and networks, build resilience (e.g., network segmentation, redundancy, patch-management) and ensure staff receive relevant security awareness and training (Principles B4, B5 and B6). '
+      }
+    },
+    {
+      key: {
+        text: "6. Develop proactive detection",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: 'Develop proactive detection (“threat hunting”, anomaly detection) capabilities to look beyond known attack patterns and uncover emerging or hidden adversarial activity (Principle C2 Proactive security event discovery). '
+      }
+    }
+  ]
+}) }}
+
+
+
+<h2 id="Objective-level-recommendations" class="govuk-heading-l">Objective-level recommendations</h2>
+<p>The objective-level recommendations provide a strategic overview of key actions the organisation should take to strengthen its cyber resilience in line with the NCSC Cyber Assessment Framework (CAF). Each recommendation corresponds to one of the four high-level CAF objectives.
+
+<br><br>These recommendations are designed to guide leadership and senior management in setting direction, allocating resources, and embedding cybersecurity into organisational governance and risk management practices. They form the foundation for more detailed, principle-level improvements and ongoing performance tracking.
+
+</p>
+{{ govukSummaryList({
+  classes: "govuk-summary-list",
+  card: {
+    title: {
+      html: '<span class="govuk-heading-m">Objective A, B, C and D - level recommendations</span>'
+    }
+  },
+  
+  rows: [
+    
+    {
+      key: {
+        text: "Objective",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+       text: "Recommendation detail"
+      }
+    },
+    {
+      key: {
+        text: "Objective A: Governance and risk management",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: 'Formalise board/exec-level reporting on cyber risk, ensuring that cybersecurity is integrated into the organisation’s enterprise risk management and strategic planning (aligns with Principle A1 Governance).'
+      }
+    },
+    {
+      key: {
+        text: "Objective B: Protecting against cyber attacks",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: 'Develop, review and enforce comprehensive service protection policies and procedures that cover the systems supporting essential functions (Principle B1 Service protection policies, processes and procedures). '
+      }
+    },
+    {
+      key: {
+        text: "Objective C: Detecting cyber security events",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: 'Deploy continuous security monitoring of network and information systems supporting essential functions, with suitable tools, logging, alerting and incident-triage processes (Principle C1 Security monitoring). '
+      }
+    },
+    {
+      key: {
+        text: "Objective D: Minimising the impact of cyber security incidents",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: 'Establish and test incident response and recovery planning (including business continuity, manual fall-backs, coordination with external stakeholders) so that essential functions can continue or be restored when an incident occurs (Principle D1 Response and recovery planning). '
+      }
+    }
+  ]
+}) }}
+
+
+
+
+
+
+
+
+<h2 id="Principle-level-recommendations" class="govuk-heading-l">Principle-level recommendations</h2>
+<p>The principle-level recommendations translate the outcome findings into targeted, actionable improvements aligned with the specific principles of the NCSC Cyber Assessment Framework (CAF). Each recommendation focuses on strengthening governance, protection, detection, and response capabilities in a way that supports the organisation’s essential functions.
+
+<br><br>These recommendations are intended to guide practical implementation and continuous improvement efforts. They should be reviewed alongside current policies, risk assessments, and control frameworks to ensure alignment with the organisation’s risk appetite and target CAF profile.</p>
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list",
+  card: {
+    title: {
+      html: '<span class="govuk-heading-m">5 Principle-level recomendations</span>'
+    }
+  },
+  
+  rows: [
+    
+    {
+      key: {
+        text: "Principle",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        text: "Recommendation detail"
+      }
+    },
+    {
+      key: {
+        text: "Principle: A2 — Risk Management",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: '<p class="govuk-body">Adopt a formal, organisation-wide cyber risk management framework (e.g. ISO 27005 or NIST RMF) that integrates with enterprise risk processes.</p>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>Identify threats and vulnerabilities that could compromise essential functions.</li>
+                  
+                </ul>'
+      }
+    },
+    {
+      key: {
+        html: "Principle: A4 – Supply Chain",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: '<p class="govuk-body">Develop and embed a supply-chain security management programme that provides continuous oversight of all third parties supporting essential functions.</p>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>Maintain an up-to-date supplier inventory, identifying which vendors or contractors have access to sensitive systems or data.</li>
+                  <li>Include cybersecurity requirements in contracts, aligned with your organisation’s security policies (e.g., incident reporting, patching SLAs, data-handling expectations).</li>
+                  <li>Require evidence-based assurance such as penetration-test results, independent audits, or certification (e.g., Cyber Essentials +, ISO 27001).</li>
+                  <li>Conduct regular risk assessmentsof third-party suppliers, considering their security posture, historical performance, and potential impact on your essential functions.</li>
+                </ul>'
+      }
+    },
+    {
+      key: {
+        text: "Principle: B2 — Identity and Access Control",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: '<p class="govuk-body">Implement strong identity governance and least-privilege access for all systems supporting essential functions.</p>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>Enforce multi-factor authentication (MFA) for all privileged and remote accounts.</li>
+                  <li>Review and recertify user access quarterly, removing dormant or duplicate accounts.</li>
+                  <li>Use role-based access control (RBAC) tied to job functions and separation of duties.</li>
+                </ul>'
+      }
+    },
+    {
+      key: {
+        text: "Principle: B3 — Data Security",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: 'Apply proportionate data-protection measures across the lifecycle of sensitive information.'
+      }
+    },
+    {
+      key: {
+        text: "Principle: C1 — Security Monitoring",
+        classes: "govuk-!-width-one-half"
+      },
+      value: {
+        html: 'Institutionalise a continuous-improvement culture following incidents and exercises. 
+        <ul class="govuk-list govuk-list--bullet">
+                  <li>Conduct structured post-incident reviews with cross-functional stakeholders.</li>
+                  <li>Document root causes, response effectiveness and lessons learned.</li>
+                  
+                </ul>'
+      }
+    }
+  ]
+}) }}
+
+
+
+
+
+<h2 id="Outcome-level-summary" class="govuk-heading-l">Outcome-level summary</h2>
+<p>The outcome-level summary provides a concise overview of performance against each outcome within the NCSC Cyber Assessment Framework (CAF). It highlights how well the organisation’s current capabilities align with the target Government CAF profile and where improvement is required.
+
+<br><br>Each outcome reflects the level of maturity achieved across key security objectives, enabling stakeholders to quickly identify areas of strength and those needing further attention. This summary serves as a foundation for deeper analysis in the detailed findings and for prioritising future improvement actions.</p>
+
+
+
+<h3 class="govuk-heading-m">Government CAF profile</h3>
+<p>If an outcome <strong>does not display</strong> a visible label indicating that it has failed to meet its target Government CAF profile, this means the system has met its target.</p>
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{{ govukTable({
+  caption: "List of outcome-level summary",
+  captionClasses: "govuk-table__caption--m",
+  firstCellIsHeader: true,
+  head: [
+    {
+      text: "Outcome area",
+      classes: "app-custom-class"
+    },
+    {
+      text: "Self-assessment",
+      classes: "app-custom-class"
+    },
+    {
+      html: "Independent <Br>asurrance review",
+      classes: "app-custom-class"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "A1.a Board direction	"
+      },
+      {
+         html: '<strong class="govuk-tag govuk-tag--red">Not achieved</strong>'+'<Br><Br><strong>CAF profile</strong><Br><strong class="govuk-tag govuk-tag--grey govuk-!-margin-top-1">Not met</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "A1.b Roles and responsibilities	"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "A1.c Decision-making"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "A2.a Risk Management Process"
+      },
+      {
+         html: '<strong class="govuk-tag govuk-tag--red">Not achieved</strong>'+'<Br><Br><strong>CAF profile</strong><Br><strong class="govuk-tag govuk-tag--grey govuk-!-margin-top-1">Not met</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "A2.b Assurance"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "A3.a Asset managements"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "A4.a Supply chain	"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+         html: '<strong class="govuk-tag govuk-tag--red">Not achieved</strong>'+'<Br><Br><strong>CAF profile</strong><Br><strong class="govuk-tag govuk-tag--grey govuk-!-margin-top-1">Not met</strong>'
+      }
+    ],
+    [
+      {
+        text: "B1.a Policy and process development"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "B1.b Policy and process implementation	"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "B2.a Identity verification, authentication and authorisation	"
+      },
+      {
+         html: '<strong class="govuk-tag govuk-tag--yellow">Partially achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "B2.b Device management	"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--yellow">Partially achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "B2.c Privileged user management	"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "B2.d Identity and access management (IdAM)	"
+      },
+      {
+         html: '<strong class="govuk-tag govuk-tag--red">Not achieved</strong>'+'<Br><Br><strong>CAF profile</strong><Br><strong class="govuk-tag govuk-tag--grey govuk-!-margin-top-1">Not met</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "B3.a Understanding data	"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "B3.b Data in transit	"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "B3.c Stored data	"
+      },
+      {
+         html: '<strong class="govuk-tag govuk-tag--red">Not achieved</strong>'+'<Br><Br><strong>CAF profile</strong><Br><strong class="govuk-tag govuk-tag--grey govuk-!-margin-top-1">Not met</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "B3.d Mobile data	"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "B3.e Media equipment sanitisation	"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "B4.a Secure by design	"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+         html: '<strong class="govuk-tag govuk-tag--red">Not achieved</strong>'+'<Br><Br><strong>CAF profile</strong><Br><strong class="govuk-tag govuk-tag--grey govuk-!-margin-top-1">Not met</strong>'
+      }
+    ],
+    [
+      {
+        text: "B4.b Secure configuration	"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "B4.c Secure management	"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "B4.d Vulnerability management	"
+      },
+      {
+         html: '<strong class="govuk-tag govuk-tag--yellow">Partially achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "B5.a Resilience preparation	"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--yellow">Partially achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "B5.b Design for resilience	"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "B5.c backups"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "B6.a Cyber security culture"
+      },
+      {
+         html: '<strong class="govuk-tag govuk-tag--yellow">Partially achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "B6.b Cyber security training"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--yellow">Partially achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "C1.a Monitoring coverage	"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "C1.b Securing logs	"
+      },
+      {
+         html: '<strong class="govuk-tag govuk-tag--red">Not achieved</strong>'+'<Br><Br><strong>CAF profile</strong><Br><strong class="govuk-tag govuk-tag--grey govuk-!-margin-top-1">Not met</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "C1.c Generating alerts	"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "C1.d Identifying security incidents"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "C1.e Monitoring tools and skills	"
+      },
+      {
+         html: '<strong class="govuk-tag govuk-tag--red">Not achieved</strong>'+'<Br><Br><strong>CAF profile</strong><Br><strong class="govuk-tag govuk-tag--grey govuk-!-margin-top-1">Not met</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "C2.a System abnormalities for attack detection"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "C2.b Proactive attack discovery"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "D1.a Response plan"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+         html: '<strong class="govuk-tag govuk-tag--red">Not achieved</strong>'+'<Br><Br><strong>CAF profile</strong><Br><strong class="govuk-tag govuk-tag--grey govuk-!-margin-top-1">Not met</strong>'
+      }
+    ],
+    [
+      {
+        text: "D1.b Response and recovery capability	"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "D1.c Testing and exercising"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "D2.a Incident root cause analysis"
+      },
+      {
+         html: '<strong class="govuk-tag govuk-tag--yellow">Partially achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "D2.b Using incidents to drive improvements"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--yellow">Partially achieved</strong>'
+      }
+    ],
+    [
+      {
+        text: "D2.c Testing and exercising	"
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      },
+      {
+        html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+      }
+    ]
+  
+  ]
+  
+}) }}
+<p><a href="#" class="govuk-link govuk-body">Download table data (CSV)</a></p>
+
+
+<h2 id="Outcome-level-detailed-findings" class="govuk-heading-l">Outcome-level detailed findings</h2>
+<P>The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32. The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero.</P>
+
+<h3 class="govuk-heading-m">Interpreting detailed findings and recommendations</h3>
+<p>The detailed findings highlight areas where the organisation’s current controls, processes, or governance arrangements align—or fall short—of the target Government CAF profile. Each recommendation is designed to guide practical improvement.
+
+<br><br>Findings should be reviewed, prioritised, and translated into clear actions that address identified gaps. <Br><br>Assign a <strong>priority level</strong> to each action:
+<ul class="govuk-list govuk-list--bullet">
+                  <li><strong>High priority:</strong>Issues that present significant risk to essential functions or where current practices fall materially below the target profile. These require prompt remediation and regular progress review.</li>
+                  <li><strong>Low priority:</strong>Areas of partial compliance or enhancement opportunities that can be addressed through planned improvements or continuous development activities.</li>
+                </ul>
+              
+</p>
+
+
+
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{{ govukTable({
+  caption: "List of detailed findings and recommendations",
+  captionClasses: "govuk-table__caption--m",
+  firstCellIsHeader: true,
+  head: [
+    {
+      text: "Outcome/IGP",
+      classes: "app-custom-class govuk-grid-column-full"
+    },
+    {
+      text: "Observations",
+      classes: "app-custom-class"
+    },
+    {
+      html: "Recommendation detail",
+      classes: "app-custom-class"
+    }
+  ],
+  rows: [
+    [
+      {
+        html: "D2.b/<br> Achieved statements 1, 2, 3, 4."
+      },
+      {
+         html: '<strong>Opportunity</strong><br>Improve documented evidence on thread reviews and thread impact risks.<br><Br>
+<strong>Risk</strong><br>
+Illegitimate devices or
+network elements will not
+be identified promptly'
+      },
+      {
+        html: 'Implement strong device management such that
+only corporately owned or managed devices can
+access and carry out appropriate services and
+actions. At least document and maintain an
+understanding of third-party devices with approval
+to access your network and assurance of these
+devices to support monitoring of unauthorised
+devices.'
+      }
+    ],
+  
+    [
+      {
+        html: "B3.c/<br> Achieved statements 1, 2, 3, 4."
+      },
+      {
+         html: '<strong>Comment</strong><br>Evidence that a
+comprehensive backup
+strategy has planned and
+started but not been fully
+implemented across the
+system that can be easily
+tested and monitored for
+efficacy.<br><Br>
+<strong>Risk</strong><br>
+Backup process will not
+bring system back to
+established recovery
+point at objective time'
+      },
+      {
+        html: '
+        <ol class="govuk-list govuk-list--number">
+  
+
+        <li>Complete the implementation of AWS back up as
+service strategy where all systems are split across
+different regions to ensure resilience</li>
+<li>Implement and test a backup process across the
+system that can be easily tested and monitored</li>
+</ol>'
+      }
+    ],
+    [
+      {
+        html: "B5.b/<br> Not achieved statements 1"
+      },
+      {
+         html: '<strong>Comment</strong><br>Vulnerabilities are not being tracked correctly<br><Br>
+<strong>Risk</strong><br>
+Not tracking or delayed
+triaging of vulnerabilities
+increases likelihood of
+exploitation of the
+vulnerability'
+      },
+      {
+        html: ' <ol class="govuk-list govuk-list--number">
+  
+
+        <li>Evidence implementation of the Vulnerability
+management policy</li>
+<li>Introduce measures that can detect and track out
+of date software and services that can be
+removed</li>
+<li>Outline of how temporary mitigations are decided
+upon and reviewed</li>
+</ol>'
+      }
+    ],
+  
+    [
+      {
+        html: "B6.b/<br> Achieved statements 1, 2, 3<br><br>
+        Partially achieved statement 1, 2, 3<br><br>
+        Not achieved statements 4"
+      },
+      {
+         html: '<strong>Comment</strong><br>Not evidence of training
+provided being reviewed
+or tracked for all
+programme staff including
+assurance from suppliers<br><Br>
+<strong>Risk</strong><br>
+Not all staff attend training
+so are aware of their
+responsibilities in relation
+to cyber security and data
+protection or the training
+does not cover more
+recent risks or threats'
+      },
+      {
+        html: '
+        <ol class="govuk-list govuk-list--number">
+  
+
+        <li>Evidence implementation of the Vulnerability
+management policy</li>
+<li>Awareness training content should use different
+techniques to cover cyber security policies and
+relate to risk management e.g. social engineering.
+Track who attends training and tie to policy
+monitoring.</li>
+<li>Review the training content at least annually to
+ensure that it is effective and relevant to the
+threats and risks that the OL programme is
+concerned about.</li>
+</ol>'
+      }
+    ]
+  ]
+}) }}
+
+
+</div>
+
+
+</div>
+</div>
+    </div>
+  </div>
+
+  <div class="govuk-grid-row">
+    
+<a class="govuk-link gem-c-back-to-top-link govuk-!-display-none-print" href="#contents">
+    <svg class="gem-c-back-to-top-link__icon" xmlns="http://www.w3.org/2000/svg" width="13" height="17" viewbox="0 0 13 17" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M6.5 0L0 6.5 1.4 8l4-4v12.7h2V4l4.3 4L13 6.4z"></path>
+    </svg>
+    Back to top
+</a>
+  </div>
+</div>
+
+{% endblock %}

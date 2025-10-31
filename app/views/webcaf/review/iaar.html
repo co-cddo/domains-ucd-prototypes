@@ -1,0 +1,184 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+ IAAR – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+ <span class="govuk-caption-l">SYS-0001 Microsoft CS version 3 (CAF24092025FDMH)
+</span>
+
+
+<header class="gem-c-inverse-header govuk-!-padding-top-6 govuk-!-padding-bottom-6">
+    
+  
+<div class="gem-c-heading  gem-c-heading--inverse govuk-!-margin-bottom-0">
+      <span class="govuk-caption-xl gem-c-heading__context">
+    Corporate report
+  </span>
+
+
+  <h1 class="gem-c-heading__text govuk-heading-xl">
+    Afghanistan - Country of Concern
+</h1>
+</div>
+
+    <p class="gem-c-inverse-header__subtext">Updated 16 October 2014</p>
+</header>
+      <h1 class="govuk-heading-l">
+        GovAssure Independent Assurance Review Report (IARR)
+      </h1>
+      
+      
+       <p class="govuk-body govuk-!-font-size-16"> Updated on 24 September 2025.</p>
+      
+       {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Asessor organisation:"
+      },
+      value: {
+        text: "2T Security"
+      }
+    },
+    {
+      key: {
+        text: "Purpose of this review:"
+      },
+      value: {
+        text: "To perform an Independent Assurance
+Review (IAR) of GovAssure Cyber
+Assessment Framework (CAF) self-assessment."
+      }
+    },
+    {
+      key: {
+        text: "Period of review:"
+      },
+      value: {
+        html: "11 November 2024 to 29 November 2024"
+      }
+    },
+    {
+      key: {
+        text: "Workshops and meetings: "
+      },
+      value: {
+        html: 'Meeting discussions were held on 12 December 2024 with Carlos Alcaraz, Security Strategy Lead,
+Jannik Sinner, Information Assurance Advisor, Alexander Zverev, Lead
+Security Architect, Taylor Fritz, Vulnerability Management Lead,
+Novak Djokovic, The Goat.'
+      }
+    },
+    {
+      key: {
+        text: "Scope of the review:"
+      },
+      value: {
+        html: '<p class="govuk-body">Areas in scope:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>review, validate and report on the organisations own self-
+assessment as to the achievement against the target
+government CAF profile assigned to each system (Baseline
+or Enhanced)</li>
+  <li>consider the design, implementation and operation of key
+controls supporting the completion of the indicators of good
+practice and achievement of overarching contributing
+outcomes based on supporting narrative statements and
+evidence to justify the narrative</li>
+  <li>undertake a combination of desk-based review as well as
+group workshops or individual one-to-one interviews with
+GDS personnel, to analyse and determine the information
+gaps against the GovAssure and Government Functional
+Standard GovS 007: Security and other related guidance</li>
+</ul>'
+      }
+    },
+    {
+      key: {
+        text: "Organisation overview:"
+      },
+      value: {
+        html: "GDS is a business unit of Cabinet Office. GDS follow the CO
+governance structures and some of their policies but have flexibility
+more similar to that of an ALB. They have our own ways-of-working,
+tools, leadership, and suchlike. They have our own governance
+structures, and a number of directorates that operate live digital
+services for the UK public 24/7/365. These include Digital Identity,
+GOV.UK, and the Digital Service Platforms (Pay, Notify, Forms, etc).
+"
+      }
+    }
+  ]
+}) }}
+
+<h2 class="govuk-heading-m">
+  Exectutive summary
+      </h2>
+<p>The One Login programme has demonstrated a comprehensive
+understanding of its cyber security posture, demonstrated by the fact
+that there is little difference between the self-assessment and
+independent validation. The programme has already identified and
+planned work to addressed key gaps, showcasing a proactive
+approach to mitigating potential threats.<br><br>
+Given the relative age of the programme, a strong level of cyber
+security maturity has been demonstrated, showing a good
+understanding of the threat and risks they face.<br><br>
+The understanding of risks and threats and implementing cyber
+security measures is generally meeting good practice considering
+that the programme has been implemented relatively recently.
+The programme has strong governance processes and effective risk
+management processes. Notable strengths include solid
+documentation and assurance processes.<br><br>
+Key improvement areas identified are focused on enhancing identity
+and access control, as well as system security and exercising. While
+contextual awareness is evident, there are instances where good
+practice may not be fully supported by tangible evidence. The
+programme's scope is limited to AWS and Github technologies.</p>
+<hr><br>
+ <h2 class="govuk-heading-m">
+        Key
+recommendations
+      </h2>
+      <p><strong>Summary</strong><br>
+      Given the use of suppliers on the programme, we would prioritise
+focus on recommendations associated with A4, B2 and B4. This will
+likely focus on implementing policies or plans already documented.</p>
+
+<p class="govuk-body"><strong>Detailed recommendations</strong><Br>
+Key areas of improvement, many of which have planned work that
+should continue:</p>
+ <ol class="govuk-list govuk-list--number">
+  <li>Increase visibility and ensure flow down of requirements for
+subcontractors.</li>
+  <li>Implement and review privileged access policy and role-
+based access. Identify, assess and risk manage third party
+connections, especially those associated with privileged
+access and actions.</li>
+  <li>Develop and expand the work on data management to ensure
+coverage aligned with good practice in the CAF, where
+possible relying less on manual processes.</li>
+</ol>
+
+  
+      <p>
+        Read more <a href="/path/of/page">about this topic</a>.
+      </p>
+
+    </div>
+  </div>
+
+{% endblock %}
