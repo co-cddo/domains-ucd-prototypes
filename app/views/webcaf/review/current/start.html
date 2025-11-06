@@ -1,39 +1,34 @@
-{% extends "layouts/webcaf-review.html" %}
+{% extends "layouts/main.html" %}
+
 {% block pageTitle %}
-  Start page  - Submit a CAF self-assessment for a system - GOV.UK Prototype Kit
+Start your Independent Assurance Review
 {% endblock %}
 
-
 {% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
 
+    <h1 class="govuk-heading-xl">Independent Assurance Review</h1>
+    <p class="govuk-body">
+      Use this service to complete and review your organisation’s self-assessment
+      against the <strong>NCSC Cyber Assessment Framework (CAF)</strong>.
+    </p>
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <p class="govuk-body">
+      You will be able to review outcomes, confirm recommendations, and generate a final assurance report.
+    </p>
 
-      <h1 class="govuk-heading-xl">
-      Review a WebCAF self-assessment
-      </h1>
-      <p>The WebCAF self-assessment allows you to assess your organisation’s critical systems.</p>
-      <p>This is stage 4 of GovAssure, the cyber assurance process used to understand the level of cyber resilience across government.  
-      </p>
+    <h2 class="govuk-heading-m">Before you start</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>You must be an authorised Independent Assessor</li>
+      <li>You will need access to the organisation’s CAF self-assessment data</li>
+      <li>You can save and return at any time</li>
+    </ul>
 
-      <p>The current GovAssure WebCAF is based on version 3.2 of the <a href="https://www.ncsc.gov.uk/files/Cyber%20Assessment%20Framework%20V3.2.pdf" target="_blank">National Cyber Security Centre's Cyber Assurance Framework (CAF) (opens in new tab)</a>.
-      </p>
-      
+    <a href="dashboard" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
+      Start now
+    </a>
 
-         
-
-      <a href="sign-in" role="button" draggable="false" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8" data-module="govuk-button">
-        Sign in
-        <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-          <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
-        </svg>
-      </a>
-     
-    </div>
-   
-
-    </div>    
   </div>
-
+</div>
 {% endblock %}

@@ -1,0 +1,43 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Clarification request sent – CAF Assessment
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Return to task list",
+  href: "/webcaf/review/current/task-list"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+
+{{ govukPanel({
+  titleText: "Clarification request sent",
+  html: "Your clarification for <strong>Microsoft CS version 3 (CAF24092025FDMH)</strong> has been recorded."
+}) }}
+
+<p class="govuk-body">
+This system has been marked as <strong>Requires clarification</strong>. 
+The organisation will be notified to review and correct the details you identified.
+You’ll be able to continue once they’ve submitted an updated version.
+</p>
+
+<h2 class="govuk-heading-m govuk-!-margin-top-6">What happens next</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <li>The organisation receives your clarification request.</li>
+  <li>They update and resubmit their self-assessment data.</li>
+  <li>You’ll be notified when the information is ready for review again.</li>
+</ul>
+
+{{ govukButton({
+  text: "Return to task list",
+  href: "/webcaf/review/current/task-list"
+}) }}
+
+</div>
+</div>
+{% endblock %}

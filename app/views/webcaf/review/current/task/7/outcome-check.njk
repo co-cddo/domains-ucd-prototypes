@@ -1,0 +1,149 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Check your outcome-level review – CAF Assessment
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back to task list",
+  href: "/webcaf/review/current/task-list"
+}) }}
+{% endblock %}
+
+{% block content %}
+<style>
+  .caf-outcome-table .govuk-table__cell {
+    vertical-align: top;
+    padding: 6px 8px;
+  }
+  /* Adjusted column split: 50/30/20 */
+  .caf-outcome-table th:nth-child(1),
+  .caf-outcome-table td:nth-child(1) { width: 50%; }
+  .caf-outcome-table th:nth-child(2),
+  .caf-outcome-table td:nth-child(2) { width: 30%; }
+  .caf-outcome-table th:nth-child(3),
+  .caf-outcome-table td:nth-child(3) { width: 20%; }
+  .govuk-tag { white-space: nowrap; }
+</style>
+
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+
+<span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
+<h1 class="govuk-heading-l">Check your outcome-level review</h1>
+
+<p class="govuk-body">
+Review the final comparison between the organisation’s <strong>self-assessment</strong> and your <strong>independent assurance review</strong>.
+</p>
+
+<div id="summaryTable" class="govuk-!-margin-top-6"></div>
+
+
+
+<div class="govuk-button-group govuk-!-margin-top-4">
+  {{ govukButton({ text: "Confirm and return to task list" }) }}
+  <p class="govuk-body govuk-!-margin-top-6">
+  <a href="/webcaf/review/current/task/7/outcome-review" class="govuk-link">Change your review answers</a>
+</p>
+</div>
+
+</div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const results = JSON.parse(sessionStorage.getItem('outcomeReview') || '{}');
+
+  const outcomes = [
+    { id: "A1a", title: "A1.a Board direction", self: "Not achieved" },
+    { id: "A1b", title: "A1.b Roles and responsibilities", self: "Achieved" },
+    { id: "A1c", title: "A1.c Decision-making", self: "Achieved" },
+    { id: "A2a", title: "A2.a Risk Management Process", self: "Not achieved" },
+    { id: "A2b", title: "A2.b Assurance", self: "Achieved" },
+    { id: "A3a", title: "A3.a Asset management", self: "Achieved" },
+    { id: "A4a", title: "A4.a Supply chain", self: "Achieved" },
+    { id: "B1a", title: "B1.a Policy and process development", self: "Achieved" },
+    { id: "B1b", title: "B1.b Policy and process implementation", self: "Achieved" },
+    { id: "B2a", title: "B2.a Identity verification, authentication and authorisation", self: "Partially achieved" },
+    { id: "B2b", title: "B2.b Device management", self: "Achieved" },
+    { id: "B2c", title: "B2.c Privileged user management", self: "Achieved" },
+    { id: "B2d", title: "B2.d Identity and access management (IdAM)", self: "Not achieved" },
+    { id: "B3a", title: "B3.a Understanding data", self: "Achieved" },
+    { id: "B3b", title: "B3.b Data in transit", self: "Achieved" },
+    { id: "B3c", title: "B3.c Stored data", self: "Not achieved" },
+    { id: "B3d", title: "B3.d Mobile data", self: "Achieved" },
+    { id: "B3e", title: "B3.e Media equipment sanitisation", self: "Achieved" },
+    { id: "B4a", title: "B4.a Secure by design", self: "Achieved" },
+    { id: "B4b", title: "B4.b Secure configuration", self: "Achieved" },
+    { id: "B4c", title: "B4.c Secure management", self: "Achieved" },
+    { id: "B4d", title: "B4.d Vulnerability management", self: "Partially achieved" },
+    { id: "B5a", title: "B5.a Resilience preparation", self: "Achieved" },
+    { id: "B5b", title: "B5.b Design for resilience", self: "Achieved" },
+    { id: "B5c", title: "B5.c Backups", self: "Achieved" },
+    { id: "B6a", title: "B6.a Cyber security culture", self: "Partially achieved" },
+    { id: "B6b", title: "B6.b Cyber security training", self: "Achieved" },
+    { id: "C1a", title: "C1.a Monitoring coverage", self: "Achieved" },
+    { id: "C1b", title: "C1.b Securing logs", self: "Not achieved" },
+    { id: "C1c", title: "C1.c Generating alerts", self: "Achieved" },
+    { id: "C1d", title: "C1.d Identifying security incidents", self: "Achieved" },
+    { id: "C1e", title: "C1.e Monitoring tools and skills", self: "Not achieved" },
+    { id: "C2a", title: "C2.a System abnormalities for attack detection", self: "Achieved" },
+    { id: "C2b", title: "C2.b Proactive attack discovery", self: "Achieved" },
+    { id: "D1a", title: "D1.a Response plan", self: "Achieved" },
+    { id: "D1b", title: "D1.b Response and recovery capability", self: "Achieved" },
+    { id: "D1c", title: "D1.c Testing and exercising", self: "Achieved" },
+    { id: "D2a", title: "D2.a Incident root cause analysis", self: "Partially achieved" },
+    { id: "D2b", title: "D2.b Using incidents to drive improvements", self: "Achieved" },
+    { id: "D2c", title: "D2.c Testing and exercising", self: "Achieved" }
+  ];
+
+  const tags = {
+    "Achieved": "govuk-tag--green",
+    "Partially achieved": "govuk-tag--yellow",
+    "Not achieved": "govuk-tag--red"
+  };
+
+  let html = `
+  <table class="govuk-table caf-outcome-table govuk-!-margin-bottom-2">
+    <thead>
+      <tr>
+        <th class="govuk-table__header">Outcome area</th>
+        <th class="govuk-table__header">Self-assessment</th>
+        <th class="govuk-table__header">Your review decision</th>
+      </tr>
+    </thead>
+    <tbody>
+  `;
+
+  outcomes.forEach(o => {
+    const assessorChoice = results[o.id] || "confirm";
+    const assessorVal = assessorChoice === "confirm" ? o.self : assessorChoice;
+    const selfColour = tags[o.self] || "govuk-tag--grey";
+    const assessorColour = tags[assessorVal] || "govuk-tag--grey";
+    const selfCAF = o.self === "Not achieved" ? `<br><br><strong>CAF profile</strong><br><strong class="govuk-tag govuk-tag--grey govuk-!-margin-top-1">Not met</strong>` : "";
+    const assessorCAF = assessorVal === "Not achieved" ? `<br><br><strong>CAF profile</strong><br><strong class="govuk-tag govuk-tag--grey govuk-!-margin-top-1">Not met</strong>` : "";
+
+    html += `
+      <tr class="govuk-table__row govuk-!-padding-1">
+        <td class="govuk-table__cell"><strong>${o.title}</strong></td>
+        <td class="govuk-table__cell">
+          <strong class="govuk-tag ${selfColour}">${o.self}</strong>${selfCAF}
+        </td>
+        <td class="govuk-table__cell">
+          <strong class="govuk-tag ${assessorColour}">${assessorVal}</strong>${assessorCAF}
+        </td>
+      </tr>
+    `;
+  });
+
+  html += "</tbody></table>";
+  document.getElementById("summaryTable").innerHTML = html;
+});
+
+document.querySelector('.govuk-button').addEventListener('click', e => {
+  e.preventDefault();
+  window.location.href = '/webcaf/review/current/task-list';
+});
+</script>
+{% endblock %}

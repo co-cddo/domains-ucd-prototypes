@@ -1,0 +1,131 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Add key recommendations – CAF Assessment
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukBackLink({
+  text: "Back to task list",
+  href: "/webcaf/review/current/task-list"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+
+<span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
+<h1 class="govuk-heading-l">Add key recommendations</h1>
+
+<p class="govuk-body">
+Use this section to record the highest-priority recommendations arising from your assurance review.  
+Each recommendation should summarise a distinct, critical improvement area identified during assessment.
+</p>
+
+<form id="" action="/webcaf/review/current/task/4/key-recommendations-check" method="post">
+<div id="recommendation-list">
+
+  <div class="recommendation-item" data-index="1">
+    <h2 class="govuk-heading-m">Recommendation 1</h2>
+
+    {{ govukInput({
+      label: { text: "Recommendation title" },
+      id: "rec-title-1",
+      name: "rec-title-1",
+      classes: "govuk-input--width-30"
+    }) }}
+
+    {{ govukTextarea({
+      label: { text: "Details and rationale" },
+      id: "rec-detail-1",
+      name: "rec-detail-1",
+      rows: 5,
+      hint: { text: "Explain why this recommendation matters and its expected impact." }
+    }) }}
+
+    <button type="button" class="govuk-button govuk-button--secondary remove-rec" data-index="1" style="margin-top:10px; display:none;">Remove</button>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+  </div>
+
+</div>
+
+<button class="govuk-button govuk-button--secondary" type="button" id="add-rec-btn">Add another recommendation</button>
+
+<div class="govuk-button-group govuk-!-margin-top-6">
+  {{ govukButton({
+    text: "Save and return to task list"
+  }) }}
+</div>
+</form>
+
+</div>
+</div>
+
+<script>
+const addBtn = document.getElementById('add-rec-btn');
+const list = document.getElementById('recommendation-list');
+let index = 1;
+
+function updateHeadings() {
+  const items = document.querySelectorAll('.recommendation-item');
+  items.forEach((item, i) => {
+    item.dataset.index = i + 1;
+    item.querySelector('h2').textContent = `Recommendation ${i + 1}`;
+    item.querySelector('.remove-rec').dataset.index = i + 1;
+    // Only show remove buttons if more than one recommendation exists
+    item.querySelector('.remove-rec').style.display = (items.length > 1) ? 'inline-block' : 'none';
+  });
+}
+
+addBtn.addEventListener('click', () => {
+  index++;
+  const block = document.createElement('div');
+  block.classList.add('recommendation-item');
+  block.dataset.index = index;
+  block.innerHTML = `
+    <h2 class="govuk-heading-m">Recommendation ${index}</h2>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="rec-title-${index}">Recommendation title</label>
+      <input class="govuk-input govuk-input--width-30" id="rec-title-${index}" name="rec-title-${index}" type="text">
+    </div>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="rec-detail-${index}">Details and rationale</label>
+      <textarea class="govuk-textarea" id="rec-detail-${index}" name="rec-detail-${index}" rows="5"></textarea>
+    </div>
+    <button type="button" class="govuk-button govuk-button--secondary remove-rec" data-index="${index}" style="margin-top:10px;">Remove</button>
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+  `;
+  list.appendChild(block);
+  updateHeadings();
+});
+
+list.addEventListener('click', e => {
+  if (e.target.classList.contains('remove-rec')) {
+    e.preventDefault();
+    const item = e.target.closest('.recommendation-item');
+    item.remove();
+    updateHeadings();
+  }
+});
+
+document.getElementById('key-recs-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const items = document.querySelectorAll('.recommendation-item');
+  const recs = [];
+  items.forEach(item => {
+    const idx = item.dataset.index;
+    const title = document.getElementById(`rec-title-${idx}`)?.value;
+    const detail = document.getElementById(`rec-detail-${idx}`)?.value;
+    if (title || detail) recs.push({ title, detail });
+  });
+  sessionStorage.setItem('keyRecommendations', JSON.stringify(recs));
+  sessionStorage.setItem('task4Status', 'completed');
+  window.location.href = '/webcaf/review/current/task-list';
+});
+
+updateHeadings();
+</script>
+
+{% endblock %}
