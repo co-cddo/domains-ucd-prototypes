@@ -1,0 +1,227 @@
+{% extends "/layouts/review.html" %}
+
+{% block pageTitle %}
+My account - Reviewers – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <!-- IDENTITY BAR -->
+    <div class="moj-identity-bar govuk-!-margin-bottom-4">
+      <div class="moj-identity-bar__details">
+        <p class="govuk-body-s govuk-!-margin-bottom-1">
+          Logged in: <strong>Simon Wolensky</strong><br>
+          Role: <strong>Independent Assessor</strong>
+        </p>
+        <p class="govuk-body-s govuk-!-margin-bottom-0">
+          Organisation: <strong>Cabinet Office</strong>
+          <a href="/select-organisation" class="govuk-link govuk-!-margin-left-1">Change</a>
+        </p>
+      </div>
+    </div>
+
+    <h1 class="govuk-heading-l govuk-!-margin-top-4">
+      Cabinet Office self-assessments
+    </h1>
+
+    <p class="govuk-body">
+      You are reviewing WebCAF self-assessments completed by <strong>Cabinet Office</strong>.<br>
+      Use the search or filters to select a self-assessment to review.
+    </p>
+
+    <!-- FILTER TOGGLE BUTTON -->
+    <button id="filter-toggle"
+      class="govuk-button govuk-button--secondary govuk-!-margin-bottom-3"
+      type="button"
+      aria-expanded="false"
+      aria-controls="filter-panel">
+      Show filters
+    </button>
+
+    <!-- FILTER PANEL -->
+    <div id="filter-panel" class="moj-filter-layout__filter filter-slide" hidden>
+
+      <div class="moj-filter">
+        <div class="moj-filter__header">
+          <h2 class="govuk-heading-m">Filter results</h2>
+        </div>
+
+        <div class="moj-filter__content">
+          <form method="get" action="my-account">
+
+            <!-- Status filter -->
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="status">
+                Status
+              </label>
+              <select class="govuk-select" id="status" name="status">
+                <option value="">All statuses</option>
+                <option value="to-do">To do</option>
+                <option value="requires-clarification">Draft</option>
+                <option value="report-generated">Closed</option>
+              </select>
+            </div>
+
+            <!-- Date filter -->
+            <div class="govuk-form-group">
+              <label class="govuk-label" for="date">
+                Sent for review (month)
+              </label>
+              <input class="govuk-input govuk-!-width-one-third" id="date" name="date" type="text" placeholder="e.g. 10/2025">
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button">
+              Apply filters
+            </button>
+
+            <a href="my-account" class="govuk-link govuk-!-margin-left-3">Clear filters</a>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="govuk-form-group govuk-!-margin-bottom-6">
+      <label class="govuk-label" for="search">
+        Search self-assessments
+      </label>
+      <span class="govuk-hint">
+        Enter a WebCAF reference or system name (e.g. CAF67092025FDMH)
+      </span>
+      <input class="govuk-input govuk-!-width-one-half" id="search" name="search" type="text" placeholder="Start typing...">
+    </div>
+
+    <!-- TABLE -->
+    <table class="govuk-table" data-module="moj-sortable-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header" aria-sort="ascending">System name and reference</th>
+          <th scope="col" class="govuk-table__header">Sent for review date</th>
+          <th scope="col" class="govuk-table__header">Review status</th>
+          <th scope="col" class="govuk-table__header">Action</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Microsoft CS version 3 (CAF24092025FDMH)</td>
+          <td class="govuk-table__cell">17/12/2025</td>
+          <td class="govuk-table__cell">
+            <strong class="govuk-tag govuk-tag--yellow">Draft</strong>
+          </td>
+          <td class="govuk-table__cell">
+            <a href="draft-review" class="govuk-link">Review</a>
+          </td>
+        </tr>
+
+        {# --- NEW ROW ADDED BELOW 
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Office 365 Cabinet Connect (CAF31012025ZZXY)</td>
+          <td class="govuk-table__cell">29/10/2025</td>
+          <td class="govuk-table__cell">
+            <strong class="govuk-tag govuk-tag--green">Closed</strong>
+          </td>
+          <td class="govuk-table__cell">
+            <a href="/webcaf/review/current/task/9/report-history" class="govuk-link">View report history</a>
+          </td>
+        </tr>
+       #}
+
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">Cabinet HR Portal (CAF04102025ABCD)</td>
+          <td class="govuk-table__cell">12/10/2025</td>
+          <td class="govuk-table__cell">
+            <strong class="govuk-tag govuk-tag--blue">To do</strong>
+          </td>
+          <td class="govuk-table__cell">
+            <a href="#" class="govuk-link">Review</a>
+          </td>
+        </tr>
+
+        <!-- Example future state (hidden for now)
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">GovPay 4.1 Platform (CAF60102025HMRC)</td>
+          <td class="govuk-table__cell">28/09/2025</td>
+          <td class="govuk-table__cell">
+            <strong class="govuk-tag govuk-tag--yellow">In progress</strong>
+          </td>
+          <td class="govuk-table__cell">
+            <a href="/task-list/4" class="govuk-link">View</a>
+          </td>
+        </tr>
+        -->
+
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<!-- TOGGLE + SLIDE SCRIPT -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggleButton = document.getElementById('filter-toggle');
+    const filterPanel = document.getElementById('filter-panel');
+
+    toggleButton.addEventListener('click', function() {
+      const isHidden = filterPanel.hasAttribute('hidden');
+
+      if (isHidden) {
+        filterPanel.removeAttribute('hidden');
+        filterPanel.classList.add('slide-down');
+        filterPanel.classList.remove('slide-up');
+        toggleButton.setAttribute('aria-expanded', 'true');
+        toggleButton.textContent = 'Hide filters';
+      } else {
+        filterPanel.classList.remove('slide-down');
+        filterPanel.classList.add('slide-up');
+        toggleButton.setAttribute('aria-expanded', 'false');
+        toggleButton.textContent = 'Show filters';
+        setTimeout(() => filterPanel.setAttribute('hidden', ''), 300);
+      }
+    });
+  });
+</script>
+
+<!-- SLIDE-DOWN CSS -->
+<style>
+  .filter-slide {
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .slide-down {
+    animation: slideDown 0.3s ease-out forwards;
+  }
+
+  .slide-up {
+    animation: slideUp 0.3s ease-in forwards;
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; max-height: 0; }
+    to { opacity: 1; max-height: 500px; }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 1; max-height: 500px; }
+    to { opacity: 0; max-height: 0; }
+  }
+</style>
+
+{% endblock %}

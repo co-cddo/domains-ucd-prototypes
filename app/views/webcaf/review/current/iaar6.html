@@ -1,0 +1,233 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS version 3 (CAF24092025FDMH)
+{% endblock %}
+
+{% block header %}
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back", href: "#" }) }}
+{% endblock %}
+
+{% block content %}
+
+<header class="gem-c-inverse-header ">
+  <div class="gem-c-heading gem-c-heading--inverse">
+      <span class="govuk-caption-xl gem-c-heading__context gem-c-heading__xl_caption">
+        SYS-0001 Microsoft CS version 3 (CAF24092025FDMH)
+      </span>
+
+      <span class="gem-c-heading__xl govuk-heading-xl">
+        GovAssure Independent Assurance Review Report (IARR)
+      </span>
+
+      <span class="gem-c-inverse-header__subtext">
+        Updated 16 October 2024
+      </span>
+  </div>
+</header>
+
+<section
+  aria-label="Notice"
+  class="govuk-notification-banner gem-c-notice govuk-!-margin-bottom-8"
+  role="region">
+    <div class="govuk-notification-banner__content">
+      <span class="govuk-notification-banner__heading">
+        This content is UK OFFICIAL-SENSITIVE.
+      </span>
+    </div>
+</section>
+<div id="contents">
+  <div class="govuk-grid-row gem-print-columns-none">
+
+    <!-- LEFT NAVIGATION -->
+    <div class="govuk-grid-column-one-quarter-from-desktop contents-list-container">
+      <nav class="gem-c-contents-list govuk-!-margin-bottom-4" aria-label="Contents">
+        <h2 class="gem-c-contents-list__title">Contents</h2>
+        <ol class="gem-c-contents-list__list">
+
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#system-details">System details and scope</a>
+          </li>
+
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#period-of-review">Period of review</a>
+          </li>
+
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#review-method">Review method</a>
+          </li>
+
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#quality-evidence">Quality and self-assessment evidence</a>
+          </li>
+
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#outcome-status">Outcome status</a>
+          </li>
+
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#outcome-recommendations">Outcome recommendations</a>
+          </li>
+
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#good-practice">Areas of good practice</a>
+          </li>
+
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#improvement-areas">Areas of improvement</a>
+          </li>
+
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#objective-recommendations">Objective-level recommendations</a>
+          </li>
+
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#full-recommendations-table">Full table of recommendations</a>
+          </li>
+
+        </ol>
+      </nav>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="govuk-grid-column-three-quarters-from-desktop">
+
+      <!-- SYSTEM DETAILS AND SCOPE -->
+      <h2 id="system-details" class="govuk-heading-l">System details and scope</h2>
+
+     {{ govukSummaryList({
+  classes: "govuk-summary-list",
+  rows: [
+    { key: { text: "System name" }, value: { text: "SYS-0001 Microsoft CS version 3" } },
+    { key: { text: "Reference number" }, value: { text: "CAF24092025FDMH" } },
+    { key: { text: "System description" }, value: { text: "Delivers core public-facing services including identity, communications and workflow integration." } },
+    { key: { text: "Ownership" }, value: { text: "The organisation being assessed" } },
+    { key: { text: "Hosting" }, value: { text: "Hybrid — on-premises and cloud workloads" } },
+    { key: { text: "Corporate services used" }, value: { text: "Productivity, identity, and shared security services" } }
+  ]
+}) }}
+
+
+      <!-- PERIOD OF REVIEW -->
+      <h2 id="period-of-review" class="govuk-heading-l">Period of review</h2>
+
+      <p class="govuk-body">
+        The independent assurance review was conducted between 
+        <strong>11 November 2024</strong> and <strong>29 November 2024</strong>, covering all
+        contributing outcomes across Objectives A–D.
+      </p>
+
+      <!-- REVIEW METHOD -->
+      <h2 id="review-method" class="govuk-heading-l">Review method</h2>
+
+      <p class="govuk-body">
+        The review combined document evaluation, interviews, technical walkthroughs and evidence verification.
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Review of self-assessment statements and supporting artefacts</li>
+        <li>Workshops with system owners, architects and operational teams</li>
+        <li>Sampling of indicators of good practice across all outcomes</li>
+        <li>Verification of organisational processes and technical controls</li>
+      </ul>
+
+      <!-- QUALITY & EVIDENCE -->
+      <h2 id="quality-evidence" class="govuk-heading-l">Quality and self-assessment evidence</h2>
+
+      <p class="govuk-body">
+        Overall evidence quality was assessed as <strong>moderate</strong>. Most outcomes contained 
+        sufficient detail to support claims, although several areas required clarification or 
+        additional documentation. Supporting artefacts varied in completeness across 
+        different teams, particularly within Objectives B and D.
+      </p>
+
+      <!-- OUTCOME STATUS TABLE -->
+      <h2 id="outcome-status" class="govuk-heading-l">Outcome status</h2>
+
+      {{ govukTable({
+        firstCellIsHeader: true,
+        head: [
+          { text: "Outcome" },
+          { text: "Self-assessment status" },
+          { text: "Review status" }
+        ],
+        rows: [
+          [ { text: "A1.a Board direction" }, { html: "<strong class='govuk-tag govuk-tag--yellow'>Partially achieved</strong>" }, { html: "<strong class='govuk-tag govuk-tag--green'>Achieved</strong>" } ],
+          [ { text: "B2.d Identity and access management" }, { html: "<strong class='govuk-tag govuk-tag--red'>Not achieved</strong>" }, { html: "<strong class='govuk-tag govuk-tag--green'>Achieved</strong>" } ],
+          [ { text: "C1.b Securing logs" }, { html: "<strong class='govuk-tag govuk-tag--green'>Achieved</strong>" }, { html: "<strong class='govuk-tag govuk-tag--yellow'>Partially achieved</strong>" } ],
+          [ { text: "D1.a Response plan" }, { html: "<strong class='govuk-tag govuk-tag--yellow'>Partially achieved</strong>" }, { html: "<strong class='govuk-tag govuk-tag--green'>Achieved</strong>" } ]
+        ]
+      }) }}
+
+      <!-- OUTCOME RECOMMENDATIONS -->
+      <h2 id="outcome-recommendations" class="govuk-heading-l">Outcome recommendations</h2>
+
+      <p class="govuk-body">The review identified outcome-level recommendations based on gaps in controls, documentation or implementation.</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>3 recommendations added for Objective A</li>
+        <li>5 recommendations added for Objective B</li>
+        <li>2 recommendations added for Objective C</li>
+        <li>4 recommendations added for Objective D</li>
+      </ul>
+
+      <!-- AREAS OF GOOD PRACTICE -->
+      <h2 id="good-practice" class="govuk-heading-l">Areas of good practice</h2>
+
+      <p class="govuk-body">Reviewer comments indicate consistent strengths in:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Clear strategic ownership and governance</li>
+        <li>Strong internal audit capability for security controls</li>
+        <li>Mature vulnerability-handling process</li>
+      </ul>
+
+      <!-- AREAS OF IMPROVEMENT -->
+      <h2 id="improvement-areas" class="govuk-heading-l">Areas of improvement</h2>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>Improve evidence documentation across system boundaries</li>
+        <li>Introduce structured review cycles for staff training</li>
+        <li>Increase monitoring coverage across legacy services</li>
+      </ul>
+
+      <!-- OBJECTIVE LEVEL RECOMMENDATIONS -->
+      <h2 id="objective-recommendations" class="govuk-heading-l">Objective-level recommendations</h2>
+
+{{ govukSummaryList({
+  rows: [
+    { key: { text: "Objective A" }, value: { text: "Strengthen executive-level reporting and increase frequency of governance reviews." } },
+    { key: { text: "Objective B" }, value: { text: "Improve identity governance and enforce MFA across all systems." } },
+    { key: { text: "Objective C" }, value: { text: "Expand monitoring automation and standardise alert response processes." } },
+    { key: { text: "Objective D" }, value: { text: "Formalise incident recovery playbooks and ensure cross-team exercising." } }
+  ]
+}) }}
+
+
+      <!-- FULL RECOMMENDATIONS TABLE -->
+      <h2 id="full-recommendations-table" class="govuk-heading-l">Full table of recommendations</h2>
+
+      {{ govukTable({
+        firstCellIsHeader: true,
+        head: [
+          { text: "Outcome/Objective" },
+          { text: "Issue identified" },
+          { text: "Recommendation" }
+        ],
+        rows: [
+          [ { text: "A1.a" }, { text: "Board reporting inconsistent" }, { text: "Implement quarterly oversight cycle with structured metrics." } ],
+          [ { text: "B2.d" }, { text: "Weak identity lifecycle management" }, { text: "Deploy centralised IAM tooling with role-based controls." } ],
+          [ { text: "C1.b" }, { text: "Log security gaps" }, { text: "Harden security logging and centralise analysis." } ],
+          [ { text: "D1.a" }, { text: "Incident playbooks out of date" }, { text: "Update and test response plans annually." } ]
+        ]
+      }) }}
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

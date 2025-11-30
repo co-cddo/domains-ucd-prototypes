@@ -1,0 +1,74 @@
+{% extends "layouts/webcaf-start.html" %}
+{% block pageTitle %}
+  Start page  - Submit a CAF self-assessment for a system - GOV.UK Prototype Kit
+{% endblock %}
+
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+      Complete a WebCAF self-assessment
+      </h1>
+      
+<p>If you are an independent assessor, employed to review an organisation’s self-assessment </a>, please login to <a href="/webcaf/review/current/start" target="_blank">Review a WebCAF self-assessment (opens in new tab)</a> service.
+
+    <h2 class="govuk-heading-s">About the WebCAF self-assessment
+      </h2>    
+  <p>The WebCAF self-assessment allows you to assess your organisation’s critical systems.</p>
+      <p>This is stage 3 of GovAssure, the cyber assurance process used to understand the level of cyber resilience across government.  
+      </p>
+
+      <p>The current GovAssure WebCAF is based on version 3.2 of the <a href="https://www.ncsc.gov.uk/files/Cyber%20Assessment%20Framework%20V3.2.pdf" target="_blank">National Cyber Security Centre's Cyber Assurance Framework (CAF) (opens in new tab)</a>.
+      </p>
+      <h2 class="govuk-heading-s">Providing evidence
+      </h2>
+
+      {{ govukWarningText({
+  text: "You do not need to add links to your evidence in this version of WebCAF. "
+}) }}
+      
+      <p>You must create a separate repository to store evidence securely and share links to it. The assessor or peer reviewer will need access to this repository in Stage 4 in order to check your self-assessment responses.</p>
+      <p>There is more about creating an evidence repository at <a href="https://www.security.gov.uk/policy-and-guidance/govassure/stage-3-self-assessment/" target="_blank">Stage 3 Provide your CAF self-assessment</a></p>
+
+<h2 class="govuk-heading-s">Sessiout timeout warning
+      </h2>
+<p>If you are inactive for 90 minutes during a session, you will be timed out to protect your security. If you have already saved pages, these will be stored securely in WebCAF. 
+  
+
+<br><br>If you are timed out while working on a page, anything you have done will not be stored and you will have to start that page again.
+</p>
+
+
+
+      <h2 class="govuk-heading-m">Before you start
+      </h2>
+        <p>You must have completed stage 1 and stage 2 of GovAssure. This means you will have:</p>
+        <ul class="govuk-list govuk-list--bullet">
+  <li>completed your organisation’s scoping document </li>
+  <li>identified all your systems for assessment </li>
+  <li>chosen the the CAF profile of each system being assessed (baseline or enhanced)</li>
+  <li>nominated a GovAssure lead in your organisation, to complete the self-assessment</li>
+  <li>created a repository for your evidence</li>
+</ul>
+
+        
+         
+
+      <a href="sign-in" role="button" draggable="false" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8" data-module="govuk-button">
+        Sign in
+        <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
+        </svg>
+      </a>
+     
+    </div>
+   
+
+    </div>    
+  </div>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "/layouts/review.html" %}
+
+{% block pageTitle %}
+Change previous GovAssure assessments
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  
+{{ govukBackLink({ href: "/webcaf/review/current/task/1/system-summary", text: "Back" }) }} 
+<div class="proto-admin">
+ <p id="progress-pages"><strong>You have completed 3% of your review</strong></p>
+  <div class="progress-inactive">
+    <div class="progress-active" style="width: 3%">
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+<span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
+<h1 class="govuk-heading-l">Change previous GovAssure assessments</h1>
+
+<form action="/webcaf/review/current/task/1/system-summary" method="post">
+
+  
+{{ govukRadios({
+  name: "govassureYear",
+  fieldset: {
+    legend: {
+      text: "Has this system been assessed before 2025/26?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  hint: {
+    text: "Select one option"
+  },
+  items: [
+    {
+      value: "Yes, in 2023/24",
+      text: "Yes, in 2023/24",
+      checked: checked("govassureYear", "Yes, in 2023/24")
+    },
+    {
+      value: "Yes, in 2024/25",
+      text: "Yes, in 2024/25",
+      checked: checked("govassureYear", "Yes, in 2024/25")
+    },
+    {
+      value: "Yes, in both 2023/24 and 2024/25",
+      text: "Yes, in both 2023/24 and 2024/25",
+      checked: checked("govassureYear", "Yes, in both 2023/24 and 2024/25")
+    },
+    {
+      divider: "or"
+    },
+    {
+      value: "No, it has not been assessed before",
+      text: "No, it has not been assessed before",
+      checked: true
+    }
+  ]
+}) }}
+
+  {{ govukButton({ text: "Save and return" }) }}
+</form>
+
+</div>
+</div>
+{% endblock %}

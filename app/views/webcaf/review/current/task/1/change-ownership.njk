@@ -1,0 +1,99 @@
+{% extends "/layouts/review.html" %}
+
+{% block pageTitle %}
+Change system ownership
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  
+{{ govukBackLink({ href: "/webcaf/review/current/task/1/system-summary", text: "Back" }) }} 
+<div class="proto-admin">
+ <p id="progress-pages"><strong>You have completed 3% of your review</strong></p>
+  <div class="progress-inactive">
+    <div class="progress-active" style="width: 3%">
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+<span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
+<h1 class="govuk-heading-l">Change system ownership</h1>
+
+<form action="/webcaf/review/current/task/1/system-summary" method="post">
+
+  
+{{ govukRadios({
+  name: "sysowner",
+  fieldset: {
+    legend: {
+      text: "Who owns this system?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  hint: {
+    text: "Select one option"
+  },
+  items: [
+    {
+      value: "The organisation being assessed",
+      text: "The organisation being assessed",
+      checked: true
+    },
+    {
+      value: "Another government organisation",
+      text: "Another government organisation",
+      checked: checked("sysowner", "Another government organisation")
+    },
+    {
+      value: "Third-party company",
+      text: "Third-party company",
+      checked: checked("sysowner", "Third-party company")
+    }
+  ]
+}) }}
+
+  {{ govukButton({ text: "Save and return" }) }}
+</form>
+
+</div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  // Restore selection
+  const saved = sessionStorage.getItem("systemOwnership");
+  if (saved) {
+    document.querySelectorAll("input[name='sysowner']").forEach(r => {
+      if (r.value === saved) r.checked = true;
+    });
+  }
+
+  // Save on submit
+  const form = document.querySelector("form");
+  form.addEventListener("submit", function () {
+    const selected = document.querySelector("input[name='sysowner']:checked");
+    if (selected) {
+      sessionStorage.setItem("systemOwnership", selected.value);
+    }
+  });
+
+});
+</script>
+{% endblock %}

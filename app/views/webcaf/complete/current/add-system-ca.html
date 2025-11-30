@@ -1,0 +1,326 @@
+{% extends "/layouts/webcaf-cyber.html" %}
+
+{% block pageTitle %}
+Add system – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+
+
+
+{% endblock  %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+          
+<span class="govuk-caption-l">Civil Aviation Authority</span>
+      <h1 class="govuk-heading-l">
+        Add a new government system
+      </h1>
+     
+      <form class="form" action="check-system" id="mainForm" method="post">
+     
+       
+     
+          {{ govukInput({
+          label: {
+            html: '<span class="govuk-heading-m">System name</span>'
+          },
+          hint: {
+            text: "Add a new system name"
+          },
+          id: "govsysmanual",
+          name: "govsysmanual",
+          type: "string",
+          autocomplete: "string",
+          spellcheck: false,
+          value: data['govsysmanual']
+          
+        }) }}
+
+      <h2 class="govuk-heading-m">
+        System description
+      </h2>
+{{ govukRadios({
+  classes: "govuk-radios",
+  name: "systype",
+  fieldset: {
+    legend: {
+      text: "What does this system do?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  hint: {
+    text: "Select one option" 
+  },
+  items: [
+    {
+      value: "It directly delivers public services",
+      text: "It directly delivers public services",
+      checked: checked("systype", "It directly delivers public services")
+    },
+    {
+      value: "It provides core infrastructure essential for other critical systems to function",
+      text: "It provides core infrastructure essential for other critical systems to function",
+      checked: checked("systype", "It provides core infrastructure essential for other critical systems to function")
+    },
+    {
+      value: "It provides corporate services or functions required for day-to-day operations
+              for example, payroll",
+      text: "It provides corporate services or functions required for day-to-day operations
+              for example, payroll",
+      checked: checked("systype", "It provides corporate services or functions required for day-to-day operations
+              for example, payroll")
+    }
+  ]
+}) }}
+
+
+  <h2 class="govuk-heading-m">
+       Previous GovAssure assessments
+      </h2>
+
+{{ govukRadios({
+  name: "govassureYear",
+  fieldset: {
+    legend: {
+      text: "Has this system been assessed before 2025/26?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  hint: {
+    text: "Select one option"
+  },
+  items: [
+    {
+      value: "Yes, in 2023/24",
+      text: "Yes, in 2023/24",
+      checked: checked("govassureYear", "Yes, in 2023/24")
+    },
+    {
+      value: "Yes, in 2024/25",
+      text: "Yes, in 2024/25",
+      checked: checked("govassureYear", "Yes, in 2024/25")
+    },
+    {
+      value: "Yes, in both 2023/24 and 2024/25",
+      text: "Yes, in both 2023/24 and 2024/25",
+      checked: checked("govassureYear", "Yes, in both 2023/24 and 2024/25")
+    },
+    {
+      divider: "or"
+    },
+    {
+      value: "No, it has not been assessed before",
+      text: "No, it has not been assessed before",
+      checked: checked("govassureYear", "No, it has not been assessed before")
+    }
+  ]
+}) }}
+
+
+<h2 class="govuk-heading-m">
+        System owner
+      </h2>
+
+{{ govukRadios({
+  name: "sysowner",
+  fieldset: {
+    legend: {
+      text: "Who owns this system?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  hint: {
+    text: "Select one option"
+  },
+  items: [
+    {
+      value: "The organisation being assessed",
+      text: "The organisation being assessed",
+      checked: checked("sysowner", "The organisation being assessed")
+    },
+    {
+      value: "Another government organisation",
+      text: "Another government organisation",
+      checked: checked("sysowner", "Another government organisation")
+    },
+    {
+      value: "Third-party company",
+      text: "Third-party company",
+      checked: checked("sysowner", "Third-party company")
+    }
+  ]
+}) }}
+
+<h2 class="govuk-heading-m">
+        System hosting and connectivity
+      </h2>
+
+{{ govukRadios({
+  name: "hosting",
+  fieldset: {
+    legend: {
+      text: "How is the system hosted?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  hint: {
+    text: "Select one option"
+  },
+  items: [
+    {
+      value: "On premises",
+      text: "On premises",
+      checked: checked("hosting", "On premises")
+    },
+    {
+      value: "Cloud hosted",
+      text: "Cloud hosted",
+      checked: checked("hosting", "Cloud hosted")
+    },
+    {
+      value: "Hybrid",
+      text: "Hybrid",
+      checked: checked("hosting", "Hybrid")
+    }
+  ]
+}) }}
+
+<h2 class="govuk-heading-m">
+        Corporate services
+      </h2>
+{% set AddNexCorporate %}
+{{ govukInput({
+  id: "AddNexCorporate",
+  name: "AddNexCorporate",
+  type: "text",
+  autocomplete: "text",
+  spellcheck: false,
+  classes: "govuk-!-width-full",
+  label: {
+    text: "Add corporate service"
+  }
+}) }}
+{% endset -%}
+
+
+{{ govukCheckboxes({
+  name: "corporateServices",
+  fieldset: {
+    legend: {
+      text: "What corporate or internal end-user services does this system provide?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  hint: {
+    text: "Select all that apply"
+  },
+  items: [
+    {
+      value: "Email and communication",
+      text: "Email and communication",
+      checked: checked("corporateServices", "Email and communication")
+    },
+    {
+      value: "Office productivity",
+      text: "Office productivity",
+      checked: checked("corporateServices", "Office productivity")
+    },
+    {
+      value: "Document storage and management",
+      text: "Document storage and management",
+      checked: checked("corporateServices", "Document storage and management")
+    },
+    {
+      value: "HR",
+      text: "HR",
+      checked: checked("corporateServices", "HR")
+    },
+    {
+      value: "Payroll",
+      text: "Payroll",
+      checked: checked("corporateServices", "Payroll")
+    },
+    {
+      value: "Finance and accounting",
+      text: "Finance and accounting",
+      checked: checked("corporateServices", "finance")
+    },
+    {
+      value: "Procurement and contract management",
+      text: "Procurement and contract management",
+      checked: checked("corporateServices", "Procurement and contract management")
+    },
+    {
+      value: "Customer relationship management",
+      text: "Customer relationship management",
+      checked: checked("corporateServices", "Customer relationship management")
+    },
+    {
+      value: "Help desk / IT support",
+      text: "Help desk / IT support",
+      checked: checked("corporateServices", "Help desk / IT support")
+    },
+    {
+      value: "Data management / analytics",
+      text: "Data management / analytics",
+      checked: checked("corporateServices", "Data management / analytics")
+    },
+    
+    {
+      divider: "or"
+    },
+    
+    {
+      value: "other",
+      
+      text: "Other (please specify)",
+      conditional: {
+        html: AddNexCorporate
+      },
+       behaviour: "exclusive"
+    }
+  ]
+}) }}
+       
+          <span class="govuk-body govuk-!-font-size-24">
+        <div class="govuk-button-group">
+          {{ govukButton({
+            text: "Save and continue"
+          }) }}
+
+         
+        
+        </div>
+    
+        
+        </form>
+
+    
+   </div>
+  
+
+{% endblock %}

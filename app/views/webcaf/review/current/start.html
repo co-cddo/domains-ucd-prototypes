@@ -1,34 +1,71 @@
-{% extends "layouts/main.html" %}
+{% extends "/layouts/review.html" %}
 
 {% block pageTitle %}
-Start your Independent Assurance Review
+Start page – GOV.UK Prototype Kit
 {% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+  {% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <h1 class="govuk-heading-xl">Independent Assurance Review</h1>
+    <h1 class="govuk-heading-xl">Review a WebCAF self-assessment</h1>
     <p class="govuk-body">
-      Use this service to complete and review your organisation’s self-assessment
-      against the <strong>NCSC Cyber Assessment Framework (CAF)</strong>.
+     Use this service to review an organisation’s WebCAF self-assessment against <a href="https://www.ncsc.gov.uk/files/Cyber%20Assessment%20Framework%20V3.2.pdf" target="_blank">National Cyber Security Centre's Cyber Assurance Framework (CAF) (opens in new tab)</a>.
     </p>
 
-    <p class="govuk-body">
-      You will be able to review outcomes, confirm recommendations, and generate a final assurance report.
-    </p>
+    <p>You will be able to:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>confirm the details of the system you are reviewing</li>
+      <li>view an organisation’s self-assessment</li>
+      <li>give your response to each IGP statement</li>
+      <li>provide comments where the organisation has identified alternative controls or exemptions for IGPs </li>
+      <li>write a summary for each contributing outcome</li>
+      <li>make recommendations for contributing outcomes</li>
+      <li>comment on areas of good practice for each CAF objective</li>
+      <li>suggest areas for improvement for each CAF objective</li>
+       <li>make recommendations for each CAF objective</li>
+       <li>comment on the quality of the organisation’s self-assessment and supporting evidence</li>
+       <li>explain how and when you carried out your review</li>
+    </ul>
+
+<h2 class="govuk-heading-s">Session timeout</h2>
+
+
+<p>Your session will be ended if you are inactive for 90 minutes. <br>
+
+Any pages you saved earlier will be stored. We will delete your responses on pages you did not save.</p>
+
+
+
+
+
+
 
     <h2 class="govuk-heading-m">Before you start</h2>
     <ul class="govuk-list govuk-list--bullet">
-      <li>You must be an authorised Independent Assessor</li>
-      <li>You will need access to the organisation’s CAF self-assessment data</li>
-      <li>You can save and return at any time</li>
+      <li>you must be an independent assessor contracted by an organisation</li>
+      <li>the organisation must have given you user rights to access their WebCAF self-assessment </li>
+      
     </ul>
 
-    <a href="dashboard" role="button" draggable="false" class="govuk-button govuk-button--start" data-module="govuk-button">
-      Start now
-    </a>
 
+
+{{ govukButton({
+  text: "Sign in",
+  href: "sign-in",
+  isStartButton: true
+}) }}
   </div>
 </div>
 {% endblock %}

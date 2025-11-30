@@ -1,19 +1,24 @@
 {
-   "scripts": {
-      "dev": "govuk-prototype-kit dev",
-      "serve": "govuk-prototype-kit serve",
-      "start": "govuk-prototype-kit start"
-   },
-   "dependencies": {
-      "@govuk-prototype-kit/common-templates": "2.0.1",
-      "@govuk-prototype-kit/step-by-step": "2.2.3",
-      "@govuk-prototype-kit/task-list": "2.0.0",
-      "@ministryofjustice/frontend": "5.2.1",
-      "accessible-autocomplete": "^2.0.4",
-      "govuk-frontend": "5.12.0",
-      "govuk-prototype-kit": "13.18.1",
-      "hmrc-frontend": "6.95.0",
-      "jquery": "3.7.1",
-      "notifications-node-client": "^8.2.1"
-   }
+  "name": "domains-registration-prototype",
+  "version": "1.0.0",
+  "description": "GOV.UK Prototype Kit application for domains registration",
+  "main": "app/index.js",
+  "scripts": {
+    "dev": "govuk-prototype-kit dev",
+    "serve": "govuk-prototype-kit serve",
+    "start": "node ./node_modules/govuk-prototype-kit/bin/cli.js start"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@govuk-prototype-kit/common-templates": "2.0.1",
+    "@govuk-prototype-kit/step-by-step": "2.2.4",
+    "@govuk-prototype-kit/task-list": "2.0.0",
+    "govuk-frontend": "5.12.0",
+    "govuk-prototype-kit": "13.18.1",
+    "jquery": "3.7.1"
+  },
+  "engines": {
+    "node": ">=12"
+  }
 }

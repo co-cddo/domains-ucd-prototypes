@@ -23,10 +23,10 @@ router.use('/registration/strategic/ver1/moving-your-parish', require('./views/r
 router.use('/registration/strategic/ver2/g0-moving-pc', require('./views/registration/strategic/ver2/routes/routes'))
 
 // Webcaf
-router.use('/webcaf/current', require('./views/webcaf/current/routes/routes'))
-router.use('/webcaf/v1', require('./views/webcaf/v1/routes/routes'))
-router.use('/webcaf/v-1-3', require('./views/webcaf/v1-3/routes/routes'))
-router.use('/webcaf/v2', require('./views/webcaf/v2/routes/routes'))
+router.use('/webcaf/complete/current', require('./views/webcaf/complete/current/routes/routes'))
+router.use('/webcaf/complete/v1', require('./views/webcaf/complete/v1/routes/routes'))
+router.use('/webcaf/complete/v-1-3', require('./views/webcaf/complete/v1-3/routes/routes'))
+router.use('/webcaf/complete/v2', require('./views/webcaf/complete/v2/routes/routes'))
 
 // Webcaf review
 router.use('/webcaf/review/current', require('./views/webcaf/review/current/routes/routes'))

@@ -1,13 +1,28 @@
-{% extends "layouts/webcaf-start.html" %}
+{% extends "layouts/review-start.html" %}
 
 {% block pageTitle %}
   Sign in  – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+    {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "Internal access",
+        href: "#"
+      },
+      {
+        text: "Sign in"
+      }
+    ]
   }) }}
 {% endblock %}
 
@@ -21,7 +36,7 @@
 
       </h1>
       {{ govukWarningText({
-          html: "You're signing in to www.security.gov.uk",
+          html: "You're signing in to WebCAF(BETA)",
           iconFallbackText: "Warning"
         }) }}
 {% from "govuk/components/input/macro.njk" import govukInput %}
@@ -37,7 +52,7 @@
 }) }}
 
 {{ govukCheckboxes({
-  name: "waste",
+  name: "Signin",
   fieldset: {
     legend: {
       text: "",
@@ -52,7 +67,7 @@
     }
   ]
 }) }}
-<form class="form" action="my-account-dept" method="post">
+<form class="form" action="check-email" method="post">
 <div class="govuk-button-group">
   {{ govukButton({
     text: "Continue"
