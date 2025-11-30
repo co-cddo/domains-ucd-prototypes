@@ -4,7 +4,8 @@ Welcome :wave: to the working prototypes for The Cyber and Domains Protection Te
 ### Prototypes
 | **Prototype name**                             | **Version** | **Status** | 
 | ---------------------------------------------- | ----------- | ---------- |
-| Complete a CAF self-assessment.                  | Version 1   | `Design` |
+| Review a CAF self-assessment.                  | Version 1   | `Design` |
+| Complete a CAF self-assessment.                  | Version 3   | `Live` |
 | Get approval to use a .gov.uk domain name      | Version 4   | `Live` |
 | Moving your parish council to a .gov.uk domain | Version 3   | `Live` |
 
