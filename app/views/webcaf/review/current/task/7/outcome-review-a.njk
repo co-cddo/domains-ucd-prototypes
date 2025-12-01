@@ -238,7 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (savedA3A) {
     const data = JSON.parse(savedA3A);
     // SAFE: Change A3.a link wording ONLY
-const cellA3 = document.getElementById("review-cell-a3.a");
+const cellA3 = document.getElementById("review-cell-A3.a");
 if (cellA3) {
   const link = cellA3.querySelector("a.govuk-link");
   if (link && data.overallStatus) {
@@ -271,7 +271,7 @@ if (cellA3) {
     }
 
     // Change → Change
-    const reviewLink = document.querySelector("#review-cell-a3.a a.govuk-link");
+    const reviewLink = document.querySelector("#review-cell-A3.a a.govuk-link");
     if (reviewLink && data.overallStatus) {
       reviewLink.textContent = "Change";
     }
