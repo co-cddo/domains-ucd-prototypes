@@ -36,14 +36,12 @@ Report history – Independent Assurance Review
     <h1 class="govuk-heading-l">Report history</h1>
 
     <p class="govuk-body">
-      This page shows all created versions of IAR for this system. You can view, download or use the latest review inputs to
-      create a new report.
+      This page lists all versions of the IAR report for this system. You can view and download the current report or re-open the review to update it.
     </p>
+<p>When you re-open the latest review it will create a new version of the report based on your changes.<br><br>Earlier versions of the report are saved for audit purposes.</p>
 
-    {{ govukInsetText({
-      html: "Creating a new report will always use the most recent review data from WebCAF. Older report versions remain available for audit."
-    }) }}
-
+    
+<p></p>
     {% from "govuk/components/table/macro.njk" import govukTable %}
 
     {{ govukTable({
@@ -115,13 +113,13 @@ Report history – Independent Assurance Review
      <h2 class="govuk-heading-m govuk-!-margin-top-6">Create a new report version</h2>
 
     <p class="govuk-body">
-      To create a new version of the report, you must first <strong>reopen the review</strong>.
-      This allows you to edit outcome statuses, recommendations, and comments before creating the next version.
+      To create a new version of the report you must <strong>re-open the current review</strong> and make the changes you need.
+      You will be able to change outcome statuses, recommendations and comments.
     </p>
 
     <form action="/webcaf/review/current/task/9/reopen-review" method="post">
       {{ govukButton({
-        text: "Reopen review to create a new report version",
+        text: "Open current review to create a new report",
         classes: "govuk-button--warning"
       }) }}
     </form>
