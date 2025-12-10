@@ -30,7 +30,7 @@ Areas of good practice
         href: "/webcaf/review/current/task/7/outcome-review-a.njk"
       },
       {
-        text: "Areas for improvement"
+        text: "Areas of good practice"
       }
     ]
   }) }}
@@ -48,37 +48,31 @@ Areas of good practice
   <div class="govuk-grid-column-two-thirds">
 
     <span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
-    <h1 class="govuk-heading-l">Areas for improvement</h1>
+    <h1 class="govuk-heading-l">Areas of good practice</h1>
 
     <p class="govuk-body">
-
-Use this section to comment on any areas which you felt could be improved against this CAF objective. <br><br>
-
-This might include immaturity of controls, insufficient governance or areas where the organisation could strengthen its cyber security posture.<br><br>
+      Identify any aspects of the organisation’s approach that demonstrate strong cyber security practice for this CAF objective. These may include well-implemented controls, mature processes, or effective governance that contribute positively to overall resilience.<br><br>
 
 Your comments will be included in the final Independent Assurance Review (IAR) report.
-
-
     </p>
 
     <form method="post" action="/webcaf/review/current/task/7/outcome-review-a">
 
-     <div class="govuk-form-group">
-  <label class="govuk-heading-m for="add-improvement">
-    Your comments
-  </label>
-  <div class="govuk-hint">
-    Describe any weaknesses, vulnerabilities, or inconsistencies that may impact 
-    the organisation’s ability to meet this CAF objective.
-  </div>
-  <textarea class="govuk-textarea" id="add-improvement" name="add-improvement" rows="8"></textarea>
-</div>
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--m" for="good-practice">
+          Your comments
+        </label>
+        <div id="good-practice-hint" class="govuk-hint">
+          Include examples of strong practices, controls that exceed baseline expectations, or areas where the organisation performs particularly well.
+        </div>
+        <textarea class="govuk-textarea" id="good-practice" name="good-practice" rows="7" aria-describedby="good-practice-hint"></textarea>
+      </div>
 
-  <button class="govuk-button" id="save-add-improvement" data-module="govuk-button">
+     <button class="govuk-button" id="save-good-practice" data-module="govuk-button">
   Save and continue
 </button>
-      
     </form>
+
   </div>
 </div>
 {% endblock %}
@@ -86,15 +80,15 @@ Your comments will be included in the final Independent Assurance Review (IAR) r
 {% block pageScripts %}
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const saved = sessionStorage.getItem("add-improvement");
+  const saved = sessionStorage.getItem("good-practice");
   if (saved) {
-    document.getElementById("add-improvement").value = saved;
+    document.getElementById("good-practice").value = saved;
   }
 });
 
-document.getElementById("save-add-improvement").addEventListener("click", (e) => {
-  const value = document.getElementById("add-improvement").value.trim();
-  sessionStorage.setItem("add-improvement", value);
+document.getElementById("save-good-practice").addEventListener("click", (e) => {
+  const value = document.getElementById("good-practice").value.trim();
+  sessionStorage.setItem("good-practice", value);
 });
 </script>
 {% endblock %}

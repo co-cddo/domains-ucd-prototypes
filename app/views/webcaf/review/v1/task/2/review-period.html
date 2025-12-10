@@ -1,0 +1,172 @@
+{% extends "/layouts/review.html" %}
+
+{% block pageTitle %}
+Enter Independent Assurance Review (IAR) period
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "My account",
+        href: "/webcaf/review/current/my-account"
+      },
+      {
+        text: "Edit draft review",
+        href: "/webcaf/review/current/draft-review"
+      },
+      {
+        text: "Enter Independent Assurance Review (IAR) period
+"
+      }
+    ]
+  }) }}
+  <div class="proto-admin">
+    <p id="progress-pages"><strong>You have completed 5% of your review</strong></p>
+      <div class="progress-inactive">
+        <div class="progress-active" style="width: 5%">
+        </div>
+      </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+
+<span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
+<h1 class="govuk-heading-l">Enter Independent Assurance Review (IAR) period</h1>
+
+<p class="govuk-hint">
+Provide the start and end dates of the time you spent on this review.<br>
+
+This should include any workshops, meetings and evidence gathering sessions that you conducted as part of your review.
+</p>
+
+<form id="" action="/webcaf/review/current/draft-review" method="post">
+
+{# --- Section 1: Period of Review --- #}
+<h2 class="govuk-heading-m">Period of review</h2>
+<p class="govuk-body">Enter the start and end dates covering the duration of this assurance review.</p>
+
+<div class="govuk-date-input" id="period-from">
+  <fieldset class="govuk-fieldset" role="group">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">From</legend>
+    <div class="govuk-date-input__item">
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-date-input__label" for="from-day">Day</label>
+        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="from-day" name="from-day" type="text" inputmode="numeric">
+      </div>
+    </div>
+    <div class="govuk-date-input__item">
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-date-input__label" for="from-month">Month</label>
+        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="from-month" name="from-month" type="text" inputmode="numeric">
+      </div>
+    </div>
+    <div class="govuk-date-input__item">
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-date-input__label" for="from-year">Year</label>
+        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="from-year" name="from-year" type="text" inputmode="numeric">
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+<div class="govuk-date-input govuk-!-margin-top-4" id="period-to">
+  <fieldset class="govuk-fieldset" role="group">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">To</legend>
+    <div class="govuk-date-input__item">
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-date-input__label" for="to-day">Day</label>
+        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="to-day" name="to-day" type="text" inputmode="numeric">
+      </div>
+    </div>
+    <div class="govuk-date-input__item">
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-date-input__label" for="to-month">Month</label>
+        <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="to-month" name="to-month" type="text" inputmode="numeric">
+      </div>
+    </div>
+    <div class="govuk-date-input__item">
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-date-input__label" for="to-year">Year</label>
+        <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="to-year" name="to-year" type="text" inputmode="numeric">
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+
+<div class="govuk-button-group govuk-!-margin-top-5">
+ <button class="govuk-button" id="save-check-comment" data-module="govuk-button">
+  Save and continue
+</button>
+
+</div>
+
+</form>
+
+</div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+// --- RESTORE saved values when returning to the page ---
+document.addEventListener("DOMContentLoaded", () => {
+  const fields = [
+    "from-day", "from-month", "from-year",
+    "to-day", "to-month", "to-year"
+  ];
+
+  fields.forEach(id => {
+    const saved = sessionStorage.getItem(id);
+    if (saved !== null) {
+      const el = document.getElementById(id);
+      if (el) el.value = saved;
+    }
+  });
+});
+
+// --- SAVE values when user clicks "Save and continue" ---
+document.querySelector("form").addEventListener("submit", () => {
+  const fields = [
+    "from-day", "from-month", "from-year",
+    "to-day", "to-month", "to-year"
+  ];
+
+  fields.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      sessionStorage.setItem(id, el.value.trim());
+    }
+  });
+});
+
+<!-- keep your task completion logic -->
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.querySelector('form');
+  if (!form) return;
+
+  form.addEventListener('submit', function () {
+    sessionStorage.setItem('task6Status', 'completed');
+  });
+});
+
+
+</script>
+{% endblock %}
+
+

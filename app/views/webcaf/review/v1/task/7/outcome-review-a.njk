@@ -184,13 +184,19 @@ Outcome A1.a Board direction
         <a class="govuk-link" id="add-improvement-link" href="add-improvement">Add comment</a>' 
         }
       },
-      {
-        key: { text: "Objective overview" },
-        value: { html: '
-        <span id="obj-overview-status"></span>
-        <a class="govuk-link" id="obj-overview-link" href="obj-overview">Add comment</a>' 
-        }
-      }
+      
+    {
+  key: { text: "Objective-level recommendations" },
+  value: { html: '
+      <span id="objective-recs-cell"></span>
+      <a id="objective-recs-add" class="govuk-link"
+         href="/webcaf/review/current/task/7/obj-a/recommendation">
+         Add recommendation
+      </a>'
+  }
+}
+
+
     ]
   }) }}
 </div>
@@ -346,16 +352,6 @@ if (improvement && improvement.length > 0) {
   `;
   document.getElementById("add-improvement-link").style.display = "none";
 }
-
-// Show "Comment added" for Objective overview if saved
-const objective = sessionStorage.getItem("obj-overview");
-if (objective && objective.length > 0) {
-  document.getElementById("obj-overview-status").innerHTML = `
-    <a class="govuk-link white-nowrap" href="/webcaf/review/current/task/7/obj-overview">1 comment added</a>
-  `;
-  document.getElementById("obj-overview-link").style.display = "none";
-}
-
 
 // Disable all Review links except A3.a
 document.querySelectorAll('#outcome-table a.govuk-link').forEach(link => {

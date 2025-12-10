@@ -14,22 +14,22 @@
       html: 'This is not a full service. It is not production code and you might experience problems.'
   }) }}
 
-    {{ govukBreadcrumbs({
+   {{ govukBreadcrumbs({
     items: [
       {
         text: "My account",
-        href: "/webcaf/review/current/my-account"
+        href: "/webcaf/current/my-account-dept"
       },
       {
-        text: "Edit draft review",
-        href: "/webcaf/review/current/draft-review"
+        text: "Start a draft assessment",
+        href: "/webcaf/current/draft-assessment3"
       },
       {
         text: "Objective A - Managing security risk",
         href: "#"
       },
       {
-        text: "A3.a – Asset management - Add your recommendations for this outcome
+        text: "Add your recommendations for this objective
         "
       }
     ]
@@ -45,17 +45,17 @@
 
 {% block content %}
 <div class="govuk-grid-row">
-<div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-column-three-quarters">
 
-<span class="govuk-caption-l">A3.a – Asset management</span>
-<h1 class="govuk-heading-l">Add your recommendations for this outcome</h1>
+<span class="govuk-caption-l">Objective A - Managing security risk</span>
+<h1 class="govuk-heading-l">Add your recommendations for this objective</h1>
 
 <p class="govuk-body">
-You must give each recommendation a generic or IGP-specific title and provide a summary. 
-Include any specific improvements you want the organisation to know about.</p>
+You must give each recommendation a title and provide a summary of specific suggested improvements.
 
+</p>
 
-<form id="rec-form" action="/webcaf/review/current/task/recommendations/check-a3-a" method="post">
+<form id="rec-form" action="/webcaf/review/current/task/7/obj-a/check" method="post">
 
   <div id="recommendation-list"></div>
 
@@ -71,7 +71,7 @@ Include any specific improvements you want the organisation to know about.</p>
 
 </div>
 </div>
- 
+
 
 <script>
 const OUTCOME = "A1-a"; // storage key for this outcome
@@ -81,7 +81,7 @@ const addBtn = document.getElementById("add-rec-btn");
 let index = 0;
 
 // Load existing recs from session
-const saved = JSON.parse(sessionStorage.getItem(`recs-${OUTCOME}`) || "[]");
+const saved = JSON.parse(sessionStorage.getItem(`recs1-${OUTCOME}`) || "[]");
 
 function addRecommendation(title = "", detail = "") {
   index++;
@@ -93,24 +93,18 @@ function addRecommendation(title = "", detail = "") {
     <h2 class="govuk-heading-m">Recommendation ${index}</h2>
 
     <div class="govuk-form-group">
-      <label class="govuk-label" for="rec-title-${index}">Title</label>
-      <div id="event-name-hint" class="govuk-hint">
-    For example, Achieved statement 2
-  </div>
+      <label class="govuk-label" for="rec-title-${index}">Recommendation title</label>
       <input class="govuk-input govuk-input--width-30"
              id="rec-title-${index}" name="rec-title-${index}"
              type="text" value="${title}">
     </div>
 
-
     <div class="govuk-form-group">
-      <label class="govuk-label" for="rec-detail-${index}">Details and rationale</label>
+      <label class="govuk-label" for="rec-detail-${index}">Recommendation details</label>
       <textarea class="govuk-textarea" id="rec-detail-${index}"
                 name="rec-detail-${index}" rows="5">${detail}</textarea>
     </div>
 
-
- 
     <button type="button" class="govuk-button govuk-button--secondary remove-rec"
             data-index="${index}" style="margin-bottom:10px;">
       Remove
@@ -149,7 +143,7 @@ document.getElementById("rec-form").addEventListener("submit", () => {
     if (title || detail) recs.push({ title, detail });
   });
 
-  sessionStorage.setItem(`recs-${OUTCOME}`, JSON.stringify(recs));
+  sessionStorage.setItem(`recs1-${OUTCOME}`, JSON.stringify(recs));
 });
 </script>
 

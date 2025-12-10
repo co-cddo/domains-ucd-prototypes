@@ -1,0 +1,72 @@
+{% extends "/layouts/review.html" %}
+
+{% block pageTitle %}
+My account - Reviewers – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+{{ govukBackLink({
+  text: "Back",
+  href: "my-account"
+}) }}
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    
+
+<div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <form class="form" action="my-account-dpt-trade" method="post">
+                <input type="hidden" name="csrfmiddlewaretoken" value="m4AM13mjouZgtc2vGdLVHHmSxV6EvVbJDsWM9Gpk6V9MW7EbualIACRS30CkXgs8">
+                <table class="govuk-table">
+                    <caption class="govuk-table__caption govuk-table__caption--l">My organisations</caption>
+                    <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header">Organisation name</th>
+                        <th scope="col" class="govuk-table__header">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                        
+                            <tr class="govuk-table__row">
+                                <th scope="row" class="govuk-table__header">
+                                    <span class="govuk-body">CABINET OFFICE</span>
+                                </th>
+                                <td class="govuk-table__cell">
+                                    
+                                        Logged in
+                                    
+                                </td>
+                            </tr>
+                        
+                            <tr class="govuk-table__row">
+                                <th scope="row" class="govuk-table__header">
+                                    <span class="govuk-body">DEPARTMENT FOR BUSINESS & TRADE</span>
+                                </th>
+                                <td class="govuk-table__cell">
+                                    
+                                        <button type="submit" class="govuk-button" data-module="govuk-button"
+                                                name="profile_id" value="83">
+                                            Login
+                                        </button>
+                                    
+                                </td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+    {% endblock %}

@@ -30,7 +30,7 @@ Areas of good practice
         href: "/webcaf/review/current/task/7/outcome-review-a.njk"
       },
       {
-        text: "Areas for improvement"
+        text: "Objective-level overview"
       }
     ]
   }) }}
@@ -48,33 +48,33 @@ Areas of good practice
   <div class="govuk-grid-column-two-thirds">
 
     <span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
-    <h1 class="govuk-heading-l">Areas for improvement</h1>
+    <h1 class="govuk-heading-l">Add objective overview</h1>
 
     <p class="govuk-body">
+      
+Use this section to provide an overview of your findings against this CAF objective. <br><br>
 
-Use this section to comment on any areas which you felt could be improved against this CAF objective. <br><br>
 
-This might include immaturity of controls, insufficient governance or areas where the organisation could strengthen its cyber security posture.<br><br>
+You may wish to use this to highlight any recurring themes or topics that the organisation might want to address.<br><br>
 
 Your comments will be included in the final Independent Assurance Review (IAR) report.
 
-
     </p>
+    
 
     <form method="post" action="/webcaf/review/current/task/7/outcome-review-a">
 
      <div class="govuk-form-group">
-  <label class="govuk-heading-m for="add-improvement">
+  <label class="govuk-heading-m for="obj-overview">
     Your comments
   </label>
   <div class="govuk-hint">
-    Describe any weaknesses, vulnerabilities, or inconsistencies that may impact 
-    the organisation’s ability to meet this CAF objective.
+    Describe an overview of your findings
   </div>
-  <textarea class="govuk-textarea" id="add-improvement" name="add-improvement" rows="8"></textarea>
+  <textarea class="govuk-textarea" id="obj-overview" name="obj-overview" rows="8"></textarea>
 </div>
 
-  <button class="govuk-button" id="save-add-improvement" data-module="govuk-button">
+  <button class="govuk-button" id="save-obj-overview" data-module="govuk-button">
   Save and continue
 </button>
       
@@ -86,15 +86,15 @@ Your comments will be included in the final Independent Assurance Review (IAR) r
 {% block pageScripts %}
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const saved = sessionStorage.getItem("add-improvement");
+  const saved = sessionStorage.getItem("obj-overview");
   if (saved) {
-    document.getElementById("add-improvement").value = saved;
+    document.getElementById("obj-overview").value = saved;
   }
 });
 
-document.getElementById("save-add-improvement").addEventListener("click", (e) => {
-  const value = document.getElementById("add-improvement").value.trim();
-  sessionStorage.setItem("add-improvement", value);
+document.getElementById("save-obj-overview").addEventListener("click", (e) => {
+  const value = document.getElementById("obj-overview").value.trim();
+  sessionStorage.setItem("obj-overview", value);
 });
 </script>
 {% endblock %}

@@ -33,7 +33,7 @@ Confirm system and review scope
 <div class="govuk-grid-column-two-thirds">
 
 <span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
-<h1 class="govuk-heading-l">System overview</h1>
+<h1 class="govuk-heading-l">Confirm system and review scope</h1>
 
 <p class="govuk-body">
   The information below was provided during the self-assessment.<br>
@@ -43,42 +43,47 @@ Confirm system and review scope
 <h2 class="govuk-heading-m">System details</h2>
 
 {{ govukSummaryList({
-  classes: "govuk-summary-list--no-border govuk-!-margin-top-4",
+  classes: "govuk-summary-list govuk-!-margin-top-4",
   rows: [
     {
       key: { text: "System name" },
-      value: { text: "SYS-0001 Microsoft CS version 3" }
-      
+      value: { text: "SYS-0001 Microsoft CS version 3" },
+      actions: { items: [ { href: "", text: "", visuallyHiddenText: "system name" } ] }
     },
 
     {
       key: { text: "System description" },
-      value: { text: "It directly delivers public services" }
+      value: { text: "It directly delivers public services" },
+      actions: { items: [ { href: "change-description.njk", text: "Change", visuallyHiddenText: "system description" } ] }
     },
 
     {
       key: { text: "Previous GovAssure self-assessments" },
-      value: { text: "No" }
+      value: { text: "No" },
+      actions: { items: [ { href: "change-previous-govassure.njk", text: "Change", visuallyHiddenText: "previous GovAssure assessments" } ] }
     },
 
     {
       key: { text: "System ownership" },
-      value: { text: "The organisation being assessed" }
+      value: { text: "The organisation being assessed" },
+      actions: { items: [ { href: "change-ownership.njk", text: "Change", visuallyHiddenText: "system ownership" } ] }
     },
 
     {
       key: { text: "Hosting and connectivity" },
-      value: { text: "On-premises" }
+      value: { text: "On-premises" },
+      actions: { items: [ { href: "change-hosting.njk", text: "Change", visuallyHiddenText: "hosting and connectivity" } ] }
     },
 
     {
       key: { text: "Corporate services" },
-      value: { text: "Office productivity" }
+      value: { text: "Office productivity" },
+      actions: { items: [ { href: "change-corporate-services.njk", text: "Change", visuallyHiddenText: "corporate services" } ] }
     }
   ]
 }) }}
 
-<h2 class="govuk-heading-m">Review details</h2>
+<h2 class="govuk-heading-m">The scope of this review</h2>
 
 {{ govukSummaryList({
   classes: "govuk-summary-list--no-border",
@@ -110,7 +115,7 @@ Confirm system and review scope
 }) }}
 
 {{ govukWarningText({
-  html: 'If you think any of the information here is wrong, please contact your organisation.',
+  html: 'If you think any of the information here is wrong, please contact GovAssure on <code class="govspeak-code">cybergovassure@cabinetoffice.gov.uk</code>.',
   iconFallbackText: "Warning"
 }) }}
 

@@ -1,4 +1,4 @@
-{% extends "/layouts/review.html" %}
+{% extends "/layouts/review-conf.html" %}
 
 {% block pageTitle %}
 Generate report
@@ -16,11 +16,11 @@ Generate report
   items: [
     {
       text: "My account",
-      href: "/webcaf/review/current/my-account"
+      href: "#"
     },
     {
       text: "Edit draft review",
-      href: "/webcaf/review/current/start-draft-review"
+      href: "/webcaf/review/current/draft-review-reopened"
     },
     {
       text: "Create report"
@@ -45,7 +45,7 @@ Generate report
     <h1 class="govuk-heading-l">Create report</h1>
 
     <p class="govuk-body">
-      In this section you will be able to create your GovAssure Independent Assurance Review (IAR) Report.<br><br>
+      In this section you will be able to create your GovAssure Independent Assurance Review Report (IAR).<br><br>
 
 The report will include details of the system and all your contributions and comments as part of this review
     </p>
@@ -64,7 +64,7 @@ The report will include details of the system and all your contributions and com
     iconFallbackText: "Warning"
     }) }}
 
-    <form action="/webcaf/review/current/confirmation" method="post">
+    <form action="#" method="post">
       <div class="govuk-button-group">
       {% if isReopened %}
   {{ govukButton({
@@ -74,8 +74,8 @@ The report will include details of the system and all your contributions and com
   }) }}
 {% else %}
   {{ govukButton({
-    text: "Create updated now",
-    href: "/webcaf/review/current/confirmation",
+    text: "Create updated report (Version 4)",
+    href: "/webcaf/review/current/confirmation2",
     classes: "govuk-button--primary"
   }) }}
 {% endif %}

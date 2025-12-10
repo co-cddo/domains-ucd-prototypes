@@ -1,4 +1,4 @@
-{% extends "/layouts/review.html" %}
+{% extends "/layouts/review-v4.html" %}
 
 {% block pageTitle %}
 My account - Reviewers – GOV.UK Prototype Kit
@@ -28,18 +28,18 @@ My account - Reviewers – GOV.UK Prototype Kit
           Role: <strong>Independent Assessor</strong>
         </p>
         <p class="govuk-body-s govuk-!-margin-bottom-0">
-          Organisation: <strong>Department for Business & Trade</strong>
-          <a href="change-organisation2" class="govuk-link govuk-!-margin-left-1">Change</a>
+          Organisation: <strong>Cabinet Office</strong>
+          <a href="#" class="govuk-link govuk-!-margin-left-1">Change</a>
         </p>
       </div>
     </div>
 
     <h1 class="govuk-heading-l govuk-!-margin-top-4">
-      Department for Business & Trade self-assessments
+      Cabinet Office self-assessments
     </h1>
 
     <p class="govuk-body">
-      You are reviewing WebCAF self-assessments completed by <strong>Department for Business & Trade</strong>.<br>
+      You are reviewing WebCAF self-assessments completed by <strong>Cabinet Office</strong>.<br>
       Use the search or filters to select a self-assessment to review.
     </p>
 
@@ -61,7 +61,7 @@ My account - Reviewers – GOV.UK Prototype Kit
         </div>
 
         <div class="moj-filter__content">
-          <form method="get" action="my-account">
+          <form method="get" action="/dashboard">
 
             <!-- Status filter -->
             <div class="govuk-form-group">
@@ -71,7 +71,7 @@ My account - Reviewers – GOV.UK Prototype Kit
               <select class="govuk-select" id="status" name="status">
                 <option value="">All statuses</option>
                 <option value="to-do">To do</option>
-                <option value="requires-clarification">In-progress</option>
+                <option value="requires-clarification">Draft</option>
                 <option value="report-generated">Closed</option>
               </select>
             </div>
@@ -88,7 +88,7 @@ My account - Reviewers – GOV.UK Prototype Kit
               Apply filters
             </button>
 
-            <a href="my-account" class="govuk-link govuk-!-margin-left-3">Clear filters</a>
+            <a href="my-account2" class="govuk-link govuk-!-margin-left-3">Clear filters</a>
 
           </form>
         </div>
@@ -101,8 +101,8 @@ My account - Reviewers – GOV.UK Prototype Kit
         Search self-assessments
       </label>
       <span class="govuk-hint">
-        Enter a system name (e.g. Microsoft CS version 3)
-      </span><br>
+        Enter a WebCAF reference or system name (e.g. CAF67092025FDMH)
+      </span>
       <input class="govuk-input govuk-!-width-one-half" id="search" name="search" type="text" placeholder="Start typing...">
     </div>
 
@@ -118,23 +118,21 @@ My account - Reviewers – GOV.UK Prototype Kit
       </thead>
       <tbody class="govuk-table__body">
 
-       
-
-        {# --- NEW ROW ADDED BELOW 
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Office 365 Cabinet Connect (CAF31012025ZZXY)</td>
-          <td class="govuk-table__cell">29/10/2025</td>
+          <td class="govuk-table__cell">GovPay 4.1 Platform (CAF60102025HMRC)</td>
+          <td class="govuk-table__cell">17/12/2025</td>
           <td class="govuk-table__cell">
-            <strong class="govuk-tag govuk-tag--green">Closed</strong>
+            <strong class="govuk-tag govuk-tag--blue">To do</strong>
           </td>
           <td class="govuk-table__cell">
-            <a href="/webcaf/review/current/task/9/report-history" class="govuk-link">View report history</a>
+            <a href="#" class="govuk-link">Review</a>
           </td>
         </tr>
-       #}
+
+        
 
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Department Trade HR Portal (CAF04102025ABCD)</td>
+          <td class="govuk-table__cell">Cabinet HR Portal (CAF04102025ABCD)</td>
           <td class="govuk-table__cell">12/10/2025</td>
           <td class="govuk-table__cell">
             <strong class="govuk-tag govuk-tag--blue">To do</strong>
@@ -144,18 +142,19 @@ My account - Reviewers – GOV.UK Prototype Kit
           </td>
         </tr>
 
-        <!-- Example future state (hidden for now)
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell">GovPay 4.1 Platform (CAF60102025HMRC)</td>
-          <td class="govuk-table__cell">28/09/2025</td>
+          <td class="govuk-table__cell">Microsoft CS version 3 (CAF24092025FDMH)</td>
+          <td class="govuk-table__cell">29/10/2025</td>
           <td class="govuk-table__cell">
-            <strong class="govuk-tag govuk-tag--yellow">In progress</strong>
+            <strong class="govuk-tag govuk-tag--green">Closed</strong>
           </td>
           <td class="govuk-table__cell">
-            <a href="/task-list/4" class="govuk-link">View</a>
+            <a href="/webcaf/review/current/task/9/report-history2" class="govuk-link">View report history</a>
           </td>
         </tr>
-        -->
+
+        
+        
 
       </tbody>
     </table>

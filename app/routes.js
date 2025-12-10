@@ -22,7 +22,7 @@ router.use('/registration/strategic/', require('./views/registration/strategic/r
 router.use('/registration/strategic/ver1/moving-your-parish', require('./views/registration/strategic/ver1/routes/routes'))
 router.use('/registration/strategic/ver2/g0-moving-pc', require('./views/registration/strategic/ver2/routes/routes'))
 
-// Webcaf
+// Webcaf complete
 router.use('/webcaf/complete/current', require('./views/webcaf/complete/current/routes/routes'))
 router.use('/webcaf/complete/v1', require('./views/webcaf/complete/v1/routes/routes'))
 router.use('/webcaf/complete/v-1-3', require('./views/webcaf/complete/v1-3/routes/routes'))
@@ -30,5 +30,6 @@ router.use('/webcaf/complete/v2', require('./views/webcaf/complete/v2/routes/rou
 
 // Webcaf review
 router.use('/webcaf/review/current', require('./views/webcaf/review/current/routes/routes'))
+router.use('/webcaf/review/v1', require('./views/webcaf/review/v1/routes/routes'))
 
 module.exports = router

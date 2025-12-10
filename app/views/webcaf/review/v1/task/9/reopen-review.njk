@@ -1,0 +1,69 @@
+{% extends "/layouts/review.html" %}
+
+{% block pageTitle %}
+Reopen review – SYS-0001 Microsoft CS version 3
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+
+  {{ govukPhaseBanner({
+    tag: {
+      text: "prototype",
+      classes: "govuk-tag--pink"
+    },
+    html: "This is not a full service. It is not production code and you might experience problems."
+  }) }}
+
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "My account",
+        href: "#"
+      },
+      {
+        text: "Report history",
+        href: "/webcaf/review/current/task/9/report-history"
+      },
+      {
+        text: "Open current review"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+
+<span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
+<h1 class="govuk-heading-l">Reopen review</h1>
+<p class="govuk-body">
+  Opening the current review will allow you to edit outcomes, recommendations and comments before creating the next version of the report.
+
+</p>
+
+
+   <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive"></span>
+        Do not open the current review unless the organisation has agreed that you can make changes.
+      </strong>
+    </div>
+
+{{ govukButton({
+  text: "Open current review",
+  classes: "govuk-button--warning",
+  href: "/webcaf/review/current/draft-review-reopened"
+}) }}
+
+
+
+  </div>
+</div>
+{% endblock %}

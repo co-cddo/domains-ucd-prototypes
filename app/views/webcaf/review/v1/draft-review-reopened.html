@@ -79,14 +79,14 @@ Task list - Draft started – GOV.UK Prototype Kit
 {% set incompleteStatus = { tag: { text: "Incomplete", classes: "govuk-tag--blue" } } %}
 
 {# --- SECTION 1: Context and system information --- #}
-<h2 class="govuk-heading-m">1. Confirm self-assessment </h2>
+<h2 class="govuk-heading-m">1. Confirm self-assessment and review scope</h2>
 
 {{ govukTaskList({
   idPrefix: "section-1",
   items: [
     
     {
-      title: { text: "Confirm system overview" },
+      title: { text: "Confirm system and review scope" },
       href: "/webcaf/review/current/task/1/system-summary",
       status: completedStatus,
       attributes: { id: "task-link-2" }
