@@ -1,0 +1,100 @@
+{% extends "/layouts/review.html" %}
+
+{% block pageTitle %}
+Areas of good practice
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "My account",
+        href: "/webcaf/review/current/my-account"
+      },
+      {
+        text: "Edit draft review",
+        href: "/webcaf/review/current/draft-review"
+      },
+       {
+        text: "Objective A - Managing security risk review and confirmation",
+        href: "/webcaf/review/current/task/7/outcome-review-a.njk"
+      },
+      {
+        text: "Areas for improvement"
+      }
+    ]
+  }) }}
+  <div class="proto-admin">
+    <p id="progress-pages"><strong>You have completed 26% of your review</strong></p>
+      <div class="progress-inactive">
+        <div class="progress-active" style="width: 26%">
+        </div>
+      </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
+    <h1 class="govuk-heading-l">Areas for improvement</h1>
+
+    <p class="govuk-body">
+
+Use this section to comment on any areas which you felt could be improved against this CAF objective. <br><br>
+
+This might include immaturity of controls, insufficient governance or areas where the organisation could strengthen its cyber security posture.<br><br>
+
+Your comments will be included in the final Independent Assurance Review (IAR) report.
+
+
+    </p>
+
+    <form method="post" action="/webcaf/review/current/task/7/outcome-review-a">
+
+     <div class="govuk-form-group">
+  <label class="govuk-heading-m for="add-improvement">
+    Your comments
+  </label>
+  <div class="govuk-hint">
+    Describe any weaknesses, vulnerabilities, or inconsistencies that may impact 
+    the organisation’s ability to meet this CAF objective.
+  </div>
+  <textarea class="govuk-textarea" id="add-improvement" name="add-improvement" rows="8"></textarea>
+</div>
+
+  <button class="govuk-button" id="save-add-improvement" data-module="govuk-button">
+  Save and continue
+</button>
+      
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const saved = sessionStorage.getItem("add-improvement");
+  if (saved) {
+    document.getElementById("add-improvement").value = saved;
+  }
+});
+
+document.getElementById("save-add-improvement").addEventListener("click", (e) => {
+  const value = document.getElementById("add-improvement").value.trim();
+  sessionStorage.setItem("add-improvement", value);
+});
+</script>
+{% endblock %}

@@ -121,11 +121,11 @@ Add user – GOV.UK Prototype Kit
       },
       checked: checked("userRole", "GovAssure lead")
     },
-    {
+     {
       value: "Organisation user",
       text: "Organisation user",
-        hint: {
-        html: '<details class="govuk-details">
+      hint: {
+        html: '<details class="govuk-details govuk-!-margin-bottom-0">
                 <summary class="govuk-details__summary">
                   <span class="govuk-details__summary-text">
                     What organisation users can do
@@ -133,14 +133,57 @@ Add user – GOV.UK Prototype Kit
                 </summary>
                 <div class="govuk-details__text">
                   <ul class="govuk-list govuk-list--bullet">
-                    <li>continue a draft assessment </li>
-                    <li>view assessments already sent for review</li>
+                    <li>continue a draft assessment</li>
+                    <li>view assessments already sent for review </li>
                   </ul>
                 </div>
                 </details>
                 '
       },
       checked: checked("userRole", "Organisation user")
+    },
+     {
+      value: "Peer reviewer",
+      text: "Peer reviewer",
+      hint: {
+        html: '<details class="govuk-details govuk-!-margin-bottom-0">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    What peer reviewers can do
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                  <ul class="govuk-list govuk-list--bullet">
+                    <li>review a self-assessment</li>
+                    <li>create and edit a peer review report</li>
+                  </ul>
+                </div>
+                </details>
+                '
+      },
+      checked: checked("userRole", "Peer reviewer")
+    },
+    
+    {
+      value: "Independent reviewer",
+      text: "Independent reviewer",
+        hint: {
+        html: '<details class="govuk-details">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">
+                    What Independent reviewer can do
+                  </span>
+                </summary>
+                <div class="govuk-details__text">
+                  <ul class="govuk-list govuk-list--bullet">
+                    <li>review a self-assessment</li>
+                    <li>create and edit an IAR report</li>
+                  </ul>
+                </div>
+                </details>
+                '
+      },
+      checked: checked("userRole", "Independent reviewer")
      }
       ]
     }) }}

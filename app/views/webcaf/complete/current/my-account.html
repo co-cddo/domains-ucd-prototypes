@@ -28,9 +28,17 @@ Cyber analyst - My account – GOV.UK Prototype Kit
       </h2>
     
     <form class="form" action="add-system-ca" method="post">  
-    <div id="noassessments-hint" class="govuk-hint">
-        On this page you can add new systems, modify existing systems <br>and manage users within an organisation.
-        </div> 
+          <div> <p class="govuk-hint">On this page you can:
+      <ul class="govuk-list govuk-list--bullet govuk-hint">
+        <li>add new systems</li>
+        <li>modify existing systems</li>
+        <li>manage users within an organisation</li>
+        <li>view self-assessments</li>
+        <li>view Independent Assurance Reviews</li>
+      </ul>
+      
+    </p>
+      </div>
         
     <div class="govuk-button-group">
       {{ govukButton({
@@ -45,9 +53,16 @@ Cyber analyst - My account – GOV.UK Prototype Kit
 
 
           <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
-       Continue a draft assessment
+       Continue a draft self-assessment
       </h3>
      <p class="govuk-body govuk-!-margin-bottom-2 govuk-hint">You do not have any draft assessments<p>
+
+
+
+          <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
+       View an Independent Assurance Review (IAR)
+      </h3>
+     <p class="govuk-body govuk-!-margin-bottom-2 govuk-hint">You have no Independent Assurance Reviews<p>
 
 
 
@@ -75,6 +90,8 @@ Cyber analyst - My account – GOV.UK Prototype Kit
                 Manage users
               </a>
             </li>
+
+           
             
           </ul>
         </nav>

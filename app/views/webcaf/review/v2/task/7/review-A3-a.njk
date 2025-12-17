@@ -1,0 +1,384 @@
+{% extends "/layouts/review.html" %}
+
+{% block pageTitle %}
+A3.a Asset management review
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "My account",
+        href: "/webcaf/review/current/my-account"
+      },
+      {
+        text: "Edit draft review",
+        href: "/webcaf/review/current/draft-review"
+      },
+      {
+        text: " A3.a Asset management review
+"
+      }
+    ]
+  }) }}
+  <div class="proto-admin">
+    <p id="progress-pages"><strong>You have completed 26% of your review</strong></p>
+      <div class="progress-inactive">
+        <div class="progress-active" style="width: 26%">
+        </div>
+      </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+
+    <span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
+    <h1 class="govuk-heading-l">A3.a Asset management review</h1>
+
+{{ govukDetails({
+  summaryText: "How to review this outcome",
+  html: '
+    <section class="govuk-!-margin-bottom-6">
+      <p class="govuk-body">
+        This page shows the organisations self-assessment for this contributing outcome. You must review this alongside all the evidence you have seen from  the organisation and use your expert judgement to inform your responses.  
+      </p>
+      <p>On this page, you will: </p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>select your response to each IGP statement</li>
+      <li>add your review for each IGP where the organisation has named alternative controls or exemptions</li>
+      <li>select a contributing outcome status</li>
+      <li>write a summary for the contributing outcome</li>
+      
+    </ul>      
+
+     <p class="govuk-body">Please refer to the full <a href="https://www.security.gov.uk/policy-and-guidance/govassure/stage-4-independent-assurance-review/" target="_blank">stage 4 guidance (opens in new tab)</a> to support you. </p>
+    </section>
+    '
+    }) }}
+<div class="govuk-inset-text">
+          <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
+            Self-assessment outcome status
+          </h3>
+          <strong class="govuk-tag govuk-tag--green">Achieved</strong>
+        </div>
+     <!-- CONTRIBUTING OUTCOME SUMMARY -->
+     <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
+          Organisation’s contributing outcome summary
+
+        </h2>
+      
+      <section class="govuk-!-margin-bottom-6">
+
+        
+
+        <p class="govuk-body govuk-!-margin-bottom-4">
+          Our Asset Management (AM) framework is systematic, comprehensive, and fully integrated across the technology lifecycle, ensuring a high degree of confidence that all assets supporting our essential function(s) are known, classified, and secured. This robust process directly reduces the risk of compromise by ensuring strong governance and visibility.
+        </p>
+        <p>1. Inventory and Identification
+            We ensure that ‘All assets relevant to the secure operation of essential function(s) are identified and inventoried (at a suitable level of detail). The inventory is kept up-to-date.’ We maintain a federated Configuration Management Database (CMDB) that provides automated, near real-time tracking of all hardware, software, and dynamic cloud resources. Each asset is tracked with sufficient detail to support security processes such as vulnerability management and incident response.<br>
+            The planning framework is equally comprehensive: ‘Dependencies on supporting infrastructure (e.g., power, cooling etc) are recognised and recorded’ for main data centres. This includes mapping critical assets to their physical and logical dependencies, supporting effective Business Continuity Planning.
+            </p>
+            <p>2. Prioritisation and Ownership
+            Our asset management model is inherently risk-driven to ensure resources are focused on the highest-impact components. We confirm that we have ‘prioritised our assets according to their importance to the operation of the essential function(s)’. This prioritisation informs security investment decisions, patching SLAs, and access controls. Assets are classified based on the criticality of the data they process and the impact of their loss or compromise on service delivery.<br>
+            Accountability is clearly defined: we have ‘assigned responsibility for managing all assets, including physical assets, relevant to the operation of the essential function(s)’. Asset owners are formally recorded against each record in the CMDB, ensuring clear security accountability for the asset’s entire lifecycle, from procurement to disposal.
+
+            <p>3. Lifecycle Management
+            Asset management is a continuous process, not just a static inventory. We ensure that ‘Assets relevant to the essential function(s) are managed with cyber security in mind throughout their lifecycle, from creation through to eventual decommissioning or disposal.’br>
+            This is enforced through mandatory security requirements integrated into the procurement and change control processes (creation/updates) and strict, auditable data destruction procedures for all physical and cloud media (disposal). This holistic approach prevents unmanaged assets or residual data from posing a risk to the essential function.
+            </p>
+          </section>
+
+
+
+    <!-- STATEMENTS -->
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-4">
+      Review each IGP statement
+    </h2>
+    <p>When completing their self-assessment, the organisation selects an IGP statement if they believe it applies to their system or organisation.</p>
+    <p>If you disagree with the organisation’s selection you will need to use the comment box to explain why and include relevant evidence.</p>
+
+  {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+
+
+    <form id="review-form-a1a">
+
+      {% set statements = [
+        {
+          label: "Achieved statement 1",
+          text2: "Organisation selected",
+          text: "All assets relevant to the secure operation of essential function(s) are identified and inventoried (at a suitable level of detail). The inventory is kept up-to-date.  "
+        },
+        {
+          label: "Achieved statement 2",
+          text: "Dependencies on supporting infrastructure (e.g. power, cooling etc) are recognised and recorded.  ",
+          inset: "We record physical dependencies (power/cooling) only for our main data centres, not for minor IT room assets. We have formally documented that the minor rooms' cooling/power systems are non-critical and have sufficient built-in redundancy (UPS, dual feeds). Auditing these low-risk assets would divert limited resources from mitigating the high-risk, single points of failure identified in the main data centres. This focus better reduces the overall risk of compromise to the essential function.",
+          text2: "Organisation selected"
+        },
+        {
+          label: "Achieved statement 3",
+          text: "You have prioritised your assets according to their importance to the operation of the essential function(s).   ",
+          text2: "Organisation selected"
+        },
+        {
+          label: "Achieved statement 4",
+          text: "You have assigned responsibility for managing all assets, including physical assets, relevant to the operation of the essential function(s).  ",
+          text2: "Organisation selected"
+        },
+        {
+          label: "Achieved statement 5",
+          text: "Assets relevant to the essential function(s) are managed with cyber security in mind throughout their lifecycle, from creation through to eventual decommissioning or disposal.",
+          text2: "Organisation selected"
+        },
+        {
+          label: "Not achieved statement 1",
+          text: "Inventories of assets relevant to the essential function(s) are incomplete, non-existent, or inadequately detailed.",
+          text2: "Organisation selected"
+        },
+        {
+          label: "Not achieved statement 2",
+          text: "Only certain domains or types of asset are documented and understood. Dependencies between assets are not understood (such as the dependencies between IT and OT).",
+          text2: "Organisation did not select"
+        },
+        {
+          label: "Not achieved statement 3",
+          text: "Information assets, which could include personally identifiable information and / or important / critical data, are stored for long periods of time with no clear business need or retention policy.",
+          text2: "Organisation did not select"
+        },
+        {
+          label: "Not achieved statement 4",
+          text: "Knowledge critical to the management, operation, or recovery of the essential function(s) is held by one or two key individuals with no succession plan.",
+          text2: "Organisation did not select"
+        },
+        {
+          label: "Not achieved statement 5",
+          text: "Asset inventories are neglected and out of date.",
+          text2: "Organisation did not select"
+        }
+        
+      ] %}
+
+      <table class="govuk-table govuk-!-margin-bottom-8">
+        <thead>
+          <tr>
+            <th class="govuk-table__header govuk-!-width-one-half">IGP statement</th>
+            <th class="govuk-table__header govuk-!-width-one-half">Your review
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+        {% for s in statements %}
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+              <strong>{{ s.label }}</strong>
+              <p class="govuk-body-s govuk-!-margin-top-1"> <strong>{{ s.text2 }}</strong><br><Br>{{ s.text }}</p>
+
+              {% if s.inset %}
+                <div class="govuk-inset-text govuk-!-margin-top-2">
+                 <strong>Alternative controls:</strong><br><span class="govuk-!-font-size-16"> {{ s.inset }}</span>
+                </div>
+              {% endif %}
+            </td>
+
+            <td class="govuk-table__cell">
+
+              {% if s.inset %}
+                <!-- SPECIAL CASE: ALWAYS SHOW TEXTAREA -->
+                 {{ govukRadios({
+                  idPrefix: "agree-" ~ loop.index,
+                  fieldset: {
+                    legend: {
+                      text: "Does the IGP statement apply to the system or organisation?",
+                      isPageHeading: true,
+                      classes: "govuk-fieldset__legend--s"
+                    }
+                  },
+                  name: "agree-" ~ loop.index,
+                  classes: "govuk-radios--inline",
+                  hint: {
+                    text: "Choose yes if you agree that the alternative controls or exemptions are reasonable evidence."
+                  },
+                  items: [
+                    { value: "agree", text: "Yes" },
+                    { value: "disagree", text: "No" }
+                  ]
+                }) }} 
+                {{ govukTextarea({
+                  id: "recommendation-" ~ loop.index,
+                  name: "recommendation-" ~ loop.index,
+                  label: { text: "Provide your comments including any relevant evidence" }
+                }) }}
+
+               
+
+              {% else %}
+                <!-- STANDARD ROWS -->
+                {{ govukRadios({
+                  idPrefix: "agree-" ~ loop.index,
+                  fieldset: {
+                    legend: {
+                      text: "Does the IGP statement apply to the system or organisation?",
+                      isPageHeading: true,
+                      classes: "govuk-fieldset__legend--s"
+                    }
+                  },
+                  name: "agree-" ~ loop.index,
+                  classes: "govuk-radios--inline",
+                  items: [
+                    { value: "agree", text: "Yes" },
+                    {
+                      value: "disagree",
+                      text: "No"
+                    }
+                  ]
+                }) }}
+                {{ govukTextarea({
+                  id: "recommendation-" ~ loop.index,
+                  name: "recommendation-" ~ loop.index,
+                  label: { text: "Provide your comments including any relevant evidence (optional)" }
+                }) }}
+              {% endif %}
+
+            </td>
+          </tr>
+        {% endfor %}
+
+        </tbody>
+      </table>
+
+
+
+
+      <!-- OVERALL OUTCOME REVIEW -->
+      <h2 class="govuk-heading-m govuk-!-margin-top-6">Review decision</h2>
+
+      {{ govukRadios({
+        id: "overall-status",
+        name: "overall-status",
+        fieldset: {
+          legend: {
+            text: "Review the contributing outcome",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        
+          hint: {
+            text: "Select one outcome status "
+          },
+        
+        items: [
+          
+          { value: "achieved", text: "Achieved" },
+          
+          
+          { value: "not", text: "Not achieved" }
+        ]
+      }) }}
+
+      {{ govukCharacterCount({
+        id: "overall-comment",
+        name: "overall-comment",
+        maxwords: 1500,
+        rows: 10,
+              label: { text: "Comments to support your review" }
+      }) }}
+   
+      <div class="govuk-button-group govuk-!-margin-top-6">
+      {{ govukButton({
+          text: "Save and continue",
+          attributes: { id: "save-review-A3.a", type: "button" }
+      }) }}
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const total = {{ statements | length }};
+  const saved = sessionStorage.getItem("review-A3.a");
+
+  if (saved) {
+    const data = JSON.parse(saved);
+
+    // Restore statement-level answers
+    data.statements.forEach((s, i) => {
+      const index = i + 1;
+
+      
+
+      // Restore recommendation textarea
+      const textarea = document.getElementById(`recommendation-${index}`);
+      if (textarea) textarea.value = s.recommendation || "";
+    });
+
+        // Restore overall outcome & comment
+    if (data.overallStatus) {
+      const radio = document.querySelector(
+        `input[name="overall-status"][value="${data.overallStatus}"]`
+      );
+      if (radio) {
+        radio.checked = true;
+      }
+    }
+
+    if (data.overallComment) {
+      document.getElementById("overall-comment").value = data.overallComment;
+    }
+  }
+});
+
+
+// Save answers + return to outcome-review
+document.getElementById('save-review-A3.a').addEventListener('click', e => {
+  e.preventDefault();
+
+  const total = {{ statements | length }};
+
+  // get the checked radio for overall-status
+  const selectedOverall = document.querySelector('input[name="overall-status"]:checked');
+  const overallStatus = selectedOverall ? selectedOverall.value : "";
+
+  const review = {
+    statements: [],
+    overallStatus: overallStatus,
+    overallComment: document.getElementById('overall-comment').value
+  };
+
+  for (let i = 1; i <= total; i++) {
+    const selected = document.querySelector(`input[name="agree-${i}"]:checked`);
+    const rec = document.getElementById(`recommendation-${i}`)?.value || "";
+
+    review.statements.push({
+      id: i,
+      decision: selected ? selected.value : "",
+      recommendation: rec
+    });
+  }
+
+  sessionStorage.setItem("review-A3.a", JSON.stringify(review));
+
+  window.location.href = "/webcaf/review/current/task/7/outcome-review-a";
+});
+
+</script>
+
+{% endblock %}

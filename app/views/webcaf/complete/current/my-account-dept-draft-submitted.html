@@ -30,35 +30,51 @@ GovAssure Lead - My account (Submittedf) – GOV.UK Prototype Kit
  <h2 class="govuk-heading-l">
         My account
       </h2>
-       <div> <p class="govuk-hint">On this page you can start a new assessment, continue a draft assessment and view assessments already sent for review.</p></div>
+       <div> <p class="govuk-hint">On this page you can:
+      <ul class="govuk-list govuk-list--bullet govuk-hint">
+        <li>start a new self-assessment</li>
+        <li>continue a draft self-assessment</li>
+        <li>view self-assessments already sent for review</li>
+        <li>view Independent Assurance Reviews</li>
+      </ul>
+      
+    </p>
+      </div>
   {{ govukButton({
   text: "Start a self-assessment",
   classes: "govuk-button--secondary"
 }) }}
-<h3 class="govuk-heading-m govuk-!-margin-bottom-2">
-       Continue a draft assessment
-      </h3>
-      
 
-    <p class="govuk-body govuk-!-margin-bottom-2">You have 1 draft assessment ready to send<p>
-      <a href="draft-assessments" class="govuk-link govuk-link--no-visited-state">
-                View draft assessments<Br>
-   </a></p>
+
+    <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
+       Continue a draft self-assessment
+      </h3>
+          <p class="govuk-body govuk-!-margin-bottom-2">You have 1 draft self-assessment ready to send<p>
+            <a href="draft-assessments" class="govuk-link govuk-link--no-visited-state">
+                      View draft self-assessments<Br>
+          </a>
+          </p>
 
 
 <Br>
-<h3 class="govuk-heading-m">
-       Assessments sent for review
-      </h3>
-      
-
-    <p class="govuk-body govuk-!-margin-bottom-2">You have 1 assessment sent for review<p>
-      <a href="assessments" class="govuk-link govuk-link--no-visited-state">
-                View assessments sent for review<Br>
-   </a>
+    <h3 class="govuk-heading-m">
+          Self-assessments sent for review
+    </h3>
+        <p class="govuk-body govuk-!-margin-bottom-2">You have 1 self-assessment sent for review<p>
+          <a href="assessments" class="govuk-link govuk-link--no-visited-state">
+                    View self-assessments sent for review<Br>
+      </a>
    
 <br>
-     
+
+    <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
+      View an Independent Assurance Review (IAR)
+    </h3>
+          <P>
+          <a href="https://sgs-ddt-01-96c924f9e494.herokuapp.com/webcaf/review/current/my-account" class="govuk-link govuk-link--no-visited-state">
+                    View 5 Independent Assurance Reviews<Br>
+      </a></p>
+    
             
       
       

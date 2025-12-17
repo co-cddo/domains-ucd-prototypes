@@ -68,6 +68,22 @@ Check user details – GOV.UK Prototype Kit
               value: {
                 html: data['userRole']
               }
+            },
+            {
+              key: {
+                text: "Organisation name"
+              },
+              value: {
+                html: data['orgName']
+              }
+            },
+            {
+              key: {
+                text: "Organiastion's email address"
+              },
+              value: {
+                html: data['orgEmail']
+              }
             }
           ]
         }) }}
@@ -76,7 +92,7 @@ Check user details – GOV.UK Prototype Kit
       
  
 
-      <form action="view-users" method="post" novalidate>
+      <form action="view-users2" method="post" novalidate>
 
         {{ govukButton({
           text: "Save and continue"

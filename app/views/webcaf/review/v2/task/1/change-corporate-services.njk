@@ -1,0 +1,162 @@
+{% extends "/layouts/review.html" %}
+
+{% block pageTitle %}
+Change corporate services
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  
+{{ govukBackLink({ href: "/webcaf/review/current/task/1/system-summary", text: "Back" }) }} 
+<div class="proto-admin">
+ <p id="progress-pages"><strong>You have completed 3% of your review</strong></p>
+  <div class="progress-inactive">
+    <div class="progress-active" style="width: 3%">
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+<span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
+<h1 class="govuk-heading-l">Change corporate services</h1>
+
+<form action="/webcaf/review/current/task/1/system-summary" method="post">
+
+  
+{% set AddNexCorporate %}
+{{ govukInput({
+  id: "AddNexCorporate",
+  name: "AddNexCorporate",
+  type: "text",
+  autocomplete: "text",
+  spellcheck: false,
+  classes: "govuk-!-width-full",
+  label: {
+    text: "Add corporate service"
+  }
+}) }}
+{% endset -%}
+
+
+{{ govukCheckboxes({
+  name: "corporateServices",
+  fieldset: {
+    legend: {
+      text: "What corporate or internal end-user services does this system provide?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  hint: {
+    text: "Select all that apply"
+  },
+  items: [
+    {
+      value: "Email and communication",
+      text: "Email and communication",
+      checked: checked("corporateServices", "Email and communication")
+    },
+    {
+      value: "Office productivity",
+      text: "Office productivity",
+      checked: true
+    },
+    {
+      value: "Document storage and management",
+      text: "Document storage and management",
+      checked: checked("corporateServices", "Document storage and management")
+    },
+    {
+      value: "HR",
+      text: "HR",
+      checked: checked("corporateServices", "HR")
+    },
+    {
+      value: "Payroll",
+      text: "Payroll",
+      checked: checked("corporateServices", "Payroll")
+    },
+    {
+      value: "Finance and accounting",
+      text: "Finance and accounting",
+      checked: checked("corporateServices", "finance")
+    },
+    {
+      value: "Procurement and contract management",
+      text: "Procurement and contract management",
+      checked: checked("corporateServices", "Procurement and contract management")
+    },
+    {
+      value: "Customer relationship management",
+      text: "Customer relationship management",
+      checked: checked("corporateServices", "Customer relationship management")
+    },
+    {
+      value: "Help desk / IT support",
+      text: "Help desk / IT support",
+      checked: checked("corporateServices", "Help desk / IT support")
+    },
+    {
+      value: "Data management / analytics",
+      text: "Data management / analytics",
+      checked: checked("corporateServices", "Data management / analytics")
+    },
+    
+    {
+      divider: "or"
+    },
+    
+    {
+      value: "other",
+      
+      text: "Other (please specify)",
+      conditional: {
+        html: AddNexCorporate
+      },
+       behaviour: "exclusive"
+    }
+  ]
+}) }}
+       
+
+  {{ govukButton({ text: "Save and return" }) }}
+</form>
+
+</div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector("form");
+  if (!form) return;
+
+  form.addEventListener("submit", function () {
+
+    // Collect all checked boxes
+    const checkedBoxes = Array.from(
+      document.querySelectorAll("input[name='corporateServices']:checked")
+    ).map(cb => cb.value);
+
+    // Handle "Other" text field
+    const otherInput = document.querySelector("#AddNexCorporate");
+    if (checkedBoxes.includes("other") && otherInput && otherInput.value.trim() !== "") {
+      checkedBoxes.push(otherInput.value.trim());
+    }
+
+    // Save to sessionStorage
+    sessionStorage.setItem("corporateServices", JSON.stringify(checkedBoxes));
+  });
+});
+</script>
+
+{% endblock %}

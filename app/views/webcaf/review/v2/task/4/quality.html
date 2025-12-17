@@ -1,0 +1,113 @@
+{% extends "/layouts/review.html" %}
+
+{% block pageTitle %}
+Describe the quality of the self-assessment and evidence provided
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "My account",
+        href: "/webcaf/review/current/my-account"
+      },
+      {
+        text: "Edit draft review",
+        href: "/webcaf/review/current/draft-review"
+      },
+      {
+        text: "Describe the quality of the self-assessment and evidence provided
+"
+      }
+    ]
+  }) }}
+  <div class="proto-admin">
+    <p id="progress-pages"><strong>You have completed 85% of your review</strong></p>
+      <div class="progress-inactive">
+        <div class="progress-active" style="width: 7%">
+        </div>
+      </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+
+<span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
+<h1 class="govuk-heading-l">Describe the quality of the self-assessment</h1>
+
+
+
+<p class="govuk-body">
+Provide your comments on the quality of the self-assessment including:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>the contributing outcome summaries</li>
+  <li>any alternative controls or exemptions for individual IGPs</li>
+  <li>supporting evidence you have seen outside the WebCAF service</li>
+</ul>
+  <form action="/webcaf/review/current/draft-review" method="post">
+
+{{ govukCharacterCount({
+  name: "check-quality",
+  id: "check-quality",
+  maxwords: 750,
+  label: { text: "Quality of the self-assessment and evidence" },
+  hint: { text: "Provide detailed explanation" },
+  rows: 7,
+  value: data['organisation-story'] or ""
+}) }}
+
+<button class="govuk-button" id="save-check-quality" data-module="govuk-button">
+  Save and continue
+</button>
+
+
+</form>
+
+</div>
+</div>
+{% endblock %}
+
+
+{% block pageScripts %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  // Restore saved CHECK comment
+  const savedCheck = sessionStorage.getItem("check-quality");
+  if (savedCheck) {
+    document.getElementById("check-quality").value = savedCheck;
+  }
+});
+
+// Save CHECK comment
+document.getElementById("save-check-quality").addEventListener("click", (e) => {
+  const value = document.getElementById("check-quality").value.trim();
+  sessionStorage.setItem("check-quality", value);
+});
+
+<!-- keep your task completion logic -->
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.querySelector('form');
+  if (!form) return;
+
+  form.addEventListener('submit', function () {
+    sessionStorage.setItem('task8Status', 'completed');
+  });
+});
+
+
+</script>
+{% endblock %}

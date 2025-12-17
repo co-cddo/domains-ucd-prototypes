@@ -154,17 +154,6 @@ Task list – Draft review
           <span id="status-6" class="govuk-task-list__status-text govuk-!-font-size-16">Cannot start yet</span>
         </div>
       </li>
-      
-      <li class="govuk-task-list__item" id="row-10">
-        <div class="govuk-task-list__name">
-          <a id="task-link-10" class="govuk-link" href="/webcaf/review/current/task/4/add-company-details">
-            Add company details
-          </a>
-        </div>
-        <div class="govuk-task-list__status">
-          <span id="status-10" class="govuk-task-list__status-text govuk-!-font-size-16">Cannot start yet</span>
-        </div>
-      </li>
 
       <li class="govuk-task-list__item" id="row-7">
         <div class="govuk-task-list__name">
@@ -187,7 +176,6 @@ Task list – Draft review
           <span id="status-8" class="govuk-task-list__status-text govuk-!-font-size-16">Cannot start yet</span>
         </div>
       </li>
-       
     </ul>
 
     <!-- ===================================================== -->
@@ -239,8 +227,7 @@ document.addEventListener('DOMContentLoaded', function () {
       task6Status: 'cannotstart',
       task7Status: 'cannotstart',
       task8Status: 'cannotstart',
-      task9Status: 'cannotstart',
-      task10Status: 'cannotstart'
+      task9Status: 'cannotstart'
     };
 
     Object.entries(defaults).forEach(([key, value]) => {
@@ -253,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Unlock logic
     // -------------------------
     if (sessionStorage.getItem('task1Status') === 'completed') {
-      ['task2Status','task3Status','task4Status','task5Status','task6Status','task7Status','task8Status', 'task10Status']
+      ['task2Status','task3Status','task4Status','task5Status','task6Status','task7Status','task8Status']
         .forEach(key => {
           if (sessionStorage.getItem(key) === 'cannotstart') {
             sessionStorage.setItem(key, 'incomplete');
@@ -291,7 +278,7 @@ document.addEventListener('DOMContentLoaded', function () {
       statusReview2: 'In-progress'
     };
 
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 9; i++) {
   const state = sessionStorage.getItem(`task${i}Status`);
   const link = document.querySelector(`#task-link-${i}`);
   if (!link) continue;

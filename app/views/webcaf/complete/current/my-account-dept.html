@@ -38,7 +38,16 @@ GovAssure Lead - My account – GOV.UK Prototype Kit
  <h2 class="govuk-heading-l">
         My account
       </h2>
-      <div> <p class="govuk-hint">On this page you can start a new assessment, continue a draft assessment and view assessments already sent for review.</p></div>
+            <div> <p class="govuk-hint">On this page you can:
+      <ul class="govuk-list govuk-list--bullet govuk-hint">
+        <li>start a new self-assessment</li>
+        <li>continue a draft self-assessment</li>
+        <li>view self-assessments already sent for review</li>
+        <li>view Independent Assurance Reviews</li>
+      </ul>
+      
+    </p>
+      </div>
   {{ govukButton({
   text: "Start a self-assessment",
   classes: "govuk-button--secondary"
@@ -46,16 +55,30 @@ GovAssure Lead - My account – GOV.UK Prototype Kit
 
 </form>
 <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
-       Continue a draft assessment
+       Continue a draft self-assessment
       </h3>
-     <p class="govuk-body govuk-!-margin-bottom-2 govuk-hint">You do not have any draft assessments<p>
+     <p class="govuk-body govuk-!-margin-bottom-2 govuk-hint">You do not have any draft self-assessments<p>
 
-<Br>
-<h3 class="govuk-heading-m">
-       Assessments sent for review
-      </h3>  
-    <p class="govuk-body govuk-!-margin-bottom-2 govuk-hint">You have not sent any assessments for review.<p>
+
+
+    <h3 class="govuk-heading-m">
+          Self-assessments sent for review
+    </h3>
+        <p class="govuk-body govuk-!-margin-bottom-2 govuk-hint">You have not sent any self-assessments for review.<p>
+   
+
+      <h3 class="govuk-heading-m govuk-!-margin-bottom-2">
+       View an Independent Assurance Review (IAR)
+      </h3>
+      <p class="govuk-body govuk-!-margin-bottom-2 govuk-hint">You have no Independent Assurance Reviews.</p>
+
+    
+
+
     </div>
+
+
+
     <div class="govuk-grid-column-one-third">
     <h2 class="govuk-body" id="subsection-title">
       Logged in as

@@ -1,0 +1,115 @@
+{% extends "/layouts/webcaf-cyber.html" %}
+
+{% block pageTitle %}
+Add user – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+
+
+
+{% endblock  %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+          
+<span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
+      <h1 class="govuk-heading-l">
+        Add company details 
+      </h1>
+     
+      <form class="form" action="/webcaf/review/current/draft-review" id="mainForm" method="post">
+     
+        {{ govukInput({
+          label: {
+            text: "Company name"
+          },
+          classes: "govuk-input--width-20",
+          id: "orgName",
+          name: "orgName",
+          type: "string",
+          hint: {
+            text: "Enter name as registered on Companies House if incorporated, or the trading name of the company"
+                },
+          autocomplete: "string",
+          spellcheck: false,
+          value: data['orgName']
+        }) }}
+
+      
+
+         {{ govukInput({
+          label: {
+            text: "Company email address"
+          },
+          classes: "govuk-input--width-20",
+          id: "email",
+          name: "orgEmail",
+          type: "orgEmail",
+          hint: {
+            text: "Use your business email address. For example, john.drake@company.com"
+                },
+          autocomplete: "string",
+          spellcheck: false,
+          value: data['orgEmail']
+        }) }}
+       
+ 
+
+  <button class="govuk-button" id="save-add-company-details" data-module="govuk-button">
+  Save and continue
+</button>
+         
+        
+        </div>
+        </form>
+   </div>
+  
+{% endblock %}
+{% block pageScripts %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  // Restore saved CHECK comment
+  const savedCheck = sessionStorage.getItem("add-company-details");
+  if (savedCheck) {
+    document.getElementById("add-company-details").value = savedCheck;
+  }
+});
+
+// Save CHECK comment
+document.getElementById("save-add-company-details").addEventListener("click", (e) => {
+  const value = document.getElementById("add-company-details").value.trim();
+  sessionStorage.setItem("add-company-details", value);
+});
+
+<!-- keep your task completion logic -->
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.querySelector('form');
+  if (!form) return;
+
+  form.addEventListener('submit', function () {
+    sessionStorage.setItem('task10Status', 'completed');
+  });
+});
+
+
+</script>
+{% endblock %}

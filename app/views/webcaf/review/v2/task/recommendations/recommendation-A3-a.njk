@@ -1,0 +1,156 @@
+{% extends "layouts/webcaf.html" %}
+
+{% block pageTitle %}
+  A1.a – Board direction - Add recommendation
+{% endblock %}
+
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+    {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "My account",
+        href: "/webcaf/review/current/my-account"
+      },
+      {
+        text: "Edit draft review",
+        href: "/webcaf/review/current/draft-review"
+      },
+      {
+        text: "Objective A - Managing security risk",
+        href: "#"
+      },
+      {
+        text: "A3.a – Asset management - Add your recommendations for this outcome
+        "
+      }
+    ]
+  }) }}
+  <div class="proto-admin">
+    <p id="progress-pages"><strong>You have completed 26% of your review</strong></p>
+      <div class="progress-inactive">
+        <div class="progress-active" style="width: 26%">
+        </div>
+      </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+
+<span class="govuk-caption-l">A3.a – Asset management</span>
+<h1 class="govuk-heading-l">Add your recommendations for this outcome</h1>
+
+<p class="govuk-body">
+You must give each recommendation a generic or IGP-specific title and provide a summary. 
+Include any specific improvements you want the organisation to know about.</p>
+
+
+<form id="rec-form" action="/webcaf/review/current/task/recommendations/check-a3-a" method="post">
+
+  <div id="recommendation-list"></div>
+
+  <button class="govuk-button govuk-button--secondary" type="button" id="add-rec-btn">
+    Add another recommendation
+  </button>
+
+  <div class="govuk-button-group govuk-!-margin-top-6">
+    {{ govukButton({ text: "Save and continue" }) }}
+  </div>
+
+</form>
+
+</div>
+</div>
+ 
+
+<script>
+const OUTCOME = "A1-a"; // storage key for this outcome
+
+const list = document.getElementById("recommendation-list");
+const addBtn = document.getElementById("add-rec-btn");
+let index = 0;
+
+// Load existing recs from session
+const saved = JSON.parse(sessionStorage.getItem(`recs-${OUTCOME}`) || "[]");
+
+function addRecommendation(title = "", detail = "") {
+  index++;
+  const block = document.createElement("div");
+  block.classList.add("recommendation-item");
+  block.dataset.index = index;
+
+  block.innerHTML = `
+    <h2 class="govuk-heading-m">Recommendation ${index}</h2>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="rec-title-${index}">Title</label>
+      <div id="event-name-hint" class="govuk-hint">
+    For example, Achieved statement 2
+  </div>
+      <input class="govuk-input govuk-input--width-30"
+             id="rec-title-${index}" name="rec-title-${index}"
+             type="text" value="${title}">
+    </div>
+
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="rec-detail-${index}">Details and rationale</label>
+      <textarea class="govuk-textarea" id="rec-detail-${index}"
+                name="rec-detail-${index}" rows="5">${detail}</textarea>
+    </div>
+
+
+ 
+    <button type="button" class="govuk-button govuk-button--secondary remove-rec"
+            data-index="${index}" style="margin-bottom:10px;">
+      Remove
+    </button>
+
+    <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--l">
+  `;
+
+  list.appendChild(block);
+}
+
+// Load pre-existing recommendations if any
+saved.forEach(r => addRecommendation(r.title, r.detail));
+if (saved.length === 0) addRecommendation();
+
+// Add new recommendation
+addBtn.addEventListener("click", () => addRecommendation());
+
+// Remove recommendation
+list.addEventListener("click", e => {
+  if (e.target.classList.contains("remove-rec")) {
+    e.preventDefault();
+    e.target.closest(".recommendation-item").remove();
+  }
+});
+
+// Save to sessionStorage on submit
+document.getElementById("rec-form").addEventListener("submit", () => {
+  const items = document.querySelectorAll(".recommendation-item");
+  const recs = [];
+
+  items.forEach(item => {
+    const idx = item.dataset.index;
+    const title = document.getElementById(`rec-title-${idx}`).value;
+    const detail = document.getElementById(`rec-detail-${idx}`).value;
+    if (title || detail) recs.push({ title, detail });
+  });
+
+  sessionStorage.setItem(`recs-${OUTCOME}`, JSON.stringify(recs));
+});
+</script>
+
+{% endblock %}
