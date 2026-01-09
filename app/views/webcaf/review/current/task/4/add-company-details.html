@@ -37,40 +37,60 @@ Add user – GOV.UK Prototype Kit
      
       <form class="form" action="/webcaf/review/current/draft-review" id="mainForm" method="post">
      
-        {{ govukInput({
+  <p>This information will be included in the Independent Assurance Review Report (IARR). </p>      
+  
+  {{ govukInput({
           label: {
             text: "Company name"
           },
-          classes: "govuk-input--width-20",
           id: "orgName",
           name: "orgName",
           type: "string",
           hint: {
-            text: "Enter name as registered on Companies House if incorporated, or the trading name of the company"
+            text: "The trading name of the company"
                 },
           autocomplete: "string",
           spellcheck: false,
           value: data['orgName']
         }) }}
 
-      
 
-         {{ govukInput({
+        
+    {{ govukInput({
           label: {
-            text: "Company email address"
+            text: "Lead reviewer name"
           },
           classes: "govuk-input--width-20",
+          id: "orgName",
+          name: "orgName",
+          type: "string",
+          hint: {
+            text: ""
+                },
+          autocomplete: "string",
+          spellcheck: false,
+          value: data['orgName']
+        }) }}
+
+        
+        
+         {{ govukInput({
+          label: {
+            text: "Lead reviewer email address"
+          },
+        
           id: "email",
           name: "orgEmail",
           type: "orgEmail",
           hint: {
-            text: "Use your business email address. For example, john.drake@company.com"
+            text: "Use a current company email address"
                 },
           autocomplete: "string",
           spellcheck: false,
           value: data['orgEmail']
         }) }}
-       
+
+        
  
 
   <button class="govuk-button" id="save-add-company-details" data-module="govuk-button">

@@ -53,15 +53,14 @@ A3.a Asset management review
   html: '
     <section class="govuk-!-margin-bottom-6">
       <p class="govuk-body">
-        This page shows the organisations self-assessment for this contributing outcome. You must review this alongside all the evidence you have seen from  the organisation and use your expert judgement to inform your responses.  
+      This page shows the organisation’s self-assessment for this contributing outcome. You must review this alongside all the evidence you have seen from the organisation and use your expert judgement to inform your responses.  
       </p>
       <p>On this page, you will: </p>
     <ul class="govuk-list govuk-list--bullet">
-      <li>select your response to each IGP statement</li>
-      <li>add your review for each IGP where the organisation has named alternative controls or exemptions</li>
-      <li>select a contributing outcome status</li>
-      <li>write a summary for the contributing outcome</li>
-      
+    <li>select your response to each IGP statement</li>
+    <li>add your comments for each IGP where the organisation has named alternative controls or exemptions</li>
+    <li>select a contributing outcome status</li>
+    <li>write a summary for the contributing outcome</li>      
     </ul>      
 
      <p class="govuk-body">Please refer to the full <a href="https://www.security.gov.uk/policy-and-guidance/govassure/stage-4-independent-assurance-review/" target="_blank">stage 4 guidance (opens in new tab)</a> to support you. </p>
@@ -108,7 +107,8 @@ A3.a Asset management review
       Review each IGP statement
     </h2>
     <p>When completing their self-assessment, the organisation selects an IGP statement if they believe it applies to their system or organisation.</p>
-    <p>If you disagree with the organisation’s selection you will need to use the comment box to explain why and include relevant evidence.</p>
+    <p>If you disagree with the organisation’s selection you will need to use the comment box to explain why and include relevant evidence. You do not need to add comments if you agree with the organisation’s response, except where they have noted alternative controls or exemptions. 
+    </p>
 
   {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
@@ -221,7 +221,7 @@ A3.a Asset management review
                 {{ govukTextarea({
                   id: "recommendation-" ~ loop.index,
                   name: "recommendation-" ~ loop.index,
-                  label: { text: "Provide your comments including any relevant evidence" }
+                  label: { text: "Provide your comments" }
                 }) }}
 
                
@@ -250,7 +250,7 @@ A3.a Asset management review
                 {{ govukTextarea({
                   id: "recommendation-" ~ loop.index,
                   name: "recommendation-" ~ loop.index,
-                  label: { text: "Provide your comments including any relevant evidence (optional)" }
+                  label: { text: "Provide your comments (optional)" }
                 }) }}
               {% endif %}
 
@@ -291,12 +291,34 @@ A3.a Asset management review
         ]
       }) }}
 
+
+    <!-- OVERALL OUTCOME REVIEW -->
+      <h2 class="govuk-heading-m govuk-!-margin-top-6">Comments to support your review</h2>
+      <p>Provide clear, concise comments to explain your reasons for selecting the contributing outcome status.</p>
+
+{{ govukDetails({
+  summaryText: "How to support your review",
+  html: '
+    <section class="govuk-!-margin-bottom-6">
+      
+      <p>Your comments should reference:: </p>
+    <ul class="govuk-list govuk-list--bullet">
+    <li>areas of good practice</li>
+    <li>current risks to the system or organisation and related areas for improvement</li>
+    <li>the organisation’s supporting evidence</li>
+    <li>where relevant, specific IGPs, including where the organisation has noted alternative controls or exemptions</li>
+    <li>where relevant, if the organisation is close to achieving the target resilience level for the contributing outcome</li>
+    </ul>      
+    </section>
+    '
+    }) }}
+
       {{ govukCharacterCount({
         id: "overall-comment",
         name: "overall-comment",
         maxwords: 1500,
         rows: 10,
-              label: { text: "Comments to support your review" }
+              label: { text: "Add comments " }
       }) }}
    
       <div class="govuk-button-group govuk-!-margin-top-6">

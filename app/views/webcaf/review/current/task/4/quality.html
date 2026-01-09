@@ -50,13 +50,16 @@ Describe the quality of the self-assessment and evidence provided
 
 
 <p class="govuk-body">
-Provide your comments on the quality of the self-assessment including:</p>
+      Provide your comments on the quality of the organisation’s self-assessment including:<br><br>
+      Include details of:
+    </p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>the contributing outcome summaries</li>
+      <li>explanations of any alternative controls or exemptions for individual IGPs</li>
+      <li>supporting evidence you have seen outside the WebCAF service</li>
+     </ul> 
+    <p>Consider the level of detail provided by the organisation, and the appropriateness and completeness of supporting evidence.</p>
 
-<ul class="govuk-list govuk-list--bullet">
-  <li>the contributing outcome summaries</li>
-  <li>any alternative controls or exemptions for individual IGPs</li>
-  <li>supporting evidence you have seen outside the WebCAF service</li>
-</ul>
   <form action="/webcaf/review/current/draft-review" method="post">
 
 {{ govukCharacterCount({
@@ -64,7 +67,7 @@ Provide your comments on the quality of the self-assessment including:</p>
   id: "check-quality",
   maxwords: 750,
   label: { text: "Quality of the self-assessment and evidence" },
-  hint: { text: "Provide detailed explanation" },
+  hint: { text: "" },
   rows: 7,
   value: data['organisation-story'] or ""
 }) }}

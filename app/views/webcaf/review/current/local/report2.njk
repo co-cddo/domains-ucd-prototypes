@@ -1,7 +1,7 @@
 {% extends "/layouts/review-conf.html" %}
 
 {% block pageTitle %}
-GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS version 3 (CAF24092025FDMH)
+GovAssure Independent Assurance Review (IAR) - SYS-0001 Microsoft CS version 3 (CAF24092025FDMH)
 {% endblock %}
  
 {% block beforeContent %}
@@ -87,27 +87,20 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
   ],
 
  evidenceQuality: {
-  
-  summaryHtml: "Across most outcomes, evidence was sufficient to understand the intent of controls and to support a proportion of the self-assessment claims, but it was not always complete or consistently traceable to specific CAF statements. <br><br>Evidence presentation would benefit from a single index that maps each CAF statement to the supporting artefacts, identifies the latest version/date, and clearly indicates which services/components the artefact applies to. Where conclusions relied on interviews or walkthroughs, these were generally consistent with provided documents, but additional corroborating records would improve confidence (for example tickets, logs, approvals, and reports).<br><br>Overall, the evidence set provides a reasonable basis for judgement at this stage, but improved traceability, consistency and ‘operated’ evidence would materially strengthen assurance for subsequent reviews."
+  rating: "Moderate",
+  summaryHtml: "Across most outcomes, evidence was sufficient to understand the intent of controls and to support a proportion of the self-assessment claims, but it was not always complete or consistently traceable to specific CAF statements.<br><br>Where evidence was strongest, artefacts demonstrated that controls are designed and operating in practice (for example governance packs, policy sets linked to operational procedures, sampled operational records, and repeatable reporting).<br>Where evidence was weaker, documentation described what should happen but did not consistently show that activities occur routinely (for example incomplete audit trails, missing sampling records, or limited evidence of exception handling and follow-up actions).<br>Evidence completeness varied across teams and components, particularly within Objectives B and D, where legacy services and supplier-managed areas had less consistent artefact coverage.\nFor protection outcomes, there were recurring gaps in demonstrating compliance monitoring, drift detection, and the management of exceptions over time, especially across integrations and non-standard platforms.\nFor identity and access outcomes, evidence of end-to-end joiner/mover/leaver processes, periodic access review, and consistent MFA enforcement was uneven and often not supported by an auditable evidence chain.<br><br>For resilience and recovery, artefacts typically outlined plans and responsibilities, but evidence of exercising, scenario coverage, and tracked remediation actions was limited or inconsistently recorded.\nEvidence presentation would benefit from a single index that maps each CAF statement to the supporting artefacts, identifies the latest version/date, and clearly indicates which services/components the artefact applies to.\nWhere conclusions relied on interviews or walkthroughs, these were generally consistent with provided documents, but additional corroborating records would improve confidence (for example tickets, logs, approvals, and reports).\nOverall, the evidence set provides a reasonable basis for judgement at this stage, but improved traceability, consistency and ‘operated’ evidence would materially strengthen assurance for subsequent reviews."
 },
   executiveSummary: {
-    intro: "GovAssure is the cyber security scheme for assessing government critical systems against NCSC’s Cyber Assessment Framework (CAF). The process provides government organisations with visibility of cyber security risks, and support to understand and manage them more effectively.
-           <br><br> 
-            This report contains the findings of the Independent Assurance Review carried out against [Example Supplier Ltd]’s CAF self-assessment for [SYS-0001 Microsoft CS version 3] in 2025-26. The system was assessed against the [Baseline] Government CAF profile. The report identifies areas of good practice and areas for improvement, and provides specific recommendations to enable [Cabinet Office] to improve its cyber security and resilience.
-            <br><br>
-            There are several CAF principles that are fundamental to an organisation’s overall security. The principles of governance (A1) and risk management (A2) are essential for running a security ecosystem founded on risk. The principles of response and recovery planning (D1) and lessons learned (D2) are fundamental to business continuity and an organisation's ability to operate through and recover from a cyber incident. Organisations are encouraged to prioritise recommendations for these principles and the underlying contributing outcomes where they have not met the target Government CAF profile. "
+    intro: "This report summarises the findings from an Independent Assurance Review (IAR) of the organisation’s self-assessment against the Cyber Assessment Framework (CAF) v3.2 Baseline profile.\n The review considered documented evidence, stakeholder interviews and technical walkthroughs to assess whether outcomes are evidenced and consistently applied across the service. Judgements and recommendations reflect the evidence reviewed and professional judgement at the time of assessment, and should be revisited as remediation actions are delivered and re-evidenced."
   },
 
 
   objectives: [
     {
-      
       code: "A",
       title: "Managing security risk",
-      subTitle: "Objective A looks at whether appropriate organisational structures, policies, processes and procedures are in place to understand, assess and systematically manage security risks to the network and information systems supporting essential functions.",
-      detailHeading: "Detailed review of contributing outcomes",
       outcomes: [
-        { code: "A1.a", name: "Board direction", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Board oversight is evidenced through documented decisions and agreed risk appetite; reporting could be more consistent across quarters.", recommendations: ["REC-12"], statement2: ["Achieved statement 2: Regular board-level discussions on the security of network and information systems supporting the operation of your essential function(s) take place, based on timely and accurate information and informed by expert guidance."] , igpComment: "Board packs show evidence of risk decisions, but the reporting format varies between quarters and teams which reduces comparability." },
+        { code: "A1.a", name: "Board direction", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Board oversight is evidenced through documented decisions and agreed risk appetite; reporting could be more consistent across quarters.", recommendations: ["REC-12"], igpComment: "Achieved statement 2 — Board packs show evidence of risk decisions, but the reporting format varies between quarters and teams which reduces comparability." },
         { code: "A1.b", name: "Roles and responsibilities", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Key security roles are defined and understood, with ownership for critical assets and security processes clearly assigned.", recommendations: [], igpComment: "" },
         { code: "A1.c", name: "Decision-making", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Risk decisions are recorded, but evidence of challenge, trade-offs and escalation thresholds is inconsistent across teams.", recommendations: ["REC-13"], igpComment: "Partially achieved statement 2 — Decision records exist, but do not consistently capture trade-offs, dissenting views, and escalation triggers for higher-risk changes." },
         { code: "A2.a", name: "Risk Management", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "A documented risk management process exists and is applied to major changes; linkage to outcomes and controls is generally clear.", recommendations: [], igpComment: "" },
@@ -115,11 +108,15 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
         { code: "A3.a", name: "Asset management", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Asset inventories and ownership exist for core services; coverage for legacy and shadow integrations needs strengthening.", recommendations: ["REC-15"], igpComment: "" },
         { code: "A4.a", name: "Supply chain", selfAssessment: "Not achieved", review: "Not achieved", baseline: "Not met", summary: "Supplier security requirements exist, but assurance and continuous monitoring are not evidenced consistently across the supply chain.", recommendations: ["REC-16"], igpComment: "Not achieved statement 5 — Supplier controls are described, but the ongoing monitoring and assurance evidence is incomplete and not systematically captured." }
       ],
-      goodPracticeText: "Governance structures are established and there is clear senior ownership for cyber risk. Board-level discussions demonstrate awareness of material risks and the service context. Risk appetite is documented and is referenced when approving significant decisions. Accountability for core assets and security processes is generally well defined. 
-      <br>Decision records exist for priority changes, supporting traceability of approvals.\nCore risk processes are applied to major changes and operational issues.\nThere is evidence of regular engagement between security and delivery stakeholders.\nOverall, these arrangements provide a stable foundation for managing cyber risk effectively.",
+      goodPracticeText: "Governance structures are established and there is clear senior ownership for cyber risk.\nBoard-level discussions demonstrate awareness of material risks and the service context.\nRisk appetite is documented and is referenced when approving significant decisions.\nAccountability for core assets and security processes is generally well defined.\nDecision records exist for priority changes, supporting traceability of approvals.\nCore risk processes are applied to major changes and operational issues.\nThere is evidence of regular engagement between security and delivery stakeholders.\nOverall, these arrangements provide a stable foundation for managing cyber risk effectively.",
       improvements: [
-        "Standardise quarterly reporting so board-level metrics and narrative are comparable across time. Introduce clearer escalation thresholds for risk acceptance and documented decision routes. Create a single evidence index that maps claims to artefacts consistently across outcomes."
-        
+        "Standardise quarterly reporting so board-level metrics and narrative are comparable across time.",
+        "Introduce clearer escalation thresholds for risk acceptance and documented decision routes.",
+        "Create a single evidence index that maps claims to artefacts consistently across outcomes.",
+        "Strengthen supplier assurance by defining minimum evidence expectations and review cadence.",
+        "Expand asset coverage to legacy/shadow integrations and define ownership where missing.",
+        "Improve traceability from risks to controls to outcomes, especially for supplier-managed areas.",
+        "Clarify how alternative controls are measured and when they are revalidated."
       ],
       objectiveRecommendation: "Maintain governance discipline and strengthen assurance evidence consistency across contributing outcomes."
     },
@@ -127,7 +124,6 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
     {
       code: "B",
       title: "Protecting against cyber attack",
-      subTitle: "Objective B looks at whether proportionate security measures are in place to protect the network and information systems supporting essential functions from cyber attack.",
       outcomes: [
         { code: "B1.a", name: "Policy and process development", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Security policies and processes exist, but coverage and ownership are not consistently evidenced across all system components.", recommendations: ["REC-01"], igpComment: "Partially achieved statement 2 — Policies exist, but ownership and scope are not consistently evidenced for all components and services." },
         { code: "B1.b", name: "Policy and process implementation", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Implementation of policies is variable; evidence of compliance monitoring and exception handling is limited.", recommendations: ["REC-02"], igpComment: "Partially achieved statement 2 — Evidence of compliance checks and exception handling is limited for legacy hosts and non-standard services." },
@@ -155,10 +151,15 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
         { code: "B6.a", name: "Cyber security culture", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Culture activities occur, but measurement of effectiveness and coverage is limited.", recommendations: [], igpComment: "" },
         { code: "B6.b", name: "Cyber security training", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Training is delivered, but evidence of completion and role-based coverage is inconsistent.", recommendations: [], igpComment: "" }
       ],
-      goodPracticeText: "Protective controls are implemented for several high-value services and user journeys. Delivery teams demonstrate awareness of common attack paths and control intent.\nThere is evidence of secure-by-design activity for some larger change initiatives. Data protection controls are present for a range of information types and systems.",
+      goodPracticeText: "A core set of security policies and standards exists and is accessible to teams.\nSecure configuration baselines are defined for modern services and key platforms.\nPatch management processes show prioritisation for critical vulnerabilities.\nProtective controls are implemented for several high-value services and user journeys.\nDelivery teams demonstrate awareness of common attack paths and control intent.\nThere is evidence of secure-by-design activity for some larger change initiatives.\nData protection controls are present for a range of information types and systems.\nOverall, protective practices provide a base level of resilience against common attacks.",
       improvements: [
-        
-        "Strengthen legacy configuration assurance by adding drift detection and remediation tracking. Improve consistency of access control enforcement for integrations and shared admin channels."
+        "Evidence policy compliance through measurable checks and routine reporting, not just policy publication.",
+        "Formalise exception handling and approvals, with periodic review and expiry for exceptions.",
+        "Strengthen legacy configuration assurance by adding drift detection and remediation tracking.",
+        "Improve consistency of access control enforcement for integrations and shared admin channels.",
+        "Increase privileged access assurance via regular recertification, monitoring, and auditable records.",
+        "Complete the identity lifecycle evidence chain for joiner/mover/leaver processes and MFA coverage.",
+        "Improve data handling assurance by demonstrating adoption through sampling and training completion evidence."
       ],
       objectiveRecommendation: "Improve identity governance (including MFA consistency) and strengthen assurance of legacy configuration controls."
     },
@@ -166,7 +167,6 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
     {
       code: "C",
       title: "Detecting cyber security events",
-      subTitle: "Objective C looks at whether capabilities exist to ensure security defences remain effective and to detect cyber security events affecting, or with the potential to affect, essential function(s).",
       outcomes: [
         { code: "C1.a", name: "Monitoring coverage", selfAssessment: "Achieved", review: "Not achieved", baseline: "Not met", summary: "Monitoring exists for core services, but coverage gaps persist across boundary components and legacy integrations.", recommendations: ["REC-21"], igpComment: "Not achieved statement 5 — Coverage is not yet complete for boundary components; evidence of end-to-end visibility is insufficient." },
         { code: "C1.b", name: "Securing logs", selfAssessment: "Achieved", review: "Not achieved", baseline: "Not met", summary: "Central logging is in place, but integrity controls, access governance and retention evidence are not yet consistent.", recommendations: ["REC-22"], igpComment: "Not achieved statement 5 — Logging exists but integrity monitoring and access governance are not consistently evidenced across critical sources." },
@@ -176,9 +176,15 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
         { code: "C2.a", name: "System abnormalities for attack detection", selfAssessment: "Achieved", review: "Not achieved", baseline: "Not met", summary: "Anomaly detection is used in places, but is not systematic and escalation paths are not consistently evidenced.", recommendations: ["REC-26"], igpComment: "" },
         { code: "C2.b", name: "Proactive attack discovery", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Proactive discovery occurs, but evidence of repeatable processes and outcomes driving improvements is limited.", recommendations: ["REC-27"], igpComment: "Partially achieved statement 2 — Some proactive discovery is evidenced, but the process and outcomes are not captured consistently to drive improvements." }
       ],
-      goodPracticeText: "Overall, the building blocks for detection exist, but they are not yet comprehensive.",
+      goodPracticeText: "Centralised logging is implemented for core platforms and several priority services.\nA set of dashboards and alert rules exists for key infrastructure signals.\nOperational teams can perform baseline triage for common alerts and incidents.\nThere is some evidence of proactive review activity (for example targeted hunts).\nMonitoring capabilities are used during incidents to support investigation and containment.\nInitial runbooks exist for a subset of common scenarios and operational procedures.\nCollaboration between teams during incidents is demonstrated on recent examples.\nOverall, the building blocks for detection exist, but they are not yet comprehensive.",
       improvements: [
-        "Standardise incident identification criteria and demonstrate consistent escalation and classification decisions. Address skills and resourcing gaps by documenting roles, training, and handover arrangements for monitoring operations."
+        "Define and implement a complete monitoring coverage map, including boundary and legacy integrations.",
+        "Improve log security by standardising retention, access controls, and integrity monitoring across critical sources.",
+        "Clarify alert ownership and triage SLAs, and evidence tuning and response via sampled records.",
+        "Standardise incident identification criteria and demonstrate consistent escalation and classification decisions.",
+        "Address skills and resourcing gaps by documenting roles, training, and handover arrangements for monitoring operations.",
+        "Expand anomaly detection use-cases and document escalation routes and review outcomes.",
+        "Capture proactive discovery outcomes consistently and show how findings drive measurable improvements."
       ],
       objectiveRecommendation: "Expand monitoring and logging controls to demonstrate consistent detection coverage and operational response."
     },
@@ -186,7 +192,6 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
     {
       code: "D",
       title: "Minimising the impact of cyber security incidents",
-      subTitle: "Objective D looks at whether capabilities exist to minimise the adverse impact of a cyber security incident on the operation of essential functions, including the restoration of those function(s) where necessary. ",
       outcomes: [
         { code: "D1.a", name: "Response plan", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Incident response plans exist, but exercising outcomes and tracked remediation are not consistently evidenced.", recommendations: [], igpComment: "" },
         { code: "D1.b", name: "Response and recovery capability", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Response and recovery capability exists, but evidence of consistent execution and measured outcomes is limited.", recommendations: [], igpComment: "Partially achieved statement 2 — Capability exists, but metrics and evidence of consistent execution across teams are limited." },
@@ -195,9 +200,15 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
         { code: "D2.b", name: "Using incidents to drive improvements", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Lessons learned are identified, but evidence of actions tracked to closure and fed into controls is inconsistent.", recommendations: [], igpComment: "" },
         { code: "D2.c", name: "Testing and exercising", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Testing is planned, but evidence of regular cadence and scenario coverage for recovery remains limited.", recommendations: [], igpComment: "" }
       ],
-      goodPracticeText: "Ownership for incident coordination is defined for priority event types. Overall, response foundations exist, but consistent exercising and evidence of outcomes needs strengthening.",
+      goodPracticeText: "Incident response documentation exists and is available to relevant operational teams.\nContacts, escalation routes, and comms pathways are defined for priority incidents.\nThere is evidence of cross-team collaboration during response and recovery activities.\nPost-incident reviews occur for significant events and capture useful learnings.\nRecovery approaches are understood for core services and supported by established routines.\nSome exercises have been conducted, demonstrating baseline coordination and readiness.\nOwnership for incident coordination is defined for priority event types.\nOverall, response foundations exist, but consistent exercising and evidence of outcomes needs strengthening.",
       improvements: [
-        "Ensure comms plans are tested for priority scenarios, including out-of-hours and supplier engagement. Develop and maintain scenario coverage so exercises reflect realistic threats and service dependencies."
+        "Increase the consistency and frequency of exercising, ensuring outcomes and actions are recorded and tracked to closure.",
+        "Improve evidence of recovery capability by capturing restore-test results and demonstrating readiness across components.",
+        "Clarify cross-team recovery responsibilities and decision authority during restoration and service reconstitution.",
+        "Standardise RCA templates and ensure minimum quality across teams, including contributing factors and control linkages.",
+        "Strengthen governance of lessons learned by maintaining an action log with owners, dates, and completion evidence.",
+        "Ensure comms plans are tested for priority scenarios, including out-of-hours and supplier engagement.",
+        "Develop and maintain scenario coverage so exercises reflect realistic threats and service dependencies."
       ],
       objectiveRecommendation: "Formalise exercising and recovery ownership, and evidence continuous improvement from incidents."
     }
@@ -285,8 +296,6 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
 
     <span class="gem-c-heading__xl govuk-heading-xl">
       GovAssure Independent Assurance Review (IAR) report
-      <br>- vs - 
-      GovAssure Independent Assurance Review Report (IARR) 
     </span>
 
      <span class="gem-c-inverse-header__subtext">
@@ -336,7 +345,7 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
           </li>
 
           <li class="gem-c-contents-list__list-item">
-            <a class="gem-c-contents-list__link" href="#exec-summary">Executive summary</a>
+            <a class="gem-c-contents-list__link" href="#quality-evidence">Quality and self-assessment evidence</a>
           </li>
 
           {# remove broken 'Outcome status' and add objective anchors #}
@@ -371,8 +380,7 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
       <h2 id="executive-summary" class="govuk-heading-l">Introduction</h2>
 
       <p class="govuk-body">
-        {{ report.executiveSummary.intro | safe }}
-
+        {{ report.executiveSummary.intro }}
       </p>
 
       {# System overview (moved up) #}
@@ -403,18 +411,16 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
         <strong>{{ report.periodOfReview.from }}</strong> and <strong>{{ report.periodOfReview.to }}</strong>.
       </p>
 
-      <h3 class="govuk-heading-m">Independent assurance reviewer details</h3>
+      <h3 class="govuk-heading-m">Independent Assurance Reviewer (IAR) details</h3>
       {# Removing 2 keys
           { key: { text: "Company email address" }, value: { text: report.companyDetails.companyEmail } }
-          
+          { key: { text: "Reviewer role" }, value: { text: "Independent assurance reviewer" } }
       #}
       {{ govukSummaryList({
         classes: "govuk-summary-list",
         rows: [
-          { key: { text: "Company name" }, value: { text: report.companyDetails.companyName } },
-          { key: { text: "Lead reviewer name" }, value: { text: "Mr. Isaac Johnson McAlister" } },
-          { key: { text: "Lead reviewer email address" }, value: { text: "isaac.mcalister@company.com" } }
-          
+          { key: { text: "Reviewer name" }, value: { text: "Mr. Isaac Johnson McAlister" } },
+          { key: { text: "Company name" }, value: { text: report.companyDetails.companyName } }
         ]
       }) }}
 
@@ -429,94 +435,185 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
         {{ report.reviewMethod }}
       </p>
 
-      
-      {# EXEC SUMMARY: One combined outcome status table (all objectives)= #}
-      <h2 id="exec-summary" class="govuk-heading-l">Executive summary</h2>
-      <h2 class="govuk-heading-m">Achievement status by contributing outcome</h2>
-      <p>The table below shows the cyber security and resilience contributing outcome results against the target Government CAF profile.
-      </p>
+     
+              {# ---------- SAFE helpers (no push) ---------- #}
 
-      <table class="govuk-table">
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Outcome</th>
-            <th scope="col" class="govuk-table__header">Self-assessment status</th>
-            <th scope="col" class="govuk-table__header">Review status</th>
-            <th scope="col" class="govuk-table__header">CAF Baseline profile</th>
-          </tr>
-        </thead>
+        {# Worst-case judgement: Not achieved > Partially achieved > Achieved #}
+        {% macro aggregateJudgementForPrinciple(obj, principle, fieldName) %}
+          {% set hasNot = false %}
+          {% set hasPartial = false %}
 
-        <tbody class="govuk-table__body">
-          {% for obj in report.objectives %}
-            {% for o in obj.outcomes %}
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">{{ o.code }} {{ o.name }}</td>
-
-                <td class="govuk-table__cell">
-                  <strong class="govuk-tag {{ judgementTagClass[o.selfAssessment] }}">
-                    {{ o.selfAssessment }}
-                  </strong>
-                </td>
-
-                <td class="govuk-table__cell">
-                  <strong class="govuk-tag {{ judgementTagClass[o.review] }}">
-                    {{ o.review }}
-                  </strong>
-                </td>
-
-                <td class="govuk-table__cell">
-                  <strong class="govuk-tag {{ baselineTagClass[o.baseline] }}">
-                    {{ o.baseline }}
-                  </strong>
-                </td>
-              </tr>
-            {% endfor %}
+          {% for o in obj.outcomes %}
+            {% if o.code.split(".")[0] == principle %}
+              {% if o[fieldName] == "Not achieved" %}
+                {% set hasNot = true %}
+              {% elseif o[fieldName] == "Partially achieved" %}
+                {% set hasPartial = true %}
+              {% endif %}
+            {% endif %}
           {% endfor %}
-        </tbody>
-      </table>
 
-      
+          {% if hasNot %}
+            Not achieved
+          {% elseif hasPartial %}
+            Partially achieved
+          {% else %}
+            Achieved
+          {% endif %}
+        {% endmacro %}
 
-        {# Areas of good practice and Areas for improvement  - broken by objetives (A-B) #}
-        {% for obj in report.objectives %}
+        {# Baseline met mapping (handles Met/Not met and also Achieved if it appears) #}
+        {% macro baselineIsMet(val) %}
+          {% if val == "Met" or val == "Achieved" %}
+            true
+          {% else %}
+            false
+          {% endif %}
+        {% endmacro %}
 
-          <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+        {# Count outcomes + met/not met for a principle #}
+        {% macro principleCounts(obj, principle) %}
+          {# returns: "total|met|notmet" as text #}
+          {% set total = 0 %}
+          {% set met = 0 %}
+          {% set notmet = 0 %}
 
-          {# add anchor ids for navigation #}
-          <h2 class="govuk-heading-l">
-            Objective {{ obj.code }} — {{ obj.title }} 
-          </h2>
-          <h2 class="govuk-body">{{obj.subTitle }}</h2>
+          {% for o in obj.outcomes %}
+            {% if o.code.split(".")[0] == principle %}
+              {% set total = total + 1 %}
+              {% set isMet = (baselineIsMet(o.baseline) | trim) %}
+              {% if isMet == "true" %}
+                {% set met = met + 1 %}
+              {% else %}
+                {% set notmet = notmet + 1 %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
 
-          {# Areas of good practice as a single text area (7–9 lines) #}
-          <h3 class="govuk-heading-m">Areas of good practice</h3>
-          <p class="govuk-body">
-            {{ obj.goodPracticeText | replace("\n", "<br>") | safe }}
-          </p>
+          {{ total ~ "|" ~ met ~ "|" ~ notmet }}
+        {% endmacro %}
 
-          {# Areas for improvement as a block of text (not bullets) #}
-          <h3 class="govuk-heading-m">Areas for improvement</h3>
-          <p class="govuk-body">
-            {{ obj.improvements | join("\n") | replace("\n", "<br>") | safe }}
-          </p>
-        {% endfor %}
+        {# Decide if we should render the principle row now (first appearance only) #}
+        {% macro isFirstPrincipleOccurrence(obj, principle, currentIndex) %}
+          {% set first = true %}
+          {% for prev in obj.outcomes %}
+            {% if loop.index0 < currentIndex %}
+              {% if prev.code.split(".")[0] == principle %}
+                {% set first = false %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+          {{ first }}
+        {% endmacro %}
 
-     <h2 class="govuk-heading-l">Quality of the self-assessment and evidence</h2>
+
+
+
+
+      <h2 id="quality-evidence" class="govuk-heading-l">Executive summary NEW NEW NEW</h2>
+        {# EXEC SUMMARY: Principle-level status tables (Variant 3) #}
+{% for obj in report.objectives %}
+
+  <h2 id="objective-{{ obj.code | lower }}" class="govuk-heading-m">
+    Objective {{ obj.code }} — {{ obj.title }}
+  </h2>
+
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">Principle</th>
+        <th scope="col" class="govuk-table__header">Self-assessment status</th>
+        <th scope="col" class="govuk-table__header">Review status</th>
+        <th scope="col" class="govuk-table__header">CAF Baseline profile</th>
+      </tr>
+    </thead>
+
+    <tbody class="govuk-table__body">
+      {% for o in obj.outcomes %}
+        {% set p = o.code.split(".")[0] %}
+        {% set first = isFirstPrincipleOccurrence(obj, p, loop.index0) | trim %}
+
+        {% if first == "true" %}
+          {% set aggSelf = aggregateJudgementForPrinciple(obj, p, "selfAssessment") | trim %}
+          {% set aggReview = aggregateJudgementForPrinciple(obj, p, "review") | trim %}
+
+          {% set counts = principleCounts(obj, p) | trim %}
+          {% set total = counts.split("|")[0] | int %}
+          {% set met = counts.split("|")[1] | int %}
+          {% set notmet = counts.split("|")[2] | int %}
+
+          {% set principleBaseline = "Not met" %}
+          {% if met == total %}
+            {% set principleBaseline = "Met" %}
+          {% endif %}
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><strong>{{ p }}</strong></td>
+
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag {{ judgementTagClass[aggSelf] }}">{{ aggSelf }}</strong>
+            </td>
+
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag {{ judgementTagClass[aggReview] }}">{{ aggReview }}</strong>
+              <div class="govuk-body-s govuk-!-margin-top-1">
+                {% if notmet > 0 %}
+                  {{ notmet }}/{{ total }} Not met
+                {% else %}
+                  {{ met }}/{{ total }} Met
+                {% endif %}
+              </div>
+
+              <details class="govuk-details govuk-!-margin-top-2">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">View outcome breakdown</span>
+                </summary>
+                <div class="govuk-details__text">
+                  <ul class="govuk-list govuk-list--bullet">
+                    {% for x in obj.outcomes %}
+                      {% if x.code.split(".")[0] == p %}
+                        <li>
+                          <strong>{{ x.code }}</strong> — {{ x.name }}:
+                          Baseline <strong>{{ x.baseline }}</strong>,
+                          Review <strong>{{ x.review }}</strong>
+                        </li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+              </details>
+            </td>
+
+            <td class="govuk-table__cell">
+              <strong class="govuk-tag {{ baselineTagClass[principleBaseline] }}">{{ principleBaseline }}</strong>
+            </td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endfor %}
+
+
+
+
+      <h2 id="quality-evidence" class="govuk-heading-m">Quality and self-assessment evidence</h2>
+
       <p class="govuk-body">
+        Overall evidence quality was assessed as <strong>{{ report.evidenceQuality.rating | lower }}</strong>.<br><br>
         {{ report.evidenceQuality.summaryHtml | safe }}
       </p>
-      
-      
 
-      
-      {# Detailed review of contirubiting outcomes #}
+
+      {# Per-objective drill-down sections (simple list view) #}
+      {% from "govuk/components/details/macro.njk" import govukDetails %}
+
       {% for obj in report.objectives %}
+
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
 
-      
-
         {# add anchor ids for navigation #}
-        <h2 class="govuk-heading-xl">{{obj.detailHeading}}</h2>
         <h2 id="objective-{{ obj.code | lower }}" class="govuk-heading-l">
           Objective {{ obj.code }} — {{ obj.title }}
         </h2>
@@ -561,64 +658,71 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
           </tbody>
         </table>
 
+        {# Areas of good practice as a single text area (7–9 lines) #}
+        <h3 class="govuk-heading-m">Areas of good practice</h3>
+        <p class="govuk-body">
+          {{ obj.goodPracticeText | replace("\n", "<br>") | safe }}
+        </p>
 
+        {# Areas for improvement as a block of text (not bullets) #}
+        <h3 class="govuk-heading-m">Areas for improvement</h3>
+        <p class="govuk-body">
+          {{ obj.improvements | join("\n") | replace("\n", "<br>") | safe }}
+        </p>
 
-  <h3 class="govuk-heading-m">Contribuiting outcomes</h3>
+        <h3 class="govuk-heading-m">Outcome detail</h3>
 
-  {% for o in obj.outcomes %}
-    {% call govukDetails({ summaryText: o.code ~ " — " ~ o.name }) %}
+        {% for o in obj.outcomes %}
+          {% call govukDetails({ summaryText: o.code ~ " — " ~ o.name }) %}
 
-      <h5 class="govuk-heading-s">Review status</h5>
+            <h5 class="govuk-heading-s">Review status</h5>
 
-      <p class="govuk-body">
-        <strong class="govuk-tag {{ judgementTagClass[o.review] }}">{{ o.review }}</strong>
+            <p class="govuk-body">
+              <strong class="govuk-tag {{ judgementTagClass[o.review] }}">{{ o.review }}</strong>
 
-        <span class="govuk-!-margin-left-2">
-          {% if o.recommendations | length == 1 %}
-            1 recommendation
-            {# NEW: Required label where review is Not achieved and has recommendations #}
-            {% if o.review == "Not achieved" and (o.recommendations | length > 0) %}
-              <strong class="govuk-tag govuk-tag--grey govuk-!-margin-left-2">Required</strong>
+              <span class="govuk-!-margin-left-2">
+                {% if o.recommendations | length == 1 %}
+                  1 recommendation
+                  {# NEW: Required label where review is Not achieved and has recommendations #}
+                  {% if o.review == "Not achieved" and (o.recommendations | length > 0) %}
+                    <strong class="govuk-tag govuk-tag--grey govuk-!-margin-left-2">Required</strong>
+                  {% endif %}
+                {% else %}
+                  {{ o.recommendations | length }} recommendations
+                {% endif %}
+              </span>
+            </p>
+
+            {% if o.recommendations | length > 0 %}
+              <h4 class="govuk-heading-s">Recommendations for {{ o.code }}</h4>
+              <ul class="govuk-list govuk-list--bullet">
+                {% for recId in o.recommendations %}
+                  {% for r in report.topRecommendations %}
+                    {% if r.id == recId %}
+                      <li>
+                        <strong>{{ r.id }} —</strong> {{ r.recommendation }}
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+              </ul>
             {% endif %}
-          {% else %}
-            {{ o.recommendations | length }} recommendations
-          {% endif %}
-        </span>
-      </p>
 
-      {% if o.recommendations | length > 0 %}
-        <h4 class="govuk-heading-s">Recommendations for {{ o.code }}</h4>
-        <ul class="govuk-list govuk-list--bullet">
-          {% for recId in o.recommendations %}
-            {% for r in report.topRecommendations %}
-              {% if r.id == recId %}
-                <li>
-                  <strong>{{ r.id }} —</strong> {{ r.recommendation }}
-                </li>
-              {% endif %}
-            {% endfor %}
-          {% endfor %}
-        </ul>
-      {% endif %}
+            <h5 class="govuk-heading-s">Overall comment to support the review</h5>
+            <p class="govuk-body">
+              {{ o.summary }}
+            </p>
 
-      <h5 class="govuk-heading-s">Comment to support the review</h5>
-      <p class="govuk-body">
-        {{ o.summary }}
-      </p>
+            {# only show heading if comment exists #}
+            {% if o.igpComment %}
+              <h5 class="govuk-heading-s">Comments to the IGP statement</h5>
+              <p class="govuk-body">{{ o.igpComment }}</p>
+            {% endif %}
 
-      {# only show heading if comment exists #}
-      {% if o.igpComment %}
-        <h5 class="govuk-heading-s">Comments on individual IGPs</h5>
-        <p class="govuk-body govuk-!-font-size-16">{{o.statement2}} | safe </p>
-        <p class="govuk-body">{{ o.igpComment }}</p>
-      {% endif %}
+          {% endcall %}
+        {% endfor %}
 
-    {% endcall %}
-  {% endfor %}
-
-{% endfor %}
-
-       
+      {% endfor %}
 
       {# moved to end (body) #}
      <h2 id="full-recommendations-table" class="govuk-heading-l">Full table of recommendations</h2>
