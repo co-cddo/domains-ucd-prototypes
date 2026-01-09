@@ -109,9 +109,9 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
       outcomes: [
         { code: "A1.a", name: "Board direction", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Board oversight is evidenced through documented decisions and agreed risk appetite; reporting could be more consistent across quarters.", recommendations: ["REC-12"], statement2: ["Achieved statement 2: Regular board-level discussions on the security of network and information systems supporting the operation of your essential function(s) take place, based on timely and accurate information and informed by expert guidance."] , igpComment: "Board packs show evidence of risk decisions, but the reporting format varies between quarters and teams which reduces comparability." },
         { code: "A1.b", name: "Roles and responsibilities", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Key security roles are defined and understood, with ownership for critical assets and security processes clearly assigned.", recommendations: [], igpComment: "" },
-        { code: "A1.c", name: "Decision-making", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Risk decisions are recorded, but evidence of challenge, trade-offs and escalation thresholds is inconsistent across teams.", recommendations: ["REC-13"], igpComment: "Partially achieved statement 2 — Decision records exist, but do not consistently capture trade-offs, dissenting views, and escalation triggers for higher-risk changes." },
+        { code: "A1.c", name: "Decision-making", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Risk decisions are recorded, but evidence of challenge, trade-offs and escalation thresholds is inconsistent across teams.", recommendations: ["REC-13"], statement2: ["Partially achieved statement 2: "], igpComment: "Decision records exist, but do not consistently capture trade-offs, dissenting views, and escalation triggers for higher-risk changes." },
         { code: "A2.a", name: "Risk Management", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "A documented risk management process exists and is applied to major changes; linkage to outcomes and controls is generally clear.", recommendations: [], igpComment: "" },
-        { code: "A2.b", name: "Assurance", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Assurance activity occurs, but sampling approach and evidence traceability are uneven for supplier-managed components.", recommendations: ["REC-14"], igpComment: "Partially achieved statement 2 — Assurance is performed, however the sampling basis and evidence index are not consistent for supplier-managed services." },
+        { code: "A2.b", name: "Assurance", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Assurance activity occurs, but sampling approach and evidence traceability are uneven for supplier-managed components.", recommendations: ["REC-14"], statement2: ["Partially achieved statement 2: "], igpComment: "Assurance is performed, however the sampling basis and evidence index are not consistent for supplier-managed services." },
         { code: "A3.a", name: "Asset management", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Asset inventories and ownership exist for core services; coverage for legacy and shadow integrations needs strengthening.", recommendations: ["REC-15"], igpComment: "" },
         { code: "A4.a", name: "Supply chain", selfAssessment: "Not achieved", review: "Not achieved", baseline: "Not met", summary: "Supplier security requirements exist, but assurance and continuous monitoring are not evidenced consistently across the supply chain.", recommendations: ["REC-16"], igpComment: "Not achieved statement 5 — Supplier controls are described, but the ongoing monitoring and assurance evidence is incomplete and not systematically captured." }
       ],
@@ -609,7 +609,7 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
       {# only show heading if comment exists #}
       {% if o.igpComment %}
         <h5 class="govuk-heading-s">Comments on individual IGPs</h5>
-        <p class="govuk-body govuk-!-font-size-16">{{o.statement2}} | safe </p>
+        <p class="govuk-body govuk-!-font-size-16">{{o.statement2}} </p>
         <p class="govuk-body">{{ o.igpComment }}</p>
       {% endif %}
 
@@ -624,10 +624,11 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
      <h2 id="full-recommendations-table" class="govuk-heading-l">Full table of recommendations</h2>
 
         {# =========================================================
-          1) Required recommendations
-          Only show rows that genuinely qualify for Required label
+          1) Priority recommendations
+          This will be filted by 'not meeting the profile)
           ========================================================= #}
-        <h3 class="govuk-heading-m">Required recommendations</h3>
+        <h3 class="govuk-heading-m">Priority recommendations</h3>
+        <p>These recommendations address gaps identified for contributing outcomes where the target Government CAF profile has not been met. </p>
 
         <table class="govuk-table">
           <thead class="govuk-table__head">
@@ -687,6 +688,7 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
           2) All other recommendations (everything else)
           ========================================================= #}
         <h3 class="govuk-heading-m">Other recommendations</h3>
+        <p>These recommendations address gaps identified for contributing outcomes where the target Government CAF profile has been met. </p>
 
         <table class="govuk-table">
           <thead class="govuk-table__head">
