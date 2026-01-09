@@ -93,7 +93,7 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
   executiveSummary: {
     intro: "GovAssure is the cyber security scheme for assessing government critical systems against NCSC’s Cyber Assessment Framework (CAF). The process provides government organisations with visibility of cyber security risks, and support to understand and manage them more effectively.
            <br><br> 
-            This report contains the findings of the Independent Assurance Review carried out against [Example Supplier Ltd]’s CAF self-assessment for [SYS-0001 Microsoft CS version 3] in 2025-26. The system was assessed against the [Baseline] Government CAF profile. The report identifies areas of good practice and areas for improvement, and provides specific recommendations to enable [Cabinet Office] to improve its cyber security and resilience.
+            This report contains the findings of the Independent Assurance Review carried out against Cabinet office’s CAF self-assessment for [SYS-0001 Microsoft CS version 3] in 2025-26. The system was assessed against the [Baseline] Government CAF profile. The report identifies areas of good practice and areas for improvement, and provides specific recommendations to enable [Cabinet Office] to improve its cyber security and resilience.
             <br><br>
             There are several CAF principles that are fundamental to an organisation’s overall security. The principles of governance (A1) and risk management (A2) are essential for running a security ecosystem founded on risk. The principles of response and recovery planning (D1) and lessons learned (D2) are fundamental to business continuity and an organisation's ability to operate through and recover from a cyber incident. Organisations are encouraged to prioritise recommendations for these principles and the underlying contributing outcomes where they have not met the target Government CAF profile. "
   },
@@ -270,8 +270,8 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
 } %}
 
 {% set baselineTagClass = {
-  "Met": "govuk-tag--grey",
-  "Not met": "govuk-tag--grey"
+  "Met": "govuk-tag--green",
+  "Not met": "govuk-tag--red"
 } %}
 
 {# =========================================================
@@ -320,21 +320,11 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
           <li class="gem-c-contents-list__list-item">
             <a class="gem-c-contents-list__link" href="#executive-summary">Introduction</a>
           </li>
-
-          <li class="gem-c-contents-list__list-item">
-            <a class="gem-c-contents-list__link" href="#system-details">System overview</a>
-          </li>
-
-          <li class="gem-c-contents-list__list-item">
-            <a class="gem-c-contents-list__link" href="#period-of-review">Period of review and IAR details</a>
-          </li>
-
-          <li class="gem-c-contents-list__list-item">
-            <a class="gem-c-contents-list__link" href="#review-method">Review method</a>
-          </li>
-
           <li class="gem-c-contents-list__list-item">
             <a class="gem-c-contents-list__link" href="#exec-summary">Executive summary</a>
+          </li>
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#detail-summary">Detailed review of contributing outcomes</a>
           </li>
 
           {# remove broken 'Outcome status' and add objective anchors #}
@@ -366,7 +356,7 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
     <div class="govuk-grid-column-three-quarters-from-desktop">
 
       {# Executive summary (generic intro + lists) #}
-      <h2 id="executive-summary" class="govuk-heading-l">Introduction</h2>
+      <h2 id="executive-summary" class="govuk-heading-xl">Introduction</h2>
 
       <p class="govuk-body">
         {{ report.executiveSummary.intro | safe }}
@@ -429,7 +419,7 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
 
       
       {# EXEC SUMMARY: One combined outcome status table (all objectives)= #}
-      <h2 id="exec-summary" class="govuk-heading-l">Executive summary</h2>
+      <h2 id="exec-summary" class="govuk-heading-xl">Executive summary</h2>
       <h2 class="govuk-heading-m">Achievement status by contributing outcome</h2>
       <p>The table below shows the cyber security and resilience contributing outcome results against the target Government CAF profile.
       </p>
@@ -506,11 +496,11 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
       
       
 
-      
+      <p id="detail-summary"></p>
       {# Detailed review of contirubiting outcomes #}
       {% for obj in report.objectives %}
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
-
+      
         {# add anchor ids for navigation #}
         <h2 class="govuk-heading-xl">{{obj.detailHeading}}</h2>
         <h2 id="objective-{{ obj.code | lower }}" class="govuk-heading-l">
@@ -559,7 +549,7 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
 
 
 
-  <h3 class="govuk-heading-m">Contribuiting outcomes</h3>
+  <h3 class="govuk-heading-m">Contributing outcomes</h3>
 
   {% for o in obj.outcomes %}
     {% call govukDetails({ summaryText: o.code ~ " — " ~ o.name }) %}
