@@ -1,7 +1,7 @@
 {% extends "/layouts/review-conf.html" %}
 
 {% block pageTitle %}
-GovAssure Independent Assurance Review (IAR) - SYS-0001 Microsoft CS version 3 (CAF24092025FDMH)
+GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS version 3 (CAF24092025FDMH)
 {% endblock %}
  
 {% block beforeContent %}
@@ -26,7 +26,7 @@ GovAssure Independent Assurance Review (IAR) - SYS-0001 Microsoft CS version 3 (
          href: "/webcaf/review/current/task/9/report-history"
       },
        {
-        text: "Version 3 report (current – with organisation)"
+        text: "Version 4 report (current – with organisation)"
       }
     ]
   }) }}
@@ -93,7 +93,7 @@ GovAssure Independent Assurance Review (IAR) - SYS-0001 Microsoft CS version 3 (
   executiveSummary: {
     intro: "GovAssure is the cyber security scheme for assessing government critical systems against NCSC’s Cyber Assessment Framework (CAF). The process provides government organisations with visibility of cyber security risks, and support to understand and manage them more effectively.
            <br><br> 
-            This report contains the findings of the Independent Assurance Review carried out against [Example Supplier Ltd]’s CAF self-assessment for [SYS-0001 Microsoft CS version 3] in 2025-26. The system was assessed against the [Baseline] Government CAF profile. The report identifies areas of good practice and areas for improvement, and provides specific recommendations to enable [Cabinet Office] to improve its cyber security and resilience.
+            This report contains the findings of the Independent Assurance Review carried out against Cabinet office’s CAF self-assessment for [SYS-0001 Microsoft CS version 3] in 2025-26. The system was assessed against the [Baseline] Government CAF profile. The report identifies areas of good practice and areas for improvement, and provides specific recommendations to enable [Cabinet Office] to improve its cyber security and resilience.
             <br><br>
             There are several CAF principles that are fundamental to an organisation’s overall security. The principles of governance (A1) and risk management (A2) are essential for running a security ecosystem founded on risk. The principles of response and recovery planning (D1) and lessons learned (D2) are fundamental to business continuity and an organisation's ability to operate through and recover from a cyber incident. Organisations are encouraged to prioritise recommendations for these principles and the underlying contributing outcomes where they have not met the target Government CAF profile. "
   },
@@ -270,8 +270,8 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
 } %}
 
 {% set baselineTagClass = {
-  "Met": "govuk-tag--grey",
-  "Not met": "govuk-tag--grey"
+  "Met": "govuk-tag--green",
+  "Not met": "govuk-tag--red"
 } %}
 
 {# =========================================================
@@ -320,21 +320,11 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
           <li class="gem-c-contents-list__list-item">
             <a class="gem-c-contents-list__link" href="#executive-summary">Introduction</a>
           </li>
-
-          <li class="gem-c-contents-list__list-item">
-            <a class="gem-c-contents-list__link" href="#system-details">System overview</a>
-          </li>
-
-          <li class="gem-c-contents-list__list-item">
-            <a class="gem-c-contents-list__link" href="#period-of-review">Period of review and IAR details</a>
-          </li>
-
-          <li class="gem-c-contents-list__list-item">
-            <a class="gem-c-contents-list__link" href="#review-method">Review method</a>
-          </li>
-
           <li class="gem-c-contents-list__list-item">
             <a class="gem-c-contents-list__link" href="#exec-summary">Executive summary</a>
+          </li>
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#detail-summary">Detailed review of contributing outcomes</a>
           </li>
 
           {# remove broken 'Outcome status' and add objective anchors #}
@@ -366,7 +356,7 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
     <div class="govuk-grid-column-three-quarters-from-desktop">
 
       {# Executive summary (generic intro + lists) #}
-      <h2 id="executive-summary" class="govuk-heading-l">Introduction</h2>
+      <h2 id="executive-summary" class="govuk-heading-xl">Introduction</h2>
 
       <p class="govuk-body">
         {{ report.executiveSummary.intro | safe }}
@@ -427,52 +417,189 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
         {{ report.reviewMethod }}
       </p>
 
-      
-      {# EXEC SUMMARY: One combined outcome status table (all objectives)= #}
-      <h2 id="exec-summary" class="govuk-heading-l">Executive summary</h2>
-      <h2 class="govuk-heading-m">Achievement status by contributing outcome</h2>
-      <p>The table below shows the cyber security and resilience contributing outcome results against the target Government CAF profile.
-      </p>
+        {# EXEC SUMMARY: One combined status table (all objectives)= #} <h2 id="exec-summary" class="govuk-heading-xl">Executive summary</h2>      
+        
+      <p>The table below shows the cyber security and resilience principle results against the target Government CAF profile. 
+      Each principle is made up of a set of contributing outcomes that are assessed in the Cyber Assessment Framework (CAF). 
+      <br><br>All outcomes within a principle must be met in order for that principle to be met. Amber indicates that one or more outcomes within a principle have been met, but not all.
+      </p>
+<h2 class="govuk-heading-m">Achievement status by CAF principle</h2>
+        {# =========================================================
+          EXEC SUMMARY: Principle-level status table (ONE TABLE)
+          No helper functions, no objective split
+          ========================================================= #}
 
-      <table class="govuk-table">
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row">
-            <th scope="col" class="govuk-table__header">Outcome</th>
-            <th scope="col" class="govuk-table__header">Self-assessment status</th>
-            <th scope="col" class="govuk-table__header">Review status</th>
-            <th scope="col" class="govuk-table__header">CAF Baseline profile</th>
-          </tr>
-        </thead>
+        {# Map principle codes to names (edit as needed) #}
+        {% set principleNames = {
+          "A1": "Governance",
+          "A2": "Risk management",
+          "A3": "Asset management",
+          "A4": "Supply chain",
 
-        <tbody class="govuk-table__body">
-          {% for obj in report.objectives %}
-            {% for o in obj.outcomes %}
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">{{ o.code }} {{ o.name }}</td>
+          "B1": "Policy and process",
+          "B2": "Identity and access management",
+          "B3": "Data security",
+          "B4": "Secure systems and services",
+          "B5": "Resilience",
+          "B6": "People and culture",
 
-                <td class="govuk-table__cell">
-                  <strong class="govuk-tag {{ judgementTagClass[o.selfAssessment] }}">
-                    {{ o.selfAssessment }}
-                  </strong>
-                </td>
+          "C1": "Security monitoring",
+          "C2": "Proactive discovery",
 
-                <td class="govuk-table__cell">
-                  <strong class="govuk-tag {{ judgementTagClass[o.review] }}">
-                    {{ o.review }}
-                  </strong>
-                </td>
+          "D1": "Response and recovery",
+          "D2": "Learning and improvement"
+        } %}
 
-                <td class="govuk-table__cell">
-                  <strong class="govuk-tag {{ baselineTagClass[o.baseline] }}">
-                    {{ o.baseline }}
-                  </strong>
-                </td>
-              </tr>
+        {# Track printed principles so we only render each one once #}
+        {% set seenPrinciples = "|" %}
+
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Principle</th>
+              <th scope="col" class="govuk-table__header">Self-assessment status</th>
+              <th scope="col" class="govuk-table__header">Review status</th>
+              <th scope="col" class="govuk-table__header">CAF Baseline profile</th>
+            </tr>
+          </thead>
+
+          <tbody class="govuk-table__body">
+
+            {# One pass through all outcomes across all objectives #}
+            {% for obj in report.objectives %}
+              {% for o in obj.outcomes %}
+
+                {% set p = o.code.split(".")[0] %}
+
+                {# Only render if we haven't rendered this principle yet #}
+                {% if (seenPrinciples.indexOf("|" ~ p ~ "|") == -1) %}
+
+                  {# Mark as seen #}
+                  {% set seenPrinciples = seenPrinciples ~ p ~ "|" %}
+
+                  {# -------------------------
+                    Count outcomes for this principle across ALL objectives
+                    ------------------------- #}
+                  {% set total = 0 %}
+                  {% set selfNotMet = 0 %}
+                  {% set reviewNotMet = 0 %}
+
+                  {# For CAF label from review status:
+                    - If any Not achieved -> Not achieved
+                    - Else if any Partially achieved -> Partially achieved
+                    - Else -> Achieved #}
+                  {% set hasNotAchieved = false %}
+                  {% set hasPartial = false %}
+
+                  {% for obj2 in report.objectives %}
+                    {% for x in obj2.outcomes %}
+                      {% if x.code.split(".")[0] == p %}
+
+                        {% set total = total + 1 %}
+
+                        {# Self-assessment Met/Not met: using baseline field (Met/Not met) #}
+                        {% if x.baseline == "Not met" %}
+                          {% set selfNotMet = selfNotMet + 1 %}
+                        {% endif %}
+
+                        {# Review Met/Not met: Not achieved OR Partially achieved counts as NOT MET #}
+                        {% if x.review == "Not achieved" or x.review == "Partially achieved" %}
+                          {% set reviewNotMet = reviewNotMet + 1 %}
+                        {% endif %}
+
+                        {# CAF label derived from Review judgements #}
+                        {% if x.review == "Not achieved" %}
+                          {% set hasNotAchieved = true %}
+                        {% elseif x.review == "Partially achieved" %}
+                          {% set hasPartial = true %}
+                        {% endif %}
+
+                      {% endif %}
+                    {% endfor %}
+                  {% endfor %}
+
+                  {# Self status #}
+                  {% set selfStatus = "Met" %}
+                  {% if selfNotMet > 0 %}
+                    {% set selfStatus = "Not met" %}
+                  {% endif %}
+
+                  {# Review status #}
+                  {% set reviewStatus = "Met" %}
+                  {% if reviewNotMet > 0 %}
+                    {% set reviewStatus = "Not met" %}
+                  {% endif %}
+
+                  {# CAF baseline label (Achieved / Partially achieved / Not achieved) #}
+                  {% set cafProfile = "Achieved" %}
+                  {% if hasNotAchieved %}
+                    {% set cafProfile = "Not achieved" %}
+                  {% elseif hasPartial %}
+                    {% set cafProfile = "Partially achieved" %}
+                  {% endif %}
+
+                  {% set principleName = principleNames[p] %}
+
+                  <tr class="govuk-table__row">
+
+                    {#  Your exact merged principle code + name cell #}
+                    <td class="govuk-table__cell">
+                      <strong>
+                        {{ p }}
+                        {% if principleName %}
+                          — {{ principleName }}
+                        {% endif %}
+                      </strong>
+                    </td>
+
+                    {# Self-assessment status (Met/Not met + count) #}
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag {{ baselineTagClass[selfStatus] }}">
+                        {{ selfStatus }}
+                      </strong>
+                      <div class="govuk-body-s govuk-!-margin-top-1">
+                        {% if selfStatus == "Not met" %}
+                          {{ selfNotMet }} of {{ total }} outcomes not met
+                        {% else %}
+                          {{ total - selfNotMet }} of {{ total }} outcomes met
+                        {% endif %}
+                      </div>
+                    </td>
+
+                    {# Review status (Met/Not met + count) #}
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag {{ baselineTagClass[reviewStatus] }}">
+                        {{ reviewStatus }}
+                      </strong>
+                      <div class="govuk-body-s govuk-!-margin-top-1">
+                        {% if reviewStatus == "Not met" %}
+                          {{ reviewNotMet }} of {{ total }} outcomes not met
+                        {% else %}
+                          {{ total - reviewNotMet }} of {{ total }} outcomes met
+                        {% endif %}
+                      </div>
+                    </td>
+
+                    {# CAF Baseline profile: show REVIEW-derived label #}
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag {{ judgementTagClass[cafProfile] }}">
+                        {{ cafProfile }}
+                      </strong>
+                    </td>
+
+                  </tr>
+
+                {% endif %}
+
+              {% endfor %}
             {% endfor %}
-          {% endfor %}
-        </tbody>
-      </table>
 
+          </tbody>
+        </table>
+
+
+
+      
       
 
         {# Areas of good practice and Areas for improvement  - broken by objetives (A-B) #}
@@ -506,11 +633,11 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
       
       
 
-      
+      <p id="detail-summary"></p>
       {# Detailed review of contirubiting outcomes #}
       {% for obj in report.objectives %}
         <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
-
+      
         {# add anchor ids for navigation #}
         <h2 class="govuk-heading-xl">{{obj.detailHeading}}</h2>
         <h2 id="objective-{{ obj.code | lower }}" class="govuk-heading-l">
@@ -559,7 +686,7 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
 
 
 
-  <h3 class="govuk-heading-m">Contribuiting outcomes</h3>
+  <h3 class="govuk-heading-m">Contributing outcomes</h3>
 
   {% for o in obj.outcomes %}
     {% call govukDetails({ summaryText: o.code ~ " — " ~ o.name }) %}
