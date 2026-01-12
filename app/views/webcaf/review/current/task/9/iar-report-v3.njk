@@ -427,7 +427,12 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
       <h2 class="govuk-heading-m">Achievement status by CAF principle</h2>
         {# =========================================================
           EXEC SUMMARY: Principle-level status table (ONE TABLE)
-          No helper functions, no objective split
+          FIXED logic (per your notes):
+          1) Count line under Review column ALWAYS shows "X of Y outcomes met"
+              - even when label is Not met (e.g. 0 of 1 outcomes met)
+          2) Principle Review Met/Not met is based on CAF profile per outcome (o.baseline),
+              NOT on o.review / self-assessment.
+              - Met only if ALL outcomes in that principle have baseline == "Met"
           ========================================================= #}
 
         {# Map principle codes to names (edit as needed) #}
@@ -437,18 +442,18 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
           "A3": "Asset management",
           "A4": "Supply chain",
 
-          "B1": "Policy and process",
-          "B2": "Identity and access management",
+          "B1": "Service protection policies, processes and procedures ",
+          "B2": "Identity and access control ",
           "B3": "Data security",
-          "B4": "Secure systems and services",
-          "B5": "Resilience",
-          "B6": "People and culture",
+          "B4": "System security",
+          "B5": "Resilient networks and systems",
+          "B6": "Staff awareness and training",
 
           "C1": "Security monitoring",
-          "C2": "Proactive discovery",
+          "C2": "Proactive security event discovery",
 
-          "D1": "Response and recovery",
-          "D2": "Learning and improvement"
+          "D1": "Response and recovery planning",
+          "D2": "Lessons learned"
         } %}
 
         {# Track printed principles so we only render each one once #}
@@ -479,16 +484,19 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
                   {% set seenPrinciples = seenPrinciples ~ p ~ "|" %}
 
                   {# -------------------------
-                    Count outcomes for this principle across ALL objectives
+                    Aggregate across ALL objectives for this principle
                     ------------------------- #}
                   {% set total = 0 %}
-                  {% set selfNotMet = 0 %}
-                  {% set reviewNotMet = 0 %}
 
-                  {# For CAF label from review status:
-                    - If any Not achieved -> Not achieved
-                    - Else if any Partially achieved -> Partially achieved
-                    - Else -> Achieved #}
+                  {# Self-assessment: treat Achieved as "met"; Partially/Not achieved as "not met" #}
+                  {% set selfMet = 0 %}
+                  {% set selfNotMet = 0 %}
+
+                  {# Review (CAF profile met/not met): STRICTLY use baseline Met/Not met #}
+                  {% set cafMet = 0 %}
+                  {% set cafNotMet = 0 %}
+
+                  {# CAF label derived from review judgements (kept as-is): worst wins #}
                   {% set hasNotAchieved = false %}
                   {% set hasPartial = false %}
 
@@ -498,17 +506,21 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
 
                         {% set total = total + 1 %}
 
-                        {# Self-assessment Met/Not met: using baseline field (Met/Not met) #}
-                        {% if x.baseline == "Not met" %}
+                        {# Self-assessment met/not met #}
+                        {% if x.selfAssessment == "Achieved" %}
+                          {% set selfMet = selfMet + 1 %}
+                        {% else %}
                           {% set selfNotMet = selfNotMet + 1 %}
                         {% endif %}
 
-                        {# Review Met/Not met: Not achieved OR Partially achieved counts as NOT MET #}
-                        {% if x.review == "Not achieved" or x.review == "Partially achieved" %}
-                          {% set reviewNotMet = reviewNotMet + 1 %}
+                        {# CAF profile met/not met (review decision for Exec table) #}
+                        {% if x.baseline == "Met" %}
+                          {% set cafMet = cafMet + 1 %}
+                        {% else %}
+                          {% set cafNotMet = cafNotMet + 1 %}
                         {% endif %}
 
-                        {# CAF label derived from Review judgements #}
+                        {# CAF label (Achieved / Partially achieved / Not achieved) based on review statuses #}
                         {% if x.review == "Not achieved" %}
                           {% set hasNotAchieved = true %}
                         {% elseif x.review == "Partially achieved" %}
@@ -519,31 +531,30 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
                     {% endfor %}
                   {% endfor %}
 
-                  {# Self status #}
+                  {# Self-assessment label #}
                   {% set selfStatus = "Met" %}
                   {% if selfNotMet > 0 %}
                     {% set selfStatus = "Not met" %}
                   {% endif %}
 
-                  {# Review status #}
+                  {# Review label (FIXED): based ONLY on CAF profile (baseline) #}
                   {% set reviewStatus = "Met" %}
-                  {% if reviewNotMet > 0 %}
+                  {% if cafNotMet > 0 %}
                     {% set reviewStatus = "Not met" %}
                   {% endif %}
 
-                  {# CAF baseline label (Achieved / Partially achieved / Not achieved) #}
-                  {% set cafProfile = "Achieved" %}
+                  {# CAF Baseline profile label (kept): derived from review judgements #}
+                  {% set cafProfileLabel = "Achieved" %}
                   {% if hasNotAchieved %}
-                    {% set cafProfile = "Not achieved" %}
+                    {% set cafProfileLabel = "Not achieved" %}
                   {% elseif hasPartial %}
-                    {% set cafProfile = "Partially achieved" %}
+                    {% set cafProfileLabel = "Partially achieved" %}
                   {% endif %}
 
                   {% set principleName = principleNames[p] %}
 
                   <tr class="govuk-table__row">
 
-                    {#  Your exact merged principle code + name cell #}
                     <td class="govuk-table__cell">
                       <strong>
                         {{ p }}
@@ -553,36 +564,27 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
                       </strong>
                     </td>
 
-                    {# Self-assessment status (Met/Not met + count) #}
+                    {# Self-assessment status (Met/Not met + count line: show MET count) #}
                     <td class="govuk-table__cell">
                       <strong class="govuk-tag {{ baselineTagClass[selfStatus] }}">
                         {{ selfStatus }}
                       </strong>
-                      <div class="govuk-body-s govuk-!-margin-top-1">
-                        {% if selfStatus == "Not met" %}
-                          {{ selfNotMet }} of {{ total }} outcomes not met
-                        {% else %}
-                          {{ total - selfNotMet }} of {{ total }} outcomes met
-                        {% endif %}
+                      <div class="govuk-hint govuk-!-margin-top-1 govuk-!-margin-bottom-0">
+                        {{ selfMet }} of {{ total }} outcomes met
                       </div>
                     </td>
 
-                    {# Review status (Met/Not met + count) #}
+                    {# Review status (Met/Not met + count line FIXED: show MET count from baseline) #}
                     <td class="govuk-table__cell">
                       <strong class="govuk-tag {{ baselineTagClass[reviewStatus] }}">
                         {{ reviewStatus }}
                       </strong>
-                      <div class="govuk-body-s govuk-!-margin-top-1">
-                        {% if reviewStatus == "Not met" %}
-                          {{ reviewNotMet }} of {{ total }} outcomes not met
-                        {% else %}
-                          {{ total - reviewNotMet }} of {{ total }} outcomes met
-                        {% endif %}
+                      <div class="govuk-hint govuk-!-margin-top-1 govuk-!-margin-bottom-0">
+                        {{ cafMet }} of {{ total }} outcomes met
                       </div>
                     </td>
 
-                   
-
+                    
                   </tr>
 
                 {% endif %}
