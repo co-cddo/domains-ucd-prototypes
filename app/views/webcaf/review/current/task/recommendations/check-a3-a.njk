@@ -35,18 +35,19 @@ Outcome A1.a Board direction
       }
     ]
   }) }}
-  <div class="proto-admin">
+  
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column">
+<div class="proto-admin">
     <p id="progress-pages"><strong>You have completed 26% of your review</strong></p>
       <div class="progress-inactive">
         <div class="progress-active" style="width: 26%">
         </div>
       </div>
   </div>
-{% endblock %}
-
-{% block content %}
-<div class="govuk-grid-row">
-<div class="govuk-grid-column-two-thirds">
 
 <span class="govuk-caption-l">A3.a – Asset management</span>
 <h1 class="govuk-heading-l">Check your outcome-level recommendations</h1>
@@ -82,7 +83,16 @@ document.addEventListener("DOMContentLoaded", () => {
              Change
           </a>
         </div>
-        <dl class="govuk-summary-list">`;
+        <dl class="govuk-summary-list">
+        <!-- Column headings -->
+        <div class="govuk-summary-list__row govuk-summary-list__row--no-border">
+          <dt class="govuk-summary-list__key govuk-!-font-weight-bold">
+            Risk
+          </dt>
+          <dd class="govuk-summary-list__value govuk-!-font-weight-bold">
+            Recommendation detail
+          </dd>
+        </div>`;
 
     recs.forEach((rec, i) => {
       const title = rec.title || `Recommendation ${i + 1}`;
@@ -91,7 +101,8 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">${title}</dt>
           <dd class="govuk-summary-list__value">${detail}</dd>
-        </div>`;
+        </div>
+        `;
     });
 
     html += `</dl></div>`;

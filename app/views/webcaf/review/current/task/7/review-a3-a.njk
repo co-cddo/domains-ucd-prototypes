@@ -59,6 +59,7 @@ A3.a Asset management review
     <ul class="govuk-list govuk-list--bullet">
     <li>select your response to each IGP statement</li>
     <li>add your comments for each IGP where the organisation has named alternative controls or exemptions</li>
+    <li>add your comments for each IGP where your response is different to the organisation’s selection</li>
     <li>select a contributing outcome status</li>
     <li>write a summary for the contributing outcome</li>      
     </ul>      
@@ -107,10 +108,15 @@ A3.a Asset management review
       Review each IGP statement
     </h2>
     <p>When completing their self-assessment, the organisation selects an IGP statement if they believe it applies to their system or organisation.</p>
-    <p>If you disagree with the organisation’s selection you will need to use the comment box to explain why and include relevant evidence. You do not need to add comments if you agree with the organisation’s response, except where they have noted alternative controls or exemptions. 
+    {{ govukWarningText({
+      text: "You must respond ‘Yes’ or ‘No’ to the IGP statement, not whether you agree with the organisation’s response to the statement.",
+      iconFallbackText: "Warning"
+    }) }}
+    <p>If your response to the statement is different to the organisation’s selection you will need to use the comment box to explain why and refer to relevant evidence. 
     </p>
-
-  {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+    <p>You do not need to add comments if you agree with the organisation’s response, except where they have noted alternative controls or exemptions.
+    </p>
+  
 
 
 
