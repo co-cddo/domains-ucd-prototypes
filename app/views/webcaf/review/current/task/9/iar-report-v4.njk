@@ -1,7 +1,7 @@
 {% extends "/layouts/review-conf.html" %}
 
 {% block pageTitle %}
-GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS version 3 (CAF24092025FDMH)
+GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS version 3
 {% endblock %}
  
 {% block beforeContent %}
@@ -93,9 +93,9 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
   executiveSummary: {
     intro: "GovAssure is the cyber security scheme for assessing government critical systems against NCSC’s Cyber Assessment Framework (CAF). The process provides government organisations with visibility of cyber security risks, and support to understand and manage them more effectively.
            <br><br> 
-            This report contains the findings of the Independent Assurance Review carried out against Cabinet office’s CAF self-assessment for [SYS-0001 Microsoft CS version 3] in 2025-26. The system was assessed against the [Baseline] Government CAF profile. The report identifies areas of good practice and areas for improvement, and provides specific recommendations to enable [Cabinet Office] to improve its cyber security and resilience.
+            This report contains the findings of the Independent Assurance Review carried out against Cabinet office’s CAF self-assessment for SYS-0001 Microsoft CS version 3 in 2025-26. The system was assessed against the Baseline Government CAF profile. The report identifies areas of good practice and areas for improvement, and provides specific recommendations to enable Cabinet Office to improve its cyber security and resilience.
             <br><br>
-            There are several CAF principles that are fundamental to an organisation’s overall security. The principles of governance (A1) and risk management (A2) are essential for running a security ecosystem founded on risk. The principles of response and recovery planning (D1) and lessons learned (D2) are fundamental to business continuity and an organisation's ability to operate through and recover from a cyber incident. Organisations are encouraged to prioritise recommendations for these principles and the underlying contributing outcomes where they have not met the target Government CAF profile. "
+            Several core CAF principles serve as a foundation for an organisation’s overall security. The principles of governance (A1) and risk management (A2) are essential for running a security ecosystem founded on risk. The principles of response and recovery planning (D1) and lessons learned (D2) are fundamental to business continuity and an organisation's ability to operate through and recover from a cyber incident. Organisations are encouraged to prioritise recommendations for these principles and the underlying contributing outcomes where they have not met the target Government CAF profile. "
   },
 
 
@@ -280,7 +280,7 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
 <header class="gem-c-inverse-header">
   <div class="gem-c-heading gem-c-heading--inverse">
     <span class="govuk-caption-xl gem-c-heading__context gem-c-heading__xl_caption">
-      {{ report.meta.systemId }} {{ report.meta.systemName }} ({{ report.meta.reference }})
+      {{ report.meta.systemId }} {{ report.meta.systemName }} 
     </span>
 
     <span class="gem-c-heading__xl govuk-heading-xl">
@@ -370,7 +370,7 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
         classes: "govuk-summary-list",
         rows: [
           { key: { text: "System name" }, value: { text: report.meta.systemId ~ " " ~ report.meta.systemName } },
-          { key: { text: "Reference number" }, value: { text: report.meta.reference } },
+          
           { key: { text: "Organisation" }, value: { text: report.meta.organisation } },
           { key: { text: "System description" }, value: { text: report.systemDetails.description } },
           { key: { text: "Ownership" }, value: { text: report.systemDetails.ownership } },
@@ -400,7 +400,7 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
         classes: "govuk-summary-list",
         rows: [
           { key: { text: "Company name" }, value: { text: report.companyDetails.companyName } },
-          { key: { text: "Lead reviewer name" }, value: { text: "Mr. Isaac Johnson McAlister" } },
+          { key: { text: "Lead reviewer" }, value: { text: "Mr. Isaac Johnson McAlister" } },
           { key: { text: "Lead reviewer email address" }, value: { text: "isaac.mcalister@company.com" } }
           
         ]
@@ -508,12 +508,13 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
         </h2>
 
         {# INSERT: Outcome status table under each objective (same labels + same tag colours) #}
-        <h3 class="govuk-heading-m">Outcome status</h3>
+        <h3 class="govuk-body">The table below shows the status of each contributing outcome in the CAF objective. It also shows whether each contributing outcome has met the target Government CAF profile in the Independent Assurance Review. 
+</h3>
 
         <table class="govuk-table">
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">Outcome</th>
+              <th scope="col" class="govuk-table__header">Contributing outcome</th>
               <th scope="col" class="govuk-table__header">Self-assessment status</th>
               <th scope="col" class="govuk-table__header">Review status</th>
               <th scope="col" class="govuk-table__header">CAF Baseline profile</th>
@@ -554,26 +555,17 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
   {% for o in obj.outcomes %}
     {% call govukDetails({ summaryText: o.code ~ " — " ~ o.name }) %}
 
-      <h5 class="govuk-heading-s">Review status</h5>
-
-      <p class="govuk-body">
-        <strong class="govuk-tag {{ judgementTagClass[o.review] }}">{{ o.review }}</strong>
-
-        <span class="govuk-!-margin-left-2">
-          {% if o.recommendations | length == 1 %}
-            1 recommendation
-            {# NEW: Required label where review is Not achieved and has recommendations #}
-            {% if o.review == "Not achieved" and (o.recommendations | length > 0) %}
-              <strong class="govuk-tag govuk-tag--grey govuk-!-margin-left-2">Required</strong>
-            {% endif %}
-          {% else %}
-            {{ o.recommendations | length }} recommendations
-          {% endif %}
-        </span>
-      </p>
+      <h5 class="govuk-heading-s">Review status:
+      <strong class="govuk-tag {{ judgementTagClass[o.review] }}"> {{ o.review }}</strong></h5>
+        
+<h5 class="govuk-heading-s">CAF Baseline profile:
+<strong class="govuk-tag {{ baselineTagClass[o.baseline] }}">
+                  {{ o.baseline }}</strong></h5>
+        
+       
 
       {% if o.recommendations | length > 0 %}
-        <h4 class="govuk-heading-s">Recommendations for {{ o.code }}</h4>
+        <h4 class="govuk-heading-s">{{ o.recommendations | length }} recommendation for {{ o.code }}</h4>
         <ul class="govuk-list govuk-list--bullet">
           {% for recId in o.recommendations %}
             {% for r in report.topRecommendations %}
