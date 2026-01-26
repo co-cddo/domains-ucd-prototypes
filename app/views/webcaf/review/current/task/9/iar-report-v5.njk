@@ -464,6 +464,11 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
         {% set seenPrinciples = "|" %}
 
         <table class="govuk-table">
+            <colgroup>
+              <col style="width: 40%">
+              <col style="width: 30%">
+              <col style="width: 30%">
+            </colgroup>
           <thead class="govuk-table__head">
             <tr class="govuk-table__row">
               <th scope="col" class="govuk-table__header">Principle</th>
@@ -480,9 +485,12 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
               {% for o in obj.outcomes %}
 
                 {% set p = o.code.split(".")[0] %}
+                {% set objAnchor = "#objective-" ~ p[0] | lower %}
+
 
                 {# Only render if we haven't rendered this principle yet #}
-                {% if (seenPrinciples.indexOf("|" ~ p ~ "|") == -1) %}
+                {% if (("|" ~ p ~ "|") not in seenPrinciples) %}
+                
 
                   {# Mark as seen #}
                   {% set seenPrinciples = seenPrinciples ~ p ~ "|" %}
@@ -574,8 +582,11 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
                         {{ selfStatus }}
                       </strong>
                       <div class="govuk-hint govuk-!-margin-top-1 govuk-!-margin-bottom-0">
-                        {{ selfMet }} of {{ total }} outcomes met
-                      </div>
+                        {{ selfMet }} of {{ total }} outcomes met<br>
+                        <a class="govuk-link govuk-link--no-visited-state" href="{{ objAnchor }}">
+                      Details
+                      </a>
+                    </div>
                     </td>
 
                     {# Review status (Met/Not met + count line FIXED: show MET count from baseline) #}
@@ -584,7 +595,10 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
                         {{ reviewStatus }}
                       </strong>
                       <div class="govuk-hint govuk-!-margin-top-1 govuk-!-margin-bottom-0">
-                        {{ cafMet }} of {{ total }} outcomes met
+                        {{ cafMet }} of {{ total }} outcomes met<Br>
+                        <a class="govuk-link govuk-link--no-visited-state" href="{{ objAnchor }}">
+                       Details
+                       </a>
                       </div>
                     </td>
 
@@ -734,132 +748,316 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
   {% endfor %}
 
 {% endfor %}
+<style>
+  @media print {
+    @page { size: A4 landscape; margin: 12mm; }
+    .govuk-width-container { max-width: none !important; }
+    .govuk-table { font-size: 14px; }
+    .contents-list-container { display: none !important; }
+  }
+</style>
 
-       
+<h2 id="full-recommendations-table" class="govuk-heading-l">Full table of recommendations</h2>
 
-    
-     <h2 id="full-recommendations-table" class="govuk-heading-l">Full table of recommendations</h2>
+{# =========================================================
+   Build lookups ONCE (robust, no boolean scoping)
+   ========================================================= #}
 
-        {# =========================================================
-          1) Priority recommendations
-          This will be filted by 'not meeting the profile)
-          ========================================================= #}
-        <h3 class="govuk-heading-m">Priority recommendations</h3>
-        <p>These recommendations address gaps identified for contributing outcomes where the target Government CAF profile has not been met. </p>
+{# Outcomes where CAF baseline is "Not met" => priority #}
+{% set notMetOutcomes = "|" %}
 
-        <table class="govuk-table">
-          <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">Rec number</th>
-              <th scope="col" class="govuk-table__header">Objective / outcome</th>
-              <th scope="col" class="govuk-table__header">Title</th>
-              
-            </tr>
-          </thead>
-          <tbody class="govuk-table__body">
-            {% for r in report.topRecommendations %}
+{# Build a simple lookup string: |B1.a=B1.a Policy...|B2.a=B2.a Identity...| #}
+{% set outcomeLookup = "|" %}
+{% for obj in report.objectives %}
+  {% for o in obj.outcomes %}
+    {% set outcomeLookup = outcomeLookup ~ o.code ~ "=" ~ o.code ~ " " ~ o.name ~ " — " ~ (o.summary or "") ~ "|" %}
 
-              {# determine if this recommendation truly requires the Required label #}
-              {% set isPriorityRequired = false %}
+  {% endfor %}
+{% endfor %}
+
+{% macro outcomeLabel(outcomeCode) %}
+  {% set code = (outcomeCode | default('')) | trim %}
+
+  {# Capture rendered output instead of mutating variables in loops #}
+  {% set label %}
+    {% for obj in report.objectives %}
+      {% for o in obj.outcomes %}
+        {% if (o.code | trim) == code %}
+          {{ o.code }} {{ o.name }} — {{ o.summary or "" }}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  {% endset %}
+
+  {% if label | trim %}
+    {{ label | trim }}
+  {% else %}
+    {{ code }}
+  {% endif %}
+{% endmacro %}
+
+
+
+
+
+
+{% for obj in report.objectives %}
+  {% for o in obj.outcomes %}
+    {% if o.baseline == "Not met" %}
+      {% set notMetOutcomes = notMetOutcomes ~ o.code ~ "|" %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+
+
+
+
+{# =========================================================
+   Risk groups (only one grouped risk example)
+   ========================================================= #}
+{# Existing (Priority) grouped risk #}
+{% set RISK_B_SHORT = "Detection and monitoring gaps" %}
+{% set RISK_B_FULL = "R14: Monitoring and logging coverage gaps reduce the ability to detect and respond to incidents affecting essential functions." %}
+{% set riskBLookup = "|REC-21|REC-22|REC-23|" %}
+{% set multiLookup = "|REC-14|REC-03" %}
+
+{# NEW (Other recommendations) grouped risk #}
+{% set RISK_OTHER_SHORT = "Policy and process consistency gaps" %}
+{% set RISK_OTHER_FULL = "R1: Policies and processes are inconsistently applied or evidenced, creating unmanaged control gaps across components." %}
+{% set riskOtherLookup = "|REC-01|REC-02|" %}
+
+{% macro riskForRec(recId) %}
+  {% if recId == "REC-01" %}R1: Policies are not consistently applied or evidenced across all components, creating unmanaged control gaps.
+  {% elseif recId == "REC-02" %}R2: Legacy hosts may drift from secure baselines without detection, increasing exposure to known weaknesses.
+  {% elseif recId == "REC-03" %}R3: Integration access paths may bypass standard authorisation checks, increasing likelihood of unauthorised access.
+  {% elseif recId == "REC-04" %}R4: Privileged access can remain in place longer than needed, increasing insider and credential misuse risk.
+  {% elseif recId == "REC-05" %}R5: Privileged sessions may not be monitored or revalidated consistently, reducing ability to detect misuse.
+  {% elseif recId == "REC-06" %}R6: Identity lifecycle processes may be inconsistent, leading to orphaned accounts and excessive permissions.
+  {% elseif recId == "REC-07" %}R7: MFA gaps across legacy and break-glass paths increase likelihood of compromise through weaker controls.
+  {% elseif recId == "REC-08" %}R8: Inconsistent data handling increases risk of sensitive information exposure and non-compliant processing.
+  {% elseif recId == "REC-09" %}R9: Unclear or unenforced encryption requirements can lead to data interception on transit routes.
+  {% elseif recId == "REC-10" %}R10: Legacy data stores may lack evidenced controls, increasing risk of unauthorised access and disclosure.
+  {% elseif recId == "REC-11" %}R11: Mobile data controls may not be enforced consistently, increasing risk of loss or leakage from devices.
+  {% elseif recId == "REC-12" %}R12: Board reporting lacks standardisation, limiting oversight and reducing evidence of decisions and challenge.
+  {% elseif recId == "REC-13" %}R13: Security decisions may be made without consistent records, reducing accountability and traceability of risk acceptance.
+  {% elseif recId == "REC-15" %}R15: Unknown or unmanaged legacy and integration assets reduce visibility and increase risk of unpatched vulnerabilities.
+  {% elseif recId == "REC-16" %}R16: Supply chain risk reporting is inconsistent, reducing ability to identify trends and drive supplier improvements.
+  {% elseif recId == "REC-17" %}R17: Incomplete sanitisation records increase risk of sensitive data recovery from disposed or reused media.
+  {% elseif recId == "REC-18" %}R18: Security checkpoints may be skipped in delivery, increasing likelihood of design weaknesses reaching production.
+  {% elseif recId == "REC-19" %}R19: Legacy systems may lack tooling for configuration assurance, increasing risk of insecure settings persisting.
+  {% elseif recId == "REC-20" %}R20: Inconsistent admin interface hardening increases risk of exploitation through management channels.
+  {% elseif recId == "REC-24" %}R21: Incident criteria may be applied inconsistently, delaying escalation and increasing impact of attacks.
+  {% elseif recId == "REC-25" %}R22: Skills coverage gaps reduce monitoring effectiveness and increase time to detect/respond to incidents.
+  {% elseif recId == "REC-26" %}R23: Anomaly detection may be ad-hoc, increasing risk that emerging attacks go unnoticed.
+  {% elseif recId == "REC-27" %}R24: Proactive discovery findings may not translate into improvements, allowing repeated weaknesses to persist.
+  {% else %}A material security risk has been identified that requires remediation to meet expected resilience levels.
+  {% endif %}
+{% endmacro %}
+
+{# =========================================================
+   MACRO: Render a section by sectionMode:
+   - "priority" => outcome baseline Not met
+   - "other"    => outcome baseline Met
+   Uses only string lookups (no boolean scoping)
+   ========================================================= #}
+
+{% macro renderSection(report, notMetOutcomes, multiLookup, groupedRiskFull, groupedRiskLookup, excludeLookup, sectionHeading, sectionIntro, sectionMode) %}
+
+
+
+
+
+  <h3 class="govuk-heading-m govuk-!-margin-top-8">{{ sectionHeading }}</h3>
+  <p class="govuk-body">{{ sectionIntro }}</p>
+
+  {# -------- Grouped risk table -------- #}
+  <h4 class="govuk-heading-s">{{ groupedRiskFull }}</h4>
+  
+  
+
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th class="govuk-table__header">Rec number</th>
+        <th class="govuk-table__header">Contributing outcome</th>
+        <th class="govuk-table__header">Risk description</th>
+      </tr>
+    </thead>
+
+    <tbody class="govuk-table__body">
+      {% set printed = "false" %}
+
+      {% for r in report.topRecommendations %}
+        {% set isMulti = (("|" ~ r.id ~ "|") in multiLookup) %}
+        {% set inGroup = (("|" ~ r.id ~ "|") in groupedRiskLookup) %}
+        {% set isPriority = (("|" ~ r.outcome ~ "|") in notMetOutcomes) %}
+
+
+        {% set inThisSection = false %}
+        {% if sectionMode == "priority" and isPriority %}
+          {% set inThisSection = true %}
+        {% elseif sectionMode == "other" and (not isPriority) %}
+          {% set inThisSection = true %}
+        {% endif %}
+
+        {% if inThisSection and (not isMulti) and inGroup %}
+          {% set printed = "true" %}
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+              <strong>{{ r.id }}</strong>
+              {% if isPriority %}
+                {## == In can flag with lable here, to check if doesn't met CAF  == #}
+              {% endif %}
+            </td>
+            <td class="govuk-table__cell">
+            {# Contributing outcome cell (same pattern as Outcome status tables) #}
+
               {% for obj in report.objectives %}
                 {% for o in obj.outcomes %}
-                  {% if o.code == r.outcome
-                    and r.type == "Required"
-                    and (o.review == "Not achieved" or o.review == "Partially achieved")
-                    and (o.recommendations | length > 0) %}
-                    {% set isPriorityRequired = true %}
+                  {% if o.code == r.outcome %}
+                    {{ o.code }} {{ o.name }}
                   {% endif %}
                 {% endfor %}
               {% endfor %}
+            </td>
 
-              {% if isPriorityRequired %}
-                <tr class="govuk-table__row">
-          <td class="govuk-table__cell"><strong>{{ r.id }}</strong></td>
-          <td class="govuk-table__cell">Objective {{ r.objective }} / {{ r.outcome }}</td>
-          <td class="govuk-table__cell">{{ r.issue }}</td>
-          
-        </tr>
+            
+            <td class="govuk-table__cell">{{ groupedRiskFull }} R14: Monitoring and logging coverage gaps reduce the ability to detect and respond to incidents affecting essential functions.</td>
+          </tr>
 
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" colspan="3">
+              <details class="govuk-details" id="rec-{{ r.id }}">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">Recommendation detail</span>
+                </summary>
+                <div class="govuk-details__text">
+                  {{ r.recommendation | replace("\r\n", "\n") | replace("\n", "<br>") | safe }}
+                </div>
+              </details>
+            </td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+
+      {% if printed != "true" %}
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell" colspan="4">
-            <details class="govuk-details" id="rec-{{ r.id }}">
-              <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">
-                  Recommendation detail
-                </span>
-              </summary>
-              <div class="govuk-details__text">
-                {{ r.recommendation | replace("\r\n", "\n") | replace("\n", "<br>") | safe }}
-              </div>
-            </details>
-          </td>
+          <td class="govuk-table__cell" colspan="3">No recommendations in this grouped risk.</td>
         </tr>
+      {% endif %}
+    </tbody>
+  </table>
 
+  
+
+
+  {# -------- Other priority recommendations -------- #}
+{% if sectionMode == "priority" %}
+  <h4 class="govuk-heading-s govuk-!-margin-top-6">Other priority recommendations</h4>
+{% endif %}
+
+
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th class="govuk-table__header">Rec number</th>
+        <th class="govuk-table__header">Contributing outcome</th>
+        <th class="govuk-table__header">Risk description</th>
+      </tr>
+    </thead>
+
+    <tbody class="govuk-table__body">
+      {% set printed = "false" %}
+
+      {% for r in report.topRecommendations %}
+        {% set isMulti = (("|" ~ r.id ~ "|") in multiLookup) %}
+        {% set inGrouped = (("|" ~ r.id ~ "|") in excludeLookup) %}
+        {% set isPriority = (("|" ~ r.outcome ~ "|") in notMetOutcomes) %}
+
+        {% set inThisSection = false %}
+        {% if sectionMode == "priority" and isPriority %}
+          {% set inThisSection = true %}
+        {% elseif sectionMode == "other" and (not isPriority) %}
+          {% set inThisSection = true %}
+        {% endif %}
+ 
+
+        {% if inThisSection and (not isMulti) and (not inGrouped) %}
+          {% set printed = "true" %}
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+              <strong>{{ r.id }}</strong>
+              {% if isPriority %}
+                {## I can flag with lable here to check if outcome didn't meet CAF ##}
               {% endif %}
+            </td>
+            <td class="govuk-table__cell">
+            {# Contributing outcome cell (same pattern as Outcome status tables) #}
 
-            {% endfor %}
-          </tbody>
-        </table>
+  {% for obj in report.objectives %}
+    {% for o in obj.outcomes %}
+      {% if o.code == r.outcome %}
+        {{ o.code }} {{ o.name }}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
 
-        {# =========================================================
-          2) All other recommendations (everything else)
-          ========================================================= #}
-        <h3 class="govuk-heading-m">Other recommendations</h3>
-        <p>These recommendations address gaps identified for contributing outcomes where the target Government CAF profile has been met. </p>
+            </td>
 
-        <table class="govuk-table">
-          <thead class="govuk-table__head">
-            <tr class="govuk-table__row">
-              <th scope="col" class="govuk-table__header">Rec number</th>
-              <th scope="col" class="govuk-table__header">Objective / outcome</th>
-              <th scope="col" class="govuk-table__header">Title</th>
-              
-            </tr>
-          </thead>
-          <tbody class="govuk-table__body">
-            {% for r in report.topRecommendations %}
+            <td class="govuk-table__cell">{{ riskForRec(r.id) }}</td>
+          </tr>
 
-              {# exclude those already shown in Required table #}
-              {% set isPriorityRequired = false %}
-              {% for obj in report.objectives %}
-                {% for o in obj.outcomes %}
-                  {% if o.code == r.outcome
-                    and r.type == "Required"
-                    and (o.review == "Not achieved" or o.review == "Partially achieved")
-                    and (o.recommendations | length > 0) %}
-                    {% set isPriorityRequired = true %}
-                  {% endif %}
-                {% endfor %}
-              {% endfor %}
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" colspan="3">
+              <details class="govuk-details" id="rec-{{ r.id }}">
+                <summary class="govuk-details__summary">
+                  <span class="govuk-details__summary-text">Recommendation detail</span>
+                </summary>
+                <div class="govuk-details__text">
+                  {{ r.recommendation | replace("\r\n", "\n") | replace("\n", "<br>") | safe }}
+                </div>
+              </details>
+            </td>
+          </tr>
+        {% endif %}
+      {% endfor %}
 
-              {% if not isPriorityRequired %}
-                <tr class="govuk-table__row">
-          <td class="govuk-table__cell"><strong>{{ r.id }}</strong></td>
-          <td class="govuk-table__cell">Objective {{ r.objective }} / {{ r.outcome }}</td>
-          <td class="govuk-table__cell">{{ r.issue }}</td>
-          
-        </tr>
-
+      {% if printed != "true" %}
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell" colspan="4">
-            <details class="govuk-details" id="rec-{{ r.id }}">
-              <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">
-                  Recommendation detail
-                </span>
-              </summary>
-              <div class="govuk-details__text">
-               {{ r.recommendation | replace("\r\n", "\n") | replace("\n", "<br>") | safe }}
-              </div>
-            </details>
-          </td>
+          <td class="govuk-table__cell" colspan="3">No remaining recommendations.</td>
         </tr>
+      {% endif %}
+    </tbody>
+  </table>
 
-              {% endif %}
+{% endmacro %}
 
-            {% endfor %}
-          </tbody>
-        </table>
+{{ renderSection(
+  report,
+  notMetOutcomes,
+  multiLookup,
+  RISK_B_FULL,
+  riskBLookup,
+  riskBLookup,
+  "Priority recommendations",
+  "These recommendations address contributing outcomes where the target Government CAF profile has not been met.",
+  "priority"
+) }}
+
+{{ renderSection(
+  report,
+  notMetOutcomes,
+  multiLookup,
+  RISK_OTHER_FULL,
+  riskOtherLookup,
+  riskOtherLookup,
+  "Other recommendations",
+  "These recommendations relate to contributing outcomes that have met the target Government CAF profile.",
+  "other"
+) }}
 
 
     </div>
