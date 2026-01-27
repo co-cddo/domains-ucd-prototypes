@@ -1,0 +1,1049 @@
+{% extends "/layouts/review-conf.html" %}
+
+{% block pageTitle %}
+GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS version 3 (CAF24092025FDMH)
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "My account",
+        href: "my-account2"
+      },
+      {
+        text: "Report history",
+         href: "/webcaf/review/current/task/9/report-history"
+      },
+       {
+        text: "Version 4 report (current – with organisation)"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+{# =========================================================
+   Dummy data model (design stage, hard-coded)
+   REMOVED Objective A, B, C, D:
+    objStatus: "Objective status",
+    judgement: "Not achieved",
+
+    <br><br>
+    <span class="govuk-heading-m">{{ obj.objStatus }}:
+    <strong class="govuk-tag {{ judgementTagClass[obj.judgement] }} govuk-!-margin-left-2">
+    {{ obj.judgement }}
+    </strong></span>
+
+   ========================================================= #}
+{% set report = {
+  meta: {
+    systemId: "SYS-0001",
+    systemName: "Microsoft CS version 3",
+    reference: "CAF24092025FDMH",
+    organisation: "Cabinet Office",
+    reportUpdated: "17 December 2025",
+    versionLabel: "Version 1 (draft)"
+  },
+
+  companyDetails: {
+    companyName: "Example Supplier Ltd",
+    companyEmail: "security@example-supplier.co.uk"
+  },
+
+  systemDetails: {
+    description: "Delivers core public-facing services including identity, communications and workflow integration.",
+    ownership: "The organisation being assessed",
+    hosting: "Hybrid — on-premises and cloud workloads",
+    corporateServices: "Productivity, identity, and shared security services",
+    reviewType: "Independent Assurance Review",
+    cafVersion: "CAF v3.2",
+    cafProfile: "Baseline"
+  },
+
+  periodOfReview: {
+    from: "11 November 2025",
+    to: "29 November 2025"
+  },
+
+  reviewMethodIntro: "The review combined document evaluation, interviews, technical walkthroughs and evidence verification.",
+  reviewMethod: [
+    "Review of self-assessment statements and supporting artefacts",
+    "Workshops with system owners, architects and operational teams",
+    "Sampling of indicators of good practice across all outcomes",
+    "Verification of organisational processes and technical controls"
+  ],
+
+ evidenceQuality: {
+  
+  summaryHtml: "Across most outcomes, evidence was sufficient to understand the intent of controls and to support a proportion of the self-assessment claims, but it was not always complete or consistently traceable to specific CAF statements. <br><br>Evidence presentation would benefit from a single index that maps each CAF statement to the supporting artefacts, identifies the latest version/date, and clearly indicates which services/components the artefact applies to. Where conclusions relied on interviews or walkthroughs, these were generally consistent with provided documents, but additional corroborating records would improve confidence (for example tickets, logs, approvals, and reports).<br><br>Overall, the evidence set provides a reasonable basis for judgement at this stage, but improved traceability, consistency and ‘operated’ evidence would materially strengthen assurance for subsequent reviews."
+},
+  executiveSummary: {
+    intro: "GovAssure is the cyber security scheme for assessing government critical systems against NCSC’s Cyber Assessment Framework (CAF). The process provides government organisations with visibility of cyber security risks, and support to understand and manage them more effectively.
+           <br><br> 
+            This report contains the findings of the Independent Assurance Review carried out against Cabinet office’s CAF self-assessment for SYS-0001 Microsoft CS version 3 in 2025-26. The system was assessed against the Baseline Government CAF profile. The report identifies areas of good practice and areas for improvement, and provides specific recommendations to enable Cabinet Office to improve its cyber security and resilience.
+            <br><br>
+            Several core CAF principles serve as a foundation for an organisation’s overall security. The principles of governance (A1) and risk management (A2) are essential for running a security ecosystem founded on risk. The principles of response and recovery planning (D1) and lessons learned (D2) are fundamental to business continuity and an organisation's ability to operate through and recover from a cyber incident. Organisations are encouraged to prioritise recommendations for these principles and the underlying contributing outcomes where they have not met the target Government CAF profile. "
+  },
+
+
+  objectives: [
+    {
+      
+      code: "A",
+      title: "Managing security risk",
+      subTitle: "Objective A looks at whether appropriate organisational structures, policies, processes and procedures are in place to understand, assess and systematically manage security risks to the network and information systems supporting essential functions.",
+      detailHeading: "Detailed review of contributing outcomes",
+      outcomes: [
+        { code: "A1.a", name: "Board direction", selfAssessment: "Achieved", review: "Not achieved", baseline: "Not met", summary: "The organisation has successfully assigned a lead for cyber security at a management level, providing an operational point of contact for technical teams. However, for this outcome to meet CAF v3.2 standards, the Board must demonstrate proactive direction. Currently, the organisation has not yet implemented a standardised quarterly cyber security dashboard for board and executive-level review. Without this dashboard, there is a risk that senior leaders lack the data necessary to provide effective oversight or set a clear risk appetite. An area for improvement is to formalise this reporting cadence to ensure board actions and decisions are based on consistent, high-quality metrics. Supporting evidence includes an organisational chart, but no further management reporting records or decision logs were available to confirm active board-level direction.", recommendations: ["REC-12"], statement2: ["Achieved statement 2: Regular board-level discussions on the security of network and information systems supporting the operation of your essential function(s) take place, based on timely and accurate information and informed by expert guidance."] , igpComment: "Board packs show evidence of risk decisions, but the reporting format varies between quarters and teams which reduces comparability." },
+        { code: "A1.b", name: "Roles and responsibilities", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "The organisation demonstrates good practice through a comprehensive set of security policies and clearly defined roles that cover all aspects of the essential function. These responsibilities are reviewed on an annual basis and are well-communicated to staff via the company intranet. A notable strength is the presence of specific technical standards that support these roles, providing system administrators with clear guidance on their security duties. Evidence reviewed includes the current ISMS Policy Suite, job descriptions, and the 2025 Review Log, which confirms that all documents are up to date and approved by management. The organisation has successfully met the target level for this outcome by ensuring that personnel at all levels understand and are held accountable for their security responsibilities.", recommendations: [], igpComment: "" },
+        { code: "A1.c", name: "Decision-making", selfAssessment: "Achieved", review: "Not achieved", baseline: "Not met", summary: "While the organisation has established an internal audit function to track high-level compliance, there is a significant area for improvement regarding the transparency of technical and strategic decisions. Current processes do not sufficiently standardise decision records to capture trade-offs, formal approvals, or escalation triggers for significant risks (REC-13). This creates a risk that critical security decisions are made ad-hoc without a long-term audit trail or board-level visibility. Evidence reviewed includes general audit reports, but these lack the specific decision logs and escalation evidence required to demonstrate mature, evidence-based decision-making. To achieve this outcome, the organisation must implement a more rigorous framework for documenting how security risks are weighed against operational needs.", recommendations: ["REC-13"], statement2: ["Achieved statement 2: Risk management decision-makers understand their responsibilities for making effective and timely decisions in the context of the risk appetite regarding the essential function(s), as set by senior management."], igpComment: "Decision records exist, but do not consistently capture trade-offs, dissenting views, and escalation triggers for higher-risk changes." },
+        { code: "A2.a", name: "Risk Management", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "The organisation has successfully implemented a repeatable and formalised risk management process that identifies and assesses threats to its essential functions. Good practice is demonstrated by the integration of technical leads into the assessment cycle, ensuring that risks are not merely theoretical but reflect the actual operational environment. Evidence reviewed includes the Cyber Risk Register and  Methodology Statement, which show a consistent approach to scoring and mitigation. The organisation has met the target resilience level for this outcome, providing the necessary foundation for directing security investment where it is most needed to protect service delivery.", recommendations: [], igpComment: "" },
+        { code: "A2.b", name: "Assurance", selfAssessment: "Achieved", review: "Not achieved", baseline: "Not met", summary: "The organisation has made progress in identifying its primary service providers, yet it lacks a mature framework for gaining confidence in third-party security. A critical area for improvement is the need to define a formal assurance sampling approach and maintain an evidence index that links security claims to specific technical artefacts for supplier-managed services (REC-14). Without this index, there is a risk that the organisation relies too heavily on unverified supplier assertions. Supporting evidence reviewed was the Supplier Risk Register, but it lacked the detailed sampling logs and verified artefacts required by CAF v3.2. To move toward achievement, the organisation must transition to a model where supplier security is independently and periodically verified.", recommendations: ["REC-14"], statement2: ["Partially achieved statement 2: You understand common types of cyber attacks, including the methods and techniques, and how these might apply to network and information systems supporting your essential function(s). This understanding is kept up to date."], igpComment: "Assurance is performed, however the sampling basis and evidence index are not consistent for supplier-managed services." },
+        { code: "A3.a", name: "Asset management", selfAssessment: "Achieved", review: "Not achieved", baseline: "Not met", summary: "The organisation has successfully identified its primary modern infrastructure and cloud-hosted servers, which provides a solid baseline for security monitoring. However, a critical gap remains in the inventory for legacy systems and complex integration assets, which are not yet fully documented or understood (REC-15). Under CAF v3.2, it is essential to complete this inventory and assign accountable owners to these legacy components with a mandated periodic review cadence. Supporting evidence reviewed includes the Core Infrastructure List, but this document specifically excludes legacy segments and lacks assigned ownership for integration middleware. Until these assets are identified and owned, the organisation cannot achieve the required level of visibility to manage vulnerabilities effectively across the entire estate.", recommendations: ["REC-15"], igpComment: "" },
+        { code: "A4.a", name: "Supply chain", selfAssessment: "Not achieved", review: "Not achieved", baseline: "Not met", summary: "The organisation has begun to identify its key external suppliers, demonstrating an initial awareness of third-party dependencies across its infrastructure. However, a significant risk remains as there is no formal supply chain strategy or standardised reporting mechanism to track these risks. An area for improvement is the design and implementation of a standardised quarterly cyber security dashboard specifically for board and executive-level review to track supply chain risks. Evidence reviewed includes a Critical Supplier List but lacks a formalised dashboard or a strategy document that defines minimum security benchmarks for vendors. Establishing this executive-level reporting will be essential for driving the necessary supply chain improvements and ensuring the resilience of the essential function against third-party failures.", recommendations: ["REC-16"], statement2: ["Not achieved statement 4: Suppliers have access to systems that provide your essential function(s) that is unrestricted, not monitored or bypasses your own security controls."], igpComment: "Supplier controls are described, but the ongoing monitoring and assurance evidence is incomplete and not systematically captured." }
+      ],
+      goodPracticeText: "Governance structures are established and there is clear senior ownership for cyber risk. Board-level discussions demonstrate awareness of material risks and the service context. Risk appetite is documented and is referenced when approving significant decisions. Accountability for core assets and security processes is generally well defined. 
+      <br>Decision records exist for priority changes, supporting traceability of approvals.\nCore risk processes are applied to major changes and operational issues.\nThere is evidence of regular engagement between security and delivery stakeholders.\nOverall, these arrangements provide a stable foundation for managing cyber risk effectively.",
+      improvements: [
+        "Standardise quarterly reporting so board-level metrics and narrative are comparable across time. Introduce clearer escalation thresholds for risk acceptance and documented decision routes. Create a single evidence index that maps claims to artefacts consistently across outcomes."
+        
+      ],
+      objectiveRecommendation: "Maintain governance discipline and strengthen assurance evidence consistency across contributing outcomes."
+    },
+
+    {
+      code: "B",
+      title: "Protecting against cyber attack",
+      subTitle: "Objective B looks at whether proportionate security measures are in place to protect the network and information systems supporting essential functions from cyber attack.",
+      code: "B",
+      title: "Protecting against cyber attack",
+      subTitle: "Objective B looks at whether proportionate security measures are in place to protect the network and information systems supporting essential functions from cyber attack.",
+      outcomes: [
+        { code: "B1.a", name: "Policy and process development", selfAssessment: "Achieved", review: "Partially achieved", baseline: "Met", summary: "Security policies and processes exist, but coverage and ownership are not consistently evidenced across all system components.", recommendations: ["REC-01"], statement2: ["Partially achieved statement 1: Your policies, processes and procedures document your overarching security governance and risk management approach, technical security practice and specific regulatory compliance."], igpComment: "Policies exist, but ownership and scope are not consistently evidenced for all components and services." },
+        { code: "B1.b", name: "Policy and process implementation", selfAssessment: "Achieved", review: "Partially achieved", baseline: "Met", summary: "Implementation of policies is variable; evidence of compliance monitoring and exception handling is limited.", recommendations: ["REC-02"], statement2: ["Achieved statement 4: Appropriate action is taken to address all breaches of policies, processes and procedures with potential to adversely impact the essential function(s) including aggregated breaches. "], igpComment: "Evidence of compliance checks and exception handling is limited for legacy hosts and non-standard services." },
+
+        { code: "B2.a", name: "Identity verification, authentication and authorisation", selfAssessment: "Achieved", review: "Partially achieved", baseline: "Met", summary: "Authentication controls are in place, but evidence of consistent authorisation checks for integrations is uneven.", recommendations: ["REC-03"], igpComment: "" },
+        { code: "B2.b", name: "Device management", selfAssessment: "Achieved", review: "Partially achieved", baseline: "Met", summary: "Device management controls exist, but configuration assurance and coverage reporting are not consistent.", recommendations: ["REC-04"], igpComment: "" },
+        { code: "B2.c", name: "Privileged user management", selfAssessment: "Achieved", review: "Partially achieved", baseline: "Met", summary: "Privileged access processes exist; stronger recertification evidence and monitoring for privileged sessions is needed.", recommendations: ["REC-05"], igpComment: "" },
+        { code: "B2.d", name: "Identity and access management (IdAM)", selfAssessment: "Not achieved", review: "Partially achieved", baseline: "Met", summary: "Identity lifecycle governance is improving, but auditable joiner/mover/leaver evidence and MFA consistency remain incomplete.", recommendations: ["REC-06", "REC-07"], igpComment: "" },
+
+        { code: "B3.a", name: "Understanding data", selfAssessment: "Achieved", review: "Partially achieved", baseline: "Met", summary: "Data classification is defined, but evidence of consistent adoption across teams is limited.", recommendations: ["REC-08"], igpComment: "" },
+        { code: "B3.b", name: "Data in transit", selfAssessment: "Achieved", review: "Partially achieved", baseline: "Met", summary: "Encryption is used in many places; evidence of consistent enforcement for all transit paths is incomplete.", recommendations: ["REC-09"], igpComment: "" },
+        { code: "B3.c", name: "Stored data", selfAssessment: "Achieved", review: "Partially achieved", baseline: "Met", summary: "Controls exist for stored data, but assurance evidence for legacy stores is limited.", recommendations: ["REC-10"], igpComment: "" },
+        { code: "B3.d", name: "Mobile data", selfAssessment: "Achieved", review: "Partially achieved", baseline: "Met", summary: "Mobile data handling guidance exists; evidence of control enforcement and monitoring needs strengthening.", recommendations: ["REC-11"], igpComment: "" },
+        { code: "B3.e", name: "Media equipment sanitisation", selfAssessment: "Achieved", review: "Partially achieved", baseline: "Met", summary: "Sanitisation processes are defined, but evidence of execution and audit trails is inconsistent.", recommendations: ["REC-17"], igpComment: "" },
+
+        { code: "B4.a", name: "Secure by design", selfAssessment: "Achieved", review: "Partially achieved", baseline: "Met", summary: "Secure-by-design principles are present, but consistent use in change delivery is not evidenced.", recommendations: ["REC-18"], igpComment: "" },
+        { code: "B4.b", name: "Secure configuration", selfAssessment: "Achieved", review: "Partially achieved", baseline: "Met", summary: "Secure baselines are defined; drift detection and remediation evidence is limited for legacy platforms.", recommendations: ["REC-19"], igpComment: "" },
+        { code: "B4.c", name: "Secure management", selfAssessment: "Achieved", review: "Partially achieved", baseline: "Met", summary: "Administrative management controls exist; evidence of standardised management interfaces and hardening is incomplete.", recommendations: ["REC-20"], igpComment: "" },
+        { code: "B4.d", name: "Vulnerability management", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Vulnerability management is established for core systems, with prioritisation and patch governance evidenced.", recommendations: [], igpComment: "" },
+
+        { code: "B5.a", name: "Resilience preparation", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Resilience planning exists, and evidence of tested assumptions and owned actions is consistent.", recommendations: [], igpComment: "" },
+        { code: "B5.b", name: "Design for resilience", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Resilience design patterns are used, and consistently evidenced across all components.", recommendations: [], igpComment: "" },
+        { code: "B5.c", name: "Backups", selfAssessment: "Achieved", review: "Partially achieved", baseline: "Met", summary: "Backups exist; evidence of restore testing and completeness across services is not consistent.", recommendations: [], statement2: ["Partially achieved statement 1: You have appropriately secured backups (including data, configuration information, software, equipment, processes and knowledge). These backups will be accessible to recover from an extreme event."], igpComment: "Backups are present, but restore testing evidence is inconsistent across services and environments." },
+
+        { code: "B6.a", name: "Cyber security culture", selfAssessment: "Achieved", review: "Partially achieved", baseline: "Met", summary: "Culture activities occur, but measurement of effectiveness and coverage is limited.", recommendations: [], igpComment: "" },
+        { code: "B6.b", name: "Cyber security training", selfAssessment: "Achieved", review: "Partially achieved", baseline: "Met", summary: "Training is delivered, but evidence of completion and role-based coverage is inconsistent.", recommendations: [], igpComment: "" }
+      ],
+      goodPracticeText: "Protective controls are implemented for several high-value services and user journeys. Delivery teams demonstrate awareness of common attack paths and control intent.\nThere is evidence of secure-by-design activity for some larger change initiatives. Data protection controls are present for a range of information types and systems.",
+      improvements: [
+        
+        "Strengthen legacy configuration assurance by adding drift detection and remediation tracking. Improve consistency of access control enforcement for integrations and shared admin channels."
+      ],
+      objectiveRecommendation: "Improve identity governance (including MFA consistency) and strengthen assurance of legacy configuration controls."
+    },
+
+    {
+      code: "C",
+      title: "Detecting cyber security events",
+      subTitle: "Objective C looks at whether capabilities exist to ensure security defences remain effective and to detect cyber security events affecting, or with the potential to affect, essential function(s).",
+      outcomes: [
+        { code: "C1.a", name: "Monitoring coverage", selfAssessment: "Achieved", review: "Not achieved", baseline: "Not met", summary: "Monitoring exists for core services, but coverage gaps persist across boundary components and legacy integrations.", recommendations: ["REC-21"], statement2: ["Achieved statement 1: Monitoring is based on a thorough understanding of network and information systems supporting your essential function(s), techniques used by threat actors, and awareness of what logging and monitoring is required to detect events and incidents that could affect the operation of your essential function(s). "], igpComment: "Coverage is not yet complete for boundary components; evidence of end-to-end visibility is insufficient." },
+        { code: "C1.b", name: "Securing logs", selfAssessment: "Achieved", review: "Not achieved", baseline: "Not met", summary: "Central logging is in place, but integrity controls, access governance and retention evidence are not yet consistent.", recommendations: ["REC-22"], igpComment: "" },
+        { code: "C1.c", name: "Generating alerts", selfAssessment: "Achieved", review: "Not achieved", baseline: "Not met", summary: "Alerting exists, but ownership, tuning cadence and triage evidence are not consistently demonstrated.", recommendations: ["REC-23"], igpComment: "" },
+        { code: "C1.d", name: "Identifying security incidents", selfAssessment: "Achieved", review: "Not achieved", baseline: "Not met", summary: "Incident identification criteria are not consistently applied; escalation and classification evidence is limited.", recommendations: ["REC-24"], igpComment: "" },
+        { code: "C1.e", name: "Monitoring tools and skills", selfAssessment: "Achieved", review: "Not achieved", baseline: "Not met", summary: "Tools exist, but evidence of sufficient skills coverage and operational handover is incomplete.", recommendations: ["REC-25"], igpComment: "" },
+        { code: "C2.a", name: "System abnormalities for attack detection", selfAssessment: "Achieved", review: "Not achieved", baseline: "Met", summary: "Anomaly detection is used in places, but is not systematic and escalation paths are not consistently evidenced.", recommendations: ["REC-26"], igpComment: "" },
+        { code: "C2.b", name: "Proactive attack discovery", selfAssessment: "Achieved", review: "Partially achieved", baseline: "Met", summary: "Proactive discovery occurs, but evidence of repeatable processes and outcomes driving improvements is limited.", recommendations: ["REC-27"], igpComment: "" }
+      ],
+      goodPracticeText: "Overall, the building blocks for detection exist, but they are not yet comprehensive.",
+      improvements: [
+        "Standardise incident identification criteria and demonstrate consistent escalation and classification decisions. Address skills and resourcing gaps by documenting roles, training, and handover arrangements for monitoring operations."
+      ],
+      objectiveRecommendation: "Expand monitoring and logging controls to demonstrate consistent detection coverage and operational response."
+    },
+      {
+      code: "D",
+      title: "Minimising the impact of cyber security incidents",
+      subTitle: "Objective D looks at whether capabilities exist to minimise the adverse impact of a cyber security incident on the operation of essential functions, including the restoration of those function(s) where necessary. ",
+      outcomes: [
+        { code: "D1.a", name: "Response plan", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Incident response plans exist, and exercising outcomes and tracked remediation are consistently evidenced.", recommendations: [], igpComment: "" },
+        { code: "D1.b", name: "Response and recovery capability", selfAssessment: "Achieved", review: "Partially achieved", baseline: "Not met", summary: "Response and recovery capability exists, but evidence of consistent execution and measured outcomes is limited.", recommendations: [], statement2: ["Not achieved statement 3: Inadequate back-up mechanisms exist to allow the continued operation of your essential function(s) during an incident."], igpComment: "Capability exists, but metrics and evidence of consistent execution across teams are limited." },
+        { code: "D1.c", name: "Testing and exercising", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Exercises occur, and evidence of scope, actions, and closure tracking is consistent.", recommendations: [], igpComment: "" },
+        { code: "D2.a", name: "Incident root cause analysis", selfAssessment: "Achieved", review: "Partially achieved", baseline: "Not met", summary: "Root cause analysis is undertaken for significant incidents, but evidence of consistent use and documentation varies.", recommendations: [], statement2: ["Achieved statement 2: Your post incident analysis is comprehensive, considering organisational factors (e.g. policies, processes and procedures), technical factors (e.g. system design, vulnerabilities), human factors (e.g. training, security culture) and any changes to threat."], igpComment: "RCA is performed for major incidents, but templates and documentation quality vary between teams." },
+        { code: "D2.b", name: "Using incidents to drive improvements", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Lessons learned are identified, and evidence of actions tracked to closure and fed into controls are consistent.", recommendations: [], igpComment: "" },
+        { code: "D2.c", name: "Testing and exercising", selfAssessment: "Achieved", review: "Achieved", baseline: "Met", summary: "Testing is planned, and evidence of regular cadence and scenario coverage for recovery is consistent.", recommendations: [], igpComment: "" }
+      ],
+      goodPracticeText: "Ownership for incident coordination is defined for priority event types. Overall, response foundations exist, but consistent exercising and evidence of outcomes needs strengthening.",
+      improvements: [
+        "Ensure comms plans are tested for priority scenarios, including out-of-hours and supplier engagement. Develop and maintain scenario coverage so exercises reflect realistic threats and service dependencies."
+      ],
+      objectiveRecommendation: "Formalise exercising and recovery ownership, and evidence continuous improvement from incidents."
+    }
+  ],
+
+  topRecommendations: [
+    { id: "REC-01", objective: "B", outcome: "B1.a", priority: "Priority", type: "Required", issue: "Achieved statement 2", recommendation: "Introduce measurable policy compliance checks and formalise exception handling with documented approvals." },
+    { id: "REC-02", objective: "B", outcome: "B1.b", priority: "Priority", type: "Required", issue: "Configuration drift evidence limited for legacy hosts", recommendation: "Implement drift monitoring and remediation tracking for legacy services aligned to secure baseline standards." },
+    { id: "REC-03", objective: "B", outcome: "B2.a", priority: "Priority", type: "Required", issue: "Achieved statement 4", recommendation: "Standardise access control patterns for integrations and evidence enforcement through periodic sampling and audits." },
+    { id: "REC-04", objective: "B", outcome: "B2.b", priority: "Quick win", type: "Required", issue: "Not achieved statement 1", recommendation: "Run quarterly privileged access reviews with recorded approvals and removal actions for stale access." },
+    { id: "REC-05", objective: "B", outcome: "B2.c", priority: "Priority", type: "Required", issue: "Privileged access recertification evidence inconsistent", recommendation: "Introduce quarterly privileged access recertification with documented approvals and session monitoring evidence." },
+    { id: "REC-06", objective: "B", outcome: "B2.d", priority: "Priority", type: "Required", issue: "IAM joiner/mover/leaver controls not auditable end-to-end", recommendation: "Implement centrally governed lifecycle processes with auditable trails and defined control ownership." },
+    { id: "REC-07", objective: "B", outcome: "B2.d", priority: "Quick win", type: "", issue: "Partially achieved statement 1", recommendation: "Extend MFA enforcement to all user and privileged access paths, including legacy services and break-glass controls." },
+    { id: "REC-08", objective: "B", outcome: "B3.a", priority: "Quick win", type: "Required", issue: "Data handling practices are inconsistent across teams", recommendation: "Refresh data classification guidance and evidence adoption through training completion and sampling of handling practices." },
+    { id: "REC-09", objective: "B", outcome: "B3.b", priority: "Quick win", type: "Required", issue: "Encryption evidence incomplete for transit paths", recommendation: "Define and evidence encryption requirements for all transit paths, including integrations and administrative channels." },
+    { id: "REC-10", objective: "B", outcome: "B3.c", priority: "Quick win", type: "Required", issue: "Stored data assurance evidence weak for legacy stores", recommendation: "Catalogue legacy data stores and evidence encryption/controls through periodic assurance sampling." },
+    { id: "REC-11", objective: "B", outcome: "B3.d", priority: "Quick win", type: "", issue: "Mobile data control enforcement inconsistent", recommendation: "Strengthen mobile data controls and evidence enforcement through device compliance reporting and policy checks." },
+
+    { id: "REC-12", objective: "A", outcome: "A1.a", priority: "Quick win", type: "", issue: "Not achieved statement 1", recommendation: "Introduce a quarterly security dashboard with standard metrics and documented board actions/decisions." },
+    { id: "REC-13", objective: "A", outcome: "A1.c", priority: "Quick win", type: "", issue: "Risk decision rationale not consistently documented", recommendation: "Standardise decision records to capture trade-offs, approvals, and escalation triggers for significant risks." },
+    { id: "REC-14", objective: "A", outcome: "A2.b", priority: "Priority", type: "Required", issue: "Assurance evidence traceability uneven for supplier-managed components", recommendation: "Define assurance sampling approach and maintain an evidence index linking claims to artefacts for supplier-managed services." },
+    { id: "REC-15", objective: "A", outcome: "A3.a", priority: "Quick win", type: "Required", issue: "Legacy asset coverage and ownership evidence incomplete", recommendation: "Complete inventory for legacy and integration assets and assign accountable owners with review cadence." },
+    { id: "REC-16", objective: "A", outcome: "A4.a", priority: "Priority", type: "Required", issue: "Achieved statement 2", recommendation: "Issue context
+
+Board-level oversight of cyber security risk is evidenced through meeting packs and decision records; however, reporting is not presented in a consistent or repeatable format across quarters. As a result, it is difficult to demonstrate trends over time, compare risk positions between reporting periods, or clearly evidence how board-level challenge and decisions have influenced security outcomes. This reduces the strength of assurance against CAF Objective A, particularly in demonstrating sustained governance effectiveness rather than point-in-time compliance.
+
+Recommendation
+
+The organisation should design, agree, and implement a standardised quarterly cyber security dashboard for board and executive-level review. The dashboard should provide a consistent, repeatable view of the organisation’s cyber risk posture, control effectiveness, and priority actions, and should be used as the primary artefact to evidence board-level oversight and decision-making for cyber security.
+
+What good looks like
+
+The dashboard should, as a minimum:
+
+1. Be presented to the board (or delegated executive forum) on a quarterly basis, using a consistent structure and metric set.
+
+2. Include a clear summary of overall cyber risk posture, aligned to the organisation’s agreed risk appetite.
+
+3. Provide trend-based metrics (for example quarter-on-quarter changes), rather than standalone snapshots.
+
+Clearly distinguish between:
+
+1. risks that are being actively managed within tolerance
+
+2. risks that require board awareness
+
+3. risks that require explicit board decision or acceptance
+
+Reference relevant CAF objectives and outcomes where appropriate, to maintain traceability between governance activity and assurance claims." },
+
+    { id: "REC-17", objective: "B", outcome: "B3.e", priority: "Quick win", type: "Required", issue: "Sanitisation evidence inconsistent", recommendation: "Implement sanitisation logs and audit sampling for media equipment disposal and reuse." },
+    { id: "REC-18", objective: "B", outcome: "B4.a", priority: "Quick win", type: "", issue: "Secure-by-design use inconsistent", recommendation: "Introduce secure-by-design checkpoints in delivery and evidence completion for significant changes." },
+    { id: "REC-19", objective: "B", outcome: "B4.b", priority: "Priority", type: "Required", issue: "Legacy configuration drift controls missing", recommendation: "Extend secure configuration tooling to legacy systems and evidence drift remediation." },
+    { id: "REC-20", objective: "B", outcome: "B4.c", priority: "Quick win", type: "Required", issue: "Admin management hardening inconsistent", recommendation: "Standardise admin interfaces and apply hardening guidance; evidence through periodic checks." },
+
+    { id: "REC-21", objective: "C", outcome: "C1.a", priority: "Priority", type: "Required", issue: "Monitoring coverage gaps across boundaries and legacy services", recommendation: "Define critical coverage map and implement monitoring for boundary components; report coverage metrics monthly." },
+    { id: "REC-22", objective: "C", outcome: "C1.b", priority: "Priority", type: "Required", issue: "Log integrity and access controls inconsistent", recommendation: "Apply consistent retention, access controls and integrity monitoring to central logging services." },
+    { id: "REC-23", objective: "C", outcome: "C1.c", priority: "Priority", type: "Required", issue: "Alert triage ownership and tuning evidence inconsistent", recommendation: "Define alert ownership, tuning cadence and triage SLAs; evidence performance through sampled incident records." },
+    { id: "REC-24", objective: "C", outcome: "C1.d", priority: "Priority", type: "Required", issue: "Incident identification criteria not applied consistently", recommendation: "Define incident identification criteria and evidence escalation/classification through sampled records." },
+    { id: "REC-25", objective: "C", outcome: "C1.e", priority: "Quick win", type: "", issue: "Skills coverage evidence incomplete", recommendation: "Document monitoring roles/skills coverage and evidence handover and training for operational teams." },
+    { id: "REC-26", objective: "C", outcome: "C2.a", priority: "Priority", type: "Required", issue: "Anomaly detection is not systematic and escalation is unclear", recommendation: "Define anomaly detection use-cases, escalation routes and evidence outcomes through regular reviews." },
+    { id: "REC-27", objective: "C", outcome: "C2.b", priority: "Quick win", type: "", issue: "Proactive discovery outcomes not consistently documented", recommendation: "Record proactive discovery activities and evidence improvements driven by findings." }
+  ]
+} %}
+
+{% set judgementTagClass = {
+  "Achieved": "govuk-tag--green",
+  "Partially achieved": "govuk-tag--yellow",
+  "Not achieved": "govuk-tag--red"
+} %}
+
+{% set baselineTagClass = {
+  "Met": "govuk-tag--green",
+  "Not met": "govuk-tag--red"
+} %}
+
+{# =========================================================
+   Header (keep your colour scheme / template)
+   ========================================================= #}
+<header class="gem-c-inverse-header">
+  <div class="gem-c-heading gem-c-heading--inverse">
+    <span class="govuk-caption-xl gem-c-heading__context gem-c-heading__xl_caption">
+      {{ report.meta.systemId }} {{ report.meta.systemName }}
+    </span>
+
+    <span class="gem-c-heading__xl govuk-heading-xl">
+     GovAssure Independent Assurance Review Report (IARR) 
+    </span>
+
+     <span class="gem-c-inverse-header__subtext">
+     <strong> Version 4 (Current – with organisation)</strong>
+    </span>
+    <br>
+     <span class="gem-c-inverse-header__subtext">
+      Updated {{ report.meta.reportUpdated }}
+    </span>
+
+  </div>
+</header>
+
+<section aria-label="Notice" class="govuk-notification-banner gem-c-notice govuk-!-margin-bottom-8" role="region">
+  <div class="govuk-notification-banner__content">
+    <span class="govuk-notification-banner__heading">
+      This content is UK OFFICIAL-SENSITIVE.
+    </span>
+  </div>
+</section>
+
+<div id="contents">
+  <div class="govuk-grid-row gem-print-columns-none">
+
+    {# =========================================================
+       Left navigation (keep your pattern)
+       ========================================================= #}
+    <div class="govuk-grid-column-one-quarter-from-desktop contents-list-container">
+      <nav class="gem-c-contents-list govuk-!-margin-bottom-4" aria-label="Contents">
+        <h2 class="gem-c-contents-list__title">Contents</h2>
+        <ol class="gem-c-contents-list__list">
+
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#executive-summary">Introduction</a>
+          </li>
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#exec-summary">Executive summary</a>
+          </li>
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#detail-summary">Detailed review of contributing outcomes</a>
+          </li>
+
+          {# remove broken 'Outcome status' and add objective anchors #}
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#objective-a">Objective A</a>
+          </li>
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#objective-b">Objective B</a>
+          </li>
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#objective-c">Objective C</a>
+          </li>
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#objective-d">Objective D</a>
+          </li>
+
+          {# moved to end #}
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#full-recommendations-table">Full table of recommendations</a>
+          </li>
+
+        </ol>
+      </nav>
+    </div>
+
+    {# =========================================================
+       Main content
+       ========================================================= #}
+    <div class="govuk-grid-column-three-quarters-from-desktop">
+
+      {# Executive summary (generic intro + lists) #}
+      <h2 id="executive-summary" class="govuk-heading-xl">Introduction</h2>
+
+      <p class="govuk-body">
+        {{ report.executiveSummary.intro | safe }}
+
+      </p>
+
+      {# System overview (moved up) #}
+      <h2 id="system-details" class="govuk-heading-m">System overview</h2>
+
+      {{ govukSummaryList({
+        classes: "govuk-summary-list",
+        rows: [
+          { key: { text: "System name" }, value: { text: report.meta.systemId ~ " " ~ report.meta.systemName } },
+          
+          { key: { text: "Organisation" }, value: { text: report.meta.organisation } },
+          { key: { text: "System description" }, value: { text: report.systemDetails.description } },
+          { key: { text: "Ownership" }, value: { text: report.systemDetails.ownership } },
+          { key: { text: "Hosting" }, value: { text: report.systemDetails.hosting } },
+          { key: { text: "Corporate services used" }, value: { text: report.systemDetails.corporateServices } },
+          { key: { text: "Review type" }, value: { text: report.systemDetails.reviewType } },
+          { key: { text: "CAF version" }, value: { text: report.systemDetails.cafVersion } },
+          { key: { text: "Assigned target CAF profile" }, value: { text: report.systemDetails.cafProfile } }
+        ]
+      }) }}
+
+      {# Period of review + company details #}
+
+      <h2 id="period-of-review" class="govuk-heading-m">Period of review</h2>
+
+      <p class="govuk-body">
+        The independent assurance review was conducted between
+        <strong>{{ report.periodOfReview.from }}</strong> and <strong>{{ report.periodOfReview.to }}</strong>.
+      </p>
+
+      <h3 class="govuk-heading-m">Independent assurance reviewer details</h3>
+      {# Removing 2 keys
+          { key: { text: "Company email address" }, value: { text: report.companyDetails.companyEmail } }
+          
+      #}
+      {{ govukSummaryList({
+        classes: "govuk-summary-list",
+        rows: [
+          { key: { text: "Company name" }, value: { text: report.companyDetails.companyName } },
+          { key: { text: "Lead reviewer" }, value: { text: "Mr. Isaac Johnson McAlister" } },
+          { key: { text: "Lead reviewer email address" }, value: { text: "isaac.mcalister@company.com" } }
+          
+        ]
+      }) }}
+
+
+      {# Review method + evidence quality #}
+      <h2 id="review-method" class="govuk-heading-m">Review method</h2>
+
+      <p class="govuk-body">
+        {{ report.reviewMethodIntro }}
+      </p>
+       <p class="govuk-body">
+        {{ report.reviewMethod }}
+      </p>
+
+      {# EXEC SUMMARY: One combined status table (all objectives)= #} <h2 id="exec-summary" class="govuk-heading-xl">Executive summary</h2>      
+        
+      <p>The table below shows the cyber security and resilience principle results against the target Government CAF profile. Each principle is made up of a set of contributing outcomes that are assessed in the Cyber Assessment Framework (CAF). 
+      <br><br>All outcomes within a principle must be met in order for that principle to be met. 
+      </p>
+    
+      <h2 class="govuk-heading-m">Achievement status by CAF principle</h2>
+        {# =========================================================
+          EXEC SUMMARY: Principle-level status table (ONE TABLE)
+          Updated logic - based on Anna's request 12 Jan:
+          1) Count line under Review column ALWAYS shows "X of Y outcomes met"
+              - even when label is Not met (e.g. 0 of 1 outcomes met)
+          2) Principle Review Met/Not met is based on CAF profile per outcome (o.baseline),
+              NOT on o.review / self-assessment.
+              - Met only if ALL outcomes in that principle have baseline == "Met"
+          3) Updated principle names - based on CAF v3.2
+          4) Updated outcome statuses e.g. 'Partially achievd' status in my 'dummy data' to match positive sounding notes
+             - cross-checked with Anna and Katie.
+          ========================================================= #}
+
+        {# Map principle codes to names (edit as needed) #}
+        {% set principleNames = {
+          "A1": "Governance",
+          "A2": "Risk management",
+          "A3": "Asset management",
+          "A4": "Supply chain",
+
+          "B1": "Service protection policies, processes and procedures ",
+          "B2": "Identity and access control ",
+          "B3": "Data security",
+          "B4": "System security",
+          "B5": "Resilient networks and systems",
+          "B6": "Staff awareness and training",
+
+          "C1": "Security monitoring",
+          "C2": "Proactive security event discovery",
+
+          "D1": "Response and recovery planning",
+          "D2": "Lessons learned"
+        } %}
+
+        {# Track printed principles so we only render each one once #}
+        {% set seenPrinciples = "|" %}
+
+        <table class="govuk-table">
+            <colgroup>
+              <col style="width: 40%">
+              <col style="width: 30%">
+              <col style="width: 30%">
+            </colgroup>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Principle</th>
+              <th scope="col" class="govuk-table__header">Self-assessment status</th>
+              <th scope="col" class="govuk-table__header">Review status</th>
+              
+            </tr>
+          </thead>
+
+          <tbody class="govuk-table__body">
+
+            {# One pass through all outcomes across all objectives #}
+            {% for obj in report.objectives %}
+              {% for o in obj.outcomes %}
+
+                {% set p = o.code.split(".")[0] %}
+                {% set objAnchor = "#objective-" ~ p[0] | lower %}
+
+
+                {# Only render if we haven't rendered this principle yet #}
+                {% if (("|" ~ p ~ "|") not in seenPrinciples) %}
+                
+
+                  {# Mark as seen #}
+                  {% set seenPrinciples = seenPrinciples ~ p ~ "|" %}
+
+                  {# -------------------------
+                    Aggregate across ALL objectives for this principle
+                    ------------------------- #}
+                  {% set total = 0 %}
+
+                  {# Self-assessment: treat Achieved as "met"; Partially/Not achieved as "not met" #}
+                  {% set selfMet = 0 %}
+                  {% set selfNotMet = 0 %}
+
+                  {# Review (CAF profile met/not met): STRICTLY use baseline Met/Not met #}
+                  {% set cafMet = 0 %}
+                  {% set cafNotMet = 0 %}
+
+                  {# CAF label derived from review judgements (kept as-is): worst wins #}
+                  {% set hasNotAchieved = false %}
+                  {% set hasPartial = false %}
+
+                  {% for obj2 in report.objectives %}
+                    {% for x in obj2.outcomes %}
+                      {% if x.code.split(".")[0] == p %}
+
+                        {% set total = total + 1 %}
+
+                        {# Self-assessment met/not met #}
+                        {% if x.selfAssessment == "Achieved" %}
+                          {% set selfMet = selfMet + 1 %}
+                        {% else %}
+                          {% set selfNotMet = selfNotMet + 1 %}
+                        {% endif %}
+
+                        {# CAF profile met/not met (review decision for Exec table) #}
+                        {% if x.baseline == "Met" %}
+                          {% set cafMet = cafMet + 1 %}
+                        {% else %}
+                          {% set cafNotMet = cafNotMet + 1 %}
+                        {% endif %}
+
+                        {# CAF label (Achieved / Partially achieved / Not achieved) based on review statuses #}
+                        {% if x.review == "Not achieved" %}
+                          {% set hasNotAchieved = true %}
+                        {% elseif x.review == "Partially achieved" %}
+                          {% set hasPartial = true %}
+                        {% endif %}
+
+                      {% endif %}
+                    {% endfor %}
+                  {% endfor %}
+
+                  {# Self-assessment label #}
+                  {% set selfStatus = "Met" %}
+                  {% if selfNotMet > 0 %}
+                    {% set selfStatus = "Not met" %}
+                  {% endif %}
+
+                  {# Review label (FIXED): based ONLY on CAF profile (baseline) #}
+                  {% set reviewStatus = "Met" %}
+                  {% if cafNotMet > 0 %}
+                    {% set reviewStatus = "Not met" %}
+                  {% endif %}
+
+                  {# CAF Baseline profile label (kept): derived from review judgements #}
+                  {% set cafProfileLabel = "Achieved" %}
+                  {% if hasNotAchieved %}
+                    {% set cafProfileLabel = "Not achieved" %}
+                  {% elseif hasPartial %}
+                    {% set cafProfileLabel = "Partially achieved" %}
+                  {% endif %}
+
+                  {% set principleName = principleNames[p] %}
+
+                  <tr class="govuk-table__row">
+
+                    <td class="govuk-table__cell">
+                      <strong>
+                        {{ p }}
+                        {% if principleName %}
+                          — {{ principleName }}
+                        {% endif %}
+                      </strong>
+                    </td>
+
+                    {# Self-assessment status (Met/Not met + count line: show MET count) #}
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag {{ baselineTagClass[selfStatus] }}">
+                        {{ selfStatus }}
+                      </strong>
+                      <div class="govuk-hint govuk-!-margin-top-1 govuk-!-margin-bottom-0">
+                        {{ selfMet }} of {{ total }} outcomes met<br>
+                        <a class="govuk-link govuk-link--no-visited-state" href="{{ objAnchor }}">
+                      Details
+                      </a>
+                    </div>
+                    </td>
+
+                    {# Review status (Met/Not met + count line FIXED: show MET count from baseline) #}
+                    <td class="govuk-table__cell">
+                      <strong class="govuk-tag {{ baselineTagClass[reviewStatus] }}">
+                        {{ reviewStatus }}
+                      </strong>
+                      <div class="govuk-hint govuk-!-margin-top-1 govuk-!-margin-bottom-0">
+                        {{ cafMet }} of {{ total }} outcomes met<Br>
+                        <a class="govuk-link govuk-link--no-visited-state" href="{{ objAnchor }}">
+                       Details
+                       </a>
+                      </div>
+                    </td>
+
+                    
+                  </tr>
+
+                {% endif %}
+
+              {% endfor %}
+            {% endfor %}
+
+          </tbody>
+        </table>
+
+
+
+      
+      
+
+        {# Areas of good practice and Areas for improvement  - broken by objetives (A-B) #}
+        {% for obj in report.objectives %}
+
+          <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+          {# add anchor ids for navigation #}
+          <h2 class="govuk-heading-l">
+            Objective {{ obj.code }} — {{ obj.title }} 
+          </h2>
+          <h2 class="govuk-body">{{obj.subTitle }}</h2>
+
+          {# Areas of good practice as a single text area (7–9 lines) #}
+          <h3 class="govuk-heading-m">Areas of good practice</h3>
+          <p class="govuk-body">
+            {{ obj.goodPracticeText | replace("\n", "<br>") | safe }}
+          </p>
+
+          {# Areas for improvement as a block of text (not bullets) #}
+          <h3 class="govuk-heading-m">Areas for improvement</h3>
+          <p class="govuk-body">
+            {{ obj.improvements | join("\n") | replace("\n", "<br>") | safe }}
+          </p>
+        {% endfor %}
+
+     <h2 class="govuk-heading-l">Quality of the self-assessment and evidence</h2>
+      <p class="govuk-body">
+        {{ report.evidenceQuality.summaryHtml | safe }}
+      </p>
+      
+      
+
+      <p id="detail-summary"></p>
+      {# Detailed review of contirubiting outcomes #}
+      {% for obj in report.objectives %}
+        <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+      
+        {# add anchor ids for navigation #}
+        <h2 class="govuk-heading-xl">{{obj.detailHeading}}</h2>
+        <h2 id="objective-{{ obj.code | lower }}" class="govuk-heading-l">
+          Objective {{ obj.code }} — {{ obj.title }}
+        </h2>
+
+        {# INSERT: Outcome status table under each objective (same labels + same tag colours) #}
+        <h3 class="govuk-body">The table below shows the status of each contributing outcome in the CAF objective. It also shows whether each contributing outcome has met the target Government CAF profile in the Independent Assurance Review. 
+</h3>
+
+        <table class="govuk-table">
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Contributing outcome</th>
+              <th scope="col" class="govuk-table__header">Self-assessment status</th>
+              <th scope="col" class="govuk-table__header">Review status</th>
+              <th scope="col" class="govuk-table__header">CAF Baseline profile</th>
+            </tr>
+          </thead>
+
+          <tbody class="govuk-table__body">
+            {% for o in obj.outcomes %}
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">{{ o.code }} {{ o.name }}</td>
+
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag {{ judgementTagClass[o.selfAssessment] }}">
+                  {{ o.selfAssessment }}
+                </strong>
+              </td>
+
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag {{ judgementTagClass[o.review] }}">
+                  {{ o.review }}
+                </strong>
+              </td>
+
+              <td class="govuk-table__cell">
+                <strong class="govuk-tag {{ baselineTagClass[o.baseline] }}">
+                  {{ o.baseline }}
+                </strong>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+
+
+  <h3 class="govuk-heading-m">Contributing outcomes</h3>
+
+  {% for o in obj.outcomes %}
+    {% call govukDetails({ summaryText: o.code ~ " — " ~ o.name }) %}
+
+      <h5 class="govuk-heading-s">Review status:
+      <strong class="govuk-tag {{ judgementTagClass[o.review] }}"> {{ o.review }}</strong></h5>
+        
+<h5 class="govuk-heading-s">CAF Baseline profile:
+<strong class="govuk-tag {{ baselineTagClass[o.baseline] }}">
+                  {{ o.baseline }}</strong></h5>
+        
+       
+
+      {% if o.recommendations | length > 0 %}
+        <h4 class="govuk-heading-s">{{ o.recommendations | length }} recommendation for {{ o.code }}</h4>
+        <ul class="govuk-list govuk-list--bullet">
+          {% for recId in o.recommendations %}
+            {% for r in report.topRecommendations %}
+              {% if r.id == recId %}
+                <li>
+                  <strong>{{ r.id }} —</strong> {{ r.recommendation }}
+                </li>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      <h5 class="govuk-heading-s">Comment to support the review</h5>
+      <p class="govuk-body">
+        {{ o.summary }}
+      </p>
+
+      {# only show heading if comment exists #}
+      {% if o.igpComment %}
+        <h5 class="govuk-heading-s">Comments on individual IGPs</h5>
+        <p class="govuk-body govuk-!-font-size-16">{{o.statement2}} </p>
+        <p class="govuk-body">{{ o.igpComment }}</p>
+      {% endif %}
+
+    {% endcall %}
+  {% endfor %}
+
+{% endfor %}
+<style>
+  @media print {
+    @page { size: A4 landscape; margin: 12mm; }
+    .govuk-width-container { max-width: none !important; }
+    .govuk-table { font-size: 14px; }
+    .contents-list-container { display: none !important; }
+  }
+</style>
+
+<h2 id="full-recommendations-table" class="govuk-heading-l">Full table of recommendations</h2>
+
+{# =========================================================
+   Build lookups ONCE (robust, no boolean scoping)
+   ========================================================= #}
+
+{# Outcomes where CAF baseline is "Not met" => priority #}
+{% set notMetOutcomes = "|" %}
+
+{# Build a simple lookup string: |B1.a=B1.a Policy...|B2.a=B2.a Identity...| #}
+{% set outcomeLookup = "|" %}
+{% for obj in report.objectives %}
+  {% for o in obj.outcomes %}
+    {% set outcomeLookup = outcomeLookup ~ o.code ~ "=" ~ o.code ~ " " ~ o.name ~ " — " ~ (o.summary or "") ~ "|" %}
+
+  {% endfor %}
+{% endfor %}
+
+{% macro outcomeLabel(outcomeCode) %}
+  {% set code = (outcomeCode | default('')) | trim %}
+
+  {# Capture rendered output instead of mutating variables in loops #}
+  {% set label %}
+    {% for obj in report.objectives %}
+      {% for o in obj.outcomes %}
+        {% if (o.code | trim) == code %}
+          {{ o.code }} {{ o.name }} — {{ o.summary or "" }}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  {% endset %}
+
+  {% if label | trim %}
+    {{ label | trim }}
+  {% else %}
+    {{ code }}
+  {% endif %}
+{% endmacro %}
+
+
+
+
+
+
+{% for obj in report.objectives %}
+  {% for o in obj.outcomes %}
+    {% if o.baseline == "Not met" %}
+      {% set notMetOutcomes = notMetOutcomes ~ o.code ~ "|" %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+
+
+
+
+{# =========================================================
+   Risk groups (only one grouped risk example)
+   ========================================================= #}
+{# Existing (Priority) grouped risk #}
+{% set RISK_B_SHORT = "Detection and monitoring gaps" %}
+{% set RISK_B_FULL = "R14: Monitoring and logging coverage gaps reduce the ability to detect and respond to incidents affecting essential functions." %}
+{% set riskBLookup = "|REC-21|REC-22|REC-23|" %}
+{% set multiLookup = "|REC-14|REC-03" %}
+
+{# NEW (Other recommendations) grouped risk #}
+{% set RISK_OTHER_SHORT = "Policy and process consistency gaps" %}
+{% set RISK_OTHER_FULL = "R1: Policies and processes are inconsistently applied or evidenced, creating unmanaged control gaps across components." %}
+{% set riskOtherLookup = "|REC-01|REC-02|" %}
+
+{% macro riskForRec(recId) %}
+  {% if recId == "REC-01" %}R1: Policies are not consistently applied or evidenced across all components, creating unmanaged control gaps.
+  {% elseif recId == "REC-02" %}R2: Legacy hosts may drift from secure baselines without detection, increasing exposure to known weaknesses.
+  {% elseif recId == "REC-03" %}R3: Integration access paths may bypass standard authorisation checks, increasing likelihood of unauthorised access.
+  {% elseif recId == "REC-04" %}R4: Privileged access can remain in place longer than needed, increasing insider and credential misuse risk.
+  {% elseif recId == "REC-05" %}R5: Privileged sessions may not be monitored or revalidated consistently, reducing ability to detect misuse.
+  {% elseif recId == "REC-06" %}R6: Identity lifecycle processes may be inconsistent, leading to orphaned accounts and excessive permissions.
+  {% elseif recId == "REC-07" %}R7: MFA gaps across legacy and break-glass paths increase likelihood of compromise through weaker controls.
+  {% elseif recId == "REC-08" %}R8: Board-level oversight of cyber security risk is evidenced through meeting packs and decision records; however, reporting is not presented in a consistent or repeatable format across quarters. As a result, it is difficult to demonstrate trends over time, compare risk positions between reporting periods, or clearly evidence how board-level challenge and decisions have influenced security outcomes. This reduces the strength of assurance against CAF Objective A, particularly in demonstrating sustained governance effectiveness rather than point-in-time compliance.This reduces the strength of assurance against CAF Objective A, particularly in demonstrating sustained governance effectiveness rather than point-in-time demonstrating sustained governance effectiveness compliance.
+  {% elseif recId == "REC-09" %}R9: Unclear or unenforced encryption requirements can lead to data interception on transit routes.
+  {% elseif recId == "REC-10" %}R10: Legacy data stores may lack evidenced controls, increasing risk of unauthorised access and disclosure.
+  {% elseif recId == "REC-11" %}R11: Mobile data controls may not be enforced consistently, increasing risk of loss or leakage from devices.
+  {% elseif recId == "REC-12" %}R12: Board reporting lacks standardisation, limiting oversight and reducing evidence of decisions and challenge.
+  {% elseif recId == "REC-13" %}R13: Security decisions may be made without consistent records, reducing accountability and traceability of risk acceptance.
+  {% elseif recId == "REC-15" %}R15: Unknown or unmanaged legacy and integration assets reduce visibility and increase risk of unpatched vulnerabilities.
+  {% elseif recId == "REC-16" %}R16: Supply chain risk reporting is inconsistent, reducing ability to identify trends and drive supplier improvements.
+  {% elseif recId == "REC-17" %}R17: Incomplete sanitisation records increase risk of sensitive data recovery from disposed or reused media.
+  {% elseif recId == "REC-18" %}R18: Security checkpoints may be skipped in delivery, increasing likelihood of design weaknesses reaching production.
+  {% elseif recId == "REC-19" %}R19: Legacy systems may lack tooling for configuration assurance, increasing risk of insecure settings persisting.
+  {% elseif recId == "REC-20" %}R20: Inconsistent admin interface hardening increases risk of exploitation through management channels.
+  {% elseif recId == "REC-24" %}R21: Incident criteria may be applied inconsistently, delaying escalation and increasing impact of attacks.
+  {% elseif recId == "REC-25" %}R22: Skills coverage gaps reduce monitoring effectiveness and increase time to detect/respond to incidents.
+  {% elseif recId == "REC-26" %}R23: Anomaly detection may be ad-hoc, increasing risk that emerging attacks go unnoticed.
+  {% elseif recId == "REC-27" %}R24: Proactive discovery findings may not translate into improvements, allowing repeated weaknesses to persist.
+  {% else %}A material security risk has been identified that requires remediation to meet expected resilience levels.
+  {% endif %}
+{% endmacro %}
+
+{# =========================================================
+   MACRO: Render a section by sectionMode:
+   - "priority" => outcome baseline Not met
+   - "other"    => outcome baseline Met
+   Uses only string lookups (no boolean scoping)
+   ========================================================= #}
+
+{% macro renderSection(report, notMetOutcomes, multiLookup, groupedRiskFull, groupedRiskLookup, excludeLookup, sectionHeading, sectionIntro, sectionMode) %}
+  <h3 class="govuk-heading-m govuk-!-margin-top-8">{{ sectionHeading }}</h3>
+  <p class="govuk-body">{{ sectionIntro }}</p>
+
+  {# -------- Grouped risk table -------- #}
+  <h4 class="govuk-heading-s">{{ groupedRiskFull }}</h4>
+  
+    <table class="govuk-table">
+       <colgroup>
+              <col style="width: 2.5%">
+              <col style="width: 2.5%">
+              <col style="width: 47.5%">
+              <col style="width: 47.5%">
+      </colgroup>
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th class="govuk-table__header">Id</th>
+        <th class="govuk-table__header">Outcome</th>
+        <th class="govuk-table__header">Risk description</th>
+        <th class="govuk-table__header">Recomendation detail</th>
+      </tr>
+    </thead>
+
+    <tbody class="govuk-table__body">
+      {% set printed = "false" %}
+
+      {% for r in report.topRecommendations %}
+        {% set isMulti = (("|" ~ r.id ~ "|") in multiLookup) %}
+        {% set inGroup = (("|" ~ r.id ~ "|") in groupedRiskLookup) %}
+        {% set isPriority = (("|" ~ r.outcome ~ "|") in notMetOutcomes) %}
+
+        {% set inThisSection = false %}
+        {% if sectionMode == "priority" and isPriority %}
+          {% set inThisSection = true %}
+        {% elseif sectionMode == "other" and (not isPriority) %}
+          {% set inThisSection = true %}
+        {% endif %}
+
+        {% if inThisSection and (not isMulti) and inGroup %}
+          {% set printed = "true" %}
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+              <strong>{{ r.id }}</strong>
+            </td>
+
+            <td class="govuk-table__cell">
+              {% for obj in report.objectives %}
+                {% for o in obj.outcomes %}
+                  {% if o.code == r.outcome %}
+                    {{ o.code }} 
+                  {% endif %}
+                {% endfor %}
+              {% endfor %}
+            </td>
+
+            <td class="govuk-table__cell">{{ groupedRiskFull }}</td>
+
+            <td class="govuk-table__cell">    
+            {{ r.recommendation | replace("\r\n", "\n") | replace("\n", "<br>") | safe }}
+            </td>
+          </tr>
+
+        {% endif %}
+      {% endfor %}
+
+      {% if printed != "true" %}
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell" colspan="4">No recommendations in this grouped risk.</td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
+
+
+  
+
+
+  {# -------- Other priority recommendations -------- #}
+{% if sectionMode == "priority" %}
+  <h4 class="govuk-heading-s govuk-!-margin-top-6">Other priority recommendations</h4>
+{% endif %}
+
+
+    <table class="govuk-table">
+    <colgroup>
+              <col style="width: 2.5%">
+              <col style="width: 2.5%">
+              <col style="width: 47.5%">
+              <col style="width: 47.5%">
+      </colgroup>
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th class="govuk-table__header">Id</th>
+        <th class="govuk-table__header">Outcome</th>
+        <th class="govuk-table__header">Risk description</th>
+        <th class="govuk-table__header">Recomendation detail</th>
+      </tr>
+    </thead>
+
+    <tbody class="govuk-table__body">
+      {% set printed = "false" %}
+
+      {% for r in report.topRecommendations %}
+        {% set isMulti = (("|" ~ r.id ~ "|") in multiLookup) %}
+        {% set inGrouped = (("|" ~ r.id ~ "|") in excludeLookup) %}
+        {% set isPriority = (("|" ~ r.outcome ~ "|") in notMetOutcomes) %}
+
+        {% set inThisSection = false %}
+        {% if sectionMode == "priority" and isPriority %}
+          {% set inThisSection = true %}
+        {% elseif sectionMode == "other" and (not isPriority) %}
+          {% set inThisSection = true %}
+        {% endif %}
+
+        {% if inThisSection and (not isMulti) and (not inGrouped) %}
+          {% set printed = "true" %}
+
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+              <strong>{{ r.id }}</strong>
+            </td>
+
+            <td class="govuk-table__cell">
+              {% for obj in report.objectives %}
+                {% for o in obj.outcomes %}
+                  {% if o.code == r.outcome %}
+                    {{ o.code }} 
+                  {% endif %}
+                {% endfor %}
+              {% endfor %}
+            </td>
+
+            <td class="govuk-table__cell">{{ riskForRec(r.id) }}</td>
+
+            <td class="govuk-table__cell">
+              
+                  {{ r.recommendation | replace("\r\n", "\n") | replace("\n", "<br>") | safe }}
+              
+            </td>
+          </tr>
+
+        {% endif %}
+      {% endfor %}
+
+      {% if printed != "true" %}
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell" colspan="4">No remaining recommendations.</td>
+        </tr>
+      {% endif %}
+    </tbody>
+  </table>
+
+
+{% endmacro %}
+
+{{ renderSection(
+  report,
+  notMetOutcomes,
+  multiLookup,
+  RISK_B_FULL,
+  riskBLookup,
+  riskBLookup,
+  "Priority recommendations",
+  "These recommendations address contributing outcomes where the target Government CAF profile has not been met.",
+  "priority"
+) }}
+
+{{ renderSection(
+  report,
+  notMetOutcomes,
+  multiLookup,
+  RISK_OTHER_FULL,
+  riskOtherLookup,
+  riskOtherLookup,
+  "Other recommendations",
+  "These recommendations relate to contributing outcomes that have met the target Government CAF profile.",
+  "other"
+) }}
+
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
