@@ -221,33 +221,9 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
     { id: "REC-13", objective: "A", outcome: "A1.c", priority: "Quick win", type: "", issue: "Risk decision rationale not consistently documented", recommendation: "Standardise decision records to capture trade-offs, approvals, and escalation triggers for significant risks." },
     { id: "REC-14", objective: "A", outcome: "A2.b", priority: "Priority", type: "Required", issue: "Assurance evidence traceability uneven for supplier-managed components", recommendation: "Define assurance sampling approach and maintain an evidence index linking claims to artefacts for supplier-managed services." },
     { id: "REC-15", objective: "A", outcome: "A3.a", priority: "Quick win", type: "Required", issue: "Legacy asset coverage and ownership evidence incomplete", recommendation: "Complete inventory for legacy and integration assets and assign accountable owners with review cadence." },
-    { id: "REC-16", objective: "A", outcome: "A4.a", priority: "Priority", type: "Required", issue: "Achieved statement 2", recommendation: "Issue context
+    { id: "REC-16", objective: "A", outcome: "A4.a", priority: "Priority", type: "Required", issue: "Achieved statement 2", recommendation: "Board-level oversight of cyber security risk is evidenced through meeting packs and decision records; however, reporting is not presented in a consistent or repeatable format across quarters. As a result, it is difficult to demonstrate trends over time, compare risk positions between reporting periods, or clearly evidence how board-level challenge and decisions have influenced security outcomes. This reduces the strength of assurance against CAF Objective A, particularly in demonstrating sustained governance effectiveness rather than point-in-time compliance.
 
-Board-level oversight of cyber security risk is evidenced through meeting packs and decision records; however, reporting is not presented in a consistent or repeatable format across quarters. As a result, it is difficult to demonstrate trends over time, compare risk positions between reporting periods, or clearly evidence how board-level challenge and decisions have influenced security outcomes. This reduces the strength of assurance against CAF Objective A, particularly in demonstrating sustained governance effectiveness rather than point-in-time compliance.
-
-Recommendation
-
-The organisation should design, agree, and implement a standardised quarterly cyber security dashboard for board and executive-level review. The dashboard should provide a consistent, repeatable view of the organisation’s cyber risk posture, control effectiveness, and priority actions, and should be used as the primary artefact to evidence board-level oversight and decision-making for cyber security.
-
-What good looks like
-
-The dashboard should, as a minimum:
-
-1. Be presented to the board (or delegated executive forum) on a quarterly basis, using a consistent structure and metric set.
-
-2. Include a clear summary of overall cyber risk posture, aligned to the organisation’s agreed risk appetite.
-
-3. Provide trend-based metrics (for example quarter-on-quarter changes), rather than standalone snapshots.
-
-Clearly distinguish between:
-
-1. risks that are being actively managed within tolerance
-
-2. risks that require board awareness
-
-3. risks that require explicit board decision or acceptance
-
-Reference relevant CAF objectives and outcomes where appropriate, to maintain traceability between governance activity and assurance claims." },
+" },
 
     { id: "REC-17", objective: "B", outcome: "B3.e", priority: "Quick win", type: "Required", issue: "Sanitisation evidence inconsistent", recommendation: "Implement sanitisation logs and audit sampling for media equipment disposal and reuse." },
     { id: "REC-18", objective: "B", outcome: "B4.a", priority: "Quick win", type: "", issue: "Secure-by-design use inconsistent", recommendation: "Introduce secure-by-design checkpoints in delivery and evidence completion for significant changes." },
@@ -827,30 +803,30 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
 {% set riskOtherLookup = "|REC-01|REC-02|" %}
 
 {% macro riskForRec(recId) %}
-  {% if recId == "REC-01" %}R1: Policies are not consistently applied or evidenced across all components, creating unmanaged control gaps.
-  {% elseif recId == "REC-02" %}R2: Legacy hosts may drift from secure baselines without detection, increasing exposure to known weaknesses.
-  {% elseif recId == "REC-03" %}R3: Integration access paths may bypass standard authorisation checks, increasing likelihood of unauthorised access.
-  {% elseif recId == "REC-04" %}R4: Privileged access can remain in place longer than needed, increasing insider and credential misuse risk.
-  {% elseif recId == "REC-05" %}R5: Privileged sessions may not be monitored or revalidated consistently, reducing ability to detect misuse.
-  {% elseif recId == "REC-06" %}R6: Identity lifecycle processes may be inconsistent, leading to orphaned accounts and excessive permissions.
-  {% elseif recId == "REC-07" %}R7: MFA gaps across legacy and break-glass paths increase likelihood of compromise through weaker controls.
-  {% elseif recId == "REC-08" %}R8: Board-level oversight of cyber security risk is evidenced through meeting packs and decision records; however, reporting is not presented in a consistent or repeatable format across quarters. As a result, it is difficult to demonstrate trends over time, compare risk positions between reporting periods, or clearly evidence how board-level challenge and decisions have influenced security outcomes. This reduces the strength of assurance against CAF Objective A, particularly in demonstrating sustained governance effectiveness rather than point-in-time compliance.This reduces the strength of assurance against CAF Objective A, particularly in demonstrating sustained governance effectiveness rather than point-in-time demonstrating sustained governance effectiveness compliance.
-  {% elseif recId == "REC-09" %}R9: Unclear or unenforced encryption requirements can lead to data interception on transit routes.
-  {% elseif recId == "REC-10" %}R10: Legacy data stores may lack evidenced controls, increasing risk of unauthorised access and disclosure.
-  {% elseif recId == "REC-11" %}R11: Mobile data controls may not be enforced consistently, increasing risk of loss or leakage from devices.
-  {% elseif recId == "REC-12" %}R12: Board reporting lacks standardisation, limiting oversight and reducing evidence of decisions and challenge.
-  {% elseif recId == "REC-13" %}R13: Security decisions may be made without consistent records, reducing accountability and traceability of risk acceptance.
-  {% elseif recId == "REC-15" %}R15: Unknown or unmanaged legacy and integration assets reduce visibility and increase risk of unpatched vulnerabilities.
-  {% elseif recId == "REC-16" %}R16: Supply chain risk reporting is inconsistent, reducing ability to identify trends and drive supplier improvements.
-  {% elseif recId == "REC-17" %}R17: Incomplete sanitisation records increase risk of sensitive data recovery from disposed or reused media.
-  {% elseif recId == "REC-18" %}R18: Security checkpoints may be skipped in delivery, increasing likelihood of design weaknesses reaching production.
-  {% elseif recId == "REC-19" %}R19: Legacy systems may lack tooling for configuration assurance, increasing risk of insecure settings persisting.
-  {% elseif recId == "REC-20" %}R20: Inconsistent admin interface hardening increases risk of exploitation through management channels.
-  {% elseif recId == "REC-24" %}R21: Incident criteria may be applied inconsistently, delaying escalation and increasing impact of attacks.
-  {% elseif recId == "REC-25" %}R22: Skills coverage gaps reduce monitoring effectiveness and increase time to detect/respond to incidents.
-  {% elseif recId == "REC-26" %}R23: Anomaly detection may be ad-hoc, increasing risk that emerging attacks go unnoticed.
-  {% elseif recId == "REC-27" %}R24: Proactive discovery findings may not translate into improvements, allowing repeated weaknesses to persist.
-  {% else %}A material security risk has been identified that requires remediation to meet expected resilience levels.
+  {% if recId == "REC-01" %}RO1: Policies are not consistently applied or evidenced across all components, creating unmanaged control gaps.
+  {% elseif recId == "REC-02" %}RO2: Legacy hosts may drift from secure baselines without detection, increasing exposure to known weaknesses.
+  {% elseif recId == "REC-03" %}RO3: Integration access paths may bypass standard authorisation checks, increasing likelihood of unauthorised access.
+  {% elseif recId == "REC-04" %}RO4: Privileged access can remain in place longer than needed, increasing insider and credential misuse risk.
+  {% elseif recId == "REC-05" %}RO5: Privileged sessions may not be monitored or revalidated consistently, reducing ability to detect misuse.
+  {% elseif recId == "REC-06" %}RO6: Identity lifecycle processes may be inconsistent, leading to orphaned accounts and excessive permissions.
+  {% elseif recId == "REC-07" %}RO7: MFA gaps across legacy and break-glass paths increase likelihood of compromise through weaker controls.
+  {% elseif recId == "REC-08" %}RO8: Board-level oversight of cyber security risk is evidenced through meeting packs and decision records; however, reporting is not presented in a consistent or repeatable format across quarters. As a result, it is difficult to demonstrate trends over time, compare risk positions between reporting periods, or clearly evidence how board-level challenge and decisions have influenced security outcomes. This reduces the strength of assurance against CAF Objective A, particularly in demonstrating sustained governance effectiveness rather than point-in-time compliance.This reduces the strength of assurance against CAF Objective A, particularly in demonstrating sustained governance effectiveness rather than point-in-time demonstrating sustained governance effectiveness compliance.
+  {% elseif recId == "REC-09" %}RO9: Unclear or unenforced encryption requirements can lead to data interception on transit routes.
+  {% elseif recId == "REC-10" %}RO10: Legacy data stores may lack evidenced controls, increasing risk of unauthorised access and disclosure.
+  {% elseif recId == "REC-11" %}RO11: Mobile data controls may not be enforced consistently, increasing risk of loss or leakage from devices.
+  {% elseif recId == "REC-12" %}RP12: Board reporting lacks standardisation, limiting oversight and reducing evidence of decisions and challenge.
+  {% elseif recId == "REC-13" %}RP13: Security decisions may be made without consistent records, reducing accountability and traceability of risk acceptance.
+  {% elseif recId == "REC-15" %}RP15: Unknown or unmanaged legacy and integration assets reduce visibility and increase risk of unpatched vulnerabilities.
+  {% elseif recId == "REC-16" %}RP16: Supply chain risk reporting is inconsistent, reducing ability to identify trends and drive supplier improvements.
+  {% elseif recId == "REC-17" %}RO17: Incomplete sanitisation records increase risk of sensitive data recovery from disposed or reused media.
+  {% elseif recId == "REC-18" %}RO18: Security checkpoints may be skipped in delivery, increasing likelihood of design weaknesses reaching production.
+  {% elseif recId == "REC-19" %}RO19: Legacy systems may lack tooling for configuration assurance, increasing risk of insecure settings persisting.
+  {% elseif recId == "REC-20" %}RO20: Inconsistent admin interface hardening increases risk of exploitation through management channels.
+  {% elseif recId == "REC-24" %}RP21: Incident criteria may be applied inconsistently, delaying escalation and increasing impact of attacks.
+  {% elseif recId == "REC-25" %}RP22: Skills coverage gaps reduce monitoring effectiveness and increase time to detect/respond to incidents.
+  {% elseif recId == "REC-26" %}RO23: Anomaly detection may be ad-hoc, increasing risk that emerging attacks go unnoticed.
+  {% elseif recId == "REC-27" %}RO24: Proactive discovery findings may not translate into improvements, allowing repeated weaknesses to persist.
+  {% else %}RP25: A material security risk has been identified that requires remediation to meet expected resilience levels.
   {% endif %}
 {% endmacro %}
 
@@ -861,103 +837,26 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
    Uses only string lookups (no boolean scoping)
    ========================================================= #}
 
-{% macro renderSection(report, notMetOutcomes, multiLookup, groupedRiskFull, groupedRiskLookup, excludeLookup, sectionHeading, sectionIntro, sectionMode) %}
+
+
+{% macro renderSection(report, notMetOutcomes, sectionHeading, sectionIntro, sectionMode) %}
   <h3 class="govuk-heading-m govuk-!-margin-top-8">{{ sectionHeading }}</h3>
   <p class="govuk-body">{{ sectionIntro }}</p>
 
-  {# -------- Grouped risk table -------- #}
-  <h4 class="govuk-heading-s">{{ groupedRiskFull }}</h4>
-  
-    <table class="govuk-table">
-       <colgroup>
-              <col style="width: 2.5%">
-              <col style="width: 2.5%">
-              <col style="width: 47.5%">
-              <col style="width: 47.5%">
-      </colgroup>
-    <thead class="govuk-table__head">
-      <tr class="govuk-table__row">
-        <th class="govuk-table__header">Id</th>
-        <th class="govuk-table__header">Outcome</th>
-        <th class="govuk-table__header">Risk description</th>
-        <th class="govuk-table__header">Recomendation detail</th>
-      </tr>
-    </thead>
-
-    <tbody class="govuk-table__body">
-      {% set printed = "false" %}
-
-      {% for r in report.topRecommendations %}
-        {% set isMulti = (("|" ~ r.id ~ "|") in multiLookup) %}
-        {% set inGroup = (("|" ~ r.id ~ "|") in groupedRiskLookup) %}
-        {% set isPriority = (("|" ~ r.outcome ~ "|") in notMetOutcomes) %}
-
-        {% set inThisSection = false %}
-        {% if sectionMode == "priority" and isPriority %}
-          {% set inThisSection = true %}
-        {% elseif sectionMode == "other" and (not isPriority) %}
-          {% set inThisSection = true %}
-        {% endif %}
-
-        {% if inThisSection and (not isMulti) and inGroup %}
-          {% set printed = "true" %}
-
-          <tr class="govuk-table__row">
-            <td class="govuk-table__cell">
-              <strong>{{ r.id }}</strong>
-            </td>
-
-            <td class="govuk-table__cell">
-              {% for obj in report.objectives %}
-                {% for o in obj.outcomes %}
-                  {% if o.code == r.outcome %}
-                    {{ o.code }} 
-                  {% endif %}
-                {% endfor %}
-              {% endfor %}
-            </td>
-
-            <td class="govuk-table__cell">{{ groupedRiskFull }}</td>
-
-            <td class="govuk-table__cell">    
-            {{ r.recommendation | replace("\r\n", "\n") | replace("\n", "<br>") | safe }}
-            </td>
-          </tr>
-
-        {% endif %}
-      {% endfor %}
-
-      {% if printed != "true" %}
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell" colspan="4">No recommendations in this grouped risk.</td>
-        </tr>
-      {% endif %}
-    </tbody>
-  </table>
-
-
-  
-
-
-  {# -------- Other priority recommendations -------- #}
-{% if sectionMode == "priority" %}
-  <h4 class="govuk-heading-s govuk-!-margin-top-6">Other priority recommendations</h4>
-{% endif %}
-
-
-    <table class="govuk-table">
+  <table class="govuk-table">
     <colgroup>
-              <col style="width: 2.5%">
-              <col style="width: 2.5%">
-              <col style="width: 47.5%">
-              <col style="width: 47.5%">
-      </colgroup>
+      <col style="width: 10%">
+      <col style="width: 10%">
+      <col style="width: 40%">
+      <col style="width: 40%">
+    </colgroup>
+
     <thead class="govuk-table__head">
       <tr class="govuk-table__row">
-        <th class="govuk-table__header">Id</th>
-        <th class="govuk-table__header">Outcome</th>
-        <th class="govuk-table__header">Risk description</th>
-        <th class="govuk-table__header">Recomendation detail</th>
+        <th class="govuk-table__header">ID</th>
+        <th class="govuk-table__header">CO</th>
+        <th class="govuk-table__header">Risk</th>
+        <th class="govuk-table__header">Recomendation</th>
       </tr>
     </thead>
 
@@ -965,10 +864,11 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
       {% set printed = "false" %}
 
       {% for r in report.topRecommendations %}
-        {% set isMulti = (("|" ~ r.id ~ "|") in multiLookup) %}
-        {% set inGrouped = (("|" ~ r.id ~ "|") in excludeLookup) %}
+
+        {# Is this recommendation in a "priority" outcome? #}
         {% set isPriority = (("|" ~ r.outcome ~ "|") in notMetOutcomes) %}
 
+        {# Decide if it belongs in this table #}
         {% set inThisSection = false %}
         {% if sectionMode == "priority" and isPriority %}
           {% set inThisSection = true %}
@@ -976,54 +876,40 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
           {% set inThisSection = true %}
         {% endif %}
 
-        {% if inThisSection and (not isMulti) and (not inGrouped) %}
+        {% if inThisSection %}
           {% set printed = "true" %}
 
           <tr class="govuk-table__row">
+            <td class="govuk-table__cell"><strong>{{ r.id }}</strong></td>
+
             <td class="govuk-table__cell">
-              <strong>{{ r.id }}</strong>
+              {{ r.outcome }}
             </td>
 
             <td class="govuk-table__cell">
-              {% for obj in report.objectives %}
-                {% for o in obj.outcomes %}
-                  {% if o.code == r.outcome %}
-                    {{ o.code }} 
-                  {% endif %}
-                {% endfor %}
-              {% endfor %}
+              {{ riskForRec(r.id) }}
             </td>
 
-            <td class="govuk-table__cell">{{ riskForRec(r.id) }}</td>
-
             <td class="govuk-table__cell">
-              
-                  {{ r.recommendation | replace("\r\n", "\n") | replace("\n", "<br>") | safe }}
-              
+              {{ r.recommendation | replace("\r\n", "\n") | replace("\n", "<br>") | safe }}
             </td>
           </tr>
-
         {% endif %}
+
       {% endfor %}
 
       {% if printed != "true" %}
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell" colspan="4">No remaining recommendations.</td>
+          <td class="govuk-table__cell" colspan="4">No recommendations.</td>
         </tr>
       {% endif %}
     </tbody>
   </table>
-
-
 {% endmacro %}
 
 {{ renderSection(
   report,
   notMetOutcomes,
-  multiLookup,
-  RISK_B_FULL,
-  riskBLookup,
-  riskBLookup,
   "Priority recommendations",
   "These recommendations address contributing outcomes where the target Government CAF profile has not been met.",
   "priority"
@@ -1032,10 +918,6 @@ Reference relevant CAF objectives and outcomes where appropriate, to maintain tr
 {{ renderSection(
   report,
   notMetOutcomes,
-  multiLookup,
-  RISK_OTHER_FULL,
-  riskOtherLookup,
-  riskOtherLookup,
   "Other recommendations",
   "These recommendations relate to contributing outcomes that have met the target Government CAF profile.",
   "other"
