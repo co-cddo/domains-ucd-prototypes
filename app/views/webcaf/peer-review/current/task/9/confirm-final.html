@@ -1,0 +1,63 @@
+{% extends "/layouts/review-conf.html" %}
+
+{% block pageTitle %}
+Report history – Independent Assurance Review
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+
+  {{ govukPhaseBanner({
+    tag: {
+      text: "prototype",
+      classes: "govuk-tag--pink"
+    },
+    html: "This is not a full service. It is not production code and you might experience problems."
+  }) }}
+
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "My account",
+        href: "#"
+      },
+      {
+        text: "Report history",
+        href: "#"
+      },
+      {
+        text: "Choose the final report version
+"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+
+    <h1 class="govuk-heading-l">Make Version 3 the final report?</h1>
+    
+    
+
+    <p class="govuk-body">
+      This will mark version 3 as the final report for the SYS-0001 Microsoft CS version 3
+ system.
+    </p>
+
+    <p class="govuk-body">
+      This does not create a new version. It only marks the selected version as the final report.
+      XXXXXXXXXXXXXXX
+    </p>
+
+    <form action="/webcaf/reports/make-final" method="post">
+      <input type="hidden" name="finalVersion" value="3">
+
+      <div class="govuk-button-group">
+        {{ govukButton({ text: "Confirm and make final" }) }}
+        <a class="govuk-link" href="/webcaf/reports/change-final">Cancel</a>
+      </div>
+    </form>
+
+    {% endblock %}

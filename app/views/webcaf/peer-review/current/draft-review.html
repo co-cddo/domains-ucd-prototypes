@@ -1,0 +1,371 @@
+{% extends "/layouts/peer-review.html" %}
+
+{% block pageTitle %}
+Task list – Draft review
+{% endblock %}
+
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+
+{{ govukPhaseBanner({
+  tag: { text: "prototype", classes: "govuk-tag--pink" },
+  html: "This is not a full service. It is not production code."
+}) }}
+
+{{ govukBreadcrumbs({
+  items: [
+    { text: "My account", href: "my-account" },
+    { text: "Edit draft review" }
+  ]
+}) }}
+
+{% if reopened %}
+<div class="govuk-notification-banner govuk-notification-banner--blue govuk-!-margin-bottom-6">
+  <div class="govuk-notification-banner__header">
+    <h2 class="govuk-notification-banner__title">You are editing this review</h2>
+  </div>
+  <div class="govuk-notification-banner__content">
+    <p>This review already has a published report. Any changes now will apply to the next version.</p>
+    {% if latestVersion %}
+    <p>
+      <strong>Latest published report:</strong> Version {{ latestVersion }}<br>
+      <a class="govuk-link" href="/webcaf/review/current/report/{{ latestVersion }}">
+        Download Version {{ latestVersion }}
+      </a>
+    </p>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+<div class="proto-admin">
+  <p><strong>You have completed 5% of your review</strong></p>
+  <div class="progress-inactive"><div class="progress-active" style="width: 5%"></div></div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-three-quarters">
+
+<span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
+<h1 class="govuk-heading-l">Peer Review a WebCAF self-assessment</h1>
+
+
+<p id="review-status"><strong>Draft review</strong></p>
+
+
+    <div class="govuk-inset-text">
+      For it to be assessed in GovAssure 2025/26 your stage 4 review must be completed by 
+      <strong>11:59pm</strong> on <strong>31 March 2026.</strong>
+    </div>
+
+    <!-- ===================================================== -->
+    <!-- SECTION 1 -->
+    <!-- ===================================================== -->
+
+    <h2 class="govuk-heading-m">1. Confirm self-assessment</h2>
+
+    <ul class="govuk-task-list">
+      <li class="govuk-task-list__item" id="row-1">
+        <div class="govuk-task-list__name">
+          <a id="task-link-1" class="govuk-link" href="task/1/system-summary">
+            Confirm system overview
+          </a>
+        </div>
+        <div class="govuk-task-list__status">
+          <span id="status-1" class="govuk-tag govuk-tag--blue">Incomplete</span>
+        </div>
+      </li>
+    </ul>
+
+    <!-- ===================================================== -->
+    <!-- SECTION 2 -->
+    <!-- ===================================================== -->
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-6">2. Review self-assessment</h2>
+
+    <ul class="govuk-task-list">
+
+      <li class="govuk-task-list__item" id="row-2">
+        <div class="govuk-task-list__name">
+          <a id="task-link-2" class="govuk-link" href="task/7/outcome-review-a">
+            Objective A – Managing security risk
+          </a>
+        </div>
+        <div class="govuk-task-list__status">
+          <span id="status-2" class="govuk-task-list__status-text govuk-!-font-weight-regular govuk-!-font-size-16 govuk-!-margin-top-1">
+            Cannot start yet
+          </span>
+        </div>
+      </li>
+
+      <li class="govuk-task-list__item" id="row-3">
+        <div class="govuk-task-list__name">
+          <a id="task-link-3" class="govuk-link" href="#">Objective B – Protecting against cyber attacks</a>
+        </div>
+        <div class="govuk-task-list__status">
+          <span id="status-3" class="govuk-task-list__status-text govuk-!-font-size-16 govuk-!-margin-top-1">
+            Cannot start yet
+          </span>
+        </div>
+      </li>
+
+      <li class="govuk-task-list__item" id="row-4">
+        <div class="govuk-task-list__name">
+          <a id="task-link-4" class="govuk-link" href="#">Objective C – Detecting cyber security events</a>
+        </div>
+        <div class="govuk-task-list__status">
+          <span id="status-4" class="govuk-task-list__status-text govuk-!-font-size-16 govuk-!-margin-top-1">
+            Cannot start yet
+          </span>
+        </div>
+      </li>
+
+      <li class="govuk-task-list__item" id="row-5">
+        <div class="govuk-task-list__name">
+          <a id="task-link-5" class="govuk-link" href="#">Objective D – Minimising the impact of cyber security incidents</a>
+        </div>
+        <div class="govuk-task-list__status">
+          <span id="status-5" class="govuk-task-list__status-text govuk-!-font-size-16 govuk-!-margin-top-1">
+            Cannot start yet
+          </span>
+        </div>
+      </li>
+       <li class="govuk-task-list__item" id="row-11">
+        <div class="govuk-task-list__name">
+          <a id="task-link-11" class="govuk-link" href="task/7/add-good-practice">
+            Areas of good practice
+          </a>
+        </div>
+        <div class="govuk-task-list__status">
+          <span id="status-11" class="govuk-task-list__status-text govuk-!-font-size-16">Cannot start yet</span>
+        </div>
+      </li>
+      
+      <li class="govuk-task-list__item" id="row-12">
+        <div class="govuk-task-list__name">
+          <a id="task-link-12" class="govuk-link" href="task/7/add-improvement">
+            Areas for improvement
+
+          </a>
+        </div>
+        <div class="govuk-task-list__status">
+          <span id="status-12" class="govuk-task-list__status-text govuk-!-font-size-16">Cannot start yet</span>
+        </div>
+      </li>
+     
+
+    </ul>
+
+    <!-- ===================================================== -->
+    <!-- SECTION 3 -->
+    <!-- ===================================================== -->
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-6">3. Add review details</h2>
+
+    <ul class="govuk-task-list">
+      <li class="govuk-task-list__item" id="row-6">
+        <div class="govuk-task-list__name">
+          <a id="task-link-6" class="govuk-link" href="task/2/review-period">
+            Enter Peer Review period
+          </a>
+        </div>
+        <div class="govuk-task-list__status">
+          <span id="status-6" class="govuk-task-list__status-text govuk-!-font-size-16">Cannot start yet</span>
+        </div>
+      </li>
+      
+      <li class="govuk-task-list__item" id="row-10">
+        <div class="govuk-task-list__name">
+          <a id="task-link-10" class="govuk-link" href="task/4/add-company-details">
+            Add organisation details
+          </a>
+        </div>
+        <div class="govuk-task-list__status">
+          <span id="status-10" class="govuk-task-list__status-text govuk-!-font-size-16">Cannot start yet</span>
+        </div>
+      </li>
+     
+      
+      
+      <li class="govuk-task-list__item" id="row-7">
+        <div class="govuk-task-list__name">
+          <a id="task-link-7" class="govuk-link" href="task/3/review-method">
+            Describe review method
+          </a>
+        </div>
+        <div class="govuk-task-list__status">
+          <span id="status-7" class="govuk-task-list__status-text govuk-!-font-size-16">Cannot start yet</span>
+        </div>
+      </li>
+
+      <li class="govuk-task-list__item" id="row-8">
+        <div class="govuk-task-list__name">
+          <a id="task-link-8" class="govuk-link" href="task/4/quality">
+            Describe the quality of the self-assessment
+          </a>
+        </div>
+        <div class="govuk-task-list__status">
+          <span id="status-8" class="govuk-task-list__status-text govuk-!-font-size-16">Cannot start yet</span>
+        </div>
+      </li>
+       
+    </ul>
+
+    <!-- ===================================================== -->
+    <!-- SECTION 4 -->
+    <!-- ===================================================== -->
+
+    <h2 class="govuk-heading-m">4. Create report</h2>
+
+    <ul class="govuk-task-list">
+      <li class="govuk-task-list__item" id="row-9">
+        <div class="govuk-task-list__name">
+          <a id="task-link-9" class="govuk-link govuk-link--muted" href="task/9/create-report">
+            Create report
+          </a>
+        </div>
+        <div class="govuk-task-list__status">
+          <span id="status-9" class="govuk-task-list__status-text govuk-!-font-size-16">Cannot start yet</span>
+        </div>
+      </li>
+    </ul>
+
+    <p class="govuk-body govuk-!-margin-top-6">
+      <a href="my-account" class="govuk-link">Return to My account</a>
+    </p>
+
+  </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  // Delay ensures GOV.UK task list generates DOM before we scan
+  setTimeout(() => {
+
+    // -------------------------
+    // Default state setup
+    // -------------------------
+    const defaults = {
+      task1Status: 'incomplete',
+      task2Status: 'cannotstart',
+      task3Status: 'cannotstart',
+      task4Status: 'cannotstart',
+      task5Status: 'cannotstart',
+      task6Status: 'cannotstart',
+      task7Status: 'cannotstart',
+      task8Status: 'cannotstart',
+      task9Status: 'cannotstart',
+      task10Status: 'cannotstart',
+      task11Status: 'cannotstart',
+      task12Status: 'cannotstart'
+    };
+
+    Object.entries(defaults).forEach(([key, value]) => {
+      if (!sessionStorage.getItem(key)) {
+        sessionStorage.setItem(key, value);
+      }
+    });
+
+    // -------------------------
+    // Unlock logic
+    // -------------------------
+    if (sessionStorage.getItem('task1Status') === 'completed') {
+      ['task2Status','task3Status','task4Status','task5Status','task6Status','task7Status','task8Status', 'task9Status', 'task10Status', 'task11Status', 'task12Status']
+        .forEach(key => {
+          if (sessionStorage.getItem(key) === 'cannotstart') {
+            sessionStorage.setItem(key, 'incomplete');
+          }
+        });
+    }
+
+    if (sessionStorage.getItem('task2Status') === 'completed') {
+      ['task3Status','task4Status','task5Status'].forEach(key => {
+        sessionStorage.setItem(key, 'completed');
+      });
+    }
+
+    const allCoreComplete = [1,2,3,4,5,6,7,8,9,10,11,12]
+      .every(n => sessionStorage.getItem(`task${n}Status`) === 'completed');
+
+    if (allCoreComplete) {
+      sessionStorage.setItem('task9Status', 'incomplete');
+    }
+
+    // -------------------------
+    // Render statuses
+    // -------------------------
+    const classMap = {
+      completed: '',
+      cannotstart: 'govuk-task-list__status--cannot-start-yet',
+      incomplete: 'govuk-tag govuk-tag--blue'
+    };
+
+    const textMap = {
+      completed: 'Completed',
+      cannotstart: 'Cannot start yet',
+      incomplete: 'Incomplete',
+      statusReview1: 'Draft',
+      statusReview2: 'In-progress'
+    };
+
+    for (let i = 1; i <= 12; i++) {
+  const state = sessionStorage.getItem(`task${i}Status`);
+  const link = document.querySelector(`#task-link-${i}`);
+  if (!link) continue;
+
+  const row = link.closest('.govuk-task-list__item');
+  const statusEl = row.querySelector('.govuk-task-list__status');
+  
+
+  // Set status text/tag
+  if (state === 'incomplete') {
+    statusEl.innerHTML = `<strong class="govuk-tag govuk-tag--blue">Incomplete</strong>`;
+  } else if (state === 'cannotstart') {
+    statusEl.textContent = 'Cannot start yet';
+
+    // 🔹 Make "Cannot start yet" grey
+    statusEl.style.color = '#505a5f';      // GOV.UK grey
+  } else {
+    statusEl.textContent = 'Completed';
+  }
+
+  // Disable links for cannot start
+  if (state === 'cannotstart') {
+    link.removeAttribute('href');
+    link.classList.remove('govuk-link');
+    link.classList.add('task-disabled-link');
+    link.style.pointerEvents = 'none';
+    link.style.textDecoration = 'none';
+  }
+}
+// -------------------------
+// Review status heading
+// -------------------------
+const task1State = sessionStorage.getItem('task1Status');
+const reviewStatusEl = document.getElementById('review-status');
+
+if (reviewStatusEl) {
+  const strongEl = reviewStatusEl.querySelector('strong') || reviewStatusEl;
+
+  if (task1State === 'completed') {
+    strongEl.textContent = 'In-progress review';
+  } else {
+    strongEl.textContent = 'Draft review';
+  }
+}
+
+  }, 60);
+
+});
+</script>
+{% endblock %}

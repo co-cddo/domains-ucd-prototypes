@@ -1,0 +1,67 @@
+{% extends "/layouts/review-conf.html" %}
+
+{% block pageTitle %}
+Report history – Independent Assurance Review
+{% endblock %}
+
+{% block beforeContent %}
+  {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+
+  {{ govukPhaseBanner({
+    tag: {
+      text: "prototype",
+      classes: "govuk-tag--pink"
+    },
+    html: "This is not a full service. It is not production code and you might experience problems."
+  }) }}
+
+  {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "My account",
+        href: "#"
+      },
+      {
+        text: "Report history",
+        href: "#"
+      },
+      {
+        text: "Confirm the final report version
+"
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+
+    <h1 class="govuk-heading-l">Do you want version 3 to be the final report?</h1>
+    
+    
+
+    <p class="govuk-body">
+ You must confirm you want version 3 to be marked as the final report for SYS-0001 Microsoft CS version 3
+ system.
+    </p>
+
+    <p class="govuk-body">
+      This will not create a new version.
+    </p>
+
+{{ govukWarningText({
+  html: 'If you have any problems, contact <code class="govspeak-code"> webcaf@cabinetoffice.gov.uk</code>.',
+  iconFallbackText: "Warning"
+}) }}
+
+    <form action="report-history-final" method="post">
+      <input type="hidden" name="finalVersion" value="3">
+
+      <div class="govuk-button-group">
+        {{ govukButton({ text: "Confirm and make final" }) }}
+        <a class="govuk-link" href="report-history">Cancel</a>
+      </div>
+    </form>
+
+    {% endblock %}

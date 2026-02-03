@@ -1,0 +1,63 @@
+{% extends "layouts/main.html" %}
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+  
+{% set pageName="Home" %}
+{{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h2 class="govuk-heading-xl">
+      Peer review Webcaf admin prototype
+    </h2>
+  </div>
+</div>
+
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+<div class="proto-admin">
+        <h2 class="govuk-heading-l">User research</h2>
+
+          <p class='govuk-list app-list--definition'>
+              <a href='start' class="govuk-link--no-visited-state">Version 1 (current)</a>
+             <br>
+            End-to-end journey - v1 drop for User Research. 
+              <br><span class="govuk-body govuk-!-font-size-14">#Last updated on 3 February 2026.
+            </span>
+
+
+</div>
+
+
+
+      {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+
+                  
+</div>
+</div>
+
+{% endblock %}
+
+

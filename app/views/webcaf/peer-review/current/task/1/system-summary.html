@@ -1,0 +1,178 @@
+{% extends "/layouts/peer-review.html" %}
+
+{% block pageTitle %}
+Confirm system and review scope
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: { text: "prototype", classes: "govuk-tag--pink" },
+    html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  {{ govukBreadcrumbs({
+    items: [
+      { text: "My account", href: "/webcaf/peer-review/current/my-account" },
+      { text: "Edit draft review", href: "/webcaf/peer-review/current/draft-review" },
+      { text: "Confirm system and review scope" }
+    ]
+  }) }}
+
+  <div class="proto-admin">
+    <p><strong>You have completed 25% of your review</strong></p>
+    <div class="progress-inactive">
+      <div class="progress-active" style="width: 25%"></div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+
+<span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
+<h1 class="govuk-heading-l">System overview</h1>
+
+<p class="govuk-body">
+  The information below was provided during the self-assessment.<br>
+  Please review each detail carefully and confirm it is correct.<br>
+</p>
+
+<h2 class="govuk-heading-m">System details</h2>
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list--no-border govuk-!-margin-top-4",
+  rows: [
+    {
+      key: { text: "System name" },
+      value: { text: "SYS-0001 Microsoft CS version 3" }
+      
+    },
+
+    {
+      key: { text: "System description" },
+      value: { text: "It directly delivers public services" }
+    },
+
+    {
+      key: { text: "Previous GovAssure self-assessments" },
+      value: { text: "No" }
+    },
+
+    {
+      key: { text: "System ownership" },
+      value: { text: "The organisation being assessed" }
+    },
+
+    {
+      key: { text: "Hosting and connectivity" },
+      value: { text: "On-premises" }
+    },
+
+    {
+      key: { text: "Corporate services" },
+      value: { text: "Office productivity" }
+    }
+  ]
+}) }}
+
+<h2 class="govuk-heading-m">Review details</h2>
+
+{{ govukSummaryList({
+  classes: "govuk-summary-list--no-border",
+  rows: [
+    {
+      key: { text: "Self-assessment reference number" },
+      value: { text: "CAF24092025FDMH" },
+      actions: { items: [ { href: "", text: "", visuallyHiddenText: "self-assessment reference number" } ] }
+    },
+
+    {
+      key: { text: "Review type" },
+      value: { text: "Peer review" },
+      actions: { items: [ { href: "task/1/system-details/edit-review-type", text: "", visuallyHiddenText: "review type" } ] }
+    },
+
+    {
+      key: { text: "Government CAF profile" },
+      value: { text: "Baseline" },
+      actions: { items: [ { href: "task/1/system-details/edit-profile", text: "", visuallyHiddenText: "government CAF profile" } ] }
+    },
+
+    {
+      key: { text: "CAF version" },
+      value: { text: "CAF v3.2" },
+      actions: { items: [ { href: "task/1/system-details/edit-caf-version", text: "", visuallyHiddenText: "CAF version" } ] }
+    }
+  ]
+}) }}
+
+{{ govukWarningText({
+  html: 'If you think any of the information here is wrong, please contact your organisation.',
+  iconFallbackText: "Warning"
+}) }}
+
+<form action="/webcaf/peer-review/current/draft-review" method="post">
+  <div class="govuk-button-group">
+    {{ govukButton({ text: "Confirm and return" }) }}
+  </div>
+</form>
+
+{% endblock %}
+
+{% block pageScripts %}
+
+<!--  UPDATE SYSTEM DESCRIPTION USING SESSIONSTORAGE -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  setTimeout(() => {
+
+    // Map each summary row label → sessionStorage key
+    const updates = {
+      "System description": sessionStorage.getItem("systemDescription"),
+      "Corporate services": (() => {
+        const cs = sessionStorage.getItem("corporateServices");
+        return cs ? JSON.parse(cs).join(", ") : null;
+      })(),
+      "System ownership": sessionStorage.getItem("systemOwnership"),
+      "Hosting and connectivity": sessionStorage.getItem("systemHosting")
+    };
+
+    document.querySelectorAll(".govuk-summary-list__row").forEach(row => {
+      const key = row.querySelector(".govuk-summary-list__key");
+      const val = row.querySelector(".govuk-summary-list__value");
+      if (!key || !val) return;
+
+      const label = key.textContent.trim();
+      const savedValue = updates[label];
+
+      if (savedValue) {
+        val.textContent = savedValue;
+      }
+    });
+
+  }, 30); // let Nunjucks render fully first
+
+});
+</script>
+
+
+
+
+
+<!-- keep your task completion logic -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.querySelector('form');
+  if (!form) return;
+
+  form.addEventListener('submit', function () {
+    sessionStorage.setItem('task1Status', 'completed');
+  });
+});
+</script>
+
+{% endblock %}

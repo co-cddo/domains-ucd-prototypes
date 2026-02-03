@@ -1,0 +1,114 @@
+{% extends "/layouts/review.html" %}
+
+{% block pageTitle %}
+Outcome A1.a Board direction
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "My account",
+        href: "/webcaf/review/current/my-account"
+      },
+      {
+        text: "Edit draft review",
+        href: "/webcaf/review/current/draft-review"
+      },
+      {
+        text: "Objective A - Managing security risk review and confirmation",
+        href: "/webcaf/review/current/outcome-review-a.njk"
+      },
+      {
+        text: "Check your objective-level recommendations
+"
+      }
+    ]
+  }) }}
+  <div class="proto-admin">
+    <p id="progress-pages"><strong>You have completed 26% of your review</strong></p>
+      <div class="progress-inactive">
+        <div class="progress-active" style="width: 26%">
+        </div>
+      </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-three-quarters">
+
+<span class="govuk-caption-l">Objective A - Managing security risk review and confirmation</span>
+<h1 class="govuk-heading-l">Check your objective-level recommendations</h1>
+
+<p class="govuk-body">
+Please check your recommendations. You can change them before confirming.
+</p>
+
+<div id="recommendations-summary"></div>
+
+<div class="govuk-button-group govuk-!-margin-top-6">
+  {{ govukButton({ text: "Confirm and return" }) }}
+</div>
+
+</div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const OUTCOME = "A1-a";
+  const recs = JSON.parse(sessionStorage.getItem(`recs1-${OUTCOME}`) || "[]");
+  const container = document.getElementById("recommendations-summary");
+
+  if (recs.length === 0) {
+    container.innerHTML = '<p class="govuk-body">No recommendations added.</p>';
+  } else {
+    let html = `
+      <div class="govuk-summary-list__card">
+        <div class="govuk-summary-list__card-title">
+          <span class="govuk-heading-m">${recs.length} recommendation${recs.length > 1 ? 's' : ''} added </span>
+          <a class="govuk-link govuk-heading-s govuk-!-float-right"
+             href="/webcaf/review/current/task/7/obj-a/recommendation">
+             Change
+          </a>
+        </div>
+        <dl class="govuk-summary-list">`;
+
+    recs.forEach((rec, i) => {
+      const title = rec.title || `Recommendation ${i + 1}`;
+      const detail = rec.detail || "";
+      html += `
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">${title}</dt>
+          <dd class="govuk-summary-list__value">${detail}</dd>
+        </div>`;
+    });
+
+    html += `</dl></div>`;
+    container.innerHTML = html;
+  }
+
+  // Confirm and return
+  const confirmBtn = document.querySelector(".govuk-button");
+  confirmBtn.addEventListener("click", e => {
+    e.preventDefault();
+
+    // Save count for summary page
+    sessionStorage.setItem("recs-count-A1-a", recs.length);
+
+    window.location.href = "/webcaf/review/current/task/7/outcome-review-a";
+  });
+});
+</script>
+
+{% endblock %}

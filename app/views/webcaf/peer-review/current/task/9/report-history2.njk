@@ -1,4 +1,4 @@
-{% extends "/layouts/review-conf.html" %}
+{% extends "/layouts/review-v4.html" %}
 
 {% block pageTitle %}
 Report history – Independent Assurance Review
@@ -19,7 +19,7 @@ Report history – Independent Assurance Review
     items: [
       {
         text: "My account",
-        href: "#"
+        href: "/webcaf/review/current/my-account2"
       },
       {
         text: "Report history"
@@ -29,54 +29,61 @@ Report history – Independent Assurance Review
 {% endblock %}
 
 {% block content %}
+
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-three-quarters">
+  {{ govukNotificationBanner({
+  type: "success",
+  text: "Final report updated. Version 3 is now the final report."
+}) }}
 
     <span class="govuk-caption-l">SYS-0001 Microsoft CS version 3 (CAF24092025FDMH)</span>
     <h1 class="govuk-heading-l">Report history</h1>
 
+    
     <p class="govuk-body">
-      This page lists all versions of the IAR report for this system. You can view and download the current report or re-open the review to update it.
+    Use this page to manage your IAR reports. Download the final report or browse the version history below.
+      
     </p>
-<p>When you re-open the latest review it will create a new version of the report based on your changes. Earlier versions of the report are saved for audit purposes.</p>
-<p>If you have agreed to finalise the report with the organisation, you can choose to mark the most recent version as final.</p>
-
-   
-<p></p>
+    
     {% from "govuk/components/table/macro.njk" import govukTable %}
+<div class="govuk-inset-text">
+  <p class="govuk-body govuk-!-margin-bottom-1">
+    <strong>Final report:</strong> Version 3 (5 March 2026 at 10:15)
+  </p>
+  <p class="govuk-body govuk-!-margin-bottom-0">
+    <a class="govuk-link" href="#">View final report</a> |
+    <a class="govuk-link" href="#">Download (PDF)</a> |
+    <a class="govuk-link" href="#">Download (XLS)</a> |
+    <a class="govuk-link" href="/webcaf/review/current/task/9/choose-final">Change final version</a>
+  </p>
+</div>
 
- 
+
     {{ govukTable({
-
-      caption: "Version history",
+      caption: "Created versions",
       captionClasses: "govuk-table__caption--m",
       firstCellIsHeader: false,
       head: [
         { text: "Version" },
         { text: "Created on" },
-        { text: "Created by" },
+        { text: "Created by Reviewer" },
         { text: "Status" },
         { text: "Actions" }
       ],
       rows: [
+        
         [
           { text: "Version 3" },
-          { text: "14 February 2026 at 09:07" },
+          { text: "5 March 2026 at 10:15" },
           { text: "Alex Morgan" },
-           { html: "<strong class='govuk-tag govuk-tag--blue'>Current - with organisation</strong>" },
-          { 
+          { html: "<strong class='govuk-tag govuk-tag--blue'>Final</strong>" },
+          {
             html:
-
               "<a class='govuk-link' href='iar-report-v4'>View report</a><br>" +
-              "<a class='govuk-link' href='#'>Download (PDF)</a><br>" +
-              "<a class='govuk-link' href='#'>Download (XLS)</a>" +
-              "<colgroup>
-                <col style='width: 10%'>
-                <col style='width: 20%'>
-                <col style='width: 20%'>
-                <col style='width: 25%'>
-                <col style='width: 25%'>
-              </colgroup>" 
+              "<a class='govuk-link' href='#'>Download (PDF)</a>" 
+              
           }
         ],
         [
@@ -87,8 +94,7 @@ Report history – Independent Assurance Review
           {
             html:
               "<a class='govuk-link' href='#'>View report</a><br>" +
-              "<a class='govuk-link' href='#'>Download (PDF)</a><br>"+
-              "<a class='govuk-link' href='#'>Download (XLS)</a>" 
+              "<a class='govuk-link' href='#'>Download (PDF)</a>"
           }
         ],
         [
@@ -99,8 +105,7 @@ Report history – Independent Assurance Review
           {
             html:
               "<a class='govuk-link' href='#'>View report</a><br>" +
-              "<a class='govuk-link' href='#'>Download (PDF)</a><br>"+
-              "<a class='govuk-link' href='#'>Download (XLS)</a>" 
+              "<a class='govuk-link' href='#'>Download (PDF)</a>"
           }
         ]
       ]
@@ -123,30 +128,11 @@ Report history – Independent Assurance Review
     
 
 
-     <h2 class="govuk-heading-m ">Create a new version of the report</h2>
 
     <p class="govuk-body">
-      To create a new version of the report you must re-open the current review and make the changes you need. You will be able to change outcome statuses, recommendations and comments.
+      <a href="/webcaf/review/current/my-account2" class="govuk-link">Return to My account</a>
     </p>
-<h2 class="govuk-heading-m">Create a final report</h2>
-<p>When you are ready to finalise your review, you can open the most recent version of the report and mark it as final.</p>
-    
-<p class="govuk-body">
 
-
-    <form action="/webcaf/review/current/task/9/reopen-review" method="post">
-      
-     <div class="govuk-button-group">
-      {{ govukButton({
-        text: "Open current review to create a new report",
-        classes: "govuk-button--warning"
-      }) }}
-<a class="govuk-link" href="/webcaf/review/current/task/9/confirm-final">Mark latest report version as final</a>
-    </DIV>
-    </form>
-
-  
-  
 
   </div>
 </div>

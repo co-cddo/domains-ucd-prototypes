@@ -1,0 +1,313 @@
+{% extends "/layouts/peer-review.html" %}
+
+{% block pageTitle %}
+Outcome A1.a Board direction
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "My account",
+        href: "/webcaf/peer-review/current/my-account"
+      },
+      {
+        text: "Edit draft review",
+        href: "/webcaf/peer-review/current/draft-review"
+      },
+      {
+        text: "Objective A - Managing security risk review and confirmation
+"
+      }
+    ]
+  }) }}
+  <div class="proto-admin">
+    <p id="progress-pages"><strong>You have completed 26% of your review</strong></p>
+      <div class="progress-inactive">
+        <div class="progress-active" style="width: 26%">
+        </div>
+      </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+
+    <span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
+    <h1 class="govuk-heading-l">Objective A - Managing security risk review and confirmation</h1>
+
+    <p class="govuk-body">
+     Select each contributing outcome to read the organisation's self-assessment and carry out your review. If a contributing outcome is not achieved or partially achieved you must also add at least one recommendation. 
+ 
+
+    </p>
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-6">1. Contributing outcomes</h2>
+
+    <style>
+      #outcome-table .col-40 { width: 40%; }
+      #outcome-table .col-30 { width: 30%; }
+      #outcome-table td, #outcome-table th { vertical-align: top; }
+    </style>
+
+    <table class="govuk-table" id="outcome-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header col-40">Contributing outcome</th>
+          <th class="govuk-table__header col-30">Outcome status</th>
+          <th class="govuk-table__header col-30">Your recommendations</th>
+        </tr>
+      </thead>
+
+      <tbody class="govuk-table__body">
+
+      {% set outcomes = [
+        { code: "A1.a", key: "A1-a", name: "Board direction" },
+        { code: "A1.b", key: "A1-b", name: "Roles and responsibilities" },
+        { code: "A1.c", key: "A1-c", name: "Decision-making" },
+        { code: "A2.a", key: "A2-a", name: "Risk management process" },
+        { code: "A2.b", key: "A2-b", name: "Assurance" },
+        { code: "A3.a", key: "a3-a", name: "Asset management" },
+        { code: "A4.a", key: "A4-a", name: "Supply chain" }
+      ] %}
+
+      {% for item in outcomes %}
+      <tr class="govuk-table__row">
+
+        <!-- OUTCOME AREA -->
+        <td class="govuk-table__cell col-40">
+          <strong>{{ item.code }} – {{ item.name }}</strong>
+        </td>
+
+        <!-- REVIEWED STATUS -->
+        <td class="govuk-table__cell col-30" id="review-cell-{{ item.code }}">
+          <div id="review-status-{{ item.code }}" class="review-status govuk-!-margin-bottom-1"></div>
+
+          <a class="govuk-link"
+             href="/webcaf/peer-review/current/task/7/review-{{ item.key }}">
+             Review
+          </a>
+        </td>
+
+        <!-- ASSESSOR RECOMMENDATION -->
+        <td class="govuk-table__cell col-30" id="rec-cell-{{ item.code }}">
+          <div class="rec-required govuk-!-margin-bottom-1"></div>
+
+          <div class="rec-count govuk-!-margin-bottom-1" id="rec-count-{{ item.code }}">
+          </div>
+
+          <a class="govuk-link rec-add-link"
+             id="rec-add-{{ item.code }}"
+             href="/webcaf/peer-review/current/task/recommendations/recommendation-{{ item.key }}">
+            Add recommendation
+          </a>
+        </td>
+
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+
+
+
+
+    <form action="/webcaf/peer-review/current/draft-review" method="post" novalidate>
+
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        name: "objective-a-nav",
+        fieldset: {
+          legend: {
+            text: "Do you want to go to the next objective?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          { value: "yes", text: "Yes" },
+          { value: "no",  text: "No" }
+        ]
+      }) }}
+
+      {{ govukButton({ text: "Save and continue" }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block pageScripts %}
+{{ super() }}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  // Load status from review-A3.a and apply to A3.a row
+  const savedA3A = sessionStorage.getItem("review-A3.a");
+  if (savedA3A) {
+    const data = JSON.parse(savedA3A);
+    // SAFE: Change A3.a link wording ONLY
+const cellA3 = document.getElementById("review-cell-A3.a");
+if (cellA3) {
+  const link = cellA3.querySelector("a.govuk-link");
+  if (link && data.overallStatus) {
+    link.textContent = "Change";
+  }
+}
+
+    const tagMapA3A = {
+      achieved: "<strong class='govuk-tag govuk-tag--green'>Achieved</strong>",
+      not:
+        "<strong class='govuk-tag govuk-tag--red'>Not achieved</strong>" +
+        "<br><br><strong>Baseline profile</strong> " +
+        "<strong class='govuk-tag govuk-tag--grey govuk-!-margin-top-1'>Not met</strong>"
+    };
+
+    // Insert tag into A3.a row
+    const statusCell = document.getElementById("review-status-A3.a");
+    if (statusCell) {
+      statusCell.innerHTML = tagMapA3A[data.overallStatus] || "";
+    }
+
+    // Required tag in column 3 for A3.a
+    const recRequiredCell = document.querySelector('#rec-cell-A3\\.a .rec-required');
+
+    if (recRequiredCell) {
+      recRequiredCell.innerHTML =
+        data.overallStatus === "not"
+          ? "<strong class='govuk-tag govuk-tag--grey'>Required</strong>"
+          : "";
+    }
+
+    // Change → Change
+    const reviewLink = document.querySelector("#review-cell-A3.a a.govuk-link");
+    if (reviewLink && data.overallStatus) {
+      reviewLink.textContent = "Change";
+    }
+  }
+
+    // Recommendation count logic
+  const outcomeEls = document.querySelectorAll("[id^='rec-cell-']");
+  outcomeEls.forEach(cell => {
+    const code = cell.id.replace("rec-cell-", ""); // e.g. "A1.a", "A3.a"
+
+    // Do not show any recommendation count in A1.a row
+    if (code === "A1.a") {
+      return;
+    }
+
+    // Default storage key mapping: "A3.a" → "A3-a"
+    let key = code.replace(".", "-");
+
+    // TEMP FIX:
+    // A3.a row should display the count that is currently stored under A1-a
+    if (code === "A3.a") {
+      key = "A1-a";
+    }
+
+    const countBox = document.getElementById(`rec-count-${code}`);
+    const addLink  = document.getElementById(`rec-add-${code}`);
+    if (!countBox) return;
+
+    const count = sessionStorage.getItem(`recs-count-${key}`);
+
+    if (count && Number(count) > 0) {
+      countBox.innerHTML = `
+        <a class="govuk-link white-nowrap"
+           href="/webcaf/peer-review/current/task/recommendations/check-a3-a">
+           ${count} recommendation${count > 1 ? 's' : ''} added
+        </a>`;
+      if (addLink) addLink.style.display = "none";
+    } else {
+      countBox.innerHTML = "";
+      if (addLink) addLink.style.display = "inline";
+    }
+  });
+
+
+  // Objective-level recommendations (unchanged - using A1-a key and not A3-a)
+    const objOutcome = "A1-a";  
+    const objRecs = JSON.parse(sessionStorage.getItem(`recs1-${objOutcome}`) || "[]");
+
+  const objCell = document.querySelector('#objective-recs-cell');
+  const objAddLink = document.querySelector('#objective-recs-add');
+
+  if (objRecs.length > 0) {
+    objCell.innerHTML = `
+      <a class="govuk-link white-nowrap"
+         href="/webcaf/peer-review/current/task/7/obj-a/check">
+        ${objRecs.length} recommendation${objRecs.length > 1 ? 's' : ''} added
+      </a>`;
+    if (objAddLink) objAddLink.style.display = "none";
+  }
+});
+
+
+
+// Show "Comment added" for Add good practice if saved
+const goodPractice = sessionStorage.getItem("good-practice");
+if (goodPractice && goodPractice.length > 0) {
+  document.getElementById("good-practice-status").innerHTML = `
+    <a class="govuk-link white-nowrap" href="add-good-practice">1 comment added</a>
+  `;
+  document.getElementById("good-practice-link").style.display = "none";
+}
+
+// Show "Comment added" for Areas of improvement if saved
+const improvement = sessionStorage.getItem("add-improvement");
+if (improvement && improvement.length > 0) {
+  document.getElementById("add-improvement-status").innerHTML = `
+    <a class="govuk-link white-nowrap" href="add-improvement">1 comment added</a>
+  `;
+  document.getElementById("add-improvement-link").style.display = "none";
+}
+
+// Show "Comment added" for Objective overview if saved
+const objective = sessionStorage.getItem("obj-overview");
+if (objective && objective.length > 0) {
+  document.getElementById("obj-overview-status").innerHTML = `
+    <a class="govuk-link white-nowrap" href="/webcaf/peer-review/current/task/7/obj-overview">1 comment added</a>
+  `;
+  document.getElementById("obj-overview-link").style.display = "none";
+}
+
+
+// Disable all Review links except A3.a
+document.querySelectorAll('#outcome-table a.govuk-link').forEach(link => {
+  if (!link.closest('td').id.includes('A3.a')) {
+    // Stop navigation
+    link.setAttribute('href', '#');
+    // Add the no-visited-state class
+    link.classList.add('govuk-link--no-visited-state');
+  }
+});
+
+
+
+<!-- keep your task completion logic -->
+
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.querySelector('form');
+  if (!form) return;
+
+  form.addEventListener('submit', function () {
+    sessionStorage.setItem('task2Status', 'completed');
+  });
+});
+
+
+</script>
+{% endblock %}
+
+

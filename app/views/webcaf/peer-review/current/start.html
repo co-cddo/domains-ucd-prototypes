@@ -1,0 +1,67 @@
+{% extends "/layouts/peer-review.html" %}
+
+{% block pageTitle %}
+Start page – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+  {% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Peer Review a WebCAF self-assessment</h1>
+    <p class="govuk-body">
+     Use this service to review an organisation’s WebCAF self-assessment against <a href="https://www.ncsc.gov.uk/files/Cyber%20Assessment%20Framework%20V3.2.pdf" target="_blank">National Cyber Security Centre's Cyber Assurance Framework (CAF) (opens in new tab)</a>.
+    </p>
+
+    <p>You will be able to:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>confirm the details of the system you are reviewing</li>
+      <li>view an organisation’s self-assessment</li>
+      <li>give your response to each IGP statement</li>
+      <li>provide comments where the organisation has identified alternative controls or exemptions for IGPs </li>
+      <li>write a summary for each contributing outcome</li>
+      <li>identify risks and make recommendations for contributing outcomes</li>
+      <li>comment on areas of good practice and suggest areas for improvement</li>
+      <li>comment on the quality of the organisation’s self-assessment and supporting evidence</li>
+      <li>explain how and when you carried out your review</li>
+    </ul>
+
+<h2 class="govuk-heading-s">Session timeout</h2>
+
+
+<p>Your session will be ended if you are inactive for 90 minutes. <br>
+
+Any pages you saved earlier will be stored. We will delete your responses on pages you did not save.</p>
+
+
+    <h2 class="govuk-heading-m">Before you start</h2>
+    <p>You must be an independent assurance reviewer contracted by an organisation to review their WebCAF self-assessment. The organisation must have given you user rights to access the self-assessment.</p>
+    <p>Before you begin your review, you may also find it helpful to have:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>the organisation’s scoping document to refer to</li>
+      <li>access to the organisation’s evidence repository</li>
+      <li>the <a href="https://www.security.gov.uk/policy-and-guidance/govassure/stage-4-independent-assurance-review/" target="_blank">stage 4 guidance GovAssure (opens in new tab)</a> open to read </li>
+      
+    </ul>
+
+
+
+{{ govukButton({
+  text: "Sign in",
+  href: "sign-in",
+  isStartButton: true
+}) }}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "/layouts/review.html" %}
+
+{% block pageTitle %}
+Change hosting
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  
+{{ govukBackLink({ href: "/webcaf/review/current/task/1/system-summary", text: "Back" }) }} 
+<div class="proto-admin">
+ <p id="progress-pages"><strong>You have completed 3% of your review</strong></p>
+  <div class="progress-inactive">
+    <div class="progress-active" style="width: 3%">
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+<span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
+<h1 class="govuk-heading-l">Change hosting and connectivity</h1>
+
+<form action="/webcaf/review/current/task/1/system-summary" method="post">
+
+  
+{{ govukRadios({
+  name: "hosting",
+  fieldset: {
+    legend: {
+      text: "How is the system hosted?",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  hint: {
+    text: "Select one option"
+  },
+  items: [
+    {
+      value: "On premises",
+      text: "On premises",
+      checked: true
+    },
+    {
+      value: "Cloud hosted",
+      text: "Cloud hosted",
+      checked: checked("hosting", "Cloud hosted")
+    },
+    {
+      value: "Hybrid",
+      text: "Hybrid",
+      checked: checked("hosting", "Hybrid")
+    }
+  ]
+}) }}
+
+  {{ govukButton({ text: "Save and return" }) }}
+</form>
+
+</div>
+</div>
+
+
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  // Restore selection
+  const saved = sessionStorage.getItem("systemHosting");
+  if (saved) {
+    document.querySelectorAll("input[name='hosting']").forEach(r => {
+      if (r.value === saved) r.checked = true;
+    });
+  }
+
+  // Save on submit
+  const form = document.querySelector("form");
+  form.addEventListener("submit", function () {
+    const selected = document.querySelector("input[name='hosting']:checked");
+    if (selected) {
+      sessionStorage.setItem("systemHosting", selected.value);
+    }
+  });
+
+});
+</script>
+{% endblock %}
+

@@ -1,0 +1,95 @@
+{% extends "/layouts/peer-review.html" %}
+
+{% block pageTitle %}
+Generate report
+{% endblock %}
+
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+
+{{ govukPhaseBanner({
+  tag: { text: "prototype", classes: "govuk-tag--pink" },
+  html: "This is not a full service. It is not production code and you might experience problems."
+}) }}
+
+{{ govukBreadcrumbs({
+  items: [
+    {
+      text: "My account",
+      href: "/webcaf/peer-review/current/my-account"
+    },
+    {
+      text: "Edit draft review",
+      href: "/webcaf/peer-review/current/start-draft-review"
+    },
+    {
+      text: "Create report"
+    }
+  ]
+}) }}
+
+<div class="proto-admin">
+  <p id="progress-pages"><strong>You have completed 100% of your review</strong></p>
+  <div class="progress-inactive">
+    <div class="progress-active" style="width: 100%"></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
+    <h1 class="govuk-heading-l">Create report</h1>
+
+    <p class="govuk-body">
+      In this section you will be able to create your GovAssure Peer Review Report.<br><br>
+
+The report will include details of the system and all your contributions and comments as part of this review
+    </p>
+
+    
+    
+
+    <h2 class="govuk-heading-m">Making changes to the report</h2>
+    <p>When you have created the report, you can share and discuss it with the organisation. </p>
+    <p>If you agree to change parts of the report with the organisation, you can come back to this service and to make those changes before producing your final report. </p>
+
+    {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+    {{ govukWarningText({
+    text: "Creating this report will close this review. To make changes later, you’ll need to reopen the review from the report history page.",
+    iconFallbackText: "Warning"
+    }) }}
+
+    <form action="/webcaf/peer-review/current/confirmation" method="post">
+      <div class="govuk-button-group">
+      {% if isReopened %}
+  {{ govukButton({
+    text: "Create updated report (Version " ~ nextVersion ~ ")",
+    href: "/webcaf/peer-review/current/confirmation2",
+    classes: "govuk-button--primary"
+  }) }}
+{% else %}
+  {{ govukButton({
+    text: "Create report now",
+    href: "/webcaf/peer-review/current/confirmation",
+    classes: "govuk-button--primary"
+  }) }}
+{% endif %}
+
+  {{ govukButton({
+    text: "Cancel",
+    classes: "govuk-button--secondary"
+  }) }}
+</div>
+    </form>
+
+
+
+  </div>
+</div>
+
+{% endblock %}
