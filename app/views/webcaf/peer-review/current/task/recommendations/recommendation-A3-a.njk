@@ -98,12 +98,12 @@ function addRecommendation(title = "", detail = "") {
     
   </div>
       
-      <textarea class="govuk-textarea" id="rec-title-${index}" 
-      name="rec-title-${index}" rows="3">${title}</textarea>
+      <textarea class="govuk-textarea govuk-js-character-count" id="rec-title-${index}" name="rec-title-${index}" rows="3">${title}</textarea>
   <div id="word-count-info" class="govuk-hint govuk-character-count__message">
-    You can enter up to 250 words
+    You can enter up to 200 words
   </div>          
     </div>
+
 
 
     <div class="govuk-form-group govuk-character-count">  
@@ -111,7 +111,7 @@ function addRecommendation(title = "", detail = "") {
       <textarea class="govuk-textarea" id="rec-detail-${index}"
                 name="rec-detail-${index}" rows="5">${detail}</textarea>
                 <div id="word-count-info" class="govuk-hint govuk-character-count__message">
-    You can enter up to 750 words
+    You can enter up to 200 words
   </div>
     </div>
 
