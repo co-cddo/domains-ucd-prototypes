@@ -36,16 +36,19 @@ Report history – Independent Assurance Review
     <h1 class="govuk-heading-l">Report history</h1>
 
     <p class="govuk-body">
-      This page lists all versions of the IAR report for this system. You can view and download the current report or re-open the review to update it.
+      This page lists all versions of the Peer Review Report for this system. You can view and download the current report or re-open the review to update it.
     </p>
-<p>When you re-open the latest review it will create a new version of the report based on your changes.<br><br>Earlier versions of the report are saved for audit purposes.</p>
+<p>When you re-open the latest review it will create a new version of the report based on your changes. Earlier versions of the report are saved for audit purposes.</p>
+<p>If you have agreed to finalise the report with the organisation, you can choose to mark the most recent version as final.</p>
 
    
 <p></p>
     {% from "govuk/components/table/macro.njk" import govukTable %}
 
+ 
     {{ govukTable({
-      caption: "Created versions",
+
+      caption: "Version history",
       captionClasses: "govuk-table__caption--m",
       firstCellIsHeader: false,
       head: [
@@ -60,13 +63,21 @@ Report history – Independent Assurance Review
           { text: "Version 3" },
           { text: "14 February 2026 at 09:07" },
           { text: "Alex Morgan" },
-          { html: "<strong class='govuk-tag govuk-tag--blue'>Current – with organisation</strong>" },
-          {
-  html:
-    "<a class='govuk-link' href='iar-report-v4'>View report</a><br>" +
-    "<a class='govuk-link' href='#'>Download (PDF)</a><br>"   
-    
-}
+           { html: "<strong class='govuk-tag govuk-tag--blue'>Current</strong>" },
+          { 
+            html:
+
+              "<a class='govuk-link' href='iar-report-v4'>View report</a><br>" +
+              "<a class='govuk-link' href='#'>Download (PDF)</a><br>" +
+              "<a class='govuk-link' href='#'>Download (XLS)</a>" +
+              "<colgroup>
+                <col style='width: 10%'>
+                <col style='width: 20%'>
+                <col style='width: 20%'>
+                <col style='width: 25%'>
+                <col style='width: 25%'>
+              </colgroup>" 
+          }
         ],
         [
           { text: "Version 2" },
@@ -76,7 +87,8 @@ Report history – Independent Assurance Review
           {
             html:
               "<a class='govuk-link' href='#'>View report</a><br>" +
-              "<a class='govuk-link' href='#'>Download (PDF)</a>"
+              "<a class='govuk-link' href='#'>Download (PDF)</a><br>"+
+              "<a class='govuk-link' href='#'>Download (XLS)</a>" 
           }
         ],
         [
@@ -87,7 +99,8 @@ Report history – Independent Assurance Review
           {
             html:
               "<a class='govuk-link' href='#'>View report</a><br>" +
-              "<a class='govuk-link' href='#'>Download (PDF)</a>"
+              "<a class='govuk-link' href='#'>Download (PDF)</a><br>"+
+              "<a class='govuk-link' href='#'>Download (XLS)</a>" 
           }
         ]
       ]
@@ -110,27 +123,25 @@ Report history – Independent Assurance Review
     
 
 
-     <h2 class="govuk-heading-m govuk-!-margin-top-6">Create a new report version</h2>
+     <h2 class="govuk-heading-m ">Create a new version of the report</h2>
 
     <p class="govuk-body">
-      To create a new version of the report you must <strong>re-open the current review</strong> and make the changes you need.
-      You will be able to change outcome statuses, recommendations and comments.
+      To create a new version of the report you must re-open the current review and make the changes you need. You will be able to change outcome statuses, recommendations and comments.
     </p>
-  {{ govukInsetText({
-  html: 'You can mark one version as the final report. This is the version you should share as xxxxxxxxxxxx.   
-</p>'
-}) }}
+<h2 class="govuk-heading-m">Create a final report</h2>
+<p>When you are ready to finalise your review, you can mark the most recent version of the report as final.</p>
+    
 <p class="govuk-body">
 
 
-    <form action="/webcaf/review/current/task/9/reopen-review" method="post">
+    <form action="/webcaf/peer-review/current/task/9/reopen-review" method="post">
       
      <div class="govuk-button-group">
       {{ govukButton({
         text: "Open current review to create a new report",
         classes: "govuk-button--warning"
       }) }}
-<a class="govuk-link" href="/webcaf/review/current/task/9/choose-final">Choose final version</a>
+<a class="govuk-link" href="/webcaf/peer-review/current/task/9/confirm-final">Mark latest report version as final</a>
     </DIV>
     </form>
 

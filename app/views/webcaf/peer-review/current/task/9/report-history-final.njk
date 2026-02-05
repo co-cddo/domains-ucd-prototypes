@@ -19,7 +19,7 @@ Report history – Independent Assurance Review
     items: [
       {
         text: "My account",
-        href: "/webcaf/review/current/my-account2"
+        href: "/webcaf/peer-review/current/my-account2"
       },
       {
         text: "Report history"
@@ -43,7 +43,7 @@ Report history – Independent Assurance Review
 
     
     <p class="govuk-body">
-    Use this page to manage your IAR reports. Download the final report or browse the version history below.
+    Use this page to manage your Peer Review Reports. Download the final report or browse the version history below.
       
     </p>
     
@@ -55,14 +55,14 @@ Report history – Independent Assurance Review
   <p class="govuk-body govuk-!-margin-bottom-0">
     <a class="govuk-link" href="#">View final report</a> |
     <a class="govuk-link" href="#">Download (PDF)</a> |
-    <a class="govuk-link" href="#">Download (XLS)</a> |
-    <a class="govuk-link" href="/webcaf/review/current/task/9/choose-final">Change final version</a>
+    <a class="govuk-link" href="#">Download (XLS)</a> 
+    
   </p>
 </div>
 
 
     {{ govukTable({
-      caption: "Created versions",
+      caption: "Version history",
       captionClasses: "govuk-table__caption--m",
       firstCellIsHeader: false,
       head: [
@@ -82,7 +82,16 @@ Report history – Independent Assurance Review
           {
             html:
               "<a class='govuk-link' href='iar-report-v4'>View report</a><br>" +
-              "<a class='govuk-link' href='#'>Download (PDF)</a>" 
+              "<a class='govuk-link' href='#'>Download (PDF)</a><br>"+
+               "<a class='govuk-link' href='#'>Download (XLS)</a>" +
+              "<colgroup>
+                <col style='width: 10%'>
+                <col style='width: 20%'>
+                <col style='width: 20%'>
+                <col style='width: 25%'>
+                <col style='width: 25%'>
+              </colgroup>" 
+           
               
           }
         ],
@@ -130,7 +139,7 @@ Report history – Independent Assurance Review
 
 
     <p class="govuk-body">
-      <a href="/webcaf/review/current/my-account2" class="govuk-link">Return to My account</a>
+      <a href="/webcaf/peer-review/current/my-account2" class="govuk-link">Return to My account</a>
     </p>
 
 
