@@ -1,0 +1,84 @@
+{% extends "/layouts/peer-review.html" %}
+
+{% block pageTitle %}
+Report generated – GovAssure Independent Assurance Review
+{% endblock %}
+
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{{ govukPhaseBanner({
+  tag: { text: "prototype", classes: "govuk-tag--pink" },
+  html: "This is not a full service. It is not production code and you might experience problems."
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- CONFIRMATION PANEL -->
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">
+        Your Peer Review Report has been created (Version 1)
+      </h1>
+      <div class="govuk-panel__body">
+        Reference number<br>
+        <strong>GA-REP-48291</strong>
+      </div>
+    </div>
+
+    <!-- METADATA SECTION -->
+    <h2 class="govuk-heading-m govuk-!-margin-top-6">Report details</h2>
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Date generated</dt>
+        <dd class="govuk-summary-list__value">30 November 2025 at 16:32</dd>
+      </div>
+      
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Version</dt>
+        <dd class="govuk-summary-list__value">Version 1 (current)</dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Reviewer name</dt>
+        <dd class="govuk-summary-list__value">Alex Morgan (peer reviewer)</dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Organisation</dt>
+        <dd class="govuk-summary-list__value">Cabinet Office</dd>
+      </div>
+    </dl>
+
+    <p class="govuk-body">
+      You have now successfully created your GovAssure Peer Review Report. You will find a copy of the report in your GovAssure account.
+    </p>
+    <!-- NEXT STEPS -->
+    <h2 class="govuk-heading-m">Next steps</h2>
+    
+    <p class="govuk-body">
+      You can now download the report to share and discuss it with the organisation. </p>
+
+<p>If you agree to change parts of the report with the organisation, you can come back to this service and to make those changes before producing your final report. 
+    </p>
+   
+
+
+    <!-- DOWNLOAD ACTIONS -->
+    <div class="govuk-button-group govuk-!-margin-top-6">
+      <a href="#" class="govuk-button" role="button">View report</a>
+      <a href="#" class="govuk-button govuk-button--secondary" role="button">Download report (PDF)</a>
+    </div>    
+      <!-- OPTIONAL LINKS -->
+        <p class="govuk-body">
+    <a class="govuk-link" href="/webcaf/peer-review/current/task/9/report-history">
+        Return to report history
+      </a>
+</p>
+
+    
+  </div>
+</div>
+{% endblock %}

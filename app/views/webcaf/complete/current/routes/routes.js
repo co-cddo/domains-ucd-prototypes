@@ -118,7 +118,7 @@ router.get('/pathMyaccountRemoveUser', function (req, res) {
 
 
 // ===== a3a: validation + routing (checkbox groups) =====
-const TEMPLATE = 'webcaf/current/a3a'; // your actual view path
+const TEMPLATE = 'webcaf/complete/current/a3a'; // your actual view path
 
 // Helpers
 const toArray = v => Array.isArray(v) ? v : (v ? [v] : []);
@@ -193,12 +193,12 @@ console.log(`[A3A] ac=${JSON.stringify(ac)} na=${JSON.stringify(na)} anyNot=${na
   // 3) ROUTING
   // Any “Not achieved” ticked → Not achieved
   if (na.length > 0) {
-    return res.redirect('/webcaf/current/a3a-outcome-not-achieved'); // ABSOLUTE path
+    return res.redirect('/webcaf/complete/current/a3a-outcome-not-achieved'); // ABSOLUTE path
   }
 
   // All 5 Achieved ticked (order-independent) → Achieved
   if (equalsSet(ac, ALL_ACHIEVED)) {
-    return res.redirect('/webcaf/current/a3a-outcome-achieved'); // ABSOLUTE path
+    return res.redirect('/webcaf/complete/current/a3a-outcome-achieved'); // ABSOLUTE path
   }
 
   // Fallback (until you add “Partially achieved”)
@@ -209,9 +209,9 @@ console.log(`[A3A] ac=${JSON.stringify(ac)} na=${JSON.stringify(na)} anyNot=${na
 router.post('/a3a-answer2', function (request, response) {
   const notachieved = request.session.data['a3aNa'];
   if (notachieved == 'yes') {
-    response.redirect('/webcaf/current/a3a-outcome-not-achieved'); // ABSOLUTE
+    response.redirect('/webcaf/complete/current/a3a-outcome-not-achieved'); // ABSOLUTE
   } else {
-    response.redirect('/webcaf/current/a3a-outcome-achieved');     // ABSOLUTE
+    response.redirect('/webcaf/complete/current/a3a-outcome-achieved');     // ABSOLUTE
   }
 });
 

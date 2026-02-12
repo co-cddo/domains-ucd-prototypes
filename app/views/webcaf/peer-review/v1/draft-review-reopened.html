@@ -1,0 +1,255 @@
+{% extends "/layouts/review-conf.html" %}
+
+{% block pageTitle %}
+Task list - Draft started – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "My account",
+        href: "#"
+      },
+      {
+        text: "Edit draft review"
+      }
+    ]
+  }) }}
+   
+
+<div class="govuk-notification-banner govuk-notification-banner--blue govuk-!-margin-bottom-6" 
+     role="region" aria-labelledby="reopened-banner-title">
+
+  <div class="govuk-notification-banner__header">
+    <h2 class="govuk-notification-banner__title" id="reopened-banner-title">
+      You are editing this review
+    </h2>
+  </div>
+
+  <div class="govuk-notification-banner__content">
+    <p class="govuk-body">
+      You previously created a report for this review. Any changes you make now will apply to the next version of the IAR report.
+    </p>
+
+    <p class="govuk-body">
+      <strong>Latest published report:</strong> Version 3 {{ latestVersion }}
+      <br>
+      <a href="/webcaf/review/current/report/{{ latestVersion }}" class="govuk-link">
+        View report (Version 3 {{ latestVersion }})
+      </a>
+    </p>
+  </div>
+</div>
+<div class="proto-admin">
+  <p id="progress-pages"><strong>You have completed 99% of your review</strong></p>
+  <div class="progress-inactive"><div class="progress-active" style="width: 99%"></div></div>
+</div>
+
+
+{% endblock %}
+{% block content %}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-three-quarters">
+
+
+<span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
+<h1 class="govuk-heading-l">Review a WebCAF self-assessment</h1>
+
+<p><strong>In-progress review</strong></p>
+
+ {{ govukInsetText({
+        html: "For it to be assessed in GovAssure 2025/26 your stage 4 review must be completed by <strong>11:59pm</strong> on <strong>31 March 2026.</strong>"
+      }) }}
+
+
+
+{% set completedStatus = { text: "Completed" } %}
+{% set cannotstartStatus = { text: "Cannot start yet", classes: "govuk-task-list__status--cannot-start-yet" } %}
+{% set incompleteStatus = { tag: { text: "Incomplete", classes: "govuk-tag--blue" } } %}
+
+{# --- SECTION 1: Context and system information --- #}
+<h2 class="govuk-heading-m">1. Confirm self-assessment </h2>
+
+{{ govukTaskList({
+  idPrefix: "section-1",
+  items: [
+    
+    {
+      title: { text: "Confirm system overview" },
+      href: "/webcaf/review/current/task/1/system-summary",
+      status: completedStatus,
+      attributes: { id: "task-link-2" }
+    }
+    
+  ]
+}) }}
+
+
+{# --- SECTION 2: Review self-assessment, core journey --- #}
+<h2 class="govuk-heading-m govuk-!-margin-top-6">2. Review self-assessment </h2>
+
+{{ govukTaskList({
+  idPrefix: "section-3",
+  items: [
+    {
+      title: { text: "Objective A - Managing security risk" },
+      href: "/webcaf/review/current/task/7/outcome-review-a",
+      status: completedStatus,
+      attributes: { id: "task-link-7" }
+    },
+    {
+      title: { text: "Objective B - Protecting against cyber attacks" },
+      href: "#",
+      status: completedStatus,
+      attributes: { id: "task-link-7" }
+    },
+    {
+      title: { text: "Objective C - Detecting cyber security events" },
+      href: "#",
+      status: completedStatus,
+      attributes: { id: "task-link-7" }
+    },
+    {
+      title: { text: "Objective D - Minimising the impact of cyber security incidents" },
+      href: "#",
+      status: completedStatus,
+      attributes: { id: "task-link-7" }
+    }
+  ]
+}) }}
+
+
+{# --- SECTION 3: Add review details --- #}
+<h2 class="govuk-heading-m govuk-!-margin-top-6">3. Add review details </h2>
+    {{ govukTaskList({
+      idPrefix: "section-3",
+      items: [
+    {
+          title: { text: "Enter Independent Assurance Review (IAR) period" },
+          href: "/webcaf/review/current/task/2/review-period",
+          status: completedStatus,
+          attributes: { id: "task-link-3" }
+        },
+        {
+          title: { text: "Describe review method" },
+          href: "/webcaf/review/current/task/3/review-method",
+          status: completedStatus,
+          attributes: { id: "task-link-3" }
+        },
+        {
+          title: { text: "Describe the quality of the self-assessment" },
+          href: "/webcaf/review/current/task/4/quality",
+          status: completedStatus,
+          attributes: { id: "task-link-3" }
+        }
+    ]
+    }) }}
+
+
+{# --- SECTION 4: Final report  --- #}
+<h2 class="govuk-heading-m">4. Create report </h2>
+{{ govukTaskList({
+  idPrefix: "section-4",
+  items: [
+    {
+      title: { text: "Create report" },
+      href: "/webcaf/review/current/task/9/create-report-v4",
+      status: incompleteStatus,
+      attributes: { id: "task-link-8" }
+    }
+    ]
+}) }}
+
+<p class="govuk-body govuk-!-margin-top-6">
+  <a href="#" class="govuk-link">Return to My account</a>
+</p>
+
+</div>
+</div>
+
+{# --- Dynamic Status Script (non-destructive) --- #}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // --- Define default states on first arrival ---
+  const defaults = {
+    task1Status: 'incomplete',
+    task2Status: 'incomplete',
+    task3Status: 'incomplete',
+    task4Status: 'incomplete',
+    task5Status: 'incomplete',
+    task6Status: 'incomplete',
+    task7Status: 'incomplete',
+    task8Status: 'incomplete',
+    task9Status: 'cannotstart'
+  };
+
+  // --- Ensure defaults exist ---
+  Object.entries(defaults).forEach(([key, value]) => {
+    if (!sessionStorage.getItem(key)) {
+      sessionStorage.setItem(key, value);
+    }
+  });
+
+  // --- Visual mappings ---
+  const statusMap = {
+    completed: { text: 'Completed', className: 'govuk-tag' },
+    cannotstart: { text: 'Cannot start yet', className: 'govuk-tag govuk-tag--grey' },
+    incomplete: { text: 'Incomplete', className: 'govuk-tag govuk-tag--blue' }
+  };
+
+  // --- Apply current states to each task row ---
+  for (let i = 1; i <= 9; i++) {
+    const state = sessionStorage.getItem(`task${i}Status`) || 'incomplete';
+    const taskLink = document.querySelector(`#task-link-${i}`);
+    if (!taskLink) continue;
+
+    const tag = taskLink.closest('.govuk-task-list__item')?.querySelector('.govuk-tag');
+    if (tag) {
+      tag.textContent = statusMap[state].text;
+      tag.className = statusMap[state].className;
+    }
+
+    // Disable link for "Cannot start yet"
+    if (state === 'cannotstart') {
+      taskLink.removeAttribute('href');
+      taskLink.classList.add('govuk-link--muted');
+    }
+  }
+
+  // --- Automatically unlock final report if all complete ---
+  const allComplete = [1,2,3,4,5,6,7,8].every(n => sessionStorage.getItem(`task${n}Status`) === 'completed');
+  const task9 = document.querySelector('#task-link-9');
+  if (task9) {
+    const tag9 = task9.closest('.govuk-task-list__item')?.querySelector('.govuk-tag');
+    if (allComplete) {
+      if (tag9) {
+        tag9.textContent = 'Completed';
+        tag9.className = 'govuk-tag';
+      }
+      task9.setAttribute('href', '/webcaf/review/current/task/9/generate-report');
+      task9.classList.remove('govuk-link--muted');
+    } else {
+      if (tag9) {
+        tag9.textContent = 'Cannot start yet';
+        tag9.className = 'govuk-tag govuk-tag--grey';
+      }
+      task9.removeAttribute('href');
+      task9.classList.add('govuk-link--muted');
+    }
+  }
+});
+</script>
+
+
+{% endblock %}

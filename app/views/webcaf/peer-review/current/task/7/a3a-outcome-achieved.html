@@ -1,0 +1,156 @@
+{% extends "layouts/webcaf.html" %}
+
+{% block beforeContent %}
+ 
+
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "My account",
+        href: "/webcaf/peer-review/current/current/my-account"
+      },
+      {
+        text: "Edit draft review",
+        href: "/webcaf/peer-review/current/current/draft-review"
+      },
+      {
+        text: " A3.a Asset management review",
+        href: "/webcaf/peer-review/current/task/7/review-a3-a"
+      },
+      {
+        text: " A3.a Asset management review status - Achieved"
+      }
+    ]
+  }) }}
+   <div class="proto-admin">
+    <p id="progress-pages"><strong>You have completed 27% of your review</strong></p>
+      <div class="progress-inactive">
+        <div class="progress-active" style="width: 26%">
+        </div>
+      </div>
+  </div>
+  
+  
+{% endblock %}
+{% block content %}
+<form class="form" action="outcome-review-a" id="mainForm" method="post">
+<div class="govuk-grid-row">
+
+      <div class="govuk-grid-column-two-thirds">
+<h1 class="govuk-heading-l">A3.a Asset management outcome</h1>
+<h1 class="govuk-heading-m">Review status: Achieved</h1>
+
+{{ govukInsetText({
+  text: "You have received this status because you have selected 'Yes' to all achieved IGP statements and selected 'No' to all not achieved IGP statements."
+}) }}
+     
+  {% set AddSummary %}
+  
+  {{ govukCharacterCount({
+  id: "a3aOutcomeAchived",
+  name: "a3aOutcomeAchived",
+  hint: {
+    text: "Provide clear, concise comments to explain your reasons for selecting the contributing outcome status."
+  },
+  rows:15,
+  maxwords: 750,
+  label: {
+    html: '
+     <details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      How to support the review
+
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    
+  <p class="govuk-body">Your comments should reference:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>areas of good practice</li>
+  <li>current risks to the system or organisation and related areas for improvement</li>
+  <li>the organisation’s supporting evidence</li>
+  <li>where relevant, specific IGPs, including where the organisation has noted alternative controls or exemptions</li>
+  <li>where relevant, if the organisation is close to achieving the target resilience level for the contributing outcome</li>
+  
+</ul>
+</div>
+</details>'
+  }
+}) }}      
+      {% endset -%}
+
+{{ govukRadios({
+  classes: "",
+  name: "a3a-achieved",
+  fieldset: {
+    legend: {
+      text: "Review the contributing outcome",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  hint: {
+    html: 'Confirm you agree with this status, or go back and change your response to the IGP statements.'      
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Confirm, and review the contributing outcome",
+      conditional:   {
+        html: AddSummary
+      },
+      checked: checked("a3a-achieved", "yes")
+    },
+    {
+      value: "no",
+      text: "Change your response",
+      checked: checked("a3a-achieved", "no")
+    }
+    
+  ]
+}) }}
+
+
+ 
+
+<div class="govuk-button-group">
+  {{ govukButton({
+    text: "Save and continue"
+  }) }}
+  </form>
+<script>
+document.getElementById("mainForm").addEventListener("submit", (e) => {
+  const choice = document.querySelector('input[name="a3a-achieved"]:checked');
+  if (!choice) return; // let normal validation handle if you add it later
+
+  if (choice.value === "no") {
+    e.preventDefault();
+    window.location.href = "/webcaf/peer-review/current/task/7/review-A3-a";
+    return;
+  }
+
+  // Confirm path
+  const saved = JSON.parse(sessionStorage.getItem("review-A3.a") || "{}");
+  saved.overallStatus = "achieved";
+  saved.overallComment = document.getElementById("a3aOutcomeAchived")?.value || "";
+  sessionStorage.setItem("review-A3.a", JSON.stringify(saved));
+  // allow normal POST/redirect OR do client redirect:
+  // window.location.href = "/webcaf/peer-review/current/task/7/outcome-review-a";
+});
+</script>
+
+  
+</div>
+    </div>    
+  </div>
+
+{% endblock %}

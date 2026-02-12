@@ -29,7 +29,7 @@
         href: "#"
       },
       {
-        text: "A3.a – Asset management - Add recommendations
+        text: "A3.a – Asset management - Add risks and recommendations
         "
       }
     ]
@@ -48,11 +48,11 @@
 <div class="govuk-grid-column-two-thirds">
 
 <span class="govuk-caption-l">A3.a – Asset management</span>
-<h1 class="govuk-heading-l">Add recommendations </h1>
+<h1 class="govuk-heading-l">Add risks and recommendations </h1>
 
 <p class="govuk-body">
-
-Each recommendation must be recorded separately. If you make more than one recommendation, you must select ‘Add another recommendation’.</p>
+Each recommendation must address a risk that you have identified. <br><br>
+Each recommendation must be recorded separately. If you make more than one recommendation for the same risk, you must select ‘Add another recommendation’ and repeat the risk for each one.</p>
 <p>Use <a href='https://www.security.gov.uk/policy-and-guidance/govassure/stage-4-independent-assurance-peer-review/current/' class="govuk-link--no-visited-state">stage 4 guidance (opens in new tab)</a> to support you.</p>
 
 <form id="rec-form" action="/webcaf/peer-review/current/task/recommendations/check-a3-a" method="post">
@@ -93,14 +93,14 @@ function addRecommendation(title = "", detail = "") {
     <h2 class="govuk-heading-m">Recommendation ${index}</h2>
 
     <div class="govuk-form-group govuk-character-count">
-      <label class="govuk-label" for="rec-title-${index}">Title</label>
+      <label class="govuk-label" for="rec-title-${index}">Risk</label>
       <div id="event-name-hint" class="govuk-hint">
     
   </div>
       
-      <textarea class="govuk-textarea govuk-js-character-count" id="rec-title-${index}" name="rec-title-${index}" rows="2">${title}</textarea>
+      <textarea class="govuk-textarea govuk-js-character-count" id="rec-title-${index}" name="rec-title-${index}" rows="3">${title}</textarea>
   <div id="word-count-info" class="govuk-hint govuk-character-count__message">
-    You can enter up to 50 words
+    You can enter up to 200 words
   </div>          
     </div>
 

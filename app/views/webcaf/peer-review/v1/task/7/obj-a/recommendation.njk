@@ -1,4 +1,4 @@
-{% extends "layouts/peer-review.html" %}
+{% extends "layouts/webcaf.html" %}
 
 {% block pageTitle %}
   A1.a – Board direction - Add recommendation
@@ -14,22 +14,22 @@
       html: 'This is not a full service. It is not production code and you might experience problems.'
   }) }}
 
-    {{ govukBreadcrumbs({
+   {{ govukBreadcrumbs({
     items: [
       {
         text: "My account",
-        href: "/webcaf/peer-review/current/current/my-account"
+        href: "/webcaf/current/my-account-dept"
       },
       {
-        text: "Edit draft review",
-        href: "/webcaf/peer-review/current/current/draft-review"
+        text: "Start a draft assessment",
+        href: "/webcaf/current/draft-assessment3"
       },
       {
         text: "Objective A - Managing security risk",
         href: "#"
       },
       {
-        text: "A3.a – Asset management - Add recommendations
+        text: "Add your recommendations for this objective
         "
       }
     ]
@@ -45,17 +45,17 @@
 
 {% block content %}
 <div class="govuk-grid-row">
-<div class="govuk-grid-column-two-thirds">
+<div class="govuk-grid-column-three-quarters">
 
-<span class="govuk-caption-l">A3.a – Asset management</span>
-<h1 class="govuk-heading-l">Add recommendations </h1>
+<span class="govuk-caption-l">Objective A - Managing security risk</span>
+<h1 class="govuk-heading-l">Add your recommendations for this objective</h1>
 
 <p class="govuk-body">
+You must give each recommendation a title and provide a summary of specific suggested improvements.
 
-Each recommendation must be recorded separately. If you make more than one recommendation, you must select ‘Add another recommendation’.</p>
-<p>Use <a href='https://www.security.gov.uk/policy-and-guidance/govassure/stage-4-independent-assurance-peer-review/current/' class="govuk-link--no-visited-state">stage 4 guidance (opens in new tab)</a> to support you.</p>
+</p>
 
-<form id="rec-form" action="/webcaf/peer-review/current/task/recommendations/check-a3-a" method="post">
+<form id="rec-form" action="/webcaf/review/current/task/7/obj-a/check" method="post">
 
   <div id="recommendation-list"></div>
 
@@ -71,7 +71,7 @@ Each recommendation must be recorded separately. If you make more than one recom
 
 </div>
 </div>
- 
+
 
 <script>
 const OUTCOME = "A1-a"; // storage key for this outcome
@@ -81,7 +81,7 @@ const addBtn = document.getElementById("add-rec-btn");
 let index = 0;
 
 // Load existing recs from session
-const saved = JSON.parse(sessionStorage.getItem(`recs-${OUTCOME}`) || "[]");
+const saved = JSON.parse(sessionStorage.getItem(`recs1-${OUTCOME}`) || "[]");
 
 function addRecommendation(title = "", detail = "") {
   index++;
@@ -92,31 +92,19 @@ function addRecommendation(title = "", detail = "") {
   block.innerHTML = `
     <h2 class="govuk-heading-m">Recommendation ${index}</h2>
 
-    <div class="govuk-form-group govuk-character-count">
-      <label class="govuk-label" for="rec-title-${index}">Title</label>
-      <div id="event-name-hint" class="govuk-hint">
-    
-  </div>
-      
-      <textarea class="govuk-textarea govuk-js-character-count" id="rec-title-${index}" name="rec-title-${index}" rows="2">${title}</textarea>
-  <div id="word-count-info" class="govuk-hint govuk-character-count__message">
-    You can enter up to 50 words
-  </div>          
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="rec-title-${index}">Recommendation title</label>
+      <input class="govuk-input govuk-input--width-30"
+             id="rec-title-${index}" name="rec-title-${index}"
+             type="text" value="${title}">
     </div>
 
-
-
-    <div class="govuk-form-group govuk-character-count">  
-      <label class="govuk-label" for="rec-detail-${index}">Recommendation details. If appropriate, you should use language from the relevant IGP(s).</label>
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="rec-detail-${index}">Recommendation details</label>
       <textarea class="govuk-textarea" id="rec-detail-${index}"
                 name="rec-detail-${index}" rows="5">${detail}</textarea>
-                <div id="word-count-info" class="govuk-hint govuk-character-count__message">
-    You can enter up to 200 words
-  </div>
     </div>
 
-
- 
     <button type="button" class="govuk-button govuk-button--secondary remove-rec"
             data-index="${index}" style="margin-bottom:10px;">
       Remove
@@ -155,7 +143,7 @@ document.getElementById("rec-form").addEventListener("submit", () => {
     if (title || detail) recs.push({ title, detail });
   });
 
-  sessionStorage.setItem(`recs-${OUTCOME}`, JSON.stringify(recs));
+  sessionStorage.setItem(`recs1-${OUTCOME}`, JSON.stringify(recs));
 });
 </script>
 

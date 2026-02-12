@@ -35,6 +35,6 @@ router.use('/webcaf/review/v2', require('./views/webcaf/review/v2/routes/routes'
 
 // Webcaf Peer review
 router.use('/webcaf/peer-review/current', require('./views/webcaf/peer-review/current/routes/routes'))
-
+router.use('/webcaf/peer-review/v1', require('./views/webcaf/peer-review/v1/routes/routes'))
 
 module.exports = router

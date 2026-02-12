@@ -19,14 +19,15 @@ A3.a Asset management review
     items: [
       {
         text: "My account",
-        href: "/webcaf/peer-review/current/current/my-account"
+        href: "/webcaf/peer-review/v1/current/my-account"
       },
       {
         text: "Edit draft review",
-        href: "/webcaf/peer-review/current/current/draft-review"
+        href: "/webcaf/peer-review/v1/current/draft-review"
       },
       {
-        text: " A3.a Asset management review"
+        text: " A3.a Asset management review
+"
       }
     ]
   }) }}
@@ -121,62 +122,52 @@ A3.a Asset management review
 
       {% set statements = [
         {
-          type: "achieved",
           label: "Achieved statement 1",
           text2: "Organisation selected",
           text: "All assets relevant to the secure operation of essential function(s) are identified and inventoried (at a suitable level of detail). The inventory is kept up-to-date.  "
         },
         {
-          type: "achieved",
           label: "Achieved statement 2",
           text: "Dependencies on supporting infrastructure (e.g. power, cooling etc) are recognised and recorded.  ",
           inset: "We record physical dependencies (power/cooling) only for our main data centres, not for minor IT room assets. We have formally documented that the minor rooms' cooling/power systems are non-critical and have sufficient built-in redundancy (UPS, dual feeds). Auditing these low-risk assets would divert limited resources from mitigating the high-risk, single points of failure identified in the main data centres. This focus better reduces the overall risk of compromise to the essential function.",
           text2: "Organisation selected"
         },
         {
-          type: "achieved",
           label: "Achieved statement 3",
           text: "You have prioritised your assets according to their importance to the operation of the essential function(s).   ",
           text2: "Organisation selected"
         },
         {
-          type: "achieved",
           label: "Achieved statement 4",
           text: "You have assigned responsibility for managing all assets, including physical assets, relevant to the operation of the essential function(s).  ",
           text2: "Organisation selected"
         },
         {
-          type: "achieved",
           label: "Achieved statement 5",
           text: "Assets relevant to the essential function(s) are managed with cyber security in mind throughout their lifecycle, from creation through to eventual decommissioning or disposal.",
           text2: "Organisation selected"
         },
         {
-          type: "not",
           label: "Not achieved statement 1",
           text: "Inventories of assets relevant to the essential function(s) are incomplete, non-existent, or inadequately detailed.",
           text2: "Organisation selected"
         },
         {
-          type: "not",
           label: "Not achieved statement 2",
           text: "Only certain domains or types of asset are documented and understood. Dependencies between assets are not understood (such as the dependencies between IT and OT).",
           text2: "Organisation did not select"
         },
         {
-          type: "not",
           label: "Not achieved statement 3",
           text: "Information assets, which could include personally identifiable information and / or important / critical data, are stored for long periods of time with no clear business need or retention policy.",
           text2: "Organisation did not select"
         },
         {
-          type: "not",
           label: "Not achieved statement 4",
           text: "Knowledge critical to the management, operation, or recovery of the essential function(s) is held by one or two key individuals with no succession plan.",
           text2: "Organisation did not select"
         },
         {
-          type: "not",
           label: "Not achieved statement 5",
           text: "Asset inventories are neglected and out of date.",
           text2: "Organisation did not select"
@@ -231,7 +222,12 @@ A3.a Asset management review
                     { value: "disagree", text: "No" }
                   ]
                 }) }} 
-               
+                {{ govukTextarea({
+                  id: "recommendation-" ~ loop.index,
+                  name: "recommendation-" ~ loop.index,
+                  label: { text: "Provide your comments" }
+                }) }}
+
                
 
               {% else %}
@@ -265,13 +261,66 @@ A3.a Asset management review
         </tbody>
       </table>
 
-{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
-
-{{ govukInsetText({
-  text: "We will calculate the outcome status from your answers on the next screen."
-}) }}
 
 
+
+      <!-- OVERALL OUTCOME REVIEW -->
+      <h2 class="govuk-heading-m govuk-!-margin-top-6">Review decision</h2>
+
+      {{ govukRadios({
+        id: "overall-status",
+        name: "overall-status",
+        fieldset: {
+          legend: {
+            text: "Review the contributing outcome",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        
+          hint: {
+            text: "Select one outcome status "
+          },
+        
+        items: [
+          
+          { value: "achieved", text: "Achieved" },
+          
+          
+          { value: "not", text: "Not achieved" }
+        ]
+      }) }}
+
+
+    <!-- OVERALL OUTCOME REVIEW -->
+      <h2 class="govuk-heading-m govuk-!-margin-top-6">Comments to support your review</h2>
+      <p>Provide clear, concise comments to explain your reasons for selecting the contributing outcome status.</p>
+
+{{ govukDetails({
+  summaryText: "How to support your review",
+  html: '
+    <section class="govuk-!-margin-bottom-6">
+      
+      <p>Your comments should reference:</p>
+    <ul class="govuk-list govuk-list--bullet">
+    <li>areas of good practice</li>
+    <li>current risks to the system or organisation and related areas for improvement</li>
+    <li>the organisation’s supporting evidence</li>
+    <li>where relevant, specific IGPs, including where the organisation has noted alternative controls or exemptions</li>
+    <li>where relevant, if the organisation is close to achieving the target resilience level for the contributing outcome</li>
+    </ul>      
+    </section>
+    '
+    }) }}
+
+      {{ govukCharacterCount({
+        id: "overall-comment",
+        name: "overall-comment",
+        maxwords: 750,
+        rows: 15,
+              label: { text: "Add comments " }
+      }) }}
+   
       <div class="govuk-button-group govuk-!-margin-top-6">
       {{ govukButton({
           text: "Save and continue",
@@ -282,76 +331,76 @@ A3.a Asset management review
   </div>
 </div>
 
+
 <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const total = {{ statements | length }};
+  const saved = sessionStorage.getItem("review-A3.a");
+
+  if (saved) {
+    const data = JSON.parse(saved);
+
+    // Restore statement-level answers
+    data.statements.forEach((s, i) => {
+      const index = i + 1;
+
+      
+
+      // Restore recommendation textarea
+      const textarea = document.getElementById(`recommendation-${index}`);
+      if (textarea) textarea.value = s.recommendation || "";
+    });
+
+        // Restore overall outcome & comment
+    if (data.overallStatus) {
+      const radio = document.querySelector(
+        `input[name="overall-status"][value="${data.overallStatus}"]`
+      );
+      if (radio) {
+        radio.checked = true;
+      }
+    }
+
+    if (data.overallComment) {
+      document.getElementById("overall-comment").value = data.overallComment;
+    }
+  }
+});
+
+
+// Save answers + return to outcome-review
 document.getElementById('save-review-A3.a').addEventListener('click', e => {
   e.preventDefault();
 
   const total = {{ statements | length }};
-  const statementMeta = {{ statements | dump | safe }}; // uses Nunjucks dump filter
+
+  // get the checked radio for overall-status
+  const selectedOverall = document.querySelector('input[name="overall-status"]:checked');
+  const overallStatus = selectedOverall ? selectedOverall.value : "";
 
   const review = {
     statements: [],
-    overallStatus: "",       // will be derived
-    overallComment: ""       // will be added on Page 3/4
+    overallStatus: overallStatus,
+    overallComment: document.getElementById('overall-comment').value
   };
 
-  // Collect answers
   for (let i = 1; i <= total; i++) {
     const selected = document.querySelector(`input[name="agree-${i}"]:checked`);
+    const rec = document.getElementById(`recommendation-${i}`)?.value || "";
+
     review.statements.push({
       id: i,
-      type: statementMeta[i-1].type, // "achieved" or "not"
-      decision: selected ? selected.value : "" // "agree" or "disagree"
+      decision: selected ? selected.value : "",
+      recommendation: rec
     });
   }
 
-  // Validation: require every statement answered
-  const unanswered = review.statements.some(s => !s.decision);
-  if (unanswered) {
-    // Minimal prototype behaviour: alert. Better: GOVUK error summary.
-    alert("Answer Yes or No for every statement before continuing.");
-    return;
-  }
-
-  // Derive status logic
-  const anyNotAchievedYes = review.statements.some(s =>
-    s.type === "not" && s.decision === "agree"
-  );
-
-  const allAchievedYes = review.statements
-    .filter(s => s.type === "achieved")
-    .every(s => s.decision === "agree");
-
-  // You also require all "not" statements to be No for achieved:
-  const allNotAchievedNo = review.statements
-    .filter(s => s.type === "not")
-    .every(s => s.decision === "disagree");
-
-  let derivedStatus = "";
-  if (anyNotAchievedYes) {
-    derivedStatus = "not";
-  } else if (allAchievedYes && allNotAchievedNo) {
-    derivedStatus = "achieved";
-  } else {
-    // Edge case: no "not" yes, but not all achieved yes (mixed)
-    // Decide your rule. Commonly: treat as Not achieved.
-    derivedStatus = "not";
-  }
-
-  review.overallStatus = derivedStatus;
-
-  // Save for Pages 3/4 + Page 2
   sessionStorage.setItem("review-A3.a", JSON.stringify(review));
 
-  // Route to Page 3 or 4
-  if (derivedStatus === "achieved") {
-    window.location.href = "/webcaf/peer-review/current/task/7/a3a-outcome-achieved";
-  } else {
-    window.location.href = "/webcaf/peer-review/current/task/7/a3a-outcome-not-achieved";
-  }
+  window.location.href = "/webcaf/peer-review/v1/task/7/outcome-review-a";
 });
+
 </script>
-
-
 
 {% endblock %}

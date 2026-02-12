@@ -1,0 +1,116 @@
+{% extends "/layouts/peer-review.html" %}
+
+{% block pageTitle %}
+Describe your review method
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+
+  
+   {{ govukBreadcrumbs({
+    items: [
+      {
+        text: "My account",
+        href: "/webcaf/peer-review/current/my-account"
+      },
+      {
+        text: "Edit draft review",
+        href: "/webcaf/peer-review/current/draft-review"
+      },
+      {
+        text: "Describe your review method
+"
+      }
+    ]
+  }) }}
+   <div class="proto-admin">
+    <p id="progress-pages"><strong>You have completed 77% of your review</strong></p>
+      <div class="progress-inactive">
+        <div class="progress-active" style="width: 77%">
+        </div>
+      </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+
+<span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
+<h1 class="govuk-heading-l">Describe your review method</h1>
+
+<p class="govuk-body">
+      Explain the approach you took to review the organisation's self-assessment and evidence.<br><br>
+      Include details of:
+    </p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>the scope of the review and any excluded components as described in the scoping document</li>
+      <li>your data collection methods and how you reviewed evidence</li>
+      <li>any limitations or constraints you encountered during your review</li>
+      
+    </p>
+
+
+
+
+<form action="/webcaf/peer-review/current/draft-review" method="post">
+
+{{ govukCharacterCount({
+  name: "check-comment",
+  id: "check-comment",
+  label: { text: "Review method" },
+  maxwords: 500,
+  hint: { text: "" },
+  rows: 7,
+  value: data['organisation-story'] or ""
+}) }}
+
+<button class="govuk-button" id="save-check-comment" data-module="govuk-button">
+  Save and continue
+</button>
+
+</form>
+
+</div>
+</div>
+{% endblock %}
+
+{% block pageScripts %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  // Restore saved CHECK comment
+  const savedCheck = sessionStorage.getItem("check-comment");
+  if (savedCheck) {
+    document.getElementById("check-comment").value = savedCheck;
+  }
+});
+
+// Save CHECK comment
+document.getElementById("save-check-comment").addEventListener("click", (e) => {
+  const value = document.getElementById("check-comment").value.trim();
+  sessionStorage.setItem("check-comment", value);
+});
+
+<!-- keep your task completion logic -->
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.querySelector('form');
+  if (!form) return;
+
+  form.addEventListener('submit', function () {
+    sessionStorage.setItem('task7Status', 'completed');
+  });
+});
+
+
+</script>
+{% endblock %}
+
