@@ -48,11 +48,13 @@
 <div class="govuk-grid-column-two-thirds">
 
 <span class="govuk-caption-l">A3.a – Asset management</span>
-<h1 class="govuk-heading-l">Add risks and recommendations </h1>
+<h1 class="govuk-heading-l">Add recommendations </h1>
 
 <p class="govuk-body">
-Each recommendation must address a risk that you have identified. <br><br>
-Each recommendation must be recorded separately. If you make more than one recommendation for the same risk, you must select ‘Add another recommendation’ and repeat the risk for each one.</p>
+Each recommendation must be recorded separately. If you make more than one recommendation, select ‘Add another recommendation’.
+<br><br>
+Where appropriate, you should use language from the relevant IGP(s).
+</p>
 <p>Use <a href='https://www.security.gov.uk/policy-and-guidance/govassure/stage-4-independent-assurance-peer-review/current/' class="govuk-link--no-visited-state">stage 4 guidance (opens in new tab)</a> to support you.</p>
 
 <form id="rec-form" action="/webcaf/peer-review/v1/task/recommendations/check-a3-a" method="post">
@@ -96,11 +98,11 @@ function addRecommendation(detail = "") {
 
 
     <div class="govuk-form-group govuk-character-count">  
-      <label class="govuk-label" for="rec-detail-${index}">Recommendation details. If appropriate, you should use language from the relevant IGP(s).</label>
+      <label class="govuk-label" for="rec-detail-${index}"></label>
       <textarea class="govuk-textarea" id="rec-detail-${index}"
                 name="rec-detail-${index}" rows="5">${detail}</textarea>
                 <div id="word-count-info" class="govuk-hint govuk-character-count__message">
-    You can enter up to 200 words
+    You can enter up to 100 words
   </div>
     </div>
 
