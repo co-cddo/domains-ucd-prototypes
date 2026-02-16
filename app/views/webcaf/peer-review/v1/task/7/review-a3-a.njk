@@ -106,15 +106,22 @@ A3.a Asset management review
     <h2 class="govuk-heading-m govuk-!-margin-bottom-4">
       Review each IGP statement
     </h2>
-    <p>When completing their self-assessment, the organisation selects an IGP statement if they believe it applies to their system or organisation.</p>
-    {{ govukWarningText({
-      text: "You must respond ‘Yes’ or ‘No’ to the IGP statement, not whether you agree with the organisation’s response to the statement.",
-      iconFallbackText: "Warning"
-    }) }}
-    <p>You must add comments for individual IGPs where the organisation has noted alternative controls or exemptions. 
-    </p>
-    
+    <p>When completing their self-assessment, the organisation selects an IGP statement if they believe it applies to their  system or organisation. You must make your own decision on each statement, based on the organisation’s self-assessment and supporting evidence.</p>
+    <p>When you have read each IGP statement you must select:</p>
+    <ul class="govuk-list govuk-list--bullet">
+    <li>‘Yes’ if you believe the statement applies to the system or organisation</li>
+    <li>‘No’ if you believe the statement does not apply to the system or organisation</li>
+    </ul>
   
+   {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{{ govukWarningText({
+  text: "Where the organisation has provided comments on alternative controls or exemptions, you should select ‘Yes’ to the IGP statement if you accept that they have provided a reasonable justification and supporting evidence.",
+  iconFallbackText: "Warning"
+}) }}
+   
+   <p class="govuk-body">See the <a href="https://www.security.gov.uk/policy-and-guidance/govassure/stage-4-independent-assurance-review/" target="_blank">stage 4 guidance (opens in new tab)</a>  for more information. </p>
+
 
 
 
@@ -123,54 +130,54 @@ A3.a Asset management review
       {% set statements = [
         {
           label: "Achieved statement 1",
-          text2: "Organisation selected",
+          text2: "Organisation response: Yes",
           text: "All assets relevant to the secure operation of essential function(s) are identified and inventoried (at a suitable level of detail). The inventory is kept up-to-date.  "
         },
         {
           label: "Achieved statement 2",
           text: "Dependencies on supporting infrastructure (e.g. power, cooling etc) are recognised and recorded.  ",
           inset: "We record physical dependencies (power/cooling) only for our main data centres, not for minor IT room assets. We have formally documented that the minor rooms' cooling/power systems are non-critical and have sufficient built-in redundancy (UPS, dual feeds). Auditing these low-risk assets would divert limited resources from mitigating the high-risk, single points of failure identified in the main data centres. This focus better reduces the overall risk of compromise to the essential function.",
-          text2: "Organisation selected"
+          text2: "Organisation response: Yes"
         },
         {
           label: "Achieved statement 3",
           text: "You have prioritised your assets according to their importance to the operation of the essential function(s).   ",
-          text2: "Organisation selected"
+          text2: "Organisation response: Yes"
         },
         {
           label: "Achieved statement 4",
           text: "You have assigned responsibility for managing all assets, including physical assets, relevant to the operation of the essential function(s).  ",
-          text2: "Organisation selected"
+          text2: "Organisation response: Yes"
         },
         {
           label: "Achieved statement 5",
           text: "Assets relevant to the essential function(s) are managed with cyber security in mind throughout their lifecycle, from creation through to eventual decommissioning or disposal.",
-          text2: "Organisation selected"
+          text2: "Organisation response: Yes"
         },
         {
           label: "Not achieved statement 1",
           text: "Inventories of assets relevant to the essential function(s) are incomplete, non-existent, or inadequately detailed.",
-          text2: "Organisation selected"
+          text2: "Organisation response: Yes"
         },
         {
           label: "Not achieved statement 2",
           text: "Only certain domains or types of asset are documented and understood. Dependencies between assets are not understood (such as the dependencies between IT and OT).",
-          text2: "Organisation did not select"
+          text2: "Organisation response: No"
         },
         {
           label: "Not achieved statement 3",
           text: "Information assets, which could include personally identifiable information and / or important / critical data, are stored for long periods of time with no clear business need or retention policy.",
-          text2: "Organisation did not select"
+          text2: "Organisation response: No"
         },
         {
           label: "Not achieved statement 4",
           text: "Knowledge critical to the management, operation, or recovery of the essential function(s) is held by one or two key individuals with no succession plan.",
-          text2: "Organisation did not select"
+          text2: "Organisation response: No"
         },
         {
           label: "Not achieved statement 5",
           text: "Asset inventories are neglected and out of date.",
-          text2: "Organisation did not select"
+          text2: "Organisation response: No"
         }
         
       ] %}
@@ -178,8 +185,8 @@ A3.a Asset management review
       <table class="govuk-table govuk-!-margin-bottom-8">
         <thead>
           <tr>
-            <th class="govuk-table__header govuk-!-width-one-half">IGP statement</th>
-            <th class="govuk-table__header govuk-!-width-one-half">Your review
+            <th class="govuk-table__header govuk-!-width-one-half">IGP statement and organisation response</th>
+            <th class="govuk-table__header govuk-!-width-one-half">Your response
             </th>
           </tr>
         </thead>
@@ -207,7 +214,7 @@ A3.a Asset management review
                   idPrefix: "agree-" ~ loop.index,
                   fieldset: {
                     legend: {
-                      text: "Does the IGP statement apply to the system or organisation?",
+                      text: "Does the statement apply? ",
                       isPageHeading: true,
                       classes: "govuk-fieldset__legend--s"
                     }
@@ -215,7 +222,7 @@ A3.a Asset management review
                   name: "agree-" ~ loop.index,
                   classes: "govuk-radios--inline",
                   hint: {
-                    text: "Choose yes if you agree that the alternative controls or exemptions are reasonable evidence."
+                    text: "Choose yes if you agree that the alternative control or exemption is acceptable."
                   },
                   items: [
                     { value: "agree", text: "Yes" },
@@ -231,7 +238,7 @@ A3.a Asset management review
                   idPrefix: "agree-" ~ loop.index,
                   fieldset: {
                     legend: {
-                      text: "Does the IGP statement apply to the system or organisation?",
+                      text: "Does the statement apply?",
                       isPageHeading: true,
                       classes: "govuk-fieldset__legend--s"
                     }
@@ -302,7 +309,6 @@ A3.a Asset management review
     <li>current risks to the system or organisation and related areas for improvement</li>
     <li>the organisation’s supporting evidence</li>
     <li>where relevant, specific IGPs, including where the organisation has noted alternative controls or exemptions</li>
-    <li>where relevant, if the organisation is close to achieving the target resilience level for the contributing outcome</li>
     </ul>      
     </section>
     '
