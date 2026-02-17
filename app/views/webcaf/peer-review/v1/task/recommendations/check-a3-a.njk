@@ -19,11 +19,11 @@ Outcome A1.a Board direction
     items: [
       {
         text: "My account",
-        href: "/webcaf/peer-review/current/my-account"
+        href: "/webcaf/peer-review/v1/my-account"
       },
       {
         text: "Edit draft review",
-        href: "/webcaf/peer-review/current/draft-review"
+        href: "/webcaf/peer-review/v1/draft-review"
       },
       {
         text: "Objective A - Managing security risk review and confirmation",
@@ -93,8 +93,8 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>`;
 
     recs.forEach((rec, i) => {
-       const detail = rec.detail || `Recommendation ${i + 1}`;
-      
+      const title = rec.title || `Recommendation ${i + 1}`;
+      const detail = rec.detail || "";
       html += `
         <div class="govuk-summary-list__row">
           
