@@ -1,4 +1,4 @@
-{% extends "/layouts/peer-review.html" %}
+{% extends "/layouts/review.html" %}
 
 {% block pageTitle %}
 My account - Reviewers – GOV.UK Prototype Kit
@@ -24,8 +24,8 @@ My account - Reviewers – GOV.UK Prototype Kit
     <div class="moj-identity-bar govuk-!-margin-bottom-4">
       <div class="moj-identity-bar__details">
         <p class="govuk-body-s govuk-!-margin-bottom-1">
-          Logged in: <strong>Roberto Baggio</strong><br>
-          Role: <strong>Peer reviewer</strong>
+          Logged in: <strong>Simon Wolensky</strong><br>
+          Role: <strong>Independent Assessor</strong>
         </p>
         <p class="govuk-body-s govuk-!-margin-bottom-0">
           Organisation: <strong>Cabinet Office</strong>
@@ -111,7 +111,8 @@ My account - Reviewers – GOV.UK Prototype Kit
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header" aria-sort="ascending">System name and reference</th>
-          <th scope="col" class="govuk-table__header">Sent for review date</th>
+          <th scope="col" class="govuk-table__header">Sent for review</th>
+          <th scope="col" class="govuk-table__header">Review type</th>
           <th scope="col" class="govuk-table__header">Review status</th>
           <th scope="col" class="govuk-table__header">Action</th>
         </tr>
@@ -120,7 +121,10 @@ My account - Reviewers – GOV.UK Prototype Kit
 
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">Microsoft CS version 3 (CAF24092025FDMH)</td>
-          <td class="govuk-table__cell">17/12/2025</td>
+          <td class="govuk-table__cell">17 Dec 2025</td>
+          <td class="govuk-table__cell">
+            <p>Peer Review</p>
+          </td>
           <td class="govuk-table__cell">
             <strong class="govuk-tag govuk-tag--yellow">In-progress</strong>
           </td>
@@ -132,10 +136,11 @@ My account - Reviewers – GOV.UK Prototype Kit
         {# --- NEW ROW ADDED BELOW 
         <tr class="govuk-table__row">
           <td class="govuk-table__cell">Office 365 Cabinet Connect (CAF31012025ZZXY)</td>
-          <td class="govuk-table__cell">29/10/2025</td>
+          <td class="govuk-table__cell">29 Oct 2025</td>
           <td class="govuk-table__cell">
             <strong class="govuk-tag govuk-tag--green">Closed</strong>
           </td>
+          
           <td class="govuk-table__cell">
             <a href="/webcaf/review/current/task/9/report-history" class="govuk-link">View report history</a>
           </td>
@@ -143,8 +148,11 @@ My account - Reviewers – GOV.UK Prototype Kit
        #}
 
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell">Cabinet HR Portal (CAF04102025ABCD)</td>
-          <td class="govuk-table__cell">12/10/2025</td>
+          <td class="govuk-table__cell">Cabinet HR Portal <br>(CAF04102025ABCD)</td>
+          <td class="govuk-table__cell">12 Oct 2025</td>
+          <td class="govuk-table__cell">
+            <p>Independent Assurance Review</p>
+          </td>
           <td class="govuk-table__cell">
             <strong class="govuk-tag govuk-tag--blue">To do</strong>
           </td>
