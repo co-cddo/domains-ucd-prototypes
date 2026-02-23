@@ -18,6 +18,13 @@ Manage organisations' details
 
  <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
+
+        {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{{ govukInsetText({
+  text: "You're logged in as a Cyber analyst."
+}) }}
+
 {{ govukTable({
   caption: "My organisations",
   captionClasses: "govuk-table__caption--l",

@@ -53,7 +53,7 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
     systemName: "Microsoft CS version 3",
     reference: "CAF24092025FDMH",
     organisation: "Cabinet Office",
-    reportUpdated: "17 December 2025",
+    reportUpdated: "19 February 2026",
     versionLabel: "Version 1 (draft)"
   },
 
@@ -67,7 +67,7 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
     ownership: "The organisation being assessed",
     hosting: "Hybrid — on-premises and cloud workloads",
     corporateServices: "Productivity, identity, and shared security services",
-    reviewType: "Independent Assurance Review",
+    reviewType: "Peer Review",
     cafVersion: "CAF v3.2",
     cafProfile: "Baseline"
   },
@@ -86,16 +86,38 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
   ],
 
  evidenceQuality: {
-  
   summaryHtml: "Across most outcomes, evidence was sufficient to understand the intent of controls and to support a proportion of the self-assessment claims, but it was not always complete or consistently traceable to specific CAF statements. <br><br>Evidence presentation would benefit from a single index that maps each CAF statement to the supporting artefacts, identifies the latest version/date, and clearly indicates which services/components the artefact applies to. Where conclusions relied on interviews or walkthroughs, these were generally consistent with provided documents, but additional corroborating records would improve confidence (for example tickets, logs, approvals, and reports).<br><br>Overall, the evidence set provides a reasonable basis for judgement at this stage, but improved traceability, consistency and ‘operated’ evidence would materially strengthen assurance for subsequent reviews."
 },
+AreasOfGoodPractice: {
+  summaryHtml: "
+  The organisation demonstrates a strong and structured approach to asset management across the lifecycle of systems supporting its essential function. The Configuration Management Database (CMDB) is comprehensive and actively maintained, with automated discovery tools ensuring that hardware, software and cloud assets are identified and regularly reconciled. Asset ownership is clearly defined, with named individuals accountable for maintaining accurate records and ensuring security controls are applied.
+<br><br>
+Risk-based prioritisation is embedded into operational processes. Critical assets are categorised according to their importance to service delivery, and this classification informs patching timelines, monitoring intensity and access control requirements. The integration of asset management with vulnerability management and incident response processes provides confidence that security risks can be identified and mitigated in a timely manner.
+<br><br>
+  "
+},
+AreasForImprovement: {
+  summaryHtml: "
+  While the organisation has established a structured asset management framework, there are opportunities to strengthen consistency and assurance across the full asset estate. In particular, the documentation of dependencies between certain supporting systems and operational technology environments appears limited. Improving the mapping of interdependencies would enhance visibility of potential single points of failure and support more effective impact analysis during incidents.
+<br><br>
+There is also scope to formalise periodic assurance activities to validate the accuracy and completeness of asset records. Although automated discovery tools are in place, independent sampling or internal audit checks would provide additional confidence that inventories remain accurate over time, particularly for cloud-hosted and transient assets.
+<br><br>
+Retention and disposal controls for information assets could be further strengthened by ensuring that documented retention schedules are consistently applied and regularly reviewed. Clear ownership of data lifecycle decisions would reduce the risk of unnecessary data accumulation and associated security exposure.
+<br><br>
+Finally, succession planning for key asset management roles should be more explicitly defined to mitigate the risk of knowledge concentration within a small number of individuals. Establishing documented procedures and cross-training arrangements would improve resilience and continuity.
+<br><br>
+Addressing these areas would further enhance the maturity and robustness of the organisation’s asset management arrangements.
+  "
+},
+
   executiveSummary: {
     intro: "GovAssure is the cyber security scheme for assessing government critical systems against NCSC’s Cyber Assessment Framework (CAF). The process provides government organisations with visibility of cyber security risks, and support to understand and manage them more effectively.
            <br><br> 
-            This report contains the findings of the Independent Assurance Review carried out against Cabinet office’s CAF self-assessment for SYS-0001 Microsoft CS version 3 in 2025-26. The system was assessed against the Baseline Government CAF profile. The report identifies areas of good practice and areas for improvement, and provides specific recommendations to enable Cabinet Office to improve its cyber security and resilience.
+            This report contains the findings of the Peer Review carried out against Cabinet Office’s CAF self-assessment for SYS-0001 Microsoft CS version 3 in 2025-26. The system was assessed against the Baseline Government CAF profile. The report identifies areas of good practice and areas for improvement, and provides specific recommendations to enable Cabinet Office to improve its cyber security and resilience. 
             <br><br>
-            Several core CAF principles serve as a foundation for an organisation’s overall security. The principles of governance (A1) and risk management (A2) are essential for running a security ecosystem founded on risk. The principles of response and recovery planning (D1) and lessons learned (D2) are fundamental to business continuity and an organisation's ability to operate through and recover from a cyber incident. Organisations are encouraged to prioritise recommendations for these principles and the underlying contributing outcomes where they have not met the target Government CAF profile. "
-  },
+            Several core CAF principles serve as a foundation  for an organisation’s overall security. The principles of governance (A1) and risk management (A2) are essential for running a security ecosystem founded on risk. The principles of response and recovery planning (D1) and lessons learned (D2) are fundamental to business continuity and an organisation's ability to operate through and recover from a cyber incident. Organisations are encouraged to prioritise recommendations for these principles and the underlying contributing outcomes where they have not met the Baseline Government CAF profile."
+    },
+  
 
 
   objectives: [
@@ -261,7 +283,7 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
     </span>
 
     <span class="gem-c-heading__xl govuk-heading-xl">
-     GovAssure Independent Assurance Review Report (IARR) 
+     GovAssure Peer Review Report
     </span>
 
      <span class="gem-c-inverse-header__subtext">
@@ -301,21 +323,17 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
             <a class="gem-c-contents-list__link" href="#exec-summary">Executive summary</a>
           </li>
           <li class="gem-c-contents-list__list-item">
-            <a class="gem-c-contents-list__link" href="#detail-summary">Detailed review of contributing outcomes</a>
+            <a class="gem-c-contents-list__link" href="#practice">Areas of good practice</a>
+          </li>
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#improvement">Areas for improvement</a>
+          </li>
+          <li class="gem-c-contents-list__list-item">
+            <a class="gem-c-contents-list__link" href="#quality">Quality of the self-assessment and evidence</a>
           </li>
 
-          {# remove broken 'Outcome status' and add objective anchors #}
           <li class="gem-c-contents-list__list-item">
-            <a class="gem-c-contents-list__link" href="#objective-a">Objective A</a>
-          </li>
-          <li class="gem-c-contents-list__list-item">
-            <a class="gem-c-contents-list__link" href="#objective-b">Objective B</a>
-          </li>
-          <li class="gem-c-contents-list__list-item">
-            <a class="gem-c-contents-list__link" href="#objective-c">Objective C</a>
-          </li>
-          <li class="gem-c-contents-list__list-item">
-            <a class="gem-c-contents-list__link" href="#objective-d">Objective D</a>
+            <a class="gem-c-contents-list__link" href="#detail-summary">Detailed review of contributing outcomes</a>
           </li>
 
           {# moved to end #}
@@ -364,11 +382,11 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
       <h2 id="period-of-review" class="govuk-heading-m">Period of review</h2>
 
       <p class="govuk-body">
-        The independent assurance review was conducted between
+        The Peer Review was conducted between
         <strong>{{ report.periodOfReview.from }}</strong> and <strong>{{ report.periodOfReview.to }}</strong>.
       </p>
 
-      <h3 class="govuk-heading-m">Independent assurance reviewer details</h3>
+      <h3 class="govuk-heading-m">Peer reviewer details</h3>
       {# Removing 2 keys
           { key: { text: "Company email address" }, value: { text: report.companyDetails.companyEmail } }
           
@@ -396,7 +414,7 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
 
       {# EXEC SUMMARY: One combined status table (all objectives)= #} <h2 id="exec-summary" class="govuk-heading-xl">Executive summary</h2>      
         
-      <p>The table below shows the cyber security and resilience principle results against the target Government CAF profile. Each principle is made up of a set of contributing outcomes that are assessed in the Cyber Assessment Framework (CAF). 
+      <p>The table below shows the cyber security and resilience principle results against the Baseline Government CAF profile. Each principle is made up of a set of contributing outcomes that are assessed in the Cyber Assessment Framework (CAF). 
       <br><br>All outcomes within a principle must be met in order for that principle to be met. 
       </p>
     
@@ -588,36 +606,20 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
           </tbody>
         </table>
 
-
-
-      
-      
-
-        {# Areas of good practice and Areas for improvement  - broken by objetives (A-B) #}
-        {% for obj in report.objectives %}
-
-          <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
-
-          {# add anchor ids for navigation #}
-          <h2 class="govuk-heading-l">
-            Objective {{ obj.code }} — {{ obj.title }} 
-          </h2>
-          <h2 class="govuk-body">{{obj.subTitle }}</h2>
-
-          {# Areas of good practice as a single text area (7–9 lines) #}
-          <h3 class="govuk-heading-m">Areas of good practice</h3>
+  
+    <h2 id="practice" class="govuk-heading-l">Areas of good practice</h2>
           <p class="govuk-body">
-            {{ obj.goodPracticeText | replace("\n", "<br>") | safe }}
+            {{ report.AreasOfGoodPractice.summaryHtml | safe }}
           </p>
 
-          {# Areas for improvement as a block of text (not bullets) #}
-          <h3 class="govuk-heading-m">Areas for improvement</h3>
+    <h2 id="improvement" class="govuk-heading-l">Areas for improvement</h2>
           <p class="govuk-body">
-            {{ obj.improvements | join("\n") | replace("\n", "<br>") | safe }}
-          </p>
-        {% endfor %}
+            {{ report.AreasForImprovement.summaryHtml | safe }}
+            
 
-     <h2 class="govuk-heading-l">Quality of the self-assessment and evidence</h2>
+          </p>
+      
+     <h2 id="quality" class="govuk-heading-l">Quality of the self-assessment and evidence</h2>
       <p class="govuk-body">
         {{ report.evidenceQuality.summaryHtml | safe }}
       </p>
@@ -636,7 +638,7 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
         </h2>
 
         {# INSERT: Outcome status table under each objective (same labels + same tag colours) #}
-        <h3 class="govuk-body">The table below shows the status of each contributing outcome in the CAF objective. It also shows whether each contributing outcome has met the target Government CAF profile in the Independent Assurance Review. 
+        <h3 class="govuk-body">The table below shows the status of each contributing outcome in the CAF objective. It also shows whether each contributing outcome has met the Baseline Government CAF profile in the Peer Review Report. 
 </h3>
 
         <table class="govuk-table">
@@ -767,7 +769,7 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
   {% if label | trim %}
     {{ label | trim }}
   {% else %}
-    {{ code }}
+    {{ code }} 
   {% endif %}
 {% endmacro %}
 
@@ -779,7 +781,7 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
 {% for obj in report.objectives %}
   {% for o in obj.outcomes %}
     {% if o.baseline == "Not met" %}
-      {% set notMetOutcomes = notMetOutcomes ~ o.code ~ "|" %}
+      {% set notMetOutcomes = notMetOutcomes ~ o.code ~ "|"  %}
     {% endif %}
   {% endfor %}
 {% endfor %}
@@ -787,48 +789,6 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
 
 
 
-
-{# =========================================================
-   Risk groups (only one grouped risk example)
-   ========================================================= #}
-{# Existing (Priority) grouped risk #}
-{% set RISK_B_SHORT = "Detection and monitoring gaps" %}
-{% set RISK_B_FULL = "R14: Monitoring and logging coverage gaps reduce the ability to detect and respond to incidents affecting essential functions." %}
-{% set riskBLookup = "|REC-21|REC-22|REC-23|" %}
-{% set multiLookup = "|REC-14|REC-03" %}
-
-{# NEW (Other recommendations) grouped risk #}
-{% set RISK_OTHER_SHORT = "Policy and process consistency gaps" %}
-{% set RISK_OTHER_FULL = "R1: Policies and processes are inconsistently applied or evidenced, creating unmanaged control gaps across components." %}
-{% set riskOtherLookup = "|REC-01|REC-02|" %}
-
-{% macro riskForRec(recId) %}
-  {% if recId == "REC-01" %}RO1: Policies are not consistently applied or evidenced across all components, creating unmanaged control gaps.
-  {% elseif recId == "REC-02" %}RO2: Legacy hosts may drift from secure baselines without detection, increasing exposure to known weaknesses.
-  {% elseif recId == "REC-03" %}RO3: Integration access paths may bypass standard authorisation checks, increasing likelihood of unauthorised access.
-  {% elseif recId == "REC-04" %}RO4: Privileged access can remain in place longer than needed, increasing insider and credential misuse risk.
-  {% elseif recId == "REC-05" %}RO5: Privileged sessions may not be monitored or revalidated consistently, reducing ability to detect misuse.
-  {% elseif recId == "REC-06" %}RO6: Identity lifecycle processes may be inconsistent, leading to orphaned accounts and excessive permissions.
-  {% elseif recId == "REC-07" %}RO7: MFA gaps across legacy and break-glass paths increase likelihood of compromise through weaker controls.
-  {% elseif recId == "REC-08" %}RO8: Board-level oversight of cyber security risk is evidenced through meeting packs and decision records; however, reporting is not presented in a consistent or repeatable format across quarters. As a result, it is difficult to demonstrate trends over time, compare risk positions between reporting periods, or clearly evidence how board-level challenge and decisions have influenced security outcomes. This reduces the strength of assurance against CAF Objective A, particularly in demonstrating sustained governance effectiveness rather than point-in-time compliance.This reduces the strength of assurance against CAF Objective A, particularly in demonstrating sustained governance effectiveness rather than point-in-time demonstrating sustained governance effectiveness compliance.
-  {% elseif recId == "REC-09" %}RO9: Unclear or unenforced encryption requirements can lead to data interception on transit routes.
-  {% elseif recId == "REC-10" %}RO10: Legacy data stores may lack evidenced controls, increasing risk of unauthorised access and disclosure.
-  {% elseif recId == "REC-11" %}RO11: Mobile data controls may not be enforced consistently, increasing risk of loss or leakage from devices.
-  {% elseif recId == "REC-12" %}RP12: Board reporting lacks standardisation, limiting oversight and reducing evidence of decisions and challenge.
-  {% elseif recId == "REC-13" %}RP13: Security decisions may be made without consistent records, reducing accountability and traceability of risk acceptance.
-  {% elseif recId == "REC-15" %}RP15: Unknown or unmanaged legacy and integration assets reduce visibility and increase risk of unpatched vulnerabilities.
-  {% elseif recId == "REC-16" %}RP16: Supply chain risk reporting is inconsistent, reducing ability to identify trends and drive supplier improvements.
-  {% elseif recId == "REC-17" %}RO17: Incomplete sanitisation records increase risk of sensitive data recovery from disposed or reused media.
-  {% elseif recId == "REC-18" %}RO18: Security checkpoints may be skipped in delivery, increasing likelihood of design weaknesses reaching production.
-  {% elseif recId == "REC-19" %}RO19: Legacy systems may lack tooling for configuration assurance, increasing risk of insecure settings persisting.
-  {% elseif recId == "REC-20" %}RO20: Inconsistent admin interface hardening increases risk of exploitation through management channels.
-  {% elseif recId == "REC-24" %}RP21: Incident criteria may be applied inconsistently, delaying escalation and increasing impact of attacks.
-  {% elseif recId == "REC-25" %}RP22: Skills coverage gaps reduce monitoring effectiveness and increase time to detect/respond to incidents.
-  {% elseif recId == "REC-26" %}RO23: Anomaly detection may be ad-hoc, increasing risk that emerging attacks go unnoticed.
-  {% elseif recId == "REC-27" %}RO24: Proactive discovery findings may not translate into improvements, allowing repeated weaknesses to persist.
-  {% else %}RP25: A material security risk has been identified that requires remediation to meet expected resilience levels.
-  {% endif %}
-{% endmacro %}
 
 {# =========================================================
    MACRO: Render a section by sectionMode:
@@ -845,17 +805,17 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
 
   <table class="govuk-table">
     <colgroup>
-      <col style="width: 5%">
-      <col style="width: 5%">
-      <col style="width: 45%">
+      
+      <col style="width: 20%">
+      <col style="width: 35%">
       <col style="width: 45%">
     </colgroup>
 
     <thead class="govuk-table__head">
       <tr class="govuk-table__row">
         <th class="govuk-table__header">ID</th>
-        <th class="govuk-table__header">CO</th>
-        <th class="govuk-table__header">Risk</th>
+        <th class="govuk-table__header">Contributing outcome</th>
+        
         <th class="govuk-table__header">Recomendation</th>
       </tr>
     </thead>
@@ -883,12 +843,18 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
             <td class="govuk-table__cell"><strong>{{ r.id }}</strong></td>
 
             <td class="govuk-table__cell">
-              {{ r.outcome }}
-            </td>
+  {% set outcomeName = "" %}
+  {% for obj in report.objectives %}
+    {% for o in obj.outcomes %}
+      {% if o.code == r.outcome %}
+        {% set outcomeName = o.name %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+  {{ r.outcome }} {{ outcomeName }}
+</td>
 
-            <td class="govuk-table__cell">
-              {{ riskForRec(r.id) }}
-            </td>
+           
 
             <td class="govuk-table__cell">
               {{ r.recommendation | replace("\r\n", "\n") | replace("\n", "<br>") | safe }}
@@ -911,7 +877,7 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
   report,
   notMetOutcomes,
   "Priority recommendations",
-  "These recommendations address contributing outcomes where the target Government CAF profile has not been met.",
+  "Recommendations for contributing outcomes where the Baseline Government CAF profile has not been met. ",
   "priority"
 ) }}
 
@@ -919,7 +885,7 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
   report,
   notMetOutcomes,
   "Other recommendations",
-  "These recommendations relate to contributing outcomes that have met the target Government CAF profile.",
+  "Recommendations for contributing outcomes where the Baseline Government CAF profile has been met. ",
   "other"
 ) }}
 
