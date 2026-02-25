@@ -394,10 +394,8 @@ Addressing these areas would further enhance the maturity and robustness of the 
       {{ govukSummaryList({
         classes: "govuk-summary-list",
         rows: [
-          { key: { text: "Company name" }, value: { text: report.companyDetails.companyName } },
-          { key: { text: "Lead reviewer" }, value: { text: "Mr. Isaac Johnson McAlister" } },
-          { key: { text: "Lead reviewer email address" }, value: { text: "isaac.mcalister@company.com" } }
-          
+          { key: { text: "Organisation name" }, value: { text: report.companyDetails.companyName } },
+          { key: { text: "Lead reviewer" }, value: { text: "Mr. Isaac Johnson McAlister" } }
         ]
       }) }}
 
@@ -638,7 +636,7 @@ Addressing these areas would further enhance the maturity and robustness of the 
         </h2>
 
         {# INSERT: Outcome status table under each objective (same labels + same tag colours) #}
-        <h3 class="govuk-body">The table below shows the status of each contributing outcome in the CAF objective. It also shows whether each contributing outcome has met the Baseline Government CAF profile in the Peer Review Report. 
+        <h3 class="govuk-body">The table below shows the status of each contributing outcome in the CAF objective. It also shows whether each contributing outcome has met the Baseline Government CAF profile in the Peer Review. 
 </h3>
 
         <table class="govuk-table">
@@ -714,12 +712,7 @@ Addressing these areas would further enhance the maturity and robustness of the 
         {{ o.summary }}
       </p>
 
-      {# only show heading if comment exists #}
-      {% if o.igpComment %}
-        <h5 class="govuk-heading-s">Comments on individual IGPs</h5>
-        <p class="govuk-body govuk-!-font-size-16">{{o.statement2}} </p>
-        <p class="govuk-body">{{ o.igpComment }}</p>
-      {% endif %}
+  
 
     {% endcall %}
   {% endfor %}
@@ -816,7 +809,7 @@ Addressing these areas would further enhance the maturity and robustness of the 
         <th class="govuk-table__header">ID</th>
         <th class="govuk-table__header">Contributing outcome</th>
         
-        <th class="govuk-table__header">Recomendation</th>
+        <th class="govuk-table__header">Recommendation</th>
       </tr>
     </thead>
 
