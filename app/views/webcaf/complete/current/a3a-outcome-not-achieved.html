@@ -50,11 +50,42 @@
 
       <div class="govuk-grid-column-two-thirds">
 <h1 class="govuk-heading-l">A3.a Asset management outcome</h1>
-<h1 class="govuk-heading-m">Status: Not achieved</h1>
 
-{{ govukInsetText({
-  text: "You have received this status because you have selected one or more not achieved IGP statements."
-}) }}
+
+
+    
+    
+<style>
+  .status-stack { margin-bottom: 10px; }
+  .status-stack__item { padding: 6px 0; }
+  .status-stack__label { margin: 0 0 4px 0; }
+</style>
+
+<div class="govuk-inset-text status-stack">
+  <div class="status-stack__item">
+    <p class="govuk-body govuk-!-font-weight-bold status-stack__label">Self-assessment status</p>
+    <strong class="govuk-tag govuk-tag--red">Not achieved</strong>
+  </div>
+
+  <div class="status-stack__item">
+    <p class="govuk-body govuk-!-font-weight-bold status-stack__label">CAF baseline profile</p>
+    <strong class="govuk-tag govuk-tag--red">Not met</strong>
+  </div>
+<Br>
+  <p class="govuk-hint govuk-!-margin-bottom-0">
+    You have received this status because you have selected one or more not achieved IGP statements.
+  </p>
+</div>
+
+
+<br>
+
+<p>Confirm you agree with this status, or go back and change your response to the IGP statements.</p>
+
+
+
+
+
 
   {% set AddSummary %}
   
@@ -99,12 +130,12 @@ For more detailed guidance on what is expected visit the <a href="https://www.se
   fieldset: {
     legend: {
       text: "",
-      isPageHeading: true,
+      isPageHeading: false,
       classes: "govuk-fieldset__legend--m"
     }
   },
   hint: {
-    html: 'Confirm you agree with this status, or go back and change your response to the IGP statements.'      
+    html: ''      
   },
   items: [
     {

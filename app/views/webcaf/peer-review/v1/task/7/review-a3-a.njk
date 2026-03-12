@@ -47,6 +47,9 @@ A3.a Asset management review
 
     <span class="govuk-caption-l">Microsoft CS version 3 (CAF24092025FDMH)</span>
     <h1 class="govuk-heading-l">A3.a Asset management review</h1>
+    <p>Everything required to deliver, maintain or support network and information systems necessary for the
+operation of essential functions is determined and understood. This includes data, people and systems, as
+well as any supporting infrastructure (such as power or cooling).</p>
 
 {{ govukDetails({
   summaryText: "How to review this outcome",
@@ -67,12 +70,37 @@ A3.a Asset management review
     </section>
     '
     }) }}
-<div class="govuk-inset-text">
-          <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
-            Self-assessment outcome status
-          </h3>
-          <strong class="govuk-tag govuk-tag--green">Achieved</strong>
-        </div>
+    
+    
+<style>
+  .status-stack { margin-bottom: 10px; }
+  .status-stack__item { padding: 6px 0; }
+  .status-stack__label { margin: 0 0 4px 0; }
+</style>
+
+<div class="govuk-inset-text status-stack">
+   <div class="status-stack__item">
+    <p class="govuk-body govuk-!-font-weight-bold status-stack__label">Baseline CAF profile requirement</p>
+    <strong class="govuk-tag govuk-tag--green">Achieved</strong>
+  </div>
+
+  <div class="status-stack__item">
+    <p class="govuk-body govuk-!-font-weight-bold status-stack__label">Self-assessment status</p>
+    <strong class="govuk-tag govuk-tag--red">Not achieved</strong>
+  </div>
+
+  <div class="status-stack__item">
+    <p class="govuk-body govuk-!-font-weight-bold status-stack__label">Baseline CAF profile</p>
+    <strong class="govuk-tag govuk-tag--red">Not met</strong>
+  </div>
+
+</div>
+
+
+
+
+
+
      <!-- CONTRIBUTING OUTCOME SUMMARY -->
      <h2 class="govuk-heading-m govuk-!-margin-bottom-3">
           Organisation’s contributing outcome summary

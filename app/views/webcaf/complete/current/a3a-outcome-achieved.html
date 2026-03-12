@@ -50,7 +50,46 @@
 
       <div class="govuk-grid-column-two-thirds">
 <h1 class="govuk-heading-l">A3.a Asset management outcome</h1>
-<h1 class="govuk-heading-m">Status: Achieved</h1>
+
+  <div class="status-card">
+  
+  {{ govukSummaryList({
+    classes: "govuk-summary-list--no-border",
+    rows: [
+      {
+        key: {
+          text: "Self-assessment status:",
+          classes: "govuk-!-width-one-half"
+        },
+        value: {
+          html: '<strong class="govuk-tag govuk-tag--green">Achieved</strong>'
+        }
+      },
+      {
+        key: {
+          text: "Baseline profile:"
+        },
+        value: {
+          html: '<strong class="govuk-tag govuk-tag--green">Met</strong>'
+        }
+      }
+    ]
+  }) }}
+</div>
+
+<style>
+.status-card {
+  border: 2px solid #b1b4b6;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.status-card-header {
+  margin-top: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #b1b4b6;
+  margin-bottom: 15px;
+}
+</style>
 
 {{ govukInsetText({
   text: "You have received this status because you have selected all achieved IGP statements."
