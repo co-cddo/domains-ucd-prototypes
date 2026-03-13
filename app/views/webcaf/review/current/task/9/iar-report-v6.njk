@@ -92,9 +92,9 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
   executiveSummary: {
     intro: "GovAssure is the cyber security scheme for assessing government critical systems against NCSC’s Cyber Assessment Framework (CAF). The process provides government organisations with visibility of cyber security risks, and support to understand and manage them more effectively.
            <br><br> 
-            This report contains the findings of the Independent Assurance Review carried out against Cabinet office’s CAF self-assessment for SYS-0001 Microsoft CS version 3 in 2025-26. The system was assessed against the Baseline Government CAF profile. The report identifies areas of good practice and areas for improvement, and provides specific recommendations to enable Cabinet Office to improve its cyber security and resilience.
+            This report contains the findings of the Independent Assurance Review carried out against Cabinet office’s CAF self-assessment for SYS-0001 Microsoft CS version 3 in 2025-26. The system was assessed against the Baseline Government CAF profile  profile. The report identifies areas of good practice and areas for improvement, and provides specific recommendations to enable Cabinet Office to improve its cyber security and resilience.
             <br><br>
-            Several core CAF principles serve as a foundation for an organisation’s overall security. The principles of governance (A1) and risk management (A2) are essential for running a security ecosystem founded on risk. The principles of response and recovery planning (D1) and lessons learned (D2) are fundamental to business continuity and an organisation's ability to operate through and recover from a cyber incident. Organisations are encouraged to prioritise recommendations for these principles and the underlying contributing outcomes where they have not met the target Government CAF profile. "
+            Several core CAF principles serve as a foundation for an organisation’s overall security. The principles of governance (A1) and risk management (A2) are essential for running a security ecosystem founded on risk. The principles of response and recovery planning (D1) and lessons learned (D2) are fundamental to business continuity and an organisation's ability to operate through and recover from a cyber incident. Organisations are encouraged to prioritise recommendations for these principles and the underlying contributing outcomes where they have not met the target Baseline Government CAF profile. "
   },
 
 
@@ -396,7 +396,7 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
 
       {# EXEC SUMMARY: One combined status table (all objectives)= #} <h2 id="exec-summary" class="govuk-heading-xl">Executive summary</h2>      
         
-      <p>The table below shows the cyber security and resilience principle results against the target Government CAF profile. Each principle is made up of a set of contributing outcomes that are assessed in the Cyber Assessment Framework (CAF). 
+      <p>The table below shows the cyber security and resilience principle results against the target Baseline Government CAF profile. Each principle is made up of a set of contributing outcomes that are assessed in the Cyber Assessment Framework (CAF). 
       <br><br>All outcomes within a principle must be met in order for that principle to be met. 
       </p>
     
@@ -636,7 +636,7 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
         </h2>
 
         {# INSERT: Outcome status table under each objective (same labels + same tag colours) #}
-        <h3 class="govuk-body">The table below shows the status of each contributing outcome in the CAF objective. It also shows whether each contributing outcome has met the target Government CAF profile in the Independent Assurance Review. 
+        <h3 class="govuk-body">The table below shows the status of each contributing outcome in the CAF objective. It also shows whether each contributing outcome has met the target Baseline Government CAF profile  profile in the Independent Assurance Review. 
 </h3>
 
         <table class="govuk-table">
@@ -645,7 +645,7 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
               <th scope="col" class="govuk-table__header">Contributing outcome</th>
               <th scope="col" class="govuk-table__header">Self-assessment status</th>
               <th scope="col" class="govuk-table__header">Review status</th>
-              <th scope="col" class="govuk-table__header">CAF Baseline profile</th>
+              <th scope="col" class="govuk-table__header">Baseline CAF profile</th>
             </tr>
           </thead>
 
@@ -683,12 +683,16 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
   {% for o in obj.outcomes %}
     {% call govukDetails({ summaryText: o.code ~ " — " ~ o.name }) %}
 
+      <h5 class="govuk-heading-s">Baseline CAF profile requirement:
+      <strong class="govuk-tag {{ judgementTagClass[o.review] }}"> {{ o.review }}</strong></h5>
+
       <h5 class="govuk-heading-s">Review status:
       <strong class="govuk-tag {{ judgementTagClass[o.review] }}"> {{ o.review }}</strong></h5>
         
-<h5 class="govuk-heading-s">CAF Baseline profile:
+<h5 class="govuk-heading-s">Baseline CAF profile:
 <strong class="govuk-tag {{ baselineTagClass[o.baseline] }}">
                   {{ o.baseline }}</strong></h5>
+      
         
        
 
@@ -911,7 +915,7 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
   report,
   notMetOutcomes,
   "Priority recommendations",
-  "These recommendations address contributing outcomes where the target Government CAF profile has not been met.",
+  "These recommendations address contributing outcomes where the target Baseline Government CAF profile  profile has not been met.",
   "priority"
 ) }}
 
@@ -919,7 +923,7 @@ GovAssure Independent Assurance Review Report (IARR) - SYS-0001 Microsoft CS ver
   report,
   notMetOutcomes,
   "Other recommendations",
-  "These recommendations relate to contributing outcomes that have met the target Government CAF profile.",
+  "These recommendations relate to contributing outcomes that have met the target Baseline Government CAF profile  profile.",
   "other"
 ) }}
 
