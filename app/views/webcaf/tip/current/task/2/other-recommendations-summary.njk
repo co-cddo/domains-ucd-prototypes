@@ -1,0 +1,181 @@
+{% extends "/layouts/tip.html" %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{% block pageTitle %}
+Other recommendations
+{% endblock %}
+
+
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: { text: "prototype", classes: "govuk-tag--pink" },
+  html: "This is not a full service. It is not production code."
+}) }}
+
+{{ govukBreadcrumbs({
+  items: [
+    { text: "My account", href: "/webcaf/tip/current/my-account" },
+    { text: "Edit draft TIP", href: "/webcaf/tip/current/draft-tip" },
+    { text: "Other recommendations" }
+  ]
+}) }}
+{% endblock %}
+
+{% block content %}
+{% if showBulkReviewMessage %}
+  <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="other-review-success-title" data-module="govuk-notification-banner">
+    <div class="govuk-notification-banner__header">
+      <h2 class="govuk-notification-banner__title" id="other-review-success-title">
+        Success
+      </h2>
+    </div>
+    <div class="govuk-notification-banner__content">
+      <p class="govuk-notification-banner__heading">
+        All remaining other recommendations have been marked as reviewed with no action planned.
+      </p>
+    </div>
+  </div>
+{% endif %}
+
+<style>
+  .tip-status-tag {
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  .tip-table-compact .govuk-table__cell,
+  .tip-table-compact .govuk-table__header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+</style>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <span class="govuk-caption-l">{{ tip.system.name }} ({{ tip.system.finalReportReference }})</span>
+    <h1 class="govuk-heading-l">Other recommendations (16)</h1>
+
+    <h2 class="govuk-heading-m">You have reviewed {{ reviewed }} of 16 recommendations</h2>
+
+    <p class="govuk-body">
+      Review other recommendations for this system. These relate to contributing outcomes that met the Government CAF profile.
+    </p>
+
+    {{ govukWarningText({
+      text: "You must review all other recommendations. Adding an action is optional.",
+      iconFallbackText: "Important"
+    }) }}
+
+    <table class="govuk-table govuk-!-font-size-16 tip-table-compact">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">ID</th>
+          <th scope="col" class="govuk-table__header">CO</th>
+          <th scope="col" class="govuk-table__header">Risk</th>
+          <th scope="col" class="govuk-table__header">Recommendation</th>
+          <th scope="col" class="govuk-table__header">Status</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+
+        {% for row in rows %}
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">
+              <strong>{{ row.recId }}</strong>
+            </td>
+
+            <td class="govuk-table__cell">
+              {{ row.outcome }}
+            </td>
+
+            <td class="govuk-table__cell">
+              <strong>{{ row.riskId }}:</strong> {{ row.riskText }}
+            </td>
+
+            <td class="govuk-table__cell">
+              {{ row.recommendationText | safe }}
+            </td>
+
+            <td class="govuk-table__cell">
+              {% if row.locked %}
+                <a href="#">Review</a>
+              {% elseif row.status == "not_reviewed" %}
+                <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Review</a>
+              {% elseif row.status == "action_added" %}
+                <strong class="govuk-tag govuk-tag--blue tip-status-tag">Action added</strong>
+                <br><br>
+                <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Change action</a>
+              {% elseif row.status == "reviewed_no_action" %}
+                <strong class="govuk-tag govuk-tag--grey tip-status-tag">No action planned</strong>
+                <br><br>
+                <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Change response</a>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+
+  
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set bulkNoActionReasonHtml %}
+  {{ govukTextarea({
+    name: "bulkNoActionReason",
+    id: "bulkNoActionReason",
+    label: {
+      text: "Explain why you will not add an action",
+      classes: "govuk-label--s"
+    }
+  }) }}
+{% endset %}
+
+{% if not reviewed %}
+  <div class="govuk-!-margin-top-7">
+    <h2 class="govuk-heading-m">Review remaining recommendations at once</h2>
+
+    <form action="/webcaf/tip/current/task/2/review-all" method="post">
+      {{ govukRadios({
+        name: "confirmBulkReview",
+        fieldset: {
+          legend: {
+            text: "Do you want to mark all remaining other recommendations as reviewed, with no action planned?",
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes",
+            conditional: {
+              html: bulkNoActionReasonHtml
+            }
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Save and continue"
+      }) }}
+    </form>
+  </div>
+{% endif %}
+  <p class="govuk-body govuk-!-margin-top-6">
+      <a href="/webcaf/tip/current/draft-tip" class="govuk-link">Return to task list</a>
+    </p>
+  </div>
+</div>
+
+{% endblock %}

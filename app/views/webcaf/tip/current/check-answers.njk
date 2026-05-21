@@ -1,0 +1,143 @@
+{% extends "/layouts/tip.html" %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+Check your answers
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+  },
+  html: "This is not a full service. It is not production code."
+}) }}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "/webcaf/tip/current/draft-tip"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <span class="govuk-caption-l">{{ system.name }} ({{ system.finalReportReference }})</span>
+    <h1 class="govuk-heading-l">Check your answers</h1>
+
+    <p class="govuk-body">
+      Review the information you have provided for this TIP before continuing.
+    </p>
+
+    <h2 class="govuk-heading-m">Priority recommendations</h2>
+    <p class="govuk-body-s govuk-!-margin-bottom-5">
+      {{ prioritySummary.actionAdded }} actions added · {{ prioritySummary.noAction }} no action reasons recorded
+    </p>
+
+    {% for rec in priorityRecommendations %}
+      <div class="govuk-summary-card govuk-!-margin-bottom-6">
+        <div class="govuk-summary-card__title-wrapper">
+          <h3 class="govuk-summary-card__title">
+            {{ rec.recId }} — {{ rec.outcome }} {{ rec.outcomeTitle }}
+          </h3>
+
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="{{ rec.changeHref }}">
+                Change
+                <span class="govuk-visually-hidden">
+                  {{ rec.recId }} {{ rec.outcome }} {{ rec.outcomeTitle }}
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="govuk-summary-card__content">
+          <p class="govuk-body-s govuk-!-margin-bottom-3">
+            Priority recommendation
+          </p>
+
+          {{ govukSummaryList({
+            classes: "govuk-!-margin-bottom-0",
+            rows: rec.rows
+          }) }}
+        </div>
+      </div>
+    {% endfor %}
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-8">Other recommendations</h2>
+    <p class="govuk-body-s govuk-!-margin-bottom-5">
+      {{ otherSummary.actionAdded }} actions added · {{ otherSummary.noAction }} no action reasons recorded
+    </p>
+
+    {% for rec in otherRecommendations %}
+      <div class="govuk-summary-card govuk-!-margin-bottom-6">
+        <div class="govuk-summary-card__title-wrapper">
+          <h3 class="govuk-summary-card__title">
+            {{ rec.recId }} — {{ rec.outcome }} {{ rec.outcomeTitle }}
+          </h3>
+
+          <ul class="govuk-summary-card__actions">
+            <li class="govuk-summary-card__action">
+              <a class="govuk-link" href="{{ rec.changeHref }}">
+                Change
+                <span class="govuk-visually-hidden">
+                  {{ rec.recId }} {{ rec.outcome }} {{ rec.outcomeTitle }}
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="govuk-summary-card__content">
+          <p class="govuk-body-s govuk-!-margin-bottom-3">
+            Other recommendation
+          </p>
+
+          {{ govukSummaryList({
+            classes: "govuk-!-margin-bottom-0",
+            rows: rec.rows
+          }) }}
+        </div>
+      </div>
+    {% endfor %}
+
+    <form action="/webcaf/tip/current/check-answers" method="post" novalidate>
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        name: "confirmAnswers",
+        fieldset: {
+          legend: {
+            text: "Do you confirm that the information in this TIP is correct?",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes",
+            checked: data['confirmAnswers'] == 'yes'
+          },
+          {
+            value: "no",
+            text: "No",
+            checked: data['confirmAnswers'] == 'no'
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}

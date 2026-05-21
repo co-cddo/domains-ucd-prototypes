@@ -1,0 +1,201 @@
+{% extends "/layouts/tip.html" %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "govuk/components/task-list/macro.njk" import govukTaskList %}
+
+{% block pageTitle %}
+Task list – Draft TIP
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: { text: "prototype", classes: "govuk-tag--pink" },
+  html: "This is not a full service. It is not production code."
+}) }}
+
+{{ govukBreadcrumbs({
+  items: [
+    { text: "My account", href: "/webcaf/tip/current/my-account" },
+    { text: "Edit draft TIP" }
+  ]
+}) }}
+
+<div class="proto-admin govuk-!-margin-bottom-6">
+  <p><strong>You have completed 5% of your TIP</strong></p>
+  <div class="progress-inactive">
+    <div class="progress-active" style="width: 5%"></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+{% if priorityTaskComplete %}
+  {% set priorityStatus = {
+    text: "Completed"
+  } %}
+{% else %}
+  {% set priorityStatus = {
+    tag: {
+      text: "Incomplete",
+      classes: "govuk-tag--blue"
+    }
+  } %}
+{% endif %}
+{% if otherTaskComplete %}
+  {% set otherStatus = {
+    text: "Completed"
+  } %}
+{% else %}
+  {% set otherStatus = {
+    tag: {
+      text: "Incomplete",
+      classes: "govuk-tag--blue"
+    }
+  } %}
+{% endif %}
+
+{% if canStartCheckAnswers %}
+  {% set checkAnswersItem = {
+    title: {
+      text: "Check your answers before submission"
+    },
+    href: "/webcaf/tip/current/check-answers",
+    status: {
+      tag: {
+        text: "Incomplete",
+        classes: "govuk-tag--blue"
+      }
+    }
+  } %}
+{% else %}
+  {% set checkAnswersItem = {
+    title: {
+      text: "Check your answers before submission"
+    },
+    status: {
+      text: "Cannot start yet",
+      classes: "govuk-task-list__status--cannot-start-yet"
+    }
+  } %}
+{% endif %}
+
+{% if canStartSubmit %}
+  {% set submitItem = {
+    title: {
+      text: "Submit and download your TIP"
+    },
+    href: "/webcaf/tip/current/submit-tip",
+    status: {
+      tag: {
+        text: "Incomplete",
+        classes: "govuk-tag--blue"
+      }
+    }
+  } %}
+{% else %}
+  {% set submitItem = {
+    title: {
+      text: "Submit and download your TIP"
+    },
+    status: {
+      text: "Cannot start yet",
+      classes: "govuk-task-list__status--cannot-start-yet"
+    }
+  } %}
+{% endif %}
+
+{% if checkAnswersComplete %}
+  {% set checkAnswersItem = {
+    title: {
+      text: "Check your answers before submission"
+    },
+    href: "/webcaf/tip/current/check-answers",
+    status: {
+      text: "Completed"
+    }
+  } %}
+{% elif canStartCheckAnswers %}
+  {% set checkAnswersItem = {
+    title: {
+      text: "Check your answers before submission"
+    },
+    href: "/webcaf/tip/current/check-answers",
+    status: {
+      tag: {
+        text: "Incomplete",
+        classes: "govuk-tag--blue"
+      }
+    }
+  } %}
+{% else %}
+  {% set checkAnswersItem = {
+    title: {
+      text: "Check your answers before submission"
+    },
+    status: {
+      text: "Cannot start yet",
+      classes: "govuk-task-list__status--cannot-start-yet"
+    }
+  } %}
+{% endif %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-three-quarters">
+
+    <span class="govuk-caption-l">{{ system.name }} ({{ system.finalReportReference }})</span>
+    <h1 class="govuk-heading-l">Complete a Targeted Improvement Plan (TIP)</h1>
+
+    <p class="govuk-body">
+      <strong>In-progress TIP</strong>
+    </p>
+
+    <h2 class="govuk-heading-m">1. Create TIP actions</h2>
+
+    {{ govukTaskList({
+      idPrefix: "create-tip-actions",
+      items: [
+        {
+          title: {
+            text: "Review priority recommendations (" + priorityCount + ")"
+          },
+          hint: {
+            text: "Review recommendations and risks for outcomes that did not meet the Government CAF profile."
+          },
+          href: priorityTaskHref,
+          status: priorityStatus
+        },
+        {
+          title: {
+            text: "Review other recommendations (" ~ otherCount ~ ")"
+          },
+          hint: {
+            text: "Review recommendations and risks for outcomes that met the Government CAF profile."
+          },
+          href: otherTaskHref,
+          status: otherStatus
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-6">2. Review TIP answers</h2>
+
+    {{ govukTaskList({
+      idPrefix: "review-tip-answers",
+      items: [ checkAnswersItem ]
+    }) }}
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-6">3. Submit TIP to GovAssure</h2>
+
+    {{ govukTaskList({
+      idPrefix: "submit-tip",
+      items: [ submitItem ]
+    }) }}
+
+    <p class="govuk-body govuk-!-margin-top-6">
+      <a href="/webcaf/tip/current/my-account" class="govuk-link">Return to My account</a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,395 @@
+{% extends "/layouts/tip.html" %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+{% block pageTitle %}
+Review recommendation and action
+{% endblock %}
+
+{% set noActionReasonHtml %}
+  {{ govukTextarea({
+    name: "noActionReason",
+    id: "noActionReason",
+    value: item.noActionReason or "",
+    label: {
+      text: "Explain why you will not add an action",
+      classes: "govuk-label--s"
+    }
+  }) }}
+{% endset %}
+
+{% set targetDateQuestionHtml %}
+  <div class="govuk-!-margin-top-3">
+    {{ govukDateInput({
+      id: "targetDate",
+      namePrefix: "targetDate",
+      fieldset: {
+        legend: {
+          text: "Estimated target completion date",
+          classes: "govuk-fieldset__legend--s"
+        }
+      },
+      hint: {
+        text: "For example, 27 3 2027"
+      },
+      items: [
+        {
+          classes: "govuk-input--width-2",
+          name: "day",
+          value: item.actionDetails.targetDate.day if item.actionDetails and item.actionDetails.targetDate,
+          label: "Day"
+        },
+        {
+          classes: "govuk-input--width-2",
+          name: "month",
+          value: item.actionDetails.targetDate.month if item.actionDetails and item.actionDetails.targetDate,
+          label: "Month"
+        },
+        {
+          classes: "govuk-input--width-4",
+          name: "year",
+          value: item.actionDetails.targetDate.year if item.actionDetails and item.actionDetails.targetDate,
+          label: "Year"
+        }
+      ]
+    }) }}
+  </div>
+{% endset %}
+
+{% set noDateReasonHtml %}
+  <div class="govuk-!-margin-top-3">
+    {{ govukTextarea({
+      name: "noTimingReason",
+      id: "noTimingReason",
+      value: item.actionDetails.noTimingReason if item.actionDetails else "",
+      label: {
+        text: "Explain why you cannot provide a target date",
+        classes: "govuk-label--s"
+      }
+    }) }}
+  </div>
+{% endset %}
+
+{% set actionFieldsHtml %}
+  <div class="govuk-!-margin-top-3">
+    {{ govukTextarea({
+      name: "actionText",
+      id: "actionText",
+      value: item.actionDetails.actionText if item.actionDetails else "",
+      label: {
+        text: "What action will you take?",
+        classes: "govuk-label--m"
+      },
+      hint: {
+        text: "Describe the action and how it will implement the recommendation"
+      }
+    }) }}
+
+    {{ govukInput({
+      name: "owner",
+      id: "owner",
+      value: item.actionDetails.owner if item.actionDetails and item.actionDetails.owner else lastPriorityOwner,
+      classes: "govuk-!-width-two-thirds",
+      label: {
+        text: "Who owns this action?",
+        classes: "govuk-label--m"
+      },
+      hint: {
+        text: "Enter action owner full name or team name. The last owner you entered has been used as the default. Change it if needed."
+      }
+    }) }}
+
+    {{ govukRadios({
+      name: "resourceAvailable",
+      fieldset: {
+        legend: {
+          text: "Are the resources available to deliver this action?",
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      hint: {
+        text: "This means whether you have the people, capacity and supporting resources needed to do the work."
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Yes",
+          checked: item.actionDetails and item.actionDetails.resourceAvailable == "yes"
+        },
+        {
+          value: "no",
+          text: "No",
+          checked: item.actionDetails and item.actionDetails.resourceAvailable == "no"
+        },
+        {
+          divider: "or"
+        },
+        {
+          value: "unknown",
+          text: "I'm not sure",
+          checked: item.actionDetails and item.actionDetails.resourceAvailable == "unknown"
+        }
+      ]
+    }) }}
+
+    {{ govukRadios({
+      name: "budgetAvailable",
+      fieldset: {
+        legend: {
+          text: "Is the budget approved to deliver this action?",
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      hint: {
+        text: "This means whether the funding needed for the action has been approved."
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Yes",
+          checked: item.actionDetails and item.actionDetails.budgetAvailable == "yes"
+        },
+        {
+          value: "no",
+          text: "No",
+          checked: item.actionDetails and item.actionDetails.budgetAvailable == "no"
+        },
+        {
+          divider: "or"
+        },
+        {
+          value: "unknown",
+          text: "I'm not sure",
+          checked: item.actionDetails and item.actionDetails.budgetAvailable == "unknown"
+        }
+      ]
+    }) }}
+
+    {{ govukRadios({
+      name: "canProvideTargetDate",
+      fieldset: {
+        legend: {
+          text: "Can you provide an estimated target completion date?",
+          classes: "govuk-fieldset__legend--m"
+        }
+      },
+      items: [
+        {
+          value: "yes",
+          text: "Yes",
+          checked: item.actionDetails and item.actionDetails.canProvideTargetDate == "yes",
+          conditional: {
+            html: targetDateQuestionHtml
+          }
+        },
+        {
+          value: "no",
+          text: "No",
+          checked: item.actionDetails and item.actionDetails.canProvideTargetDate == "no",
+          conditional: {
+            html: noDateReasonHtml
+          }
+        }
+      ]
+    }) }}
+  </div>
+{% endset %}
+
+{% if returnTo == "check-answers" %}
+  {% set backHref = "/webcaf/tip/current/check-answers" %}
+  {% set cancelHref = "/webcaf/tip/current/check-answers" %}
+{% else %}
+  {% set backHref = prioritySummaryHref %}
+  {% set cancelHref = prioritySummaryHref %}
+{% endif %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: { text: "prototype", classes: "govuk-tag--pink" },
+  html: "This is not a full service. It is not production code."
+}) }}
+
+{{ govukBreadcrumbs({
+  items: [
+    { text: "My account", href: "/webcaf/tip/current/my-account" },
+    { text: "Edit draft TIP", href: "/webcaf/tip/current/draft-tip" },
+    { text: "Review priority recommendation and action", href: prioritySummaryHref },
+    { text: item.recId }
+  ]
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .tip-hidden {
+    display: none;
+  }
+</style>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+<span class="govuk-caption-l">{{ item.systemName or "Microsoft CS version 3" }} ({{ item.finalReportReference or "CAF24092025FDMH" }})</span>
+<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Review priority recommendation and action</h1>
+<p class="govuk-body govuk-!-margin-bottom-6"><strong>Recommendation ID:</strong> {{ item.recId }}</p>
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">
+          <strong>Contributing outcome:</strong> {{ item.outcome }} {{ item.outcomeTitle }}
+        </h2>
+      </div>
+
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Associated risk</dt>
+            <dd class="govuk-summary-list__value">
+              <span class="govuk-caption-m">{{ item.riskId }}</span>
+              <p class="govuk-body govuk-!-margin-bottom-0">{{ item.riskText }}</p>
+            </dd>
+          </div>
+
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Reviewer recommendation</dt>
+            <dd class="govuk-summary-list__value">
+              <span class="govuk-caption-m">{{ item.recId }}</span>
+              <p class="govuk-body govuk-!-margin-bottom-0">{{ item.recommendationText }}</p>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <form action="/webcaf/tip/current/task/1/{{ item.recId | lower }}/review{% if returnTo == 'check-answers' %}?returnTo=check-answers{% endif %}" method="post">
+
+      {{ govukRadios({
+        name: "reviewedRecommendationAndRisk",
+        classes: "govuk-radios--inline",
+        fieldset: {
+          legend: {
+            text: "Have you reviewed this recommendation and associated risk?",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        hint: {
+          text: "If you select No, you can return to the recommendations list without adding a response now."
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+
+      <div id="add-action-question" class="tip-hidden govuk-!-margin-top-4">
+  {{ govukRadios({
+    name: "addAction",
+    fieldset: {
+      legend: {
+        text: "Will you add an action for this recommendation?",
+        classes: "govuk-fieldset__legend--m"
+      }
+    },
+    hint: {
+      text: "Priority recommendations must have an action unless you give a reason why you cannot add one."
+    },
+    items: [
+      {
+        value: "yes",
+        text: "Yes"
+      },
+      {
+        value: "no",
+        text: "No",
+        conditional: {
+          html: noActionReasonHtml
+        }
+      }
+    ]
+  }) }}
+</div>
+
+<div id="action-details-section" class="tip-hidden govuk-!-margin-top-5">
+  <h2 class="govuk-heading-l">Action details</h2>
+  <p class="govuk-body">Provide the details for the action you will take in response to this recommendation.</p>
+  {{ actionFieldsHtml | safe }}
+</div>
+      <div class="govuk-button-group">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue to next item
+        </button>
+
+        <button type="submit" class="govuk-button govuk-button--secondary" name="saveReturn" value="yes" data-module="govuk-button">
+          Save and return to summary
+        </button>
+      </div>
+
+      {% if showBackToAnswers %}
+        <p class="govuk-body govuk-!-margin-top-4">
+          <a href="{{ backHref }}" class="govuk-link">Back to answers</a>
+        </p>
+      {% endif %}
+    </form>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const reviewedYes = document.querySelector('input[name="reviewedRecommendationAndRisk"][value="yes"]');
+    const reviewedNo = document.querySelector('input[name="reviewedRecommendationAndRisk"][value="no"]');
+
+    const addActionYes = document.querySelector('input[name="addAction"][value="yes"]');
+    const addActionNo = document.querySelector('input[name="addAction"][value="no"]');
+
+    const addActionQuestion = document.getElementById('add-action-question');
+    const noActionReasonSection = document.getElementById('no-action-reason-section');
+    const actionDetailsSection = document.getElementById('action-details-section');
+
+    function toggleSections() {
+      const reviewedIsYes = reviewedYes && reviewedYes.checked;
+      const addActionIsYes = addActionYes && addActionYes.checked;
+      const addActionIsNo = addActionNo && addActionNo.checked;
+
+      if (addActionQuestion) {
+        if (reviewedIsYes) {
+          addActionQuestion.classList.remove('tip-hidden');
+        } else {
+          addActionQuestion.classList.add('tip-hidden');
+        }
+      }
+
+      if (noActionReasonSection) {
+        if (reviewedIsYes && addActionIsNo) {
+          noActionReasonSection.classList.remove('tip-hidden');
+        } else {
+          noActionReasonSection.classList.add('tip-hidden');
+        }
+      }
+
+      if (actionDetailsSection) {
+        if (reviewedIsYes && addActionIsYes) {
+          actionDetailsSection.classList.remove('tip-hidden');
+        } else {
+          actionDetailsSection.classList.add('tip-hidden');
+        }
+      }
+    }
+
+    [reviewedYes, reviewedNo, addActionYes, addActionNo].forEach(function (el) {
+      if (el) el.addEventListener('change', toggleSections);
+    });
+
+    toggleSections();
+  });
+</script>
+
+{% endblock %}
