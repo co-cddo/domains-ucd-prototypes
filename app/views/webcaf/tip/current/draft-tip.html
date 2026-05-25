@@ -41,6 +41,7 @@ Task list – Draft TIP
     }
   } %}
 {% endif %}
+
 {% if otherTaskComplete %}
   {% set otherStatus = {
     text: "Completed"
@@ -50,56 +51,6 @@ Task list – Draft TIP
     tag: {
       text: "Incomplete",
       classes: "govuk-tag--blue"
-    }
-  } %}
-{% endif %}
-
-{% if canStartCheckAnswers %}
-  {% set checkAnswersItem = {
-    title: {
-      text: "Check your answers before submission"
-    },
-    href: "/webcaf/tip/current/check-answers",
-    status: {
-      tag: {
-        text: "Incomplete",
-        classes: "govuk-tag--blue"
-      }
-    }
-  } %}
-{% else %}
-  {% set checkAnswersItem = {
-    title: {
-      text: "Check your answers before submission"
-    },
-    status: {
-      text: "Cannot start yet",
-      classes: "govuk-task-list__status--cannot-start-yet"
-    }
-  } %}
-{% endif %}
-
-{% if canStartSubmit %}
-  {% set submitItem = {
-    title: {
-      text: "Submit and download your TIP"
-    },
-    href: "/webcaf/tip/current/submit-tip",
-    status: {
-      tag: {
-        text: "Incomplete",
-        classes: "govuk-tag--blue"
-      }
-    }
-  } %}
-{% else %}
-  {% set submitItem = {
-    title: {
-      text: "Submit and download your TIP"
-    },
-    status: {
-      text: "Cannot start yet",
-      classes: "govuk-task-list__status--cannot-start-yet"
     }
   } %}
 {% endif %}
@@ -139,6 +90,41 @@ Task list – Draft TIP
   } %}
 {% endif %}
 
+{% if submitTaskComplete %}
+  {% set submitItem = {
+    title: {
+      text: "Submit and download your TIP"
+    },
+    href: "/webcaf/tip/current/submit-and-download",
+    status: {
+      text: "Completed"
+    }
+  } %}
+{% elif canStartSubmit %}
+  {% set submitItem = {
+    title: {
+      text: "Submit and download your TIP"
+    },
+    href: "/webcaf/tip/current/submit-and-download",
+    status: {
+      tag: {
+        text: "Incomplete",
+        classes: "govuk-tag--blue"
+      }
+    }
+  } %}
+{% else %}
+  {% set submitItem = {
+    title: {
+      text: "Submit and download your TIP"
+    },
+    status: {
+      text: "Cannot start yet",
+      classes: "govuk-task-list__status--cannot-start-yet"
+    }
+  } %}
+{% endif %}
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-three-quarters">
 
@@ -156,7 +142,7 @@ Task list – Draft TIP
       items: [
         {
           title: {
-            text: "Review priority recommendations (" + priorityCount + ")"
+            text: "Review priority recommendations (" ~ priorityCount ~ ")"
           },
           hint: {
             text: "Review recommendations and risks for outcomes that did not meet the Government CAF profile."

@@ -1,0 +1,1251 @@
+{% extends "/layouts/tip.html" %}
+
+{% block pageTitle %}
+Draft Target Improvement Plan output - SYS-0001 Microsoft CS version 3 (CAF24092025FDMH)
+{% endblock %}
+
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+  },
+  html: 'This is not a full service. It is not production code and you might experience problems.'
+}) }}
+
+{{ govukBreadcrumbs({
+  items: [
+    { text: "My account", href: "/webcaf/tip/current/my-account" },
+    
+    { text: "Final Targeted Improvement Plan (TIP) output
+" }
+  ]
+
+}) }}
+{% endblock %}
+
+{% block content %}
+
+{% set tip = {
+  organisation: "Cabinet Office",
+  tipReference: "TIP-HBTRQJGF",
+  systemId: "SYS-0001",
+  systemName: "Microsoft CS version 3",
+  linkedReportReference: "CAF24092025FDMH",
+  finalReportDate: "17 December 2025",
+  submissionReadiness: "Submitted",
+
+  confirmations: {
+    priorityRecommendationsReviewed: "Completed",
+    otherRecommendationsReviewed: "Completed",
+    checkAnswersConfirmed: "Yes",
+    actionsSignedOff: "Yes — confirmed by submitting role"
+  },
+
+  priorityRecommendations: [
+  {
+    id: "REC-21",
+    type: "Priority",
+    outcome: "C2.a Proactive security event discovery",
+    riskId: "RP16",
+    risk: "Evidence supporting C2.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for C2.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for C2.a, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Morgan Ellis",
+    resourcesAvailable: "Yes",
+    budgetApproved: "Yes",
+    targetDate: "30/06/2026"
+  },
+  {
+    id: "REC-22",
+    type: "Priority",
+    outcome: "C1.b Security monitoring",
+    riskId: "RP14",
+    risk: "Evidence supporting C1.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for C1.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "No action planned",
+    reason: "The recommendation has been considered and will be monitored through existing governance."
+  },
+  {
+    id: "REC-23",
+    type: "Priority",
+    outcome: "C1.b Security monitoring",
+    riskId: "RP16",
+    risk: "Evidence supporting C1.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for C1.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for C1.b, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Chris Walker",
+    resourcesAvailable: "No",
+    budgetApproved: "Yes",
+    noTargetDateReason: "The target date will be confirmed after dependency and funding decisions are agreed."
+  },
+  {
+    id: "REC-24",
+    type: "Priority",
+    outcome: "A2.b Risk management",
+    riskId: "RP16",
+    risk: "Evidence supporting A2.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for A2.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for A2.b, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Priya Shah",
+    resourcesAvailable: "Yes",
+    budgetApproved: "No",
+    targetDate: "31/03/2027"
+  },
+  {
+    id: "REC-25",
+    type: "Priority",
+    outcome: "A1.c Governance review",
+    riskId: "RP15",
+    risk: "Evidence supporting A1.c is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for A1.c and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "No action planned",
+    reason: "Existing delivery activity already addresses this recommendation."
+  },
+  {
+    id: "REC-26",
+    type: "Priority",
+    outcome: "A4.a Supply chain",
+    riskId: "RP13",
+    risk: "Evidence supporting A4.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for A4.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for A4.a, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Security Operations",
+    resourcesAvailable: "Yes",
+    budgetApproved: "Yes",
+    targetDate: "31/12/2026"
+  },
+  {
+    id: "REC-27",
+    type: "Priority",
+    outcome: "A1.c Governance review",
+    riskId: "RP16",
+    risk: "Evidence supporting A1.c is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for A1.c and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for A1.c, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Security Operations",
+    resourcesAvailable: "I'm not sure",
+    budgetApproved: "I'm not sure",
+    noTargetDateReason: "The target date will be confirmed after dependency and funding decisions are agreed."
+  },
+  {
+    id: "REC-28",
+    type: "Priority",
+    outcome: "B1.a Service protection",
+    riskId: "RP17",
+    risk: "Evidence supporting B1.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for B1.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for B1.a, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Morgan Ellis",
+    resourcesAvailable: "Yes",
+    budgetApproved: "I'm not sure",
+    targetDate: "31/12/2026"
+  },
+  {
+    id: "REC-29",
+    type: "Priority",
+    outcome: "A1.c Governance review",
+    riskId: "RP14",
+    risk: "Evidence supporting A1.c is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for A1.c and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "No action planned",
+    reason: "This recommendation has been reviewed and no separate TIP action will be added at this stage."
+  },
+  {
+    id: "REC-30",
+    type: "Priority",
+    outcome: "A4.a Supply chain",
+    riskId: "RP16",
+    risk: "Evidence supporting A4.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for A4.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "No action planned",
+    reason: "This recommendation has been reviewed and no separate TIP action will be added at this stage."
+  },
+  {
+    id: "REC-31",
+    type: "Priority",
+    outcome: "A2.b Risk management",
+    riskId: "RP15",
+    risk: "Evidence supporting A2.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for A2.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for A2.b, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Security Operations",
+    resourcesAvailable: "I'm not sure",
+    budgetApproved: "I'm not sure",
+    targetDate: "30/09/2026"
+  },
+  {
+    id: "REC-32",
+    type: "Priority",
+    outcome: "C1.b Security monitoring",
+    riskId: "RP14",
+    risk: "Evidence supporting C1.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for C1.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for C1.b, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Technology Risk Team",
+    resourcesAvailable: "No",
+    budgetApproved: "I'm not sure",
+    targetDate: "30/09/2026"
+  },
+  {
+    id: "REC-33",
+    type: "Priority",
+    outcome: "D1.b Response and recovery planning",
+    riskId: "RP15",
+    risk: "Evidence supporting D1.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for D1.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "No action planned",
+    reason: "Existing delivery activity already addresses this recommendation."
+  },
+  {
+    id: "REC-34",
+    type: "Priority",
+    outcome: "A3.a Asset management",
+    riskId: "RP13",
+    risk: "Evidence supporting A3.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for A3.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "No action planned",
+    reason: "This recommendation has been reviewed and no separate TIP action will be added at this stage."
+  },
+  {
+    id: "REC-35",
+    type: "Priority",
+    outcome: "A4.a Supply chain",
+    riskId: "RP13",
+    risk: "Evidence supporting A4.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for A4.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for A4.a, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Chris Walker",
+    resourcesAvailable: "I'm not sure",
+    budgetApproved: "No",
+    targetDate: "31/03/2027"
+  },
+  {
+    id: "REC-36",
+    type: "Priority",
+    outcome: "B2.d Identity and access control",
+    riskId: "RP16",
+    risk: "Evidence supporting B2.d is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for B2.d and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for B2.d, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Priya Shah",
+    resourcesAvailable: "Yes",
+    budgetApproved: "I'm not sure",
+    targetDate: "31/12/2026"
+  },
+  {
+    id: "REC-37",
+    type: "Priority",
+    outcome: "D2.a Lessons learned",
+    riskId: "RP17",
+    risk: "Evidence supporting D2.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for D2.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for D2.a, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Chris Walker",
+    resourcesAvailable: "No",
+    budgetApproved: "No",
+    targetDate: "30/09/2026"
+  },
+  {
+    id: "REC-38",
+    type: "Priority",
+    outcome: "C1.b Security monitoring",
+    riskId: "RP16",
+    risk: "Evidence supporting C1.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for C1.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for C1.b, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Morgan Ellis",
+    resourcesAvailable: "Yes",
+    budgetApproved: "Yes",
+    targetDate: "31/03/2027"
+  },
+  {
+    id: "REC-39",
+    type: "Priority",
+    outcome: "C2.a Proactive security event discovery",
+    riskId: "RP13",
+    risk: "Evidence supporting C2.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for C2.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for C2.a, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Chris Walker",
+    resourcesAvailable: "No",
+    budgetApproved: "I'm not sure",
+    targetDate: "30/06/2026"
+  },
+  {
+    id: "REC-40",
+    type: "Priority",
+    outcome: "D1.b Response and recovery planning",
+    riskId: "RP13",
+    risk: "Evidence supporting D1.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for D1.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "No action planned",
+    reason: "The recommendation has been considered and will be monitored through existing governance."
+  },
+  {
+    id: "REC-41",
+    type: "Priority",
+    outcome: "A4.a Supply chain",
+    riskId: "RP15",
+    risk: "Evidence supporting A4.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for A4.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for A4.a, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Technology Risk Team",
+    resourcesAvailable: "Yes",
+    budgetApproved: "No",
+    targetDate: "31/12/2026"
+  },
+  {
+    id: "REC-42",
+    type: "Priority",
+    outcome: "C1.b Security monitoring",
+    riskId: "RP14",
+    risk: "Evidence supporting C1.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for C1.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for C1.b, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Morgan Ellis",
+    resourcesAvailable: "I'm not sure",
+    budgetApproved: "No",
+    noTargetDateReason: "The target date will be confirmed after dependency and funding decisions are agreed."
+  },
+  {
+    id: "REC-43",
+    type: "Priority",
+    outcome: "C1.b Security monitoring",
+    riskId: "RP17",
+    risk: "Evidence supporting C1.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for C1.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for C1.b, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Security Operations",
+    resourcesAvailable: "Yes",
+    budgetApproved: "I'm not sure",
+    noTargetDateReason: "The target date will be confirmed after dependency and funding decisions are agreed."
+  },
+  {
+    id: "REC-44",
+    type: "Priority",
+    outcome: "C1.b Security monitoring",
+    riskId: "RP13",
+    risk: "Evidence supporting C1.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for C1.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "No action planned",
+    reason: "This recommendation has been reviewed and no separate TIP action will be added at this stage."
+  },
+  {
+    id: "REC-45",
+    type: "Priority",
+    outcome: "A1.a Board direction",
+    riskId: "RP13",
+    risk: "Evidence supporting A1.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for A1.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "No action planned",
+    reason: "This recommendation has been reviewed and no separate TIP action will be added at this stage."
+  },
+  {
+    id: "REC-46",
+    type: "Priority",
+    outcome: "A3.a Asset management",
+    riskId: "RP13",
+    risk: "Evidence supporting A3.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for A3.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for A3.a, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Chris Walker",
+    resourcesAvailable: "Yes",
+    budgetApproved: "Yes",
+    noTargetDateReason: "The target date will be confirmed after dependency and funding decisions are agreed."
+  },
+  {
+    id: "REC-47",
+    type: "Priority",
+    outcome: "A1.c Governance review",
+    riskId: "RP17",
+    risk: "Evidence supporting A1.c is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for A1.c and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "No action planned",
+    reason: "Existing delivery activity already addresses this recommendation."
+  },
+  {
+    id: "REC-48",
+    type: "Priority",
+    outcome: "D1.b Response and recovery planning",
+    riskId: "RP16",
+    risk: "Evidence supporting D1.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for D1.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "No action planned",
+    reason: "Existing delivery activity already addresses this recommendation."
+  },
+  {
+    id: "REC-49",
+    type: "Priority",
+    outcome: "A4.a Supply chain",
+    riskId: "RP17",
+    risk: "Evidence supporting A4.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for A4.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "No action planned",
+    reason: "This recommendation has been reviewed and no separate TIP action will be added at this stage."
+  },
+  {
+    id: "REC-50",
+    type: "Priority",
+    outcome: "A3.a Asset management",
+    riskId: "RP17",
+    risk: "Evidence supporting A3.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for A3.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "No action planned",
+    reason: "The recommendation has been considered and will be monitored through existing governance."
+  },
+  {
+    id: "REC-51",
+    type: "Priority",
+    outcome: "A3.a Asset management",
+    riskId: "RP15",
+    risk: "Evidence supporting A3.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for A3.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for A3.a, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Security Operations",
+    resourcesAvailable: "No",
+    budgetApproved: "I'm not sure",
+    targetDate: "30/09/2026"
+  },
+  {
+    id: "REC-52",
+    type: "Priority",
+    outcome: "A3.a Asset management",
+    riskId: "RP13",
+    risk: "Evidence supporting A3.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for A3.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for A3.a, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Technology Risk Team",
+    resourcesAvailable: "Yes",
+    budgetApproved: "No",
+    targetDate: "31/12/2026"
+  },
+  {
+    id: "REC-53",
+    type: "Priority",
+    outcome: "B2.c Privileged user management",
+    riskId: "RP18",
+    risk: "Evidence supporting B2.c is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for B2.c and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for B2.c, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Morgan Ellis",
+    resourcesAvailable: "Yes",
+    budgetApproved: "No",
+    noTargetDateReason: "The target date will be confirmed after dependency and funding decisions are agreed."
+  },
+  {
+    id: "REC-54",
+    type: "Priority",
+    outcome: "B4.b Secure configuration",
+    riskId: "RP19",
+    risk: "Evidence supporting B4.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for B4.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for B4.b, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Chris Walker",
+    resourcesAvailable: "No",
+    budgetApproved: "I'm not sure",
+    targetDate: "30/09/2026"
+  },
+  {
+    id: "REC-55",
+    type: "Priority",
+    outcome: "B4.d Vulnerability management",
+    riskId: "RP20",
+    risk: "Evidence supporting B4.d is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for B4.d and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "No action planned",
+    reason: "Existing delivery activity already addresses this recommendation."
+  },
+  {
+    id: "REC-56",
+    type: "Priority",
+    outcome: "B5.c Backups",
+    riskId: "RP21",
+    risk: "Evidence supporting B5.c is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for B5.c and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for B5.c, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Security Operations",
+    resourcesAvailable: "Yes",
+    budgetApproved: "Yes",
+    targetDate: "31/03/2027"
+  },
+  {
+    id: "REC-57",
+    type: "Priority",
+    outcome: "B3.b Data in transit",
+    riskId: "RP22",
+    risk: "Evidence supporting B3.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for B3.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for B3.b, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Technology Risk Team",
+    resourcesAvailable: "Yes",
+    budgetApproved: "No",
+    targetDate: "30/06/2026"
+  },
+  {
+    id: "REC-58",
+    type: "Priority",
+    outcome: "B3.c Stored data",
+    riskId: "RP23",
+    risk: "Evidence supporting B3.c is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for B3.c and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for B3.c, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Service Owner",
+    resourcesAvailable: "No",
+    budgetApproved: "I'm not sure",
+    noTargetDateReason: "The target date will be confirmed after dependency and funding decisions are agreed."
+  },
+  {
+    id: "REC-59",
+    type: "Priority",
+    outcome: "B6.b Cyber security training",
+    riskId: "RP24",
+    risk: "Evidence supporting B6.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for B6.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "No action planned",
+    reason: "This recommendation has been reviewed and no separate TIP action will be added at this stage."
+  },
+  {
+    id: "REC-60",
+    type: "Priority",
+    outcome: "C1.c Generating alerts",
+    riskId: "RP25",
+    risk: "Evidence supporting C1.c is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for C1.c and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for C1.c, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Infrastructure Lead",
+    resourcesAvailable: "Yes",
+    budgetApproved: "Yes",
+    targetDate: "31/03/2027"
+  },
+  {
+    id: "REC-61",
+    type: "Priority",
+    outcome: "C1.d Identifying security incidents",
+    riskId: "RP26",
+    risk: "Evidence supporting C1.d is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for C1.d and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for C1.d, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Morgan Ellis",
+    resourcesAvailable: "Yes",
+    budgetApproved: "No",
+    targetDate: "30/06/2026"
+  },
+  {
+    id: "REC-62",
+    type: "Priority",
+    outcome: "C1.e Monitoring tools and skills",
+    riskId: "RP27",
+    risk: "Evidence supporting C1.e is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for C1.e and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for C1.e, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Chris Walker",
+    resourcesAvailable: "No",
+    budgetApproved: "I'm not sure",
+    targetDate: "30/09/2026"
+  },
+  {
+    id: "REC-63",
+    type: "Priority",
+    outcome: "D2.b Using incidents to drive improvements",
+    riskId: "RP28",
+    risk: "Evidence supporting D2.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for D2.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "No action planned",
+    reason: "The recommendation has been considered and will be monitored through existing governance."
+  },
+  {
+    id: "REC-64",
+    type: "Priority",
+    outcome: "B4.a Secure by design",
+    riskId: "RP29",
+    risk: "Evidence supporting B4.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for B4.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for B4.a, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Security Operations",
+    resourcesAvailable: "Yes",
+    budgetApproved: "Yes",
+    targetDate: "31/03/2027"
+  },
+  {
+    id: "REC-65",
+    type: "Priority",
+    outcome: "B1.b Policy and process implementation",
+    riskId: "RP30",
+    risk: "Evidence supporting B1.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for B1.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for B1.b, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Technology Risk Team",
+    resourcesAvailable: "Yes",
+    budgetApproved: "No",
+    targetDate: "30/06/2026"
+  }
+],
+
+otherRecommendations: [
+  {
+    id: "REC-201",
+    type: "Other",
+    outcome: "A2.b Risk management",
+    riskId: "RO01",
+    risk: "Evidence supporting A2.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for A2.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for A2.b, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Technology Risk Team",
+    resourcesAvailable: "No",
+    budgetApproved: "I'm not sure",
+    targetDate: "31/12/2026"
+  },
+  {
+    id: "REC-202",
+    type: "Other",
+    outcome: "A1.c Governance review",
+    riskId: "RO02",
+    risk: "Evidence supporting A1.c is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for A1.c and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for A1.c, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Security Operations",
+    resourcesAvailable: "Yes",
+    budgetApproved: "No",
+    targetDate: "30/09/2026"
+  },
+  {
+    id: "REC-203",
+    type: "Other",
+    outcome: "A4.a Supply chain",
+    riskId: "RO03",
+    risk: "Evidence supporting A4.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for A4.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "No action planned",
+    reason: "The recommendation has been considered and will be monitored through existing governance."
+  },
+  {
+    id: "REC-204",
+    type: "Other",
+    outcome: "B2.a Identity verification, authentication and authorisation",
+    riskId: "RO04",
+    risk: "Evidence supporting B2.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for B2.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for B2.a, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Morgan Ellis",
+    resourcesAvailable: "Yes",
+    budgetApproved: "No",
+    targetDate: "30/06/2026"
+  },
+  {
+    id: "REC-205",
+    type: "Other",
+    outcome: "B2.b Device management",
+    riskId: "RO05",
+    risk: "Evidence supporting B2.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for B2.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for B2.b, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Chris Walker",
+    resourcesAvailable: "No",
+    budgetApproved: "I'm not sure",
+    targetDate: "30/09/2026"
+  },
+  {
+    id: "REC-206",
+    type: "Other",
+    outcome: "B3.a Understanding data",
+    riskId: "RO06",
+    risk: "Evidence supporting B3.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for B3.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "No action planned",
+    reason: "This recommendation has been reviewed and no separate TIP action will be added at this stage."
+  },
+  {
+    id: "REC-207",
+    type: "Other",
+    outcome: "B3.d Mobile data",
+    riskId: "RO07",
+    risk: "Evidence supporting B3.d is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for B3.d and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for B3.d, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Security Operations",
+    resourcesAvailable: "Yes",
+    budgetApproved: "Yes",
+    targetDate: "31/03/2027"
+  },
+  {
+    id: "REC-208",
+    type: "Other",
+    outcome: "B3.e Media equipment sanitisation",
+    riskId: "RO08",
+    risk: "Evidence supporting B3.e is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for B3.e and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for B3.e, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Technology Risk Team",
+    resourcesAvailable: "Yes",
+    budgetApproved: "No",
+    noTargetDateReason: "The target date will be confirmed after dependency and funding decisions are agreed."
+  },
+  {
+    id: "REC-209",
+    type: "Other",
+    outcome: "B4.c Secure management",
+    riskId: "RO09",
+    risk: "Evidence supporting B4.c is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for B4.c and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for B4.c, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Service Owner",
+    resourcesAvailable: "No",
+    budgetApproved: "I'm not sure",
+    targetDate: "30/09/2026"
+  },
+  {
+    id: "REC-210",
+    type: "Other",
+    outcome: "B5.a Resilience preparation",
+    riskId: "RO10",
+    risk: "Evidence supporting B5.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for B5.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "No action planned",
+    reason: "The recommendation has been considered and will be monitored through existing governance."
+  },
+  {
+    id: "REC-211",
+    type: "Other",
+    outcome: "B5.b Design for resilience",
+    riskId: "RO11",
+    risk: "Evidence supporting B5.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for B5.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for B5.b, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Infrastructure Lead",
+    resourcesAvailable: "Yes",
+    budgetApproved: "Yes",
+    targetDate: "31/03/2027"
+  },
+  {
+    id: "REC-212",
+    type: "Other",
+    outcome: "B6.a Cyber security culture",
+    riskId: "RO12",
+    risk: "Evidence supporting B6.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for B6.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for B6.a, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Morgan Ellis",
+    resourcesAvailable: "Yes",
+    budgetApproved: "No",
+    targetDate: "30/06/2026"
+  },
+  {
+    id: "REC-213",
+    type: "Other",
+    outcome: "C2.b Proactive attack discovery",
+    riskId: "RO13",
+    risk: "Evidence supporting C2.b is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for C2.b and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for C2.b, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Chris Walker",
+    resourcesAvailable: "No",
+    budgetApproved: "I'm not sure",
+    noTargetDateReason: "The target date will be confirmed after dependency and funding decisions are agreed."
+  },
+  {
+    id: "REC-214",
+    type: "Other",
+    outcome: "D1.a Response plan",
+    riskId: "RO14",
+    risk: "Evidence supporting D1.a is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for D1.a and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "No action planned",
+    reason: "Existing delivery activity already addresses this recommendation."
+  },
+  {
+    id: "REC-215",
+    type: "Other",
+    outcome: "D1.c Testing and exercising",
+    riskId: "RO15",
+    risk: "Evidence supporting D1.c is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for D1.c and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for D1.c, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Security Operations",
+    resourcesAvailable: "Yes",
+    budgetApproved: "Yes",
+    targetDate: "31/03/2027"
+  },
+  {
+    id: "REC-216",
+    type: "Other",
+    outcome: "D2.c Recovery testing and exercising",
+    riskId: "RO16",
+    risk: "Evidence supporting D2.c is incomplete, which may reduce confidence that controls are consistently operating across the system.",
+    recommendation: "Strengthen assurance and evidence for D2.c and document the next actions needed to improve control confidence.",
+    reviewed: "Yes",
+    status: "Action added",
+    action: "Create and implement an improvement action plan for D2.c, assign named owners, and introduce a quarterly evidence review.",
+    owner: "Technology Risk Team",
+    resourcesAvailable: "Yes",
+    budgetApproved: "No",
+    targetDate: "30/06/2026"
+  }
+]
+} %}
+{% macro recommendationCard(rec) %}
+  <article class="app-recommendation-card">
+
+ 
+
+    <div class="app-recommendation-card__body">
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-0">
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Type</dt>
+          <dd class="govuk-summary-list__value">{{ rec.type }}</dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Outcome</dt>
+          <dd class="govuk-summary-list__value">{{ rec.outcome }}</dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Associated risk</dt>
+          <dd class="govuk-summary-list__value">
+            <strong>{{ rec.riskId }}</strong> — {{ rec.risk }}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Reviewer recommendation</dt>
+          <dd class="govuk-summary-list__value">{{ rec.recommendation }}</dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Reviewed recommendation and risk</dt>
+          <dd class="govuk-summary-list__value">{{ rec.reviewed }}</dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Status</dt>
+          <dd class="govuk-summary-list__value">
+            {% if rec.status == "Action added" %}
+              <strong class="govuk-tag govuk-tag--blue">
+                {{ rec.status }}
+              </strong>
+            {% else %}
+              <strong class="govuk-tag govuk-tag--grey">
+                {{ rec.status }}
+              </strong>
+            {% endif %}
+          </dd>
+        </div>
+
+        {% if rec.action %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Action</dt>
+            <dd class="govuk-summary-list__value">{{ rec.action }}</dd>
+          </div>
+        {% endif %}
+
+        {% if rec.owner %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Owner</dt>
+            <dd class="govuk-summary-list__value">{{ rec.owner }}</dd>
+          </div>
+        {% endif %}
+
+        {% if rec.resourcesAvailable %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Resources available</dt>
+            <dd class="govuk-summary-list__value">{{ rec.resourcesAvailable }}</dd>
+          </div>
+        {% endif %}
+
+        {% if rec.budgetApproved %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Budget approved</dt>
+            <dd class="govuk-summary-list__value">{{ rec.budgetApproved }}</dd>
+          </div>
+        {% endif %}
+
+        {% if rec.targetDate %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Estimated target completion date</dt>
+            <dd class="govuk-summary-list__value">{{ rec.targetDate }}</dd>
+          </div>
+        {% endif %}
+
+        {% if rec.noTargetDateReason %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Reason no target date given</dt>
+            <dd class="govuk-summary-list__value">{{ rec.noTargetDateReason }}</dd>
+          </div>
+        {% endif %}
+
+        {% if rec.reason %}
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Reason for no action</dt>
+            <dd class="govuk-summary-list__value">{{ rec.reason }}</dd>
+          </div>
+        {% endif %}
+
+      </dl>
+
+    </div>
+
+  </article>
+{% endmacro %}
+
+<style>
+  .app-report-header {
+    background: #1d70b8;
+    color: #ffffff;
+    padding: 35px 30px 30px;
+    margin-bottom: 30px;
+  }
+
+  .app-report-header .govuk-caption-l,
+  .app-report-header .govuk-heading-xl,
+  .app-report-header .govuk-body-l,
+  .app-report-header .govuk-summary-list__key,
+  .app-report-header .govuk-summary-list__value {
+    color: #ffffff;
+  }
+
+  .app-report-header .govuk-summary-list__row {
+    border-bottom-color: rgba(255, 255, 255, 0.35);
+  }
+
+  .app-side-nav {
+    border-left: 4px solid #1d70b8;
+    padding-left: 15px;
+    position: sticky;
+    top: 20px;
+  }
+
+  .app-side-nav__heading {
+    margin-bottom: 10px;
+  }
+
+  .app-side-nav__list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  .app-side-nav__list li {
+    margin-bottom: 10px;
+  }
+
+  .app-section {
+    margin-bottom: 45px;
+  }
+
+  .app-recommendation-card {
+    border: 1px solid #b1b4b6;
+    margin-bottom: 25px;
+    background: #ffffff;
+  }
+
+  .app-recommendation-card__header {
+    border-bottom: 1px solid #b1b4b6;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .app-recommendation-card__body {
+    padding: 0 20px;
+  }
+
+  @media (max-width: 40.0625em) {
+    .app-side-nav {
+      position: static;
+      margin-bottom: 30px;
+    }
+
+    .app-recommendation-card__header {
+      display: block;
+    }
+
+    .app-recommendation-card__header .govuk-tag {
+      margin-top: 10px;
+    }
+  }
+</style>
+
+
+{# =========================================================
+   Header (keep your colour scheme / template)
+   ========================================================= #}
+<header class="gem-c-inverse-header">
+  <div class="gem-c-heading gem-c-heading--inverse">
+    <span class="govuk-caption-xl gem-c-heading__context gem-c-heading__xl_caption">
+     	Microsoft CS version 3
+    </span>
+
+    <span class="gem-c-heading__xl govuk-heading-xl">
+     Final Targeted Improvement Plan (TIP) output
+    </span>
+
+     <span class="gem-c-inverse-header__subtext">
+     <strong> Final TIP report</strong>
+    </span>
+    <br>
+     <span class="gem-c-inverse-header__subtext">
+     Reference: {{ tip.linkedReportReference }}
+    </span>
+
+  </div>
+</header>
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-one-quarter">
+
+    <nav class="app-side-nav" aria-label="Page sections">
+      <h2 class="govuk-heading-s app-side-nav__heading">Contents</h2>
+
+      <ul class="app-side-nav__list">
+        <li>
+          <a class="govuk-link govuk-link--no-visited-state" href="#section-1">
+            Overview
+          </a>
+        </li>
+        <li>
+          <a class="govuk-link govuk-link--no-visited-state" href="#tip-metadata">
+            TIP metadata
+          </a>
+        </li>
+        <li>
+          <a class="govuk-link govuk-link--no-visited-state" href="#user-confirmations">
+            User confirmations
+          </a>
+        </li>
+        <li>
+          <a class="govuk-link govuk-link--no-visited-state" href="#priority-recommendations">
+            Priority recommendations
+          </a>
+        </li>
+        <li>
+          <a class="govuk-link govuk-link--no-visited-state" href="#other-recommendations">
+            Other recommendations
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+
+  <main class="govuk-grid-column-three-quarters">
+
+    <section class="app-section" id="section-1">
+      <h2 class="govuk-heading-l">Overview</h2>
+
+      <p class="govuk-body">
+        This sample HTML export shows the sort of downloadable Target Improvement Plan output a higher-role user could review before submission.
+      </p>
+
+      <p class="govuk-body">
+        It includes the linked report reference, system metadata, user confirmations, priority recommendations, other recommendations, associated risks, action responses, owners, funding responses and timing information.
+      </p>
+    </section>
+
+    <section class="app-section" id="tip-metadata">
+      <h2 class="govuk-heading-l">TIP metadata</h2>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">TIP reference</dt>
+          <dd class="govuk-summary-list__value">{{ tip.tipReference }}</dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">System name</dt>
+          <dd class="govuk-summary-list__value">{{ tip.systemName }}</dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Linked report reference</dt>
+          <dd class="govuk-summary-list__value">
+            <a class="govuk-link" href="#">{{ tip.linkedReportReference }}</a>
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Final report date</dt>
+          <dd class="govuk-summary-list__value">{{ tip.finalReportDate }}</dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Submission status</dt>
+          <dd class="govuk-summary-list__value">
+            <strong class="govuk-tag govuk-tag--green">
+              {{ tip.submissionReadiness }}
+            </strong>
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="app-section" id="user-confirmations">
+      <h2 class="govuk-heading-l">User confirmations</h2>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Priority recommendations reviewed</dt>
+          <dd class="govuk-summary-list__value">
+            {{ tip.confirmations.priorityRecommendationsReviewed }}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Other recommendations reviewed</dt>
+          <dd class="govuk-summary-list__value">
+            {{ tip.confirmations.otherRecommendationsReviewed }}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Check answers confirmed</dt>
+          <dd class="govuk-summary-list__value">
+            {{ tip.confirmations.checkAnswersConfirmed }}
+          </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Actions signed off</dt>
+          <dd class="govuk-summary-list__value">
+            {{ tip.confirmations.actionsSignedOff }}
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="app-section" id="priority-recommendations">
+      <h2 class="govuk-heading-l">Priority recommendations</h2>
+
+      <p class="govuk-body">
+        Includes all recommendations that must be acknowledged and either have an improvement action added or a reason recorded where no action is planned.
+      </p>
+
+      {% for rec in tip.priorityRecommendations %}
+  {{ recommendationCard(rec) }}
+{% endfor %}
+    </section>
+
+    <section class="app-section" id="other-recommendations">
+      <h2 class="govuk-heading-l">Other recommendations</h2>
+
+      <p class="govuk-body">
+        Includes other reviewer recommendations that have been reviewed as part of the Target Improvement Plan response.
+      </p>
+
+      {% for rec in tip.otherRecommendations %}
+  {{ recommendationCard(rec) }}
+{% endfor %}
+    </section>
+
+  </main>
+
+</div>
+
+{% endblock %}

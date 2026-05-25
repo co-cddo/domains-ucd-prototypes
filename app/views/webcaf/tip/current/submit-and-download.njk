@@ -1,0 +1,108 @@
+{% extends "/layouts/tip.html" %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+Submit and download your TIP
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+  },
+  html: "This is not a full service. It is not production code."
+}) }}
+
+{{ govukBackLink({
+  text: "Back",
+  href: "/webcaf/tip/current/draft-tip"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+  <span class="govuk-caption-l">{{ item.systemName or "Microsoft CS version 3" }} ({{ item.finalReportReference or "CAF24092025FDMH" }})</span>
+<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Submit and download your TIP</h1>
+
+        <p class="govuk-body">
+  Your Targeted Improvement Plan (TIP) is ready to be downloaded and passed to the appropriate role for submission.
+</p>
+
+    {{ govukInsetText({
+  text: "You can go back to check your answers, download the TIP to complete final sign-off, or continue to submission."
+}) }}
+
+   {{ govukSummaryList({
+  rows: [
+    {
+      key: {
+        text: "Priority recommendations"
+      },
+      value: {
+        text: "Completed"
+      }
+    },
+    {
+      key: {
+        text: "Other recommendations"
+      },
+      value: {
+        text: "Completed"
+      }
+    },
+    {
+      key: {
+        text: "Check your answers"
+      },
+      value: {
+        text: "Completed"
+      }
+    }
+  ]
+}) }}
+
+    <h2 class="govuk-heading-m">Download TIP</h2>
+
+    <p class="govuk-body">
+      <a href="#" class="govuk-link govuk-link--no-visited-state">Download draft TIP (PDF)</a>
+    </p>
+<br>
+    <form action="/webcaf/tip/current/confirmation" method="post" novalidate>
+      {{ govukCheckboxes({
+        name: "signedOffConfirmation",
+        fieldset: {
+          legend: {
+            text: "Confirm before continuing",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        hint: {
+          text: "You must confirm this before continuing."
+        },
+        items: [
+          {
+            value: "yes",
+            text: "I confirm that all actions in this TIP have been signed off by the relevant managers, teams or stakeholders.",
+            checked: data['signedOffConfirmation'] == 'yes'
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+      <p class="govuk-body">
+  <a href="/webcaf/tip/current/check-answers" class="govuk-link">Back to check your answers</a>
+</p>
+    </form>
+
+  </div>
+</div>
+{% endblock %}

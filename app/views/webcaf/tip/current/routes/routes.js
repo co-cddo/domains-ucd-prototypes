@@ -596,7 +596,7 @@ router.get('/webcaf/tip/current/my-account', function (req, res) {
       primaryActionText: isPriorityTaskComplete(tip) ? 'Continue TIP' : 'Start TIP',
       primaryActionHref: '/webcaf/tip/current/draft-tip',
       secondaryActionText: 'View final report',
-      secondaryActionHref: '/webcaf/tip/current/task/9/report-history-final'
+      secondaryActionHref: '/webcaf/tip/current/iar-report-v6'
     },
     {
       id: 'GOV.UK Communications Hub',
@@ -606,7 +606,7 @@ router.get('/webcaf/tip/current/my-account', function (req, res) {
       primaryActionText: 'Continue TIP',
       primaryActionHref: '/webcaf/tip/current/draft-tip',
       secondaryActionText: 'View final report',
-      secondaryActionHref: '/webcaf/tip/current/task/9/report-history-final'
+      secondaryActionHref: '/webcaf/tip/current/iar-report-v6'
     },
     {
       id: 'Cabinet HR Portal',
@@ -615,8 +615,8 @@ router.get('/webcaf/tip/current/my-account', function (req, res) {
       tipStatus: 'Closed',
       primaryActionText: 'View submitted TIP',
       primaryActionHref: '#',
-      secondaryActionText: 'View final report',
-      secondaryActionHref: '/webcaf/tip/current/task/9/report-history-final'
+      secondaryActionText: 'View TIP report',
+      secondaryActionHref: '/webcaf/tip/current/tip-output'
     }
   ]
 
@@ -629,17 +629,20 @@ router.get('/webcaf/tip/current/draft-tip', function (req, res) {
   const tip = buildTipState(req.session.data)
 
   res.render('webcaf/tip/current/draft-tip', {
-    system: tip.system,
-    priorityCount: String(tip.priorityCount),
-    otherCount: String(tip.otherCount),
-    priorityTaskComplete: isPriorityTaskComplete(tip),
-    priorityTaskHref: '/webcaf/tip/current/task/1/priority-c',
-    otherTaskComplete: isOtherTaskComplete(tip, req.session.data),
-    otherTaskHref: getOtherTaskHref(),
-    canStartCheckAnswers: canStartTipCheckAnswers(tip, req.session.data),
-    checkAnswersComplete: isCheckAnswersConfirmed(req.session.data),
-    canStartSubmit: false
-  })
+  system: tip.system,
+  priorityCount: String(tip.priorityCount),
+  otherCount: String(tip.otherCount),
+  priorityTaskComplete: isPriorityTaskComplete(tip),
+  priorityTaskHref: '/webcaf/tip/current/task/1/priority-c',
+  otherTaskComplete: isOtherTaskComplete(tip, req.session.data),
+  otherTaskHref: getOtherTaskHref(),
+  canStartCheckAnswers: canStartTipCheckAnswers(tip, req.session.data),
+  checkAnswersComplete: isCheckAnswersConfirmed(req.session.data),
+  canStartSubmit: isPriorityTaskComplete(tip) &&
+    isOtherTaskComplete(tip, req.session.data) &&
+    isCheckAnswersConfirmed(req.session.data),
+  submitTaskComplete: req.session.data.tipSubmitAndDownloadComplete === true
+})
 })
 
 router.get('/webcaf/tip/current/task/1/priority', function (req, res) {

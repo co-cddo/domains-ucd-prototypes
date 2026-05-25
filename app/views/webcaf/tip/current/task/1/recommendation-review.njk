@@ -351,27 +351,17 @@ Review recommendation and action
     const addActionNo = document.querySelector('input[name="addAction"][value="no"]');
 
     const addActionQuestion = document.getElementById('add-action-question');
-    const noActionReasonSection = document.getElementById('no-action-reason-section');
     const actionDetailsSection = document.getElementById('action-details-section');
 
     function toggleSections() {
       const reviewedIsYes = reviewedYes && reviewedYes.checked;
       const addActionIsYes = addActionYes && addActionYes.checked;
-      const addActionIsNo = addActionNo && addActionNo.checked;
 
       if (addActionQuestion) {
         if (reviewedIsYes) {
           addActionQuestion.classList.remove('tip-hidden');
         } else {
           addActionQuestion.classList.add('tip-hidden');
-        }
-      }
-
-      if (noActionReasonSection) {
-        if (reviewedIsYes && addActionIsNo) {
-          noActionReasonSection.classList.remove('tip-hidden');
-        } else {
-          noActionReasonSection.classList.add('tip-hidden');
         }
       }
 

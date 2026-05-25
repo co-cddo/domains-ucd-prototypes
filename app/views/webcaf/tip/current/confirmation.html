@@ -1,0 +1,89 @@
+{% extends "/layouts/tip.html" %}
+
+{% block pageTitle %}
+TIP submitted – GovAssure Independent Assurance Review
+{% endblock %}
+
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{{ govukPhaseBanner({
+  tag: { text: "prototype", classes: "govuk-tag--pink" },
+  html: "This is not a full service. It is not production code and you might experience problems."
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <!-- CONFIRMATION PANEL -->
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">
+        TIP submitted
+      </h1>
+      <div class="govuk-panel__body">
+        Reference number<br>
+        <strong>GA-TIP-48291</strong>
+      </div>
+    </div>
+
+    <!-- METADATA SECTION -->
+    <h2 class="govuk-heading-m govuk-!-margin-top-6">TIP details</h2>
+
+    <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+      
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">System</dt>
+        <dd class="govuk-summary-list__value">Microsoft CS version 3 (CAF24092025FDMH)</dd>
+      </div>
+      
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Date submitted</dt>
+        <dd class="govuk-summary-list__value">21 May 2026 at 16:32</dd>
+      </div>
+      
+      
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Submitted by</dt>
+        <dd class="govuk-summary-list__value">Joe Morgan (GovAssure Lead)</dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Organisation</dt>
+        <dd class="govuk-summary-list__value">Cabinet Office</dd>
+      </div>
+     
+
+    </dl>
+
+    <p class="govuk-body">
+      You have now successfully submitted your TIP. You will find a copy of the submitted TIP output in your GovAssure account.
+    </p>
+    <!-- NEXT STEPS -->
+    <h2 class="govuk-heading-m">Next steps</h2>
+    
+    <p class="govuk-body">
+      You can now download the TIP to share and discuss it with the organisation. </p>
+
+<p>You have now produced your final TIP. GovAssure will be in touch in aproximately 6 months to track progress of your actions. 
+    </p>
+   
+
+
+    <!-- DOWNLOAD ACTIONS -->
+    <div class="govuk-button-group govuk-!-margin-top-6">
+      <a href="/webcaf/tip/current/tip-output-sample" class="govuk-button" role="button">View TIP output sample (HTML)</a>
+      <a href="#" class="govuk-button govuk-button--secondary" role="button">Download TIP output (PDF)</a>
+    </div>    
+      <!-- OPTIONAL LINKS -->
+        <p class="govuk-body">
+    <a class="govuk-link" href="/webcaf/tip/current/my-account">
+        Return to My account
+      </a>
+</p>
+
+    
+  </div>
+</div>
+{% endblock %}
