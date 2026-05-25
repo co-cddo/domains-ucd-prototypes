@@ -18,11 +18,13 @@ Check your answers
   html: "This is not a full service. It is not production code."
 }) }}
 
-{{ govukBackLink({
-  text: "Back",
-  href: "/webcaf/tip/current/draft-tip"
+{{ govukBreadcrumbs({
+  items: [
+    { text: "My account", href: "/webcaf/tip/current/my-account" },
+    { text: "Edit draft TIP", href: "/webcaf/tip/current/draft-tip" },
+    { text: "Check your answers" }
+  ]
 }) }}
-{% endblock %}
 
 {% block content %}
 <div class="govuk-grid-row">
