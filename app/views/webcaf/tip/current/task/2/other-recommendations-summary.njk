@@ -59,14 +59,14 @@ Other recommendations
     <span class="govuk-caption-l">{{ tip.system.name }} ({{ tip.system.finalReportReference }})</span>
     <h1 class="govuk-heading-l">Other recommendations (16)</h1>
 
-    <h2 class="govuk-heading-m">You have reviewed {{ reviewed }} of 16 recommendations</h2>
+    <h2 class="govuk-heading-m">You have read {{ reviewed }} of 16 recommendations</h2>
 
     <p class="govuk-body">
-      Review other recommendations for this system. These relate to contributing outcomes that met the Government CAF profile.
+      You must read all the other recommendations for this system and the associated risks.  
     </p>
 
     {{ govukWarningText({
-      text: "You must review all other recommendations. Adding an action is optional.",
+      text: "You do not have to provide actions against these recommendations, as the contributing outcomes met the Government CAF profile",
       iconFallbackText: "Important"
     }) }}
 
@@ -102,9 +102,9 @@ Other recommendations
 
             <td class="govuk-table__cell">
               {% if row.locked %}
-                <a href="#">Review</a>
+                <a href="#">Read</a>
               {% elseif row.status == "not_reviewed" %}
-                <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Review</a>
+                <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Read</a>
               {% elseif row.status == "action_added" %}
                 <strong class="govuk-tag govuk-tag--blue tip-status-tag">Action added</strong>
                 <br><br>
@@ -140,24 +140,22 @@ Other recommendations
 
 {% if not reviewed %}
   <div class="govuk-!-margin-top-7">
-    <h2 class="govuk-heading-m">Review remaining recommendations at once</h2>
+    <h2 class="govuk-heading-m">Mark all recommendations as read</h2>
 
     <form action="/webcaf/tip/current/task/2/review-all" method="post">
       {{ govukRadios({
         name: "confirmBulkReview",
+        classes: "govuk-radios--inline",
         fieldset: {
           legend: {
-            text: "Do you want to mark all remaining other recommendations as reviewed, with no action planned?",
+            text: "Have you read all the recommendations?",
             classes: "govuk-fieldset__legend--s"
           }
         },
         items: [
           {
             value: "yes",
-            text: "Yes",
-            conditional: {
-              html: bulkNoActionReasonHtml
-            }
+            text: "Yes"
           },
           {
             value: "no",

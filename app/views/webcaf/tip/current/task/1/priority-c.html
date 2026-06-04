@@ -16,17 +16,17 @@ Review priority recommendations and actions
   items: [
     { text: "My account", href: "/webcaf/tip/current/my-account" },
     { text: "Edit draft TIP", href: "/webcaf/tip/current/draft-tip" },
-    { text: "Review priority recommendation and action" }
+    { text: "Priority recommendation and action" }
   ]
 }) }}
 
 <div class="proto-admin govuk-!-margin-bottom-6">
-  <h2 class="govuk-heading-s">{{ progress.reviewed }} of {{ progress.total }} recommendations reviewed</h2>
+  <h2 class="govuk-heading-s">{{ progress.reviewed }} of {{ progress.total }} recommendations read</h2>
   <div class="progress-inactive">
     <div class="progress-active" style="width: {{ (progress.reviewed / progress.total * 100) | round(0, 'floor') }}%"></div>
   </div>
   <p class="govuk-body-s govuk-!-margin-top-2 govuk-!-margin-bottom-0">
-    {{ progress.actionAdded }} actions added · {{ progress.noActionPlanned }} no action planned · {{ progress.notReviewed }} not reviewed
+    {{ progress.actionAdded }} actions added · {{ progress.noActionPlanned }} no action planned · {{ progress.notReviewed }} not read yet
   </p>
 </div>
 {% endblock %}
@@ -153,14 +153,17 @@ Review priority recommendations and actions
   <div class="govuk-grid-column-full">
 
     <span class="govuk-caption-l">{{ tip.system.name }} ({{ tip.system.finalReportReference }})</span>
-    <h1 class="govuk-heading-l">Review priority recommendations and actions ({{ progress.total }})</h1>
+    <h1 class="govuk-heading-l">Priority recommendations ({{ progress.total }})</h1>
 
     <p class="govuk-body">
-      Review priority recommendations for this system. These were identified by the independent assurance reviewer for each contributing outcome that did not meet the outcome's Baseline Government CAF profile.
+      You must read all the priority recommendations for this system and the risks associated with them. The independent assurance reviewer reported that the contributing outcome failed to meet the Baseline Government CAF profile.
     </p>
+    
+    <p class="govuk-heading-m">Provide actions</p>
+    
 
     {{ govukWarningText({
-      text: "All priority recommendations must be reviewed and an action added. Alternatively, add a reason if no action is planned.",
+      text: "You must provide an action for every priority recommendation. If you do not plan to add an action, you must give a reason. ",
       iconFallbackText: "Warning"
     }) }}
 
@@ -208,7 +211,7 @@ Review priority recommendations and actions
         </label>
         <select class="govuk-select" id="status-filter" name="status">
           <option value="">All statuses</option>
-          <option value="not_reviewed">Not reviewed</option>
+          <option value="not_reviewed">Not read</option>
           <option value="action_added">Action added</option>
           <option value="no_action_planned">No action planned</option>
         </select>
@@ -272,9 +275,9 @@ Review priority recommendations and actions
 
             <td class="govuk-table__cell tip-status-cell">
               {% if row.locked %}
-                <a href="#">Review</a>
+                <a href="#">Read</a>
               {% elseif row.status == "not_reviewed" %}
-                <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Review</a>
+                <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Read</a>
               {% elseif row.status == "action_added" %}
                 <strong class="govuk-tag govuk-tag--blue tip-status-tag">Action added</strong>
                 <br><br>

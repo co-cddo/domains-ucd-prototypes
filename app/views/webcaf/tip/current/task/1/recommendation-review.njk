@@ -6,7 +6,7 @@
 {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
 
 {% block pageTitle %}
-Review recommendation and action
+Read recommendation and action
 {% endblock %}
 
 {% set noActionReasonHtml %}
@@ -216,7 +216,7 @@ Review recommendation and action
   items: [
     { text: "My account", href: "/webcaf/tip/current/my-account" },
     { text: "Edit draft TIP", href: "/webcaf/tip/current/draft-tip" },
-    { text: "Review priority recommendation and action", href: prioritySummaryHref },
+    { text: "Read priority recommendation and action", href: prioritySummaryHref },
     { text: item.recId }
   ]
 }) }}
@@ -233,7 +233,7 @@ Review recommendation and action
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 <span class="govuk-caption-l">{{ item.systemName or "Microsoft CS version 3" }} ({{ item.finalReportReference or "CAF24092025FDMH" }})</span>
-<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Review priority recommendation and action</h1>
+<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Read priority recommendation and action</h1>
 <p class="govuk-body govuk-!-margin-bottom-6"><strong>Recommendation ID:</strong> {{ item.recId }}</p>
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
@@ -270,7 +270,7 @@ Review recommendation and action
         classes: "govuk-radios--inline",
         fieldset: {
           legend: {
-            text: "Have you reviewed this recommendation and associated risk?",
+            text: "Have you read this recommendation and associated risk?",
             classes: "govuk-fieldset__legend--m"
           }
         },

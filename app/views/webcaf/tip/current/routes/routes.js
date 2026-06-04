@@ -595,7 +595,7 @@ router.get('/webcaf/tip/current/my-account', function (req, res) {
       tipStatus: isPriorityTaskComplete(tip) ? 'In-progress' : 'To do',
       primaryActionText: isPriorityTaskComplete(tip) ? 'Continue TIP' : 'Start TIP',
       primaryActionHref: '/webcaf/tip/current/draft-tip',
-      secondaryActionText: 'View final report',
+      secondaryActionText: 'View final IAAR',
       secondaryActionHref: '/webcaf/tip/current/iar-report-v6'
     },
     {
@@ -605,8 +605,8 @@ router.get('/webcaf/tip/current/my-account', function (req, res) {
       tipStatus: 'In-progress',
       primaryActionText: 'Continue TIP',
       primaryActionHref: '/webcaf/tip/current/draft-tip',
-      secondaryActionText: 'View final report',
-      secondaryActionHref: '/webcaf/tip/current/iar-report-v6'
+      secondaryActionText: 'View final Peer Review report',
+      secondaryActionHref: '/webcaf/tip/current/peer-review-report'
     },
     {
       id: 'Cabinet HR Portal',

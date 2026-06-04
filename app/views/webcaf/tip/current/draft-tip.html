@@ -58,7 +58,7 @@ Task list – Draft TIP
 {% if checkAnswersComplete %}
   {% set checkAnswersItem = {
     title: {
-      text: "Check your answers before submission"
+      text: "Check your actions before submission"
     },
     href: "/webcaf/tip/current/check-answers",
     status: {
@@ -68,7 +68,7 @@ Task list – Draft TIP
 {% elif canStartCheckAnswers %}
   {% set checkAnswersItem = {
     title: {
-      text: "Check your answers before submission"
+      text: "Check your actions before submission"
     },
     href: "/webcaf/tip/current/check-answers",
     status: {
@@ -81,7 +81,7 @@ Task list – Draft TIP
 {% else %}
   {% set checkAnswersItem = {
     title: {
-      text: "Check your answers before submission"
+      text: "Check your actions before submission"
     },
     status: {
       text: "Cannot start yet",
@@ -108,7 +108,7 @@ Task list – Draft TIP
     href: "/webcaf/tip/current/submit-and-download",
     status: {
       tag: {
-        text: "Incomplete",
+        text: "Pending approval",
         classes: "govuk-tag--blue"
       }
     }
@@ -123,39 +123,46 @@ Task list – Draft TIP
       classes: "govuk-task-list__status--cannot-start-yet"
     }
   } %}
+
+
 {% endif %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-three-quarters">
 
     <span class="govuk-caption-l">{{ system.name }} ({{ system.finalReportReference }})</span>
-    <h1 class="govuk-heading-l">Complete a Targeted Improvement Plan (TIP)</h1>
+    <h1 class="govuk-heading-l">Create a Targeted Improvement Plan (TIP)</h1>
 
     <p class="govuk-body">
       <strong>In-progress TIP</strong>
     </p>
-
-    <h2 class="govuk-heading-m">1. Create TIP actions</h2>
+<p>You must read and consider the risks for both priority and other recommendations. 
+ 
+You must provide an action for every priority recommendation. If you do not plan to add an action, you must give a reason. 
+ 
+<br><br>You do not have to provide actions for the other recommendations. 
+</p>
+    <h2 class="govuk-heading-m">1. Record TIP actions</h2>
 
     {{ govukTaskList({
       idPrefix: "create-tip-actions",
       items: [
         {
           title: {
-            text: "Review priority recommendations (" ~ priorityCount ~ ")"
+            text: "Read priority recommendations (" ~ priorityCount ~ ")"
           },
           hint: {
-            text: "Review recommendations and risks for outcomes that did not meet the Government CAF profile."
+            text: "Read the recommendation and risks for outcomes that did not meet the Government CAF profile."
           },
           href: priorityTaskHref,
           status: priorityStatus
         },
         {
           title: {
-            text: "Review other recommendations (" ~ otherCount ~ ")"
+            text: "Read other recommendations (" ~ otherCount ~ ")"
           },
           hint: {
-            text: "Review recommendations and risks for outcomes that met the Government CAF profile."
+            text: "Read the recommendations and risks for outcomes that met the Government CAF profile."
           },
           href: otherTaskHref,
           status: otherStatus
@@ -163,12 +170,15 @@ Task list – Draft TIP
       ]
     }) }}
 
-    <h2 class="govuk-heading-m govuk-!-margin-top-6">2. Review TIP answers</h2>
+    <h2 class="govuk-heading-m govuk-!-margin-top-6">2. Review TIP actions</h2>
 
     {{ govukTaskList({
       idPrefix: "review-tip-answers",
       items: [ checkAnswersItem ]
     }) }}
+
+
+
 
     <h2 class="govuk-heading-m govuk-!-margin-top-6">3. Submit TIP to GovAssure</h2>
 

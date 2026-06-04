@@ -112,6 +112,18 @@ Check your answers
       </div>
     {% endfor %}
 
+
+     <h2 class="govuk-heading-l">Download your draft TIP</h2>
+<div id="changedName-hint" class="govuk-hint">
+      Your draft Targeted Improvement Plan (TIP) is ready to be downloaded and passed to the relevant managers, teams or stakeholders for final sign-off.
+    </div>
+    <p class="govuk-body">
+      <a href="/public/downloads/draft-tip-report.pdf" class="govuk-link govuk-link--no-visited-state" download="Draft-TIP-Report.pdf">Download draft TIP (PDF)</a><br>
+      <a href="#" class="govuk-link govuk-link--no-visited-state" download="Draft-TIP-Report.pdf">Download draft TIP Excel data (XLSX)</a>
+    </p>
+     
+<br>
+
     <form action="/webcaf/tip/current/check-answers" method="post" novalidate>
       {{ govukRadios({
         classes: "govuk-radios--inline",
@@ -121,6 +133,9 @@ Check your answers
             text: "Do you confirm that the information in this TIP is correct?",
             classes: "govuk-fieldset__legend--m"
           }
+        },
+         hint: {
+          text: "GovAssure must approve each TIP before final submission."
         },
         items: [
           {

@@ -29,14 +29,14 @@ Submit and download your TIP
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
   <span class="govuk-caption-l">{{ item.systemName or "Microsoft CS version 3" }} ({{ item.finalReportReference or "CAF24092025FDMH" }})</span>
-<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Submit and download your TIP</h1>
+<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Submit your TIP</h1>
 
         <p class="govuk-body">
-  Your Targeted Improvement Plan (TIP) is ready to be downloaded and passed to the appropriate role for submission.
+  Your Targeted Improvement Plan (TIP) is ready for submission.
 </p>
 
     {{ govukInsetText({
-  text: "You can go back to check your answers, download the TIP to complete final sign-off, or continue to submission."
+  text: "You can go back to check your answers, download the draft TIP to complete final sign-off, or continue to submission."
 }) }}
 
    {{ govukSummaryList({
@@ -68,12 +68,7 @@ Submit and download your TIP
   ]
 }) }}
 
-    <h2 class="govuk-heading-m">Download TIP</h2>
-
-    <p class="govuk-body">
-      <a href="/public/downloads/draft-tip-report.pdf" class="govuk-link govuk-link--no-visited-state" download="Draft-TIP-Report.pdf">Download draft TIP (PDF)</a>
-    </p>
-<br>
+   
     <form action="/webcaf/tip/current/confirmation" method="post" novalidate>
       {{ govukCheckboxes({
         name: "signedOffConfirmation",
@@ -96,7 +91,7 @@ Submit and download your TIP
       }) }}
 
       {{ govukButton({
-        text: "Continue"
+        text: "Submit your TIP"
       }) }}
       <p class="govuk-body">
   <a href="/webcaf/tip/current/check-answers" class="govuk-link">Back to check your answers</a>
