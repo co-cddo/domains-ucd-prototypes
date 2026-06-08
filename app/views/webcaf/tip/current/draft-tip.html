@@ -101,18 +101,32 @@ Task list – Draft TIP
     }
   } %}
 {% elif canStartSubmit %}
+ {% set downloadItem = {
+  title: {
+    html: '<a class="govuk-link govuk-task-list__link" href="/public/downloads/draft-tip-report.pdf" target="_blank" rel="noopener noreferrer" download="Draft-TIP-Report.pdf">Download your draft TIP <span class="govuk-visually-hidden">(opens in new tab)</span></a>'
+  },
+  status: {
+    tag: {
+      text: "Pending approval",
+      classes: "govuk-tag--pink"
+    }
+  }
+} %}
+
   {% set submitItem = {
     title: {
-      text: "Submit and download your TIP"
+      text: "Submit your TIP to GovAssure"
     },
     href: "/webcaf/tip/current/submit-and-download",
     status: {
       tag: {
-        text: "Pending approval",
+        text: "Incomplete",
         classes: "govuk-tag--blue"
       }
     }
   } %}
+
+  
 {% else %}
   {% set submitItem = {
     title: {
@@ -182,10 +196,14 @@ You must provide an action for every priority recommendation. If you do not plan
 
     <h2 class="govuk-heading-m govuk-!-margin-top-6">3. Submit TIP to GovAssure</h2>
 
-    {{ govukTaskList({
-      idPrefix: "submit-tip",
-      items: [ submitItem ]
-    }) }}
+  {{ govukTaskList({
+    idPrefix: "submit-tip",
+    items: [
+      downloadItem,
+      submitItem
+    ]
+  }) }}
+    
 
     <p class="govuk-body govuk-!-margin-top-6">
       <a href="/webcaf/tip/current/my-account" class="govuk-link">Return to My account</a>

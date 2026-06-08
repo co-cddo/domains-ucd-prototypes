@@ -9,18 +9,6 @@
 Review other recommendation and action
 {% endblock %}
 
-{% set noActionReasonHtml %}
-  {{ govukTextarea({
-    name: "noActionReason",
-    id: "noActionReason",
-    value: item.noActionReason or "",
-    label: {
-      text: "Explain why you will not add an action",
-      classes: "govuk-label--s"
-    }
-  }) }}
-{% endset %}
-
 {% set targetDateQuestionHtml %}
   <div class="govuk-!-margin-top-3">
     {{ govukDateInput({
@@ -308,10 +296,7 @@ Review other recommendation and action
             },
             {
                 value: "no",
-                text: "No",
-                conditional: {
-                html: noActionReasonHtml
-                }
+                text: "No"
             }
             ]
         }) }}
