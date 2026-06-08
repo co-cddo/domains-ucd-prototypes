@@ -29,14 +29,14 @@ Submit and download your TIP
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
   <span class="govuk-caption-l">{{ item.systemName or "Microsoft CS version 3" }} ({{ item.finalReportReference or "CAF24092025FDMH" }})</span>
-<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Submit your TIP</h1>
+<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Submit your final TIP</h1>
 
         <p class="govuk-body">
   Your Targeted Improvement Plan (TIP) is ready for submission.
 </p>
 
     {{ govukInsetText({
-  text: "You can go back to check your answers, download the draft TIP to complete final sign-off, or continue to submission."
+  text: "You can go back to check your actions, download the draft TIP to complete final sign-off, or continue to submission."
 }) }}
 
    {{ govukSummaryList({
@@ -59,7 +59,15 @@ Submit and download your TIP
     },
     {
       key: {
-        text: "Check your answers"
+        text: "Check your actions"
+      },
+      value: {
+        text: "Completed"
+      }
+    },
+    {
+      key: {
+        text: "Draft TIP approved "
       },
       value: {
         text: "Completed"
@@ -91,7 +99,7 @@ Submit and download your TIP
       }) }}
 
       {{ govukButton({
-        text: "Submit your TIP"
+        text: "Submit your final TIP"
       }) }}
       <p class="govuk-body">
   <a href="/webcaf/tip/current/check-answers" class="govuk-link">Back to check your answers</a>

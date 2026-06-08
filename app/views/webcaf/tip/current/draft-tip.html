@@ -68,7 +68,7 @@ Task list – Draft TIP
 {% elif canStartCheckAnswers %}
   {% set checkAnswersItem = {
     title: {
-      text: "Check your actions before submission"
+      text: "Check your actions and send GovAssure your draft TIP"
     },
     href: "/webcaf/tip/current/check-answers",
     status: {
@@ -81,7 +81,7 @@ Task list – Draft TIP
 {% else %}
   {% set checkAnswersItem = {
     title: {
-      text: "Check your actions before submission"
+      text: "Check your actions and send GovAssure your draft TIP"
     },
     status: {
       text: "Cannot start yet",
@@ -93,7 +93,7 @@ Task list – Draft TIP
 {% if submitTaskComplete %}
   {% set submitItem = {
     title: {
-      text: "Submit and download your TIP"
+      text: "Submit your final TIP to GovAssure"
     },
     href: "/webcaf/tip/current/submit-and-download",
     status: {
@@ -115,7 +115,7 @@ Task list – Draft TIP
 
   {% set submitItem = {
     title: {
-      text: "Submit your TIP to GovAssure"
+      text: "Submit your final TIP to GovAssure"
     },
     href: "/webcaf/tip/current/submit-and-download",
     status: {
@@ -130,7 +130,7 @@ Task list – Draft TIP
 {% else %}
   {% set submitItem = {
     title: {
-      text: "Submit and download your TIP"
+      text: "Send GovAssure your final TIP and download it"
     },
     status: {
       text: "Cannot start yet",
@@ -166,7 +166,7 @@ You must provide an action for every priority recommendation. If you do not plan
             text: "Read priority recommendations (" ~ priorityCount ~ ")"
           },
           hint: {
-            text: "Read the recommendation and risks for outcomes that did not meet the Government CAF profile."
+            text: "Read the recommendations and risks for outcomes that did not meet the Government CAF profile."
           },
           href: priorityTaskHref,
           status: priorityStatus
@@ -184,7 +184,7 @@ You must provide an action for every priority recommendation. If you do not plan
       ]
     }) }}
 
-    <h2 class="govuk-heading-m govuk-!-margin-top-6">2. Review TIP actions</h2>
+    <h2 class="govuk-heading-m govuk-!-margin-top-6">2. Review and submit draft TIP</h2>
 
     {{ govukTaskList({
       idPrefix: "review-tip-answers",
@@ -194,7 +194,7 @@ You must provide an action for every priority recommendation. If you do not plan
 
 
 
-    <h2 class="govuk-heading-m govuk-!-margin-top-6">3. Submit TIP to GovAssure</h2>
+    <h2 class="govuk-heading-m govuk-!-margin-top-6">3. Submit final TIP</h2>
 
   {{ govukTaskList({
     idPrefix: "submit-tip",
