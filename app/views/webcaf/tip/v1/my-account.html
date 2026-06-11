@@ -1,0 +1,93 @@
+{% extends "/layouts/tip.html" %}
+
+{% block pageTitle %}
+My account - Reviewers – GOV.UK Prototype Kit
+{% endblock %}
+ 
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+  {{ govukBackLink({
+  text: "Back",
+  href: "my-account-draft"
+}) }}
+
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-l govuk-!-margin-top-4">
+      Cabinet Office
+    </h1>
+
+    <p class="govuk-body">
+      View and manage Targeted Improvement Plans (TIP) for CAF self-assessments. 
+You can open each system’s final IARR report.
+    </p>
+{% set tipStatusTagClass = {
+  "To do": "govuk-tag--blue",
+  "In-progress": "govuk-tag--yellow",
+  "Closed": "govuk-tag--green"
+} %}
+  
+
+
+  <table class="govuk-table">
+    <thead class="govuk-table__head">
+      <tr class="govuk-table__row">
+        <th scope="col" class="govuk-table__header">System and self-assessment reference</th>
+        <th scope="col" class="govuk-table__header">Final report date</th>
+        <th scope="col" class="govuk-table__header">TIP status</th>
+        <th scope="col" class="govuk-table__header">Tasks</th>
+      </tr>
+    </thead>
+    <tbody class="govuk-table__body">
+      {% for system in tipSystems %}
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <strong>{{ system.id }}</strong><br>
+            {{ system.finalReportReference }}
+          </td>
+
+          <td class="govuk-table__cell">
+            {{ system.finalReportDate }}
+          </td>
+
+          <td class="govuk-table__cell">
+            <strong class="govuk-tag {{ tipStatusTagClass[system.tipStatus] }}">
+              {{ system.tipStatus }}
+            </strong>
+          </td>
+
+          <td class="govuk-table__cell">
+            <a class="govuk-link govuk-link--no-visited-state" href="{{ system.primaryActionHref }}" >
+              {{ system.primaryActionText }}
+            </a>
+            {% if system.secondaryActionText %}
+              <br>
+              <a class="govuk-link govuk-link--no-visited-state" href="{{ system.secondaryActionHref }}" target="_blank">
+                {{ system.secondaryActionText }}
+              </a>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+
+
+
+
+  </div>
+</div>
+
+{% endblock %}

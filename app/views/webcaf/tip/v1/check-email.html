@@ -1,0 +1,61 @@
+{% extends "layouts/review.html" %}
+
+{% block pageTitle %}
+  Sign in  – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+  {{ govukPhaseBanner({
+    tag: {
+    text: "prototype",
+    classes: "govuk-tag--pink"
+    },
+      html: 'This is not a full service. It is not production code and you might experience problems.'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Check your email
+      </h1>
+
+      {{ govukInsetText({
+        html: "We have sent a one-time code to the email address you used to register with <b>WebCAF</b>."
+      }) }}
+      <p>
+        It might take a few minutes to arrive. The code will expire after 5 minutes. <br>
+        If you request a new code it will be sent 1 minute after the last request.
+      </p>
+{{ govukInput({
+  label: {
+    text: "Enter the 6 digit code"
+  },
+  classes: "govuk-input--width-5",
+  id: "width-5",
+  name: "width5"
+}) }}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+<form class="form" action="my-account-draft" method="post">
+<div class="govuk-button-group">
+  {{ govukButton({
+    text: "Continue"
+  }) }}
+
+  <a class="govuk-link" href="#">Resend the code</a> 
+  </form>
+</div>
+
+
+
+<p></p>
+
+    </div>
+  </div>
+
+{% endblock %}
