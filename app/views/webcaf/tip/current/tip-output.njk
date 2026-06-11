@@ -19,7 +19,7 @@ Draft Target Improvement Plan output - SYS-0001 Microsoft CS version 3 (CAF24092
   items: [
     { text: "My account", href: "/webcaf/tip/current/my-account" },
     
-    { text: "Final Targeted Improvement Plan (TIP) output
+    { text: "Final Targeted Improvement Plan (TIP)
 " }
   ]
 
@@ -1083,7 +1083,7 @@ otherRecommendations: [
     </span>
 
     <span class="gem-c-heading__xl govuk-heading-xl">
-     Final Targeted Improvement Plan (TIP) output
+     Final Targeted Improvement Plan (TIP) 
     </span>
 
      <span class="gem-c-inverse-header__subtext">
@@ -1112,7 +1112,7 @@ otherRecommendations: [
         </li>
         <li>
           <a class="govuk-link govuk-link--no-visited-state" href="#tip-metadata">
-            TIP metadata
+            About the report
           </a>
         </li>
         <li>
@@ -1150,7 +1150,7 @@ otherRecommendations: [
     </section>
 
     <section class="app-section" id="tip-metadata">
-      <h2 class="govuk-heading-l">TIP metadata</h2>
+      <h2 class="govuk-heading-l">About the report</h2>
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
@@ -1207,14 +1207,14 @@ otherRecommendations: [
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">Check answers confirmed</dt>
           <dd class="govuk-summary-list__value">
-            {{ tip.confirmations.checkAnswersConfirmed }}
+            {{ tip.confirmations.actionsSignedOff }}
           </dd>
         </div>
 
         <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">Actions signed off</dt>
+          <dt class="govuk-summary-list__key">GovAssure approved</dt>
           <dd class="govuk-summary-list__value">
-            {{ tip.confirmations.actionsSignedOff }}
+            {{ tip.confirmations.checkAnswersConfirmed }}
           </dd>
         </div>
       </dl>
