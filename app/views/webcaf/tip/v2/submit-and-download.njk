@@ -29,7 +29,7 @@ Submit and download your TIP
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
   <span class="govuk-caption-l">{{ item.systemName or "Microsoft CS version 3" }} ({{ item.finalReportReference or "CAF24092025FDMH" }})</span>
-<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Submit your TIP to GovAssure for approval</h1>
+<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Submit your final TIP</h1>
 
         <p class="govuk-body">
   Your Targeted Improvement Plan (TIP) is ready for submission.
@@ -64,6 +64,14 @@ Submit and download your TIP
       value: {
         text: "Completed"
       }
+    },
+    {
+      key: {
+        text: "Draft TIP approved "
+      },
+      value: {
+        text: "Completed"
+      }
     }
   ]
 }) }}
@@ -71,7 +79,7 @@ Submit and download your TIP
    
     <form action="/webcaf/tip/current/confirmation" method="post" novalidate>
       {{ govukCheckboxes({
-        name: "confirmSubmit",
+        name: "signedOffConfirmation",
         fieldset: {
           legend: {
             text: "Confirm before continuing",
@@ -85,13 +93,13 @@ Submit and download your TIP
           {
             value: "yes",
             text: "I confirm that all actions in this TIP have been signed off by the relevant managers, teams or stakeholders.",
-            checked: data['confirmSubmit'] == 'yes'
+            checked: data['signedOffConfirmation'] == 'yes'
           }
         ]
       }) }}
 
       {{ govukButton({
-        text: "Submit your TIP for approval"
+        text: "Submit your final TIP"
       }) }}
       <p class="govuk-body">
   <a href="/webcaf/tip/current/check-answers" class="govuk-link">Back to check your answers</a>

@@ -26,7 +26,7 @@ Review priority recommendations and actions
     <div class="progress-active" style="width: {{ (progress.reviewed / progress.total * 100) | round(0, 'floor') }}%"></div>
   </div>
   <p class="govuk-body-s govuk-!-margin-top-2 govuk-!-margin-bottom-0">
-    {{ progress.actionAdded }} actions added · {{ progress.inProgress }} in progress · {{ progress.noActionPlanned }} no action planned · {{ progress.notReviewed }} not read yet
+    {{ progress.actionAdded }} actions added · {{ progress.noActionPlanned }} no action planned · {{ progress.notReviewed }} not read yet
   </p>
 </div>
 {% endblock %}
@@ -147,35 +147,6 @@ Review priority recommendations and actions
   flex: 1 1 220px;
   min-width: 180px;
 }
-.tip-table-fixed {
-  table-layout: fixed;
-  width: 100%;
-}
-
-.tip-table-fixed .tip-col-id {
-  width: 7%;
-}
-
-.tip-table-fixed .tip-col-co {
-  width: 8%;
-}
-
-.tip-table-fixed .tip-col-risk {
-  width: 34%;
-}
-
-.tip-table-fixed .tip-col-recommendation {
-  width: 34%;
-}
-
-.tip-table-fixed .tip-col-status {
-  width: 17%;
-}
-
-.tip-table-fixed .govuk-table__cell {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-}
 </style>
 
 <div class="govuk-grid-row">
@@ -240,8 +211,7 @@ Review priority recommendations and actions
         </label>
         <select class="govuk-select" id="status-filter" name="status">
           <option value="">All statuses</option>
-          <option value="not_reviewed">Not responded</option>
-          <option value="in_progress">In progress</option>
+          <option value="not_reviewed">Not read</option>
           <option value="action_added">Action added</option>
           <option value="no_action_planned">No action planned</option>
         </select>
@@ -266,14 +236,7 @@ Review priority recommendations and actions
       </p>
     </div>
 
-    <table class="govuk-table govuk-!-font-size-16 tip-table-compact tip-table-fixed">
-      <colgroup>
-  <col class="tip-col-id">
-  <col class="tip-col-co">
-  <col class="tip-col-risk">
-  <col class="tip-col-recommendation">
-  <col class="tip-col-status">
-</colgroup>
+    <table class="govuk-table govuk-!-font-size-16 tip-table-compact">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header">ID</th>
@@ -312,24 +275,18 @@ Review priority recommendations and actions
 
             <td class="govuk-table__cell tip-status-cell">
               {% if row.locked %}
-      <a href="#">Respond</a>
-        {% elseif row.status == "not_reviewed" %}
-          <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Respond</a>
-        {% elseif row.status == "in_progress" %}
-          <strong class="govuk-tag govuk-tag--yellow tip-status-tag">In progress</strong>
-          <br><br>
-          <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Continue</a>
-
-        {% elseif row.status == "action_added" %}
-          <strong class="govuk-tag govuk-tag--blue tip-status-tag">Action added</strong>
-          <br><br>
-          <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Change</a>
-
-        {% elseif row.status == "no_action_planned" %}
-          <strong class="govuk-tag govuk-tag--grey tip-status-tag">No action planned</strong>
-          <br><br>
-          <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Change</a>
-        {% endif %}
+                <a href="#">Read</a>
+              {% elseif row.status == "not_reviewed" %}
+                <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Read</a>
+              {% elseif row.status == "action_added" %}
+                <strong class="govuk-tag govuk-tag--blue tip-status-tag">Action added</strong>
+                <br><br>
+                <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Change</a>
+              {% elseif row.status == "no_action_planned" %}
+                <strong class="govuk-tag govuk-tag--grey tip-status-tag">No action planned</strong>
+                <br><br>
+                <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Change</a>
+              {% endif %}
             </td>
           </tr>
         {% endfor %}

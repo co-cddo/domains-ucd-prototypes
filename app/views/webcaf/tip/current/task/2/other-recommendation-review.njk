@@ -253,33 +253,7 @@ Review other recommendation and action
 
     <form action="/webcaf/tip/current/task/2/{{ item.recId | lower }}/review{% if returnTo == 'check-answers' %}?returnTo=check-answers{% endif %}" method="post">
 
-      {{ govukRadios({
-        name: "reviewedRecommendationAndRisk",
-        classes: "govuk-radios--inline",
-        fieldset: {
-          legend: {
-            text: "Have you read this recommendation and associated risk?",
-            classes: "govuk-fieldset__legend--m"
-          }
-        },
-        hint: {
-          text: "If you select No, you can return to the recommendations list without adding a response now."
-        },
-        items: [
-          {
-            value: "yes",
-            text: "Yes",
-            checked: item.reviewedRecommendationAndRisk == "yes"
-          },
-          {
-            value: "no",
-            text: "No",
-            checked: item.reviewedRecommendationAndRisk == "no"
-          }
-        ]
-      }) }}
-
-      <div id="add-action-question" class="tip-hidden govuk-!-margin-top-4">
+     
         {{ govukRadios({
             name: "addAction",
             fieldset: {
@@ -292,19 +266,19 @@ Review other recommendation and action
             text: "Adding an action for other recommendations is optional."
             },
             items: [
-              {
-                value: "yes",
-                text: "Yes",
-                checked: item.addAction == "yes"
-              },
-              {
-                value: "no",
-                text: "No",
-                checked: item.addAction == "no"
-              }
-            ]
+      {
+        value: "yes",
+        text: "Yes",
+        checked: item.addAction == "yes"
+      },
+      {
+        value: "no",
+        text: "No",
+        checked: item.addAction == "no"
+      }
+    ]
         }) }}
-        </div>
+        
 
         <div id="action-details-section" class="tip-hidden govuk-!-margin-top-5">
         <h2 class="govuk-heading-l">Action details</h2>
@@ -334,41 +308,27 @@ Review other recommendation and action
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const reviewedYes = document.querySelector('input[name="reviewedRecommendationAndRisk"][value="yes"]');
-    const reviewedNo = document.querySelector('input[name="reviewedRecommendationAndRisk"][value="no"]');
-
     const addActionYes = document.querySelector('input[name="addAction"][value="yes"]');
     const addActionNo = document.querySelector('input[name="addAction"][value="no"]');
-
-    const addActionQuestion = document.getElementById('add-action-question');
     const actionDetailsSection = document.getElementById('action-details-section');
 
-    function toggleSections() {
-      const reviewedIsYes = reviewedYes && reviewedYes.checked;
-      const addActionIsYes = addActionYes && addActionYes.checked;
+    function toggleActionDetails() {
+      if (!actionDetailsSection) return;
 
-      if (addActionQuestion) {
-        if (reviewedIsYes) {
-          addActionQuestion.classList.remove('tip-hidden');
-        } else {
-          addActionQuestion.classList.add('tip-hidden');
-        }
-      }
-
-      if (actionDetailsSection) {
-        if (reviewedIsYes && addActionIsYes) {
-          actionDetailsSection.classList.remove('tip-hidden');
-        } else {
-          actionDetailsSection.classList.add('tip-hidden');
-        }
+      if (addActionYes && addActionYes.checked) {
+        actionDetailsSection.classList.remove('tip-hidden');
+      } else {
+        actionDetailsSection.classList.add('tip-hidden');
       }
     }
 
-    [reviewedYes, reviewedNo, addActionYes, addActionNo].forEach(function (el) {
-      if (el) el.addEventListener('change', toggleSections);
+    [addActionYes, addActionNo].forEach(function (el) {
+      if (el) {
+        el.addEventListener('change', toggleActionDetails);
+      }
     });
 
-    toggleSections();
+    toggleActionDetails();
   });
 </script>
 

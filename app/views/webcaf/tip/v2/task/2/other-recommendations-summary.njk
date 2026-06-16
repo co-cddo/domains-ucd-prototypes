@@ -33,7 +33,7 @@ Other recommendations
     </div>
     <div class="govuk-notification-banner__content">
       <p class="govuk-notification-banner__heading">
-        All remaining other recommendations have been marked as reviewed. You did not add actions.
+        All remaining other recommendations have been marked as read. You did not add any actions.
       </p>
     </div>
   </div>
@@ -102,9 +102,9 @@ Other recommendations
 
             <td class="govuk-table__cell">
               {% if row.locked %}
-                <a href="#">Review</a>
+                <a href="#">Read</a>
               {% elseif row.status == "not_reviewed" %}
-                <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Review</a>
+                <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Read</a>
               {% elseif row.status == "action_added" %}
                 <strong class="govuk-tag govuk-tag--blue tip-status-tag">Action added</strong>
                 <br><br>
@@ -140,7 +140,7 @@ Other recommendations
 
 {% if not reviewed %}
   <div class="govuk-!-margin-top-7">
-    <h2 class="govuk-heading-m">Mark all recommendations as reviewed</h2>
+    <h2 class="govuk-heading-m">Mark all recommendations as read</h2>
 
     <form action="/webcaf/tip/current/task/2/review-all" method="post">
       {{ govukRadios({
@@ -148,7 +148,7 @@ Other recommendations
         classes: "govuk-radios--inline",
         fieldset: {
           legend: {
-            text: "Have you reviewed all the recommendations?",
+            text: "Have you read all the recommendations?",
             classes: "govuk-fieldset__legend--s"
           }
         },

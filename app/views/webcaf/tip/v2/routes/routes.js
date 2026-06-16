@@ -305,9 +305,6 @@ function buildTipState(sessionData) {
     sessionData.tipJourney = tipJourney
   }
 
- 
-
-
   return sessionData.tipJourney
 }
 
@@ -326,77 +323,9 @@ function getPriorityTaskHref() {
 function getRecommendationStatus(rec) {
   if (!rec || rec.locked) return 'locked'
   if (!rec.reviewed) return 'not_reviewed'
-
-  if (rec.addAction === false) {
-    return 'no_action_planned'
-  }
-
-  if (rec.addAction === true) {
-    if (hasCompleteActionDetails(rec.actionDetails)) {
-      return 'action_added'
-    }
-
-    return 'in_progress'
-  }
-
+  if (rec.addAction === true) return 'action_added'
+  if (rec.addAction === false) return 'no_action_planned'
   return 'not_reviewed'
-}
-
-function hasLaterActionAnswer(actionDetails) {
-  if (!actionDetails) return false
-
-  return [
-    actionDetails.canProvideActionText,
-    actionDetails.canProvideOwner,
-    actionDetails.resourceAvailable,
-    actionDetails.budgetAvailable,
-    actionDetails.canProvideTargetDate
-  ].includes('later')
-}
-
-function hasCompleteActionDetails(actionDetails) {
-  if (!actionDetails) return false
-
-  const hasActionText =
-    actionDetails.canProvideActionText === 'yes' &&
-    (actionDetails.actionText || '').trim() !== ''
-
-  const hasOwner =
-    actionDetails.canProvideOwner === 'yes' &&
-    (actionDetails.owner || '').trim() !== ''
-
-  const resourcesAnswered =
-    ['yes', 'no', 'unknown'].includes(actionDetails.resourceAvailable)
-
-  const budgetAnswered =
-    ['yes', 'no', 'unknown'].includes(actionDetails.budgetAvailable)
-
-  const targetDateAnswered =
-    ['yes', 'no'].includes(actionDetails.canProvideTargetDate)
-
-  const targetDateComplete =
-    actionDetails.canProvideTargetDate !== 'yes' ||
-    (
-      actionDetails.targetDate &&
-      actionDetails.targetDate.day &&
-      actionDetails.targetDate.month &&
-      actionDetails.targetDate.year
-    )
-
-  const noDateReasonComplete =
-    actionDetails.canProvideTargetDate !== 'no' ||
-    (actionDetails.noTimingReason || '').trim() !== ''
-
-  return (
-    hasActionText &&
-    hasOwner &&
-    resourcesAnswered &&
-    budgetAnswered &&
-    targetDateAnswered &&
-    targetDateComplete &&
-    noDateReasonComplete &&
-    !hasLaterActionAnswer(actionDetails)
-  )
 }
 
 function getRecommendationHref(tip, recId) {
@@ -408,34 +337,6 @@ function getRecommendationHref(tip, recId) {
 
   return `/webcaf/tip/current/task/1/${recId.toLowerCase()}/review`
 }
-
-function isTipPendingApproval(sessionData) {
-  return sessionData.tipPendingApproval === true &&
-    sessionData.tipSubmitAndDownloadComplete !== true
-}
-
-
-function getTipStatus(tip, sessionData) {
-  if (sessionData.tipSubmitAndDownloadComplete === true) {
-    return 'Closed'
-  }
-
-  if (isTipPendingApproval(sessionData)) {
-    return 'Pending approval'
-  }
-
-  if (
-    isPriorityTaskComplete(tip) ||
-    isOtherTaskComplete(tip, sessionData) ||
-    isCheckAnswersConfirmed(sessionData)
-  ) {
-    return 'In-progress'
-  }
-
-  return 'To do'
-}
-
-
 
 function getNextUnreviewedRecId(tip, currentRecId) {
   const ids = getPriorityJourneyIds()
@@ -454,9 +355,7 @@ function getNextUnreviewedRecId(tip, currentRecId) {
 function isPriorityTaskComplete(tip) {
   return getPriorityJourneyIds().every((recId) => {
     const rec = tip.recommendations[recId]
-    const status = getRecommendationStatus(rec)
-
-    return status === 'action_added' || status === 'no_action_planned'
+    return rec && rec.reviewed === true
   })
 }
 
@@ -494,14 +393,12 @@ function getPriorityProgress(tip) {
   const total = tip.priorityCount
   const reviewed = rows.filter((row) => row.status !== 'not_reviewed').length
   const actionAdded = rows.filter((row) => row.status === 'action_added').length
-  const inProgress = rows.filter((row) => row.status === 'in_progress').length
   const noActionPlanned = rows.filter((row) => row.status === 'no_action_planned').length
 
   return {
     total,
     reviewed,
     actionAdded,
-    inProgress,
     noActionPlanned,
     notReviewed: total - reviewed
   }
@@ -596,21 +493,18 @@ function buildCheckAnswersRows(recommendations, taskNumber) {
 
       const changeHref = `/webcaf/tip/current/task/${taskNumber}/${rec.recId.toLowerCase()}/review?returnTo=check-answers`
 
-      rows.push({
-        key: { text: 'Reviewer recommendation' },
-        value: {
-          html: rec.recommendationText || 'Not provided'
-        }
-      })
-
       if (rec.addAction === false) {
         summaryType = 'No action added'
 
         rows.push(
           {
-            key: { text: 'No action planned' },
-            value: { text: rec.noActionReason || 'Not provided' }
+            key: { text: 'No action added' },
+            value: { text: 'Yes' }
           },
+          {
+            key: { text: 'Reason for no action' },
+            value: { text: rec.noActionReason || 'Not provided' }
+          }
         )
       }
 
@@ -665,15 +559,7 @@ function buildCheckAnswersRows(recommendations, taskNumber) {
 
 router.post('/webcaf/tip/current/check-answers', function (req, res) {
   req.session.data.confirmAnswers = req.body.confirmAnswers
-
-  const confirmed = req.body.confirmAnswers === 'yes'
-
-  req.session.data.tipCheckAnswersConfirmed = confirmed
-
-  if (!confirmed) {
-    req.session.data.tipPendingApproval = false
-  }
-
+  req.session.data.tipCheckAnswersConfirmed = req.body.confirmAnswers === 'yes'
   return res.redirect('/webcaf/tip/current/draft-tip')
 })
 
@@ -692,6 +578,8 @@ function getCheckAnswersSummary(items) {
 }
 
 
+
+
 // --------------------------------------------------
 // TIP routes - Start with Priority routes
 // --------------------------------------------------
@@ -704,7 +592,7 @@ router.get('/webcaf/tip/current/my-account', function (req, res) {
       id: tip.system.name,
       finalReportReference: tip.system.finalReportReference,
       finalReportDate: tip.system.finalReportDate,
-      tipStatus: getTipStatus(tip, req.session.data),
+      tipStatus: isPriorityTaskComplete(tip) ? 'In-progress' : 'To do',
       primaryActionText: isPriorityTaskComplete(tip) ? 'Continue TIP' : 'Start TIP',
       primaryActionHref: '/webcaf/tip/current/draft-tip',
       secondaryActionText: 'View final IAAR',
@@ -727,10 +615,8 @@ router.get('/webcaf/tip/current/my-account', function (req, res) {
       tipStatus: 'Closed',
       primaryActionText: 'View submitted TIP',
       primaryActionHref: '#',
-      secondaryActionText: 'Download TIP (PDF)',
-      secondaryActionHref: '/webcaf/tip/current/tip-output',
-      thirdActionText: 'Download TIP data (XLS)',
-      thirdActionHref: '/webcaf/tip/current/tip-output'
+      secondaryActionText: 'View TIP report',
+      secondaryActionHref: '/webcaf/tip/current/tip-output'
     }
   ]
 
@@ -752,7 +638,6 @@ router.get('/webcaf/tip/current/draft-tip', function (req, res) {
   otherTaskHref: getOtherTaskHref(),
   canStartCheckAnswers: canStartTipCheckAnswers(tip, req.session.data),
   checkAnswersComplete: isCheckAnswersConfirmed(req.session.data),
-  tipPendingApproval: isTipPendingApproval(req.session.data),
   canStartSubmit: isPriorityTaskComplete(tip) &&
     isOtherTaskComplete(tip, req.session.data) &&
     isCheckAnswersConfirmed(req.session.data),
@@ -811,14 +696,23 @@ router.post('/webcaf/tip/current/task/1/:recSlug/review', function (req, res) {
     return res.redirect(getPriorityTaskHref())
   }
 
+  const reviewed = req.body.reviewedRecommendationAndRisk === 'yes'
   const addAction = req.body.addAction === 'yes'
-  ? true
-  : req.body.addAction === 'no'
-    ? false
-    : null
+    ? true
+    : req.body.addAction === 'no'
+      ? false
+      : null
 
-item.reviewed = true
-item.addAction = addAction
+  item.reviewed = reviewed
+
+  if (!reviewed) {
+    item.addAction = null
+    item.noActionReason = ''
+    item.actionDetails = null
+    return res.redirect(getPriorityTaskHref())
+  }
+
+  item.addAction = addAction
 
   if (addAction === false) {
     item.noActionReason = req.body.noActionReason || ''
@@ -826,24 +720,20 @@ item.addAction = addAction
   }
 
   if (addAction === true) {
+  item.noActionReason = ''
   item.actionDetails = {
-  canProvideActionText: req.body.canProvideActionText || '',
-  actionText: req.body.actionText || '',
-
-  canProvideOwner: req.body.canProvideOwner || '',
-  owner: req.body.owner || '',
-
-  resourceAvailable: req.body.resourceAvailable || '',
-  budgetAvailable: req.body.budgetAvailable || '',
-
-  canProvideTargetDate: req.body.canProvideTargetDate || '',
-  targetDate: {
-    day: req.body['targetDate-day'] || '',
-    month: req.body['targetDate-month'] || '',
-    year: req.body['targetDate-year'] || ''
-  },
-  noTimingReason: req.body.noTimingReason || ''
-}
+    actionText: req.body.actionText || '',
+    owner: req.body.owner || '',
+    resourceAvailable: req.body.resourceAvailable || '',
+    budgetAvailable: req.body.budgetAvailable || '',
+    canProvideTargetDate: req.body.canProvideTargetDate || '',
+    targetDate: {
+      day: req.body['targetDate-day'] || '',
+      month: req.body['targetDate-month'] || '',
+      year: req.body['targetDate-year'] || ''
+    },
+    noTimingReason: req.body.noTimingReason || ''
+  }
 
   req.session.data.tipLastPriorityOwner = req.body.owner || ''
 }
@@ -1025,6 +915,7 @@ router.get('/webcaf/tip/current/check-answers', function (req, res) {
 
 
 
+
   const otherRecommendations = buildCheckAnswersRows(
     otherRows.reduce((acc, row) => {
       acc[row.recId] = row
@@ -1043,31 +934,11 @@ router.get('/webcaf/tip/current/check-answers', function (req, res) {
 })
 
 
-
-router.post('/webcaf/tip/current/submit-and-download', function (req, res) {
-  const confirmed = req.body.confirmSubmit === 'yes' ||
-    req.body.confirmSubmit === 'on' ||
-    req.body.confirmSubmit === 'true'
-
-  if (confirmed) {
-    req.session.data.tipPendingApproval = true
-    req.session.data.tipSubmittedForApproval = true
-
-    return res.redirect('/webcaf/tip/current/confirmation')
-  }
-
-  return res.redirect('/webcaf/tip/current/submit-and-download')
+router.post('/webcaf/tip/current/check-answers', function (req, res) {
+  req.session.data.confirmAnswers = req.body.confirmAnswers
+  req.session.data.tipCheckAnswersConfirmed = req.body.confirmAnswers === 'yes'
+  return res.redirect('/webcaf/tip/current/draft-tip')
 })
-
-router.get('/webcaf/tip/current/confirmation', function (req, res) {
-  req.session.data.tipPendingApproval = true
-  req.session.data.tipSubmittedForApproval = true
-
-  res.render('webcaf/tip/current/confirmation', {
-    system: buildTipState(req.session.data).system
-  })
-})
-
 
 
 // End of Routes.js

@@ -6,6 +6,11 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
+router.use(function (req, res, next) {
+  res.locals.basePath = req.baseUrl
+  next()
+})
+
 // --------------------------------------------------
 // Existing routes
 // --------------------------------------------------

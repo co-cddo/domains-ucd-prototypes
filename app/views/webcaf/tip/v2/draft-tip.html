@@ -93,32 +93,29 @@ Task list – Draft TIP
 {% if submitTaskComplete %}
   {% set submitItem = {
     title: {
-      text: "Submit your TIP to GovAssure for approval"
+      text: "Submit your final TIP to GovAssure"
     },
     href: "/webcaf/tip/current/submit-and-download",
     status: {
       text: "Completed"
     }
   } %}
-
-{% elif tipPendingApproval %}
-  {% set submitItem = {
-    title: {
-      text: "View your submitted TIP"
-    },
-    href: "/webcaf/tip/current/confirmation",
-    status: {
-      tag: {
-        text: "Pending approval",
-        classes: "govuk-tag--pink"
-      }
-    }
-  } %}
-
 {% elif canStartSubmit %}
+ {% set downloadItem = {
+  title: {
+    html: '<a class="govuk-link govuk-task-list__link" href="/public/downloads/draft-tip-report.pdf" target="_blank" rel="noopener noreferrer" download="Draft-TIP-Report.pdf">Download your draft TIP <span class="govuk-visually-hidden">(opens in new tab)</span></a>'
+  },
+  status: {
+    tag: {
+      text: "Pending approval",
+      classes: "govuk-tag--pink"
+    }
+  }
+} %}
+
   {% set submitItem = {
     title: {
-      text: "Submit your TIP to GovAssure for approval"
+      text: "Submit your final TIP to GovAssure"
     },
     href: "/webcaf/tip/current/submit-and-download",
     status: {
@@ -129,16 +126,19 @@ Task list – Draft TIP
     }
   } %}
 
+  
 {% else %}
   {% set submitItem = {
     title: {
-      text: "Submit your TIP to GovAssure for approval"
+      text: "Send GovAssure your final TIP and download it"
     },
     status: {
       text: "Cannot start yet",
       classes: "govuk-task-list__status--cannot-start-yet"
     }
   } %}
+
+
 {% endif %}
 
 <div class="govuk-grid-row">
@@ -147,7 +147,9 @@ Task list – Draft TIP
     <span class="govuk-caption-l">{{ system.name }} ({{ system.finalReportReference }})</span>
     <h1 class="govuk-heading-l">Create a Targeted Improvement Plan (TIP)</h1>
 
-    
+    <p class="govuk-body">
+      <strong>In-progress TIP</strong>
+    </p>
 <p>You must read and consider the risks for both priority and other recommendations. 
  
 You must provide an action for every priority recommendation. If you do not plan to add an action, you must give a reason. 
@@ -182,7 +184,7 @@ You must provide an action for every priority recommendation. If you do not plan
       ]
     }) }}
 
-    <h2 class="govuk-heading-m govuk-!-margin-top-6">2. Review your draft TIP</h2>
+    <h2 class="govuk-heading-m govuk-!-margin-top-6">2. Review and submit draft TIP</h2>
 
     {{ govukTaskList({
       idPrefix: "review-tip-answers",
@@ -192,11 +194,12 @@ You must provide an action for every priority recommendation. If you do not plan
 
 
 
-    <h2 class="govuk-heading-m govuk-!-margin-top-6">3. Submit your TIP</h2>
+    <h2 class="govuk-heading-m govuk-!-margin-top-6">3. Submit final TIP</h2>
 
   {{ govukTaskList({
     idPrefix: "submit-tip",
     items: [
+      downloadItem,
       submitItem
     ]
   }) }}

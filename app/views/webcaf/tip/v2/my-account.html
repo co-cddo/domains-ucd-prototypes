@@ -34,7 +34,6 @@ You can open each system’s final IARR report.
 {% set tipStatusTagClass = {
   "To do": "govuk-tag--blue",
   "In-progress": "govuk-tag--yellow",
-  "Pending approval": "govuk-tag--pink",
   "Closed": "govuk-tag--green"
 } %}
   
@@ -75,12 +74,6 @@ You can open each system’s final IARR report.
               <br>
               <a class="govuk-link govuk-link--no-visited-state" href="{{ system.secondaryActionHref }}" target="_blank">
                 {{ system.secondaryActionText }}
-              </a>
-            {% endif %}
-            {% if system.thirdActionText %}
-              <br>
-              <a class="govuk-link govuk-link--no-visited-state" href="{{ system.thirdActionHref }}" target="_blank">
-                {{ system.thirdActionText }}
               </a>
             {% endif %}
           </td>
