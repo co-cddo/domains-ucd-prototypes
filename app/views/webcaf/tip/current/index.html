@@ -37,29 +37,44 @@
     <div class="govuk-grid-column-two-thirds">
 
 <div class="proto-admin">
-        <h2 class="govuk-heading-l">User research</h2>
+        <h2 class="govuk-heading-l">Design iterations</h2>
  <p class='govuk-list app-list--definition'>
               <a href='/webcaf/tip/current/start' class="govuk-link--no-visited-state">Version 3 (current)</a>
             <ol class="govuk-list govuk-list--number">
-  <li><strong>Task list page:</strong>Remove the "in progress" TIP or to-do TIP from the task list (Robert)</li>
-  <li><strong>Task list page:</strong>Make a decision on the action word for the task list (Respond for priority / Review for other)</li>
-  <li><strong>My account page:</strong>Edit wording for links for a completed TIP (no reference to TIP report), instead showing TIP PDF, HTML and XLS</li>
-  <li><strong>Priority recommendations - with filter:</strong>Implement dynamic column widths for risk / recommendation to accommodate longer text entries </li>
-  <li><strong>Priority recommendations - with filter:</strong>Add an "in progress" status option to the task interface to allow users to save incomplete sections and return later, including filters</li>
-  <li><strong>Check-answers form:</strong> Remove 'yes' from 'no action added' and show 'No action' with reason in the same row </li>
-  <li><strong>Check-answers form:</strong> Add 'Review recommendations' above the Action details row</li>
+  
+  
+  <li><strong>My account page:</strong> Edit wording for links for a completed TIP (no reference to TIP report), instead showing links to PDF, HTML and XLS</li>
+  <li><strong>My account page:</strong> Updated and added new status 'Pending Approval' for application</li>
+  <li><strong>Task list page:</strong> Remove the "in progress" TIP or to-do TIP from the task list</li>
+  <li><strong>Task list page:</strong> Make a decision on the action word for the task list (Respond for priority / Review for other)</li>
   <li><strong>Task list page:</strong>
 Streamline the approval process so that back-end approval finalises the submission, avoiding an extra confirmation step:
-<br> 2. Review your draft TIP. <br>3. Submit your TIP. Move confirmation step to 
+<br>1. Record TIP actions 
+<br> 2. Review your draft TIP. (Moving confirmation step to Section 3)
+<br>3. Submit your TIP .
 </li>
+  <li><strong>Priority recommendations - with filter:</strong> Implement dynamic column widths for risk / recommendation to accommodate longer text entries </li>
+  <li><strong>Respond to Priority recommendation and action:</strong> Removed first question and retain the 'Do you want to add an action' question only </li>
+  <li><strong>Respond to Priority recommendation and action:</strong> Added addittional 'I will respond later' option for each question and fields</li>
+  <li><strong>Respond to Priority recommendation and action:</strong> Added logic, if at least one 'I will respond later' option is selected the task cannot be completed, and it must display 'In progress' on the filtered view</li>
+  <li><strong>Priority recommendations - with filter:</strong> Add an "in progress" status option to the Status column to allow users to save incomplete sections and return later, including filters</li>
+  
+  <li><strong>Check actions page:</strong> Remove 'yes' from 'no action added' and show 'No action' with reason in the same row </li>
+  <li><strong>Check actions page:</strong> Add 'Review recommendations' above the Action details row</li>
+  
 <li><strong>Confirmation page:</strong> Create clearer confirmation messaging and email notification for applicants once their submission is approved </li>
-<li><strong>My account page:</strong> Updated and added new status 'In progress' for application</li>
+
 <li><strong>Email confirmation via Gov Notify: </strong>  <strong class="govuk-tag govuk-tag--red">
           Outstanding
-        </strong> Create automated e-mail notification for applicants once their submission is approved, enabling them to access and download their final report  </li>
+        </strong> <br>Create automated e-mail notification for applicants once their submission is approved, enabling them to access and download their final report  </li>
 </ol>
-            
-              <br><span class="govuk-body govuk-!-font-size-14">#Last updated on 15 June 2026
+
+{{ govukWarningText({
+  text: "Other recommendations page was not changed in this version, to allow comparison.",
+  iconFallbackText: "Warning"
+}) }}
+
+            <span class="govuk-body govuk-!-font-size-14">#Last updated on 16 June 2026
             </span>
              
         </p>
