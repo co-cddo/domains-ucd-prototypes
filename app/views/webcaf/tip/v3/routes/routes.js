@@ -82,41 +82,6 @@ function riskText(index, outcome) {
   }
 }
 
-function getTipPrimaryAction(tipStatus) {
-  if (tipStatus === 'To do') {
-    return {
-      text: 'Start TIP',
-      href: '/webcaf/tip/current/draft-tip'
-    }
-  }
-
-  if (tipStatus === 'In-progress') {
-    return {
-      text: 'Continue TIP',
-      href: '/webcaf/tip/current/draft-tip'
-    }
-  }
-
-  if (tipStatus === 'Pending approval') {
-    return {
-      text: 'View TIP',
-      href: '/webcaf/tip/current/tip-output'
-    }
-  }
-
-  if (tipStatus === 'Closed') {
-    return {
-      text: 'View TIP',
-      href: '/webcaf/tip/current/tip-output'
-    }
-  }
-
-  return {
-    text: 'Start TIP',
-    href: '/webcaf/tip/current/draft-tip'
-  }
-}
-
 function recommendationText(index, outcome) {
   const shortVariants = [
     `Strengthen control implementation and evidence traceability for ${outcome}, and document the actions needed to improve assurance.`,
@@ -367,10 +332,6 @@ function getRecommendationStatus(rec) {
   }
 
   if (rec.addAction === true) {
-    if (rec.actionDetails && rec.actionDetails.actionDetailsDeferred === true) {
-      return 'in_progress'
-    }
-
     if (hasCompleteActionDetails(rec.actionDetails)) {
       return 'action_added'
     }
@@ -396,14 +357,12 @@ function hasLaterActionAnswer(actionDetails) {
 function hasCompleteActionDetails(actionDetails) {
   if (!actionDetails) return false
 
-  if (actionDetails.actionDetailsDeferred === true) {
-    return false
-  }
-
   const hasActionText =
+    actionDetails.canProvideActionText === 'yes' &&
     (actionDetails.actionText || '').trim() !== ''
 
   const hasOwner =
+    actionDetails.canProvideOwner === 'yes' &&
     (actionDetails.owner || '').trim() !== ''
 
   const resourcesAnswered =
@@ -435,7 +394,8 @@ function hasCompleteActionDetails(actionDetails) {
     budgetAnswered &&
     targetDateAnswered &&
     targetDateComplete &&
-    noDateReasonComplete
+    noDateReasonComplete &&
+    !hasLaterActionAnswer(actionDetails)
   )
 }
 
@@ -739,17 +699,14 @@ function getCheckAnswersSummary(items) {
 router.get('/webcaf/tip/current/my-account', function (req, res) {
   const tip = buildTipState(req.session.data)
 
-  const tipStatus = getTipStatus(tip, req.session.data)
-  const primaryAction = getTipPrimaryAction(tipStatus)
-
   const tipSystems = [
     {
       id: tip.system.name,
       finalReportReference: tip.system.finalReportReference,
       finalReportDate: tip.system.finalReportDate,
-      tipStatus: tipStatus,
-      primaryActionText: primaryAction.text,
-      primaryActionHref: primaryAction.href,
+      tipStatus: getTipStatus(tip, req.session.data),
+      primaryActionText: isPriorityTaskComplete(tip) ? 'Continue TIP' : 'Start TIP',
+      primaryActionHref: '/webcaf/tip/current/draft-tip',
       secondaryActionText: 'View final IAAR',
       secondaryActionHref: '/webcaf/tip/current/iar-report-v6'
     },
@@ -768,8 +725,8 @@ router.get('/webcaf/tip/current/my-account', function (req, res) {
       finalReportReference: 'CAF24092025WXYZ',
       finalReportDate: '19 December 2025',
       tipStatus: 'Closed',
-      primaryActionText: 'View TIP',
-      primaryActionHref: '/webcaf/tip/current/tip-output',
+      primaryActionText: 'View submitted TIP',
+      primaryActionHref: '#',
       secondaryActionText: 'Download TIP (PDF)',
       secondaryActionHref: '/webcaf/tip/current/tip-output',
       thirdActionText: 'Download TIP data (XLS)',
@@ -837,13 +794,14 @@ router.get('/webcaf/tip/current/task/1/:recSlug/review', function (req, res) {
   item.addAction = item.addAction === true ? 'yes' : item.addAction === false ? 'no' : ''
 
   res.render('webcaf/tip/current/task/1/recommendation-review', {
-    item,
-    prioritySummaryHref: getPriorityTaskHref(),
-    returnTo: req.query.returnTo || '',
-    canContinueToAnswers: canStartTipCheckAnswers(tip, req.session.data),
-    lastPriorityOwner: req.session.data.tipLastPriorityOwner || ''
+  item,
+  prioritySummaryHref: getPriorityTaskHref(),
+  returnTo: req.query.returnTo || '',
+  showBackToAnswers: canStartTipCheckAnswers(tip, req.session.data) || isCheckAnswersConfirmed(req.session.data),
+  lastPriorityOwner: req.session.data.tipLastPriorityOwner || ''
   })
 })
+
 router.post('/webcaf/tip/current/task/1/:recSlug/review', function (req, res) {
   const tip = buildTipState(req.session.data)
   const recId = req.params.recSlug.toUpperCase()
@@ -854,13 +812,13 @@ router.post('/webcaf/tip/current/task/1/:recSlug/review', function (req, res) {
   }
 
   const addAction = req.body.addAction === 'yes'
-    ? true
-    : req.body.addAction === 'no'
-      ? false
-      : null
+  ? true
+  : req.body.addAction === 'no'
+    ? false
+    : null
 
-  item.reviewed = true
-  item.addAction = addAction
+item.reviewed = true
+item.addAction = addAction
 
   if (addAction === false) {
     item.noActionReason = req.body.noActionReason || ''
@@ -868,40 +826,30 @@ router.post('/webcaf/tip/current/task/1/:recSlug/review', function (req, res) {
   }
 
   if (addAction === true) {
-    const saveAsIncomplete =
-      req.body.saveIncomplete === 'yes' ||
-      req.body.saveMode === 'in_progress'
+  item.actionDetails = {
+  canProvideActionText: req.body.canProvideActionText || '',
+  actionText: req.body.actionText || '',
 
-    item.noActionReason = ''
+  canProvideOwner: req.body.canProvideOwner || '',
+  owner: req.body.owner || '',
 
-    item.actionDetails = {
-      actionDetailsDeferred: saveAsIncomplete,
-      actionText: req.body.actionText || '',
-      owner: req.body.owner || '',
-      resourceAvailable: req.body.resourceAvailable || '',
-      budgetAvailable: req.body.budgetAvailable || '',
-      canProvideTargetDate: req.body.canProvideTargetDate || '',
-      targetDate: {
-        day: req.body['targetDate-day'] || '',
-        month: req.body['targetDate-month'] || '',
-        year: req.body['targetDate-year'] || ''
-      },
-      noTimingReason: req.body.noTimingReason || ''
-    }
+  resourceAvailable: req.body.resourceAvailable || '',
+  budgetAvailable: req.body.budgetAvailable || '',
 
-    req.session.data.tipLastPriorityOwner = req.body.owner || ''
-  }
+  canProvideTargetDate: req.body.canProvideTargetDate || '',
+  targetDate: {
+    day: req.body['targetDate-day'] || '',
+    month: req.body['targetDate-month'] || '',
+    year: req.body['targetDate-year'] || ''
+  },
+  noTimingReason: req.body.noTimingReason || ''
+}
 
-  if (req.body.saveIncomplete === 'yes' || req.body.saveMode === 'in_progress') {
-    return res.redirect(getPriorityTaskHref())
-  }
+  req.session.data.tipLastPriorityOwner = req.body.owner || ''
+}
 
   if (req.body.saveReturn === 'yes') {
     return res.redirect(getPriorityTaskHref())
-  }
-
-  if (canStartTipCheckAnswers(tip, req.session.data)) {
-    return res.redirect('/webcaf/tip/current/check-answers')
   }
 
   const nextRecId = getNextUnreviewedRecId(tip, recId)
@@ -912,6 +860,9 @@ router.post('/webcaf/tip/current/task/1/:recSlug/review', function (req, res) {
 
   return res.redirect(getPriorityTaskHref())
 })
+
+
+
 
 
 // --------------------------------------------------

@@ -1,0 +1,314 @@
+{% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}
+
+{% block pageTitle %}
+  Start page with step by step template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block pageScripts %}
+  <script type="text/javascript">
+    var $element = document.querySelector('#step-by-step-navigation')
+    var stepByStepNavigation = new GOVUK.Modules.AppStepNav($element).init()
+  </script>
+{% endblock %}
+
+{% block beforeContent %}
+  <div class="app-step-nav-header">
+    <span class="app-step-nav-header__part-of">Part of</span>
+    <a class="app-step-nav-header__title" href="webcaf">
+      GovAssure process: step by step
+    </a>
+  </div>
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Stage 4:Review a WebCAF self-assessment</h1>
+    <p class="govuk-body">
+     Use this service to review an organisation’s WebCAF self-assessment against <a href="https://www.ncsc.gov.uk/files/Cyber%20Assessment%20Framework%20V3.2.pdf" target="_blank">National Cyber Security Centre's Cyber Assessment Framework (CAF) (opens in new tab)</a>.
+    </p>
+
+    <p>You will be able to:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>confirm the details of the system you are reviewing</li>
+      <li>view an organisation’s self-assessment</li>
+      <li>give your response to each IGP statement</li>
+      <li>provide comments where the organisation has identified alternative controls or exemptions for IGPs </li>
+      <li>provide comments where your response is different to the organisation’s selection for IGPs</li>
+      <li>write a summary for each contributing outcome</li>
+      <li>identify risks and make recommendations for contributing outcomes</li>
+      <li>comment on areas of good practice and suggest areas for improvement for each CAF objective</li>
+      <li>comment on the quality of the organisation’s self-assessment and supporting evidence</li>
+      <li>explain how and when you carried out your review</li>
+    </ul>
+
+<h2 class="govuk-heading-s">Session timeout</h2>
+
+
+<p>Your session will be ended if you are inactive for 90 minutes. <br>
+
+Any pages you saved earlier will be stored. We will delete your responses on pages you did not save.</p>
+
+
+    <h2 class="govuk-heading-m">Before you start</h2>
+    <p>You must be an independent assurance reviewer contracted by an organisation to review their WebCAF self-assessment. The organisation must have given you user rights to access the self-assessment.</p>
+    <p>Before you begin your review, you may also find it helpful to have:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>the organisation’s scoping document to refer to</li>
+      <li>access to the organisation’s evidence repository</li>
+      <li>the <a href="https://www.security.gov.uk/policy-and-guidance/govassure/stage-4-independent-assurance-review/" target="_blank">stage 4 guidance GovAssure (opens in new tab)</a> open to read </li>
+      
+    </ul>
+
+    <a href="#" role="button" draggable="false" class="govuk-button govuk-button--start govuk-!-margin-top-2 govuk-!-margin-bottom-8" data-module="govuk-button">
+      Sign in
+      <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
+      </svg>
+    </a>
+
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+
+    <div class="app-step-nav-related app-step-nav-related--singular">
+      <h2 class="app-step-nav-related__heading">
+        <span class="app-step-nav-related__pretitle">Part of</span>
+        <a href="#">
+          GovAssure process: step by step
+        </a>
+      </h2>
+    </div>
+
+    <div data-module="appstepnav"id="step-by-step-navigation" class="app-step-nav govuk-!-display-none-print js-hidden" data-show-text="Show" data-hide-text="Hide" data-show-all-text="Show all steps" data-hide-all-text="Hide all steps">
+      <ol class="app-step-nav__steps">
+        <li class="app-step-nav__step js-step" aria-current="step" id="check-you-re-allowed-to-drive">
+          <div class="app-step-nav__header js-toggle-panel" data-position="1">
+            <h3 class="app-step-nav__title">
+              <span class="app-step-nav__circle app-step-nav__circle--number">
+                <span class="app-step-nav__circle-inner">
+                  <span class="app-step-nav__circle-background">
+                    <span class="govuk-visually-hidden govuk-!-display-none-print">Step</span> 1<span class="govuk-visually-hidden govuk-!-display-none-print" aria-hidden="true">:</span>
+                  </span>
+                </span>
+              </span>
+
+              <span class="js-step-title">
+                Stage 1: Define your organisation’s context and services
+              </span>
+            </h3>
+          </div>
+
+          <div class="app-step-nav__panel js-panel" id="step-panel-check-you-re-allowed-to-drive-1">
+            <p class="app-step-nav__paragraph">Stage 1 of GovAssure focuses on capturing and defining an overall view of your organisation’s mission, context, and essential services.</p>
+
+            <ol class="app-step-nav__list " data-length="3">
+              
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="1.2" class="app-step-nav__link js-link" href="#">Complete the scoping document</a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="1.3" class="app-step-nav__link js-link" href="#">Download the Stage 1 & 2 GovAssure scoping document template</a>
+              </li>
+            </ol>
+
+          </div>
+
+        </li>
+        <li class="app-step-nav__step js-step" id="get-a-provisional-licence">
+          <div class="app-step-nav__header js-toggle-panel" data-position="2">
+            <h3 class="app-step-nav__title">
+              <span class="app-step-nav__circle app-step-nav__circle--number">
+                <span class="app-step-nav__circle-inner">
+                  <span class="app-step-nav__circle-background">
+                    <span class="govuk-visually-hidden govuk-!-display-none-print">Step</span> 2<span class="govuk-visually-hidden govuk-!-display-none-print" aria-hidden="true">:</span>
+                  </span>
+                </span>
+              </span>
+
+              <span class="js-step-title">
+                Stage 2: Identify your in-scope systems and assign Government Cyber Assessment Framework (CAF) profiles
+              </span>
+            </h3>
+          </div>
+
+          <div class="app-step-nav__panel js-panel" id="step-panel-get-a-provisional-licence-2">
+            <p class="app-step-nav__paragraph">Stage 2 of GovAssure focuses on your organisation’s critical systems.
+
+</p>
+            <ol class="app-step-nav__list " data-length="1">
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="2.1" class="app-step-nav__link js-link" href="#">Identify and define all of your organisation’s critical systems</a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="2.1" class="app-step-nav__link js-link" href="#">Decide the systems you will assess</a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="2.1" class="app-step-nav__link js-link" href="#">Assign CAF profiles to your systems</a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="2.1" class="app-step-nav__link js-link" href="#">Get your scoping document approved</a>
+              </li>
+            </ol>
+
+          </div>
+        </li> 
+        
+        <li class="app-step-nav__step js-step" id="driving-lessons-and-practice">
+          <div class="app-step-nav__header js-toggle-panel" data-position="3">
+            <h3 class="app-step-nav__title">
+              <span class="app-step-nav__circle app-step-nav__circle--number">
+                <span class="app-step-nav__circle-inner">
+                  <span class="app-step-nav__circle-background">
+                    <span class="govuk-visually-hidden govuk-!-display-none-print">Step</span> 3<span class="govuk-visually-hidden govuk-!-display-none-print" aria-hidden="true">:</span>
+                  </span>
+                </span>
+              </span>
+
+              <span class="js-step-title">
+                Stage 3: Complete a WebCAF self-assessment
+              </span>
+            </h3>
+          </div>
+
+          <div class="app-step-nav__panel js-panel" id="step-panel-driving-lessons-and-practice-3">
+            <p class="app-step-nav__paragraph">During stage 3 of GovAssure, you will assess your systems, gather supporting evidence and complete your self-assessment against NCSC’s Cyber Assessment Framework (CAF).
+
+</p>
+
+            <ol class="app-step-nav__list " data-length="4">
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="3.1" class="app-step-nav__link js-link" href="start-step3">Sign in to WebCaf</a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="3.2" class="app-step-nav__link js-link" href="#">Guidance for organisations</a>
+              </li>
+              
+            </ol>
+
+          </div>
+        </li>
+       
+        <li class="app-step-nav__step js-step app-step-nav__step--active" id="book-and-manage-your-theory-test">
+          <div class="app-step-nav__header js-toggle-panel" data-position="5">
+            <h3 class="app-step-nav__title">
+              <span class="app-step-nav__circle app-step-nav__circle--number">
+                <span class="app-step-nav__circle-inner">
+                  <span class="app-step-nav__circle-background">
+                    <span class="govuk-visually-hidden govuk-!-display-none-print">Step</span> 4<span class="govuk-visually-hidden govuk-!-display-none-print" aria-hidden="true">:</span>
+                  </span>
+                </span>
+              </span>
+
+              <span class="js-step-title">
+                Stage 4: Have an Independent Assurance Review
+              </span>
+            </h3>
+          </div>
+
+          <div class="app-step-nav__panel js-panel" id="step-panel-book-and-manage-your-theory-test-5">
+            <p class="app-step-nav__paragraph">You should procure a company to carry out an Independent Assurance Review (IAR) early in the GovAssure process.
+
+</p>
+
+            <ol class="app-step-nav__list " data-length="5">
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="5.1" class="app-step-nav__link js-link" href="#">Guidance for organisations
+                </a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="5.2" class="app-step-nav__link js-link" href="#">Guidance for reviewers</a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="5.3" class="app-step-nav__link js-link" href="start-step4">Sign in to Review</a>
+              </li>
+              
+            </ol>
+          </div>
+
+           <li class="app-step-nav__step js-step" id="prepare-for-your-theory-test">
+          <div class="app-step-nav__header js-toggle-panel" data-position="4">
+            <h3 class="app-step-nav__title">
+              <span class="app-step-nav__circle app-step-nav__circle--logic">
+                <span class="app-step-nav__circle-inner">
+                  <span class="app-step-nav__circle-background">
+                    or
+                  </span>
+                </span>
+              </span>
+
+              <span class="js-step-title">
+                Stage 4: Have a Peer Review
+              </span>
+            </h3>
+          </div>
+
+          <div class="app-step-nav__panel js-panel" id="step-panel-prepare-for-your-theory-test-4">
+            <p class="app-step-nav__paragraph">You should talk to a Peer Reviewer about your self-assessment.</p>
+            <ol class="app-step-nav__list " data-length="3">
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="4.1" class="app-step-nav__link js-link" href="#">Guidance for organisations </a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a data-position="4.2" class="app-step-nav__link js-link" href="#">Guidance for peer reviewers</a>
+              </li>
+              <li class="app-step-nav__list-item js-list-item ">
+                <a rel="external" data-position="4.3" class="app-step-nav__link js-link" href="start-step4b">Sign in to Peer review</a>
+              </li>
+            </ol>
+          </div>
+
+        </li>
+
+        </li>
+        <li class="app-step-nav__step js-step" id="book-and-manage-your-driving-test">
+          <div class="app-step-nav__header js-toggle-panel" data-position="6">
+            <h3 class="app-step-nav__title">
+              <span class="app-step-nav__circle app-step-nav__circle--number">
+                <span class="app-step-nav__circle-inner">
+                  <span class="app-step-nav__circle-background">
+                    <span class="govuk-visually-hidden govuk-!-display-none-print">Step</span> 5<span class="govuk-visually-hidden govuk-!-display-none-print" aria-hidden="true">:</span>
+                  </span>
+                </span>
+              </span>
+
+              <span class="js-step-title">
+                Stage 5: Targeted improvement plan
+              </span>
+            </h3>
+          </div>
+
+          <div class="app-step-nav__panel js-panel" id="step-panel-book-and-manage-your-driving-test-6">
+            <p class="app-step-nav__paragraph">During stage 5 of GovAssure, your organisation will complete a Targeted Improvement Plan (TIP).</p>
+
+            <ol class="app-step-nav__list " data-length="5">
+              <li class="app-step-nav__list-item js-list-item app-step-nav__list-item--active">
+                <a data-position="1.1" class="app-step-nav__link js-link" href="">
+                  <span class="app-step-nav__link-active-context govuk-visually-hidden">You are currently viewing: </span>Sign in to create your Targeted Improvement Plan (TIP) </a>
+              </li>
+             
+              
+            </ol>
+
+          </div>
+
+        </li>
+        
+      </ol>
+    </div>
+
+
+  </div>
+
+</div>
+
+
+</div>
+</div>
+{% endblock %}

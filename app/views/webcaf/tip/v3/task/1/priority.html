@@ -1,0 +1,265 @@
+{% extends "/layouts/tip.html" %}
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{% block pageTitle %}
+Priority recommendations
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: { text: "prototype", classes: "govuk-tag--pink" },
+  html: "This is not a full service. It is not production code."
+}) }}
+
+{{ govukBreadcrumbs({
+  items: [
+    { text: "My account", href: "/webcaf/tip/current/my-account" },
+    { text: "Edit draft TIP", href: "/webcaf/tip/current/draft-tip" },
+    { text: "Review priority recommendation and action" }
+  ]
+}) }}
+
+<div class="proto-admin govuk-!-margin-bottom-6">
+  <h2 class="govuk-heading-s">{{ progress.reviewed }} of {{ progress.total }} recommendations reviewed</h2>
+  <div class="progress-inactive">
+    <div class="progress-active" style="width: {{ (progress.reviewed / progress.total * 100) | round(0, 'floor') }}%"></div>
+  </div>
+  <p class="govuk-body-s govuk-!-margin-top-2 govuk-!-margin-bottom-0">
+    {{ progress.actionAdded }} actions added · {{ progress.noActionPlanned }} no action planned · {{ progress.notReviewed }} not reviewed
+  </p>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .tip-status-tag {
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  .tip-results-wrap {
+    margin-bottom: 15px;
+  }
+
+  .tip-status-cell {
+    white-space: nowrap;
+  }
+
+  .tip-status-cell .govuk-link {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .tip-table-compact .govuk-table__cell,
+  .tip-table-compact .govuk-table__header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .app-dashboard-filter-panel {
+    border: 1px solid #b1b4b6;
+    border-left: 4px solid #1d70b8;
+    background: #ffffff;
+    padding: 12px 14px 12px 16px;
+    margin-bottom: 20px;
+  }
+
+  .app-dashboard-filter-panel__header {
+    margin-bottom: 8px;
+  }
+
+  .app-dashboard-filter-panel__title {
+    margin-bottom: 2px;
+  }
+
+  .app-dashboard-filter-panel__hint {
+    color: #505a5f;
+    margin-bottom: 0;
+  }
+
+  .app-dashboard-filter-panel .govuk-form-group {
+    margin-bottom: 10px;
+  }
+
+  .app-dashboard-filter-panel .govuk-button-group {
+    margin-top: 6px !important;
+    margin-bottom: 0 !important;
+  }
+
+  .app-dashboard-filter-panel .govuk-button,
+  .app-dashboard-filter-panel .govuk-link {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+
+  .app-dashboard-filter-panel .govuk-button {
+    margin-bottom: 0;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .tip-filter-controls {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+
+  .tip-filter-control {
+    min-width: 0;
+  }
+
+  .tip-filter-control--objective {
+    flex: 0 1 320px;
+  }
+
+  .tip-filter-control--status {
+    flex: 0 1 220px;
+  }
+
+  .tip-filter-control .govuk-form-group {
+    margin-bottom: 0;
+  }
+</style>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <span class="govuk-caption-l">{{ tip.system.name }} ({{ tip.system.finalReportReference }})</span>
+    <h1 class="govuk-heading-l">Priority recommendations ({{ progress.total }})</h1>
+
+    <p class="govuk-body">
+      Review priority recommendations for this system. These relate to contributing outcomes that did not meet the Government CAF profile.
+    </p>
+
+    {{ govukWarningText({
+      text: "All priority recommendations must be reviewed and an action added. Alternatively, add a reason if no action is planned.",
+      iconFallbackText: "Warning"
+    }) }}
+
+    <section class="app-dashboard-filter-panel" aria-labelledby="recommendations-filter-heading">
+      <div class="app-dashboard-filter-panel__header">
+        <h2 class="govuk-heading-m app-dashboard-filter-panel__title" id="recommendations-filter-heading">
+          Filter
+        </h2>
+        <p class="govuk-body-s app-dashboard-filter-panel__hint">
+          Filter recommendations by objective and status.
+        </p>
+      </div>
+
+      <div class="tip-filter-controls">
+        <div class="tip-filter-control tip-filter-control--objective">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s" for="objective-filter">
+              Objective
+            </label>
+            <select class="govuk-select" id="objective-filter" name="objective">
+              <option value="">All objectives</option>
+              <option value="A">Objective A</option>
+              <option value="B">Objective B</option>
+              <option value="C">Objective C</option>
+              <option value="D">Objective D</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="tip-filter-control tip-filter-control--status">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--s" for="status-filter">
+              Status
+            </label>
+            <select class="govuk-select" id="status-filter" name="status">
+              <option value="">All statuses</option>
+              <option value="not_reviewed">Not reviewed</option>
+              <option value="action_added">Action added</option>
+              <option value="no_action_planned">No action planned</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="govuk-button-group govuk-!-margin-bottom-0 govuk-!-margin-top-3">
+        <button class="govuk-button" type="button" onclick="window.applyTipFilters()">
+          Apply filters
+        </button>
+
+        <a class="govuk-link" href="#" onclick="window.clearTipFilters(); return false;">
+          Clear filters
+        </a>
+      </div>
+    </section>
+
+    <div class="tip-results-wrap">
+      <p class="govuk-body-s govuk-!-margin-bottom-3" id="tip-results-count">
+        Showing {{ progress.total }} of {{ progress.total }} recommendations
+      </p>
+    </div>
+
+    <table class="govuk-table govuk-!-font-size-16 tip-table-compact">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">ID</th>
+          <th scope="col" class="govuk-table__header">CO</th>
+          <th scope="col" class="govuk-table__header">Risk</th>
+          <th scope="col" class="govuk-table__header">Recommendation</th>
+          <th scope="col" class="govuk-table__header">Status</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body" id="tip-work-queue-body">
+
+        {% for row in rows %}
+          <tr
+            class="govuk-table__row tip-queue-row"
+            data-objective="{{ row.objective }}"
+            data-status="{{ row.status }}"
+          >
+            <td class="govuk-table__cell">
+              <strong>{{ row.recId }}</strong>
+            </td>
+
+            <td class="govuk-table__cell">
+              {{ row.outcome or "" }}
+            </td>
+
+            <td class="govuk-table__cell">
+              {% if row.riskId and row.riskText %}
+                <strong>{{ row.riskId }}:</strong> {{ row.riskText }}
+              {% endif %}
+            </td>
+
+            <td class="govuk-table__cell">
+              {{ row.recommendationText or "" }}
+            </td>
+
+            <td class="govuk-table__cell tip-status-cell">
+              {% if row.locked %}
+                <a href="#">Review</a>
+              {% elseif row.status == "not_reviewed" %}
+                <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Review</a>
+              {% elseif row.status == "action_added" %}
+                <strong class="govuk-tag govuk-tag--blue tip-status-tag">Action added</strong>
+                <br><br>
+                <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Change</a>
+              {% elseif row.status == "no_action_planned" %}
+                <strong class="govuk-tag govuk-tag--grey tip-status-tag">No action planned</strong>
+                <br><br>
+                <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Change</a>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+
+    <p class="govuk-body govuk-!-margin-top-6">
+      <a href="/webcaf/tip/current/draft-tip" class="govuk-link">Return to task list</a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

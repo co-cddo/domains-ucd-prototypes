@@ -185,7 +185,7 @@ Review priority recommendations and actions
     <h1 class="govuk-heading-l">Priority recommendations ({{ progress.total }})</h1>
 
     <p class="govuk-body">
-     You must read all the priority recommendations and risks associated with them for this system. For each priority recommendation, the independent assurance reviewer reported that the contributing outcome failed to meet the baseline Government CAF profile.
+      You must read all the priority recommendations for this system and the risks associated with them. The independent assurance reviewer reported that the contributing outcome failed to meet the Baseline Government CAF profile.
     </p>
     
     <p class="govuk-heading-m">Provide actions</p>
@@ -312,9 +312,9 @@ Review priority recommendations and actions
 
             <td class="govuk-table__cell tip-status-cell">
               {% if row.locked %}
-      <a href="#">Add response</a>
+      <a href="#">Respond</a>
         {% elseif row.status == "not_reviewed" %}
-          <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Add response</a>
+          <a href="{{ row.href }}" class="govuk-link govuk-link--no-visited-state">Respond</a>
         {% elseif row.status == "in_progress" %}
           <strong class="govuk-tag govuk-tag--yellow tip-status-tag">In progress</strong>
           <br><br>

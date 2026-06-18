@@ -4,12 +4,22 @@
 {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
-{% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
-
 
 {% block pageTitle %}
-Review other recommendation and action
+Read recommendation and action
 {% endblock %}
+
+{% set noActionReasonHtml %}
+  {{ govukTextarea({
+    name: "noActionReason",
+    id: "noActionReason",
+    value: item.noActionReason or "",
+    label: {
+      text: "Explain why you will not add an action",
+      classes: "govuk-label--s"
+    }
+  }) }}
+{% endset %}
 
 {% set targetDateQuestionHtml %}
   <div class="govuk-!-margin-top-3">
@@ -49,37 +59,104 @@ Review other recommendation and action
   </div>
 {% endset %}
 
-
+{% set noDateReasonHtml %}
+  <div class="govuk-!-margin-top-3">
+    {{ govukTextarea({
+      name: "noTimingReason",
+      id: "noTimingReason",
+      value: item.actionDetails.noTimingReason if item.actionDetails else "",
+      label: {
+        text: "Explain why you cannot provide a target date",
+        classes: "govuk-label--s"
+      }
+    }) }}
+  </div>
+{% endset %}
 
 {% set actionFieldsHtml %}
   <div class="govuk-!-margin-top-3">
-    {{ govukCharacterCount({
-      name: "actionText",
-      id: "actionText",
-        maxlength: 500,
-      value: item.actionDetails.actionText if item.actionDetails else "",
-      label: {
-        text: "What action will you take?",
-        classes: "govuk-label--m"
-      },
-      hint: {
-        text: "Describe the action and how it will implement the recommendation"
-      }
-    }) }}
+    {% set actionTextHtml %}
+  {{ govukTextarea({
+    name: "actionText",
+    id: "actionText",
+    value: item.actionDetails.actionText if item.actionDetails else "",
+    label: {
+      text: "What action will you take?",
+      classes: "govuk-label--s"
+    },
+    hint: {
+      text: "Describe the action and how it will implement the recommendation"
+    }
+  }) }}
+{% endset %}
 
-    {{ govukInput({
-      name: "owner",
-      id: "owner",
-      value: item.actionDetails.owner if item.actionDetails else "",
-      classes: "govuk-!-width-two-thirds",
-      label: {
-        text: "Who owns this action?",
-        classes: "govuk-label--m"
-      },
-      hint: {
-        text: "Enter action owner's full name or team name "
+{{ govukRadios({
+  name: "canProvideActionText",
+  fieldset: {
+    legend: {
+      text: "Can you describe the action now?",
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes",
+      checked: item.actionDetails and item.actionDetails.canProvideActionText == "yes",
+      conditional: {
+        html: actionTextHtml
       }
-    }) }}
+    },
+  
+    {
+      value: "later",
+      text: "No, I will respond later",
+      checked: item.actionDetails and item.actionDetails.canProvideActionText == "later"
+    }
+  ]
+}) }}
+
+    {% set ownerHtml %}
+  {{ govukInput({
+    name: "owner",
+    id: "owner",
+    value: item.actionDetails.owner if item.actionDetails and item.actionDetails.owner else lastPriorityOwner,
+    classes: "govuk-!-width-two-thirds",
+    label: {
+      text: "Who owns this action?",
+      classes: "govuk-label--s"
+    },
+    hint: {
+      text: "Enter action owner full name or team name."
+    }
+  }) }}
+{% endset %}
+
+{{ govukRadios({
+  name: "canProvideOwner",
+  fieldset: {
+    legend: {
+      text: "Can you provide the action owner now?",
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes",
+      checked: item.actionDetails and item.actionDetails.canProvideOwner == "yes",
+      conditional: {
+        html: ownerHtml
+      }
+    },
+  
+    {
+      value: "later",
+      text: "No, I will respond later",
+      checked: item.actionDetails and item.actionDetails.canProvideOwner == "later"
+    }
+  ]
+}) }}
 
     {{ govukRadios({
       name: "resourceAvailable",
@@ -90,7 +167,7 @@ Review other recommendation and action
         }
       },
       hint: {
-        text: "This means whether you have the people, capacity and supporting resources needed to do the work"
+        text: "This means whether you have the people, capacity and supporting resources needed to do the work."
       },
       items: [
         {
@@ -104,12 +181,17 @@ Review other recommendation and action
           checked: item.actionDetails and item.actionDetails.resourceAvailable == "no"
         },
         {
-          divider: "or"
-        },
-        {
           value: "unknown",
           text: "I'm not sure",
           checked: item.actionDetails and item.actionDetails.resourceAvailable == "unknown"
+        },
+        {
+          divider: "or"
+        },
+        {
+          value: "later",
+          text: "I will respond later",
+          checked: item.actionDetails and item.actionDetails.resourceAvailable == "later"
         }
       ]
     }) }}
@@ -123,7 +205,7 @@ Review other recommendation and action
         }
       },
       hint: {
-        text: "This means whether the funding needed for the action has been approved"
+        text: "This means whether the funding needed for the action has been approved."
       },
       items: [
         {
@@ -137,12 +219,17 @@ Review other recommendation and action
           checked: item.actionDetails and item.actionDetails.budgetAvailable == "no"
         },
         {
-          divider: "or"
-        },
-        {
           value: "unknown",
           text: "I'm not sure",
           checked: item.actionDetails and item.actionDetails.budgetAvailable == "unknown"
+        },
+        {
+          divider: "or"
+        },
+        {
+          value: "later",
+          text: "I will respond later",
+          checked: item.actionDetails and item.actionDetails.budgetAvailable == "later"
         }
       ]
     }) }}
@@ -171,20 +258,26 @@ Review other recommendation and action
           conditional: {
             html: noDateReasonHtml
           }
+        },
+        {
+          divider: "or"
+        },
+        {
+          value: "later",
+          text: "I will respond later",
+          checked: item.actionDetails and item.actionDetails.canProvideTargetDate == "later"
         }
       ]
     }) }}
-  
-  
-  
   </div>
-
 {% endset %}
 
 {% if returnTo == "check-answers" %}
   {% set backHref = "/webcaf/tip/current/check-answers" %}
+  {% set cancelHref = "/webcaf/tip/current/check-answers" %}
 {% else %}
-  {% set backHref = otherSummaryHref %}
+  {% set backHref = prioritySummaryHref %}
+  {% set cancelHref = prioritySummaryHref %}
 {% endif %}
 
 {% block beforeContent %}
@@ -197,7 +290,7 @@ Review other recommendation and action
   items: [
     { text: "My account", href: "/webcaf/tip/current/my-account" },
     { text: "Edit draft TIP", href: "/webcaf/tip/current/draft-tip" },
-    { text: "Review other recommendation and action", href: otherSummaryHref },
+    { text: "Respond to priority recommendation and action", href: prioritySummaryHref },
     { text: item.recId }
   ]
 }) }}
@@ -213,11 +306,9 @@ Review other recommendation and action
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
-    <span class="govuk-caption-l">{{ item.systemName or "Microsoft CS version 3" }} ({{ item.finalReportReference or "CAF24092025FDMH" }})</span>
-<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Review other recommendation and action</h1>
+<span class="govuk-caption-l">{{ item.systemName or "Microsoft CS version 3" }} ({{ item.finalReportReference or "CAF24092025FDMH" }})</span>
+<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Respond to priority recommendation and action</h1>
 <p class="govuk-body govuk-!-margin-bottom-6"><strong>Recommendation ID:</strong> {{ item.recId }}</p>
-
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
         <h2 class="govuk-summary-card__title">
@@ -246,63 +337,62 @@ Review other recommendation and action
       </div>
     </div>
 
-    <form action="/webcaf/tip/current/task/2/{{ item.recId | lower }}/review{% if returnTo == 'check-answers' %}?returnTo=check-answers{% endif %}" method="post">
+    <form action="/webcaf/tip/current/task/1/{{ item.recId | lower }}/review{% if returnTo == 'check-answers' %}?returnTo=check-answers{% endif %}" method="post">
 
      
-        {{ govukRadios({
-            name: "addAction",
-            fieldset: {
-            legend: {
-                text: "Do you want to add an action for this recommendation?",
-                classes: "govuk-fieldset__legend--m"
-            }
-            },
-            hint: {
-            text: "Adding an action for other recommendations is optional"
-            },
-            items: [
-      {
-        value: "yes",
-        text: "Yes",
-        checked: item.addAction == "yes"
-      },
-      {
-        value: "no",
-        text: "No",
-        checked: item.addAction == "no"
+
+      
+  {{ govukRadios({
+    name: "addAction",
+    fieldset: {
+      legend: {
+        text: "Will you add an action for this recommendation?",
+        classes: "govuk-fieldset__legend--m"
       }
+    },
+    hint: {
+      text: "Priority recommendations must have an action unless you give a reason why you cannot add one."
+    },
+    items: [
+              {
+          value: "yes",
+          text: "Yes",
+          checked: item.addAction == "yes"
+        },
+        {
+          value: "no",
+          text: "No",
+          checked: item.addAction == "no",
+          conditional: { html: noActionReasonHtml }
+        }
     ]
-        }) }}
-        
+  }) }}
 
-        <div id="action-details-section" class="tip-hidden govuk-!-margin-top-5">
-        <h2 class="govuk-heading-l">Action details</h2>
-        <p class="govuk-body">Provide the details for the action you will take in response to this recommendation.</p>
-        <p>For help completing this section, go to the <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">GovAssure stage 5 guidance page (opens in new tab)</a></p>
-        {{ actionFieldsHtml | safe }}
-        </div>
 
-        <div class="govuk-button-group">
-    <button type="submit" class="govuk-button" data-module="govuk-button">
-      Save action and continue
-    </button>
-    <button type="submit" class="govuk-button govuk-button--secondary" name="saveIncomplete" value="yes" data-module="govuk-button">
-      Save and finish action later
-    </button>
-    <a class="govuk-link" href="other-recommendations-summary" name="saveReturn" value="yes"> Return to summary</a>
-  </div>
-  
+<div id="action-details-section" class="tip-hidden govuk-!-margin-top-5">
+  <h2 class="govuk-heading-l">Action details</h2>
+  <p class="govuk-body">Provide the details for the action you will take in response to this recommendation.</p>
+  {{ actionFieldsHtml | safe }}
+</div>
+      <div class="govuk-button-group">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Save and continue to next item
+        </button>
 
+        <button type="submit" class="govuk-button govuk-button--secondary" name="saveReturn" value="yes" data-module="govuk-button">
+          Save and return to summary
+        </button>
+      </div>
 
       {% if showBackToAnswers %}
         <p class="govuk-body govuk-!-margin-top-4">
-            <a href="{{ backHref }}" class="govuk-link">Back to answers</a>
+          <a href="{{ backHref }}" class="govuk-link">Back to answers</a>
         </p>
-        {% endif %}
+      {% endif %}
     </form>
 
   </div>
-</div>
+
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {

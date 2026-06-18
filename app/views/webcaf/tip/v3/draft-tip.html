@@ -58,7 +58,7 @@ Task list – Draft TIP
 {% if checkAnswersComplete %}
   {% set checkAnswersItem = {
     title: {
-      text: "Review your actions and get a draft TIP"
+      text: "Check your actions before submission"
     },
     href: "/webcaf/tip/current/check-answers",
     status: {
@@ -68,7 +68,7 @@ Task list – Draft TIP
 {% elif canStartCheckAnswers %}
   {% set checkAnswersItem = {
     title: {
-      text: "Review your actions and get a draft TIP"
+      text: "Check your actions and send GovAssure your draft TIP"
     },
     href: "/webcaf/tip/current/check-answers",
     status: {
@@ -81,7 +81,7 @@ Task list – Draft TIP
 {% else %}
   {% set checkAnswersItem = {
     title: {
-      text: "Review your actions and get a draft TIP"
+      text: "Check your actions and send GovAssure your draft TIP"
     },
     status: {
       text: "Cannot start yet",
@@ -93,12 +93,9 @@ Task list – Draft TIP
 {% if submitTaskComplete %}
   {% set submitItem = {
     title: {
-      text: "Send your proposed TIP to GovAssure"
+      text: "Submit your TIP to GovAssure for approval"
     },
     href: "/webcaf/tip/current/submit-and-download",
-    hint: {
-            html: "If there are any changes to your TIP needed after you submit it,<Br> the GovAssure team will contact you. You will then be able to <br>return to WebCAF to make updates."
-          },
     status: {
       text: "Completed"
     }
@@ -110,9 +107,6 @@ Task list – Draft TIP
       text: "View your submitted TIP"
     },
     href: "/webcaf/tip/current/confirmation",
-    hint: {
-            html: "If there are any changes to your TIP needed after you submit it,<Br> the GovAssure team will contact you. You will then be able to <br>return to WebCAF to make updates."
-          },
     status: {
       tag: {
         text: "Pending approval",
@@ -124,12 +118,9 @@ Task list – Draft TIP
 {% elif canStartSubmit %}
   {% set submitItem = {
     title: {
-      text: "Send your proposed TIP to GovAssure"
+      text: "Submit your TIP to GovAssure for approval"
     },
     href: "/webcaf/tip/current/submit-and-download",
-    hint: {
-            html: "If there are any changes to your TIP needed after you submit it,<Br> the GovAssure team will contact you. You will then be able to <br>return to WebCAF to make updates."
-          },
     status: {
       tag: {
         text: "Incomplete",
@@ -141,11 +132,8 @@ Task list – Draft TIP
 {% else %}
   {% set submitItem = {
     title: {
-      text: "Send your proposed TIP to GovAssure"
+      text: "Submit your TIP to GovAssure for approval"
     },
-    hint: {
-            html: "If there are any changes to your TIP needed after you submit it,<Br> the GovAssure team will contact you. You will then be able to <br>return to WebCAF to make updates."
-          },
     status: {
       text: "Cannot start yet",
       classes: "govuk-task-list__status--cannot-start-yet"
@@ -194,7 +182,7 @@ You must provide an action for every priority recommendation. If you do not plan
       ]
     }) }}
 
-    <h2 class="govuk-heading-m govuk-!-margin-top-6">2. Check responses</h2>
+    <h2 class="govuk-heading-m govuk-!-margin-top-6">2. Review your draft TIP</h2>
 
     {{ govukTaskList({
       idPrefix: "review-tip-answers",
@@ -204,11 +192,10 @@ You must provide an action for every priority recommendation. If you do not plan
 
 
 
-    <h2 class="govuk-heading-m govuk-!-margin-top-6">3. Submit TIP for approval</h2>
+    <h2 class="govuk-heading-m govuk-!-margin-top-6">3. Submit your TIP</h2>
 
   {{ govukTaskList({
     idPrefix: "submit-tip",
-     
     items: [
       submitItem
     ]

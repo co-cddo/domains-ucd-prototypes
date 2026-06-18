@@ -4,8 +4,6 @@
 {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
-{% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
-
 
 {% block pageTitle %}
 Review other recommendation and action
@@ -49,14 +47,25 @@ Review other recommendation and action
   </div>
 {% endset %}
 
-
+{% set noDateReasonHtml %}
+  <div class="govuk-!-margin-top-3">
+    {{ govukTextarea({
+      name: "noTimingReason",
+      id: "noTimingReason",
+      value: item.actionDetails.noTimingReason if item.actionDetails else "",
+      label: {
+        text: "Explain why you cannot provide a target date",
+        classes: "govuk-label--s"
+      }
+    }) }}
+  </div>
+{% endset %}
 
 {% set actionFieldsHtml %}
   <div class="govuk-!-margin-top-3">
-    {{ govukCharacterCount({
+    {{ govukTextarea({
       name: "actionText",
       id: "actionText",
-        maxlength: 500,
       value: item.actionDetails.actionText if item.actionDetails else "",
       label: {
         text: "What action will you take?",
@@ -77,7 +86,7 @@ Review other recommendation and action
         classes: "govuk-label--m"
       },
       hint: {
-        text: "Enter action owner's full name or team name "
+        text: "Enter action owner full name"
       }
     }) }}
 
@@ -90,7 +99,7 @@ Review other recommendation and action
         }
       },
       hint: {
-        text: "This means whether you have the people, capacity and supporting resources needed to do the work"
+        text: "This means whether you have the people, capacity and supporting resources needed to do the work."
       },
       items: [
         {
@@ -123,7 +132,7 @@ Review other recommendation and action
         }
       },
       hint: {
-        text: "This means whether the funding needed for the action has been approved"
+        text: "This means whether the funding needed for the action has been approved."
       },
       items: [
         {
@@ -197,7 +206,7 @@ Review other recommendation and action
   items: [
     { text: "My account", href: "/webcaf/tip/current/my-account" },
     { text: "Edit draft TIP", href: "/webcaf/tip/current/draft-tip" },
-    { text: "Review other recommendation and action", href: otherSummaryHref },
+    { text: "Read other recommendation and action", href: otherSummaryHref },
     { text: item.recId }
   ]
 }) }}
@@ -215,7 +224,7 @@ Review other recommendation and action
   <div class="govuk-grid-column-two-thirds">
 
     <span class="govuk-caption-l">{{ item.systemName or "Microsoft CS version 3" }} ({{ item.finalReportReference or "CAF24092025FDMH" }})</span>
-<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Review other recommendation and action</h1>
+<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Read other recommendation and action</h1>
 <p class="govuk-body govuk-!-margin-bottom-6"><strong>Recommendation ID:</strong> {{ item.recId }}</p>
 
     <div class="govuk-summary-card">
@@ -253,12 +262,12 @@ Review other recommendation and action
             name: "addAction",
             fieldset: {
             legend: {
-                text: "Do you want to add an action for this recommendation?",
+                text: "Will you add an action for this recommendation?",
                 classes: "govuk-fieldset__legend--m"
             }
             },
             hint: {
-            text: "Adding an action for other recommendations is optional"
+            text: "Adding an action for other recommendations is optional."
             },
             items: [
       {
@@ -278,21 +287,20 @@ Review other recommendation and action
         <div id="action-details-section" class="tip-hidden govuk-!-margin-top-5">
         <h2 class="govuk-heading-l">Action details</h2>
         <p class="govuk-body">Provide the details for the action you will take in response to this recommendation.</p>
-        <p>For help completing this section, go to the <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">GovAssure stage 5 guidance page (opens in new tab)</a></p>
         {{ actionFieldsHtml | safe }}
         </div>
 
-        <div class="govuk-button-group">
-    <button type="submit" class="govuk-button" data-module="govuk-button">
-      Save action and continue
-    </button>
-    <button type="submit" class="govuk-button govuk-button--secondary" name="saveIncomplete" value="yes" data-module="govuk-button">
-      Save and finish action later
-    </button>
-    <a class="govuk-link" href="other-recommendations-summary" name="saveReturn" value="yes"> Return to summary</a>
-  </div>
-  
+      <div class="govuk-button-group">
+  <button type="submit" class="govuk-button" data-module="govuk-button">
+    Save completed action
+  </button>
 
+  <button type="submit" class="govuk-button govuk-button--secondary" name="saveIncomplete" value="yes" data-module="govuk-button">
+    Save and return as in progress
+  </button>
+<a class="govuk-link" href="priority-c" name="saveReturn" value="yes"> Return to summary</a>
+  
+</div>
 
       {% if showBackToAnswers %}
         <p class="govuk-body govuk-!-margin-top-4">
