@@ -40,8 +40,8 @@ Draft Target Improvement Plan output - SYS-0001 Microsoft CS version 3 (CAF24092
   confirmations: {
     priorityRecommendationsReviewed: "Completed",
     otherRecommendationsReviewed: "Completed",
-    checkAnswersConfirmed: "Yes",
-    actionsSignedOff: "Yes — confirmed by submitting role"
+    checkAnswersConfirmed: "Pending approval",
+    actionsSignedOff: "Yes"
   },
 
   priorityRecommendations: [
@@ -1083,11 +1083,11 @@ otherRecommendations: [
     </span>
 
     <span class="gem-c-heading__xl govuk-heading-xl">
-     Final Targeted Improvement Plan (TIP) 
+     Draft Targeted Improvement Plan (TIP) 
     </span>
 
      <span class="gem-c-inverse-header__subtext">
-     <strong> Final TIP report</strong>
+     <strong> Draft TIP report</strong>
     </span>
     <br>
      <span class="gem-c-inverse-header__subtext">
@@ -1117,8 +1117,7 @@ otherRecommendations: [
         </li>
         <li>
           <a class="govuk-link govuk-link--no-visited-state" href="#user-confirmations">
-            User confirmations
-          </a>
+          Confirmation summary          </a>
         </li>
         <li>
           <a class="govuk-link govuk-link--no-visited-state" href="#priority-recommendations">
@@ -1141,12 +1140,24 @@ otherRecommendations: [
       <h2 class="govuk-heading-l">Overview</h2>
 
       <p class="govuk-body">
-        This sample HTML export shows the sort of downloadable Target Improvement Plan output a higher-role user could review before submission.
+      Your Targeted Improvement Plan (TIP) sets out the actions your organisation has committed to take to strengthen its cyber resilience in response to its GovAssure stage 4 review.
+      <br><br>
+      It focuses on areas that need improvement to meet the target government Cyber Assessment Framework (CAF) profile.
+      <br><br>
+      It lists your priority recommendations and other recommendations, with information you've added for each recommendation, including:
       </p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>description of actions you've committed to</li>
+  <li>action owners</li>
+  <li>whether resources are available</li>
+  <li>whether budget has been approved</li>
+  <li>estimated target completion date</li>
+</ul>
 
-      <p class="govuk-body">
-        It includes the linked report reference, system metadata, user confirmations, priority recommendations, other recommendations, associated risks, action responses, owners, funding responses and timing information.
-      </p>
+
+
+
+      
     </section>
 
     <section class="app-section" id="tip-metadata">
@@ -1205,7 +1216,7 @@ otherRecommendations: [
         </div>
 
         <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">Check answers confirmed</dt>
+          <dt class="govuk-summary-list__key">Actions checked </dt>
           <dd class="govuk-summary-list__value">
             {{ tip.confirmations.actionsSignedOff }}
           </dd>
@@ -1224,7 +1235,7 @@ otherRecommendations: [
       <h2 class="govuk-heading-l">Priority recommendations</h2>
 
       <p class="govuk-body">
-        Includes all recommendations that must be acknowledged and either have an improvement action added or a reason recorded where no action is planned.
+        Priority recommendations cover contributing outcomes that did not meet the target government CAF profile. Each priority recommendation either has an action planned or a reason why no action is planned.
       </p>
 
       {% for rec in tip.priorityRecommendations %}
@@ -1236,7 +1247,7 @@ otherRecommendations: [
       <h2 class="govuk-heading-l">Other recommendations</h2>
 
       <p class="govuk-body">
-        Includes other reviewer recommendations that have been reviewed as part of the Target Improvement Plan response.
+        Other recommendations cover contributing outcomes that met the target government CAF profile. Actions are optional for other recommendations.
       </p>
 
       {% for rec in tip.otherRecommendations %}

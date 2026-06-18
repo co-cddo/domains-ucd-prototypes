@@ -90,7 +90,7 @@ function getTipPrimaryAction(tipStatus) {
     }
   }
 
-  if (tipStatus === 'In-progress') {
+  if (tipStatus === 'In progress') {
     return {
       text: 'Continue TIP',
       href: '/webcaf/tip/current/draft-tip'
@@ -457,7 +457,7 @@ function isTipPendingApproval(sessionData) {
 
 function getTipStatus(tip, sessionData) {
   if (sessionData.tipSubmitAndDownloadComplete === true) {
-    return 'Commpleted'
+    return 'Completed'
   }
 
   if (isTipPendingApproval(sessionData)) {
@@ -469,7 +469,7 @@ function getTipStatus(tip, sessionData) {
     isOtherTaskComplete(tip, sessionData) ||
     isCheckAnswersConfirmed(sessionData)
   ) {
-    return 'In-progress'
+    return 'In progress'
   }
 
   return 'To do'
@@ -750,14 +750,14 @@ router.get('/webcaf/tip/current/my-account', function (req, res) {
       tipStatus: tipStatus,
       primaryActionText: primaryAction.text,
       primaryActionHref: primaryAction.href,
-      secondaryActionText: 'View final IAAR',
+      secondaryActionText: 'View final IARR',
       secondaryActionHref: '/webcaf/tip/current/iar-report-v6'
     },
     {
       id: 'GOV.UK Communications Hub',
       finalReportReference: 'CAF24092025ABCD',
       finalReportDate: '18 December 2025',
-      tipStatus: 'In-progress',
+      tipStatus: 'In progress',
       primaryActionText: 'Continue TIP',
       primaryActionHref: '/webcaf/tip/current/draft-tip',
       secondaryActionText: 'View final Peer Review report',

@@ -56,7 +56,7 @@ Review other recommendation and action
     {{ govukCharacterCount({
       name: "actionText",
       id: "actionText",
-        maxlength: 500,
+        maxwords: 500,
       value: item.actionDetails.actionText if item.actionDetails else "",
       label: {
         text: "What action will you take?",
