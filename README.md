@@ -4,7 +4,7 @@ Welcome :wave: to the working prototypes for The Cyber and Domains Protection Te
 ### Prototypes
 | **Prototype name**                             | **Version** | **Status** | 
 | ---------------------------------------------- | ----------- | ---------- |
-| Create a Targeted Improvement Plan (TIP)     | Version 1.1   | `Design` |
+| Create a Targeted Improvement Plan (TIP)     | Version 4   | `Design` |
 | Peer review a CAF self-assessment.             | Version 1.1   | `Live` |
 | Review a CAF self-assessment.                  | Version 4.1   | `Live` |
 | Complete a CAF self-assessment.                | Version 3.1   | `Live` |

@@ -104,7 +104,7 @@ function getTipPrimaryAction(tipStatus) {
     }
   }
 
-  if (tipStatus === 'Closed') {
+  if (tipStatus === 'Completed') {
     return {
       text: 'View TIP',
       href: '/webcaf/tip/current/tip-output'
@@ -457,7 +457,7 @@ function isTipPendingApproval(sessionData) {
 
 function getTipStatus(tip, sessionData) {
   if (sessionData.tipSubmitAndDownloadComplete === true) {
-    return 'Closed'
+    return 'Commpleted'
   }
 
   if (isTipPendingApproval(sessionData)) {
@@ -767,7 +767,7 @@ router.get('/webcaf/tip/current/my-account', function (req, res) {
       id: 'Cabinet HR Portal',
       finalReportReference: 'CAF24092025WXYZ',
       finalReportDate: '19 December 2025',
-      tipStatus: 'Closed',
+      tipStatus: 'Completed',
       primaryActionText: 'View TIP',
       primaryActionHref: '/webcaf/tip/current/tip-output',
       secondaryActionText: 'Download TIP (PDF)',
