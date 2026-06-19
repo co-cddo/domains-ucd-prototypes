@@ -772,11 +772,11 @@ router.get('/webcaf/tip/current/my-account', function (req, res) {
       finalReportDate: '19 December 2025',
       tipStatus: 'Completed',
       primaryActionText: 'View TIP',
-      primaryActionHref: '/webcaf/tip/current/tip-output',
+      primaryActionHref: '/webcaf/tip/current/tip-output-final',
       secondaryActionText: 'Download TIP (PDF)',
       secondaryActionHref: '/webcaf/tip/current/tip-output',
       thirdActionText: 'Download TIP data (XLS)',
-      thirdActionHref: '/webcaf/tip/current/tip-output'
+      thirdActionHref: '#'
     }
   ]
 

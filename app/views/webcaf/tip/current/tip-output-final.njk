@@ -19,7 +19,7 @@ Draft Target Improvement Plan output - SYS-0001 Microsoft CS version 3 (CAF24092
   items: [
     { text: "My account", href: "/webcaf/tip/current/my-account" },
     
-    { text: "Draft Targeted Improvement Plan (TIP)
+    { text: "Targeted Improvement Plan (TIP)
 " }
   ]
 
@@ -35,12 +35,12 @@ Draft Target Improvement Plan output - SYS-0001 Microsoft CS version 3 (CAF24092
   systemName: "Microsoft CS version 3",
   linkedReportReference: "CAF24092025FDMH",
   finalReportDate: "17 December 2025",
-  submissionReadiness: "Under review",
+  submissionReadiness: "Completed",
 
   confirmations: {
     priorityRecommendationsReviewed: "Completed",
     otherRecommendationsReviewed: "Completed",
-    checkAnswersConfirmed: "Under review",
+    checkAnswersConfirmed: "",
     actionsSignedOff: "Yes"
   },
 
@@ -1074,7 +1074,7 @@ otherRecommendations: [
 
 
 {# =========================================================
-   Header (keep your colour scheme / template)
+   Header (colour scheme / template)
    ========================================================= #}
 <header class="gem-c-inverse-header">
   <div class="gem-c-heading gem-c-heading--inverse">
@@ -1083,11 +1083,11 @@ otherRecommendations: [
     </span>
 
     <span class="gem-c-heading__xl govuk-heading-xl">
-     Draft Targeted Improvement Plan (TIP) 
+     Targeted Improvement Plan (TIP) 
     </span>
 
      <span class="gem-c-inverse-header__subtext">
-     <strong> Draft TIP report</strong>
+     <strong> TIP report</strong>
     </span>
     <br>
      <span class="gem-c-inverse-header__subtext">
@@ -1186,7 +1186,7 @@ otherRecommendations: [
           <dd class="govuk-summary-list__value">{{ tip.finalReportDate }}</dd>
         </div>
 
-       
+        
       </dl>
     </section>
 
@@ -1215,11 +1215,11 @@ otherRecommendations: [
           </dd>
         </div>
 
-        <div class="govuk-summary-list__row">
+       <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">Submission status</dt>
           <dd class="govuk-summary-list__value">
-            <strong class="govuk-tag govuk-tag--pink">
-              {{ tip.submissionReadiness }}
+            <strong class="govuk-tag govuk-tag--green">
+              {{ tip.submissionReadiness }} 
             </strong>
           </dd>
         </div>
