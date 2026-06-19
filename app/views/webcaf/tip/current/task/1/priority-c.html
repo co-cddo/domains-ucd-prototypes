@@ -21,12 +21,12 @@ Review priority recommendations and actions
 }) }}
 
 <div class="proto-admin govuk-!-margin-bottom-6">
-  <h2 class="govuk-heading-s">{{ progress.reviewed }} of {{ progress.total }} recommendations read</h2>
+  <h2 class="govuk-heading-s">{{ progress.reviewed }} of {{ progress.total }} recommendations responded</h2>
   <div class="progress-inactive">
     <div class="progress-active" style="width: {{ (progress.reviewed / progress.total * 100) | round(0, 'floor') }}%"></div>
   </div>
   <p class="govuk-body-s govuk-!-margin-top-2 govuk-!-margin-bottom-0">
-    {{ progress.actionAdded }} actions added · {{ progress.inProgress }} in progress · {{ progress.noActionPlanned }} no action planned · {{ progress.notReviewed }} not read yet
+    {{ progress.actionAdded }} actions added · {{ progress.inProgress }} in progress · {{ progress.noActionPlanned }} no action planned · {{ progress.notReviewed }} not responded
   </p>
 </div>
 {% endblock %}

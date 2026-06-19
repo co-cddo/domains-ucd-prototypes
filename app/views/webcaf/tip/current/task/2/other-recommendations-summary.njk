@@ -62,13 +62,14 @@ Other recommendations
     <h2 class="govuk-heading-m">You have reviewed {{ reviewed }} of 16 recommendations</h2>
 
     <p class="govuk-body">
-      You must review all the other recommendations and associated risks for this system.
+     You must review all the risks and recommendations. 
     </p>
 
     {{ govukWarningText({
-      text: "You do not have to provide actions for these recommendations, as the contributing outcomes met the Government CAF profile",
+      text: " Adding actions for other recommendations is optional, as the contributing outcomes met the target Government CAF profile",
       iconFallbackText: "Important"
     }) }}
+    <p>If you are not adding any actions, go to 'Mark all recommendations as reviewed' at the bottom of the page, then select 'Yes' and ‘Save and continue'.</p>
 
     <table class="govuk-table govuk-!-font-size-16 tip-table-compact">
       <thead class="govuk-table__head">

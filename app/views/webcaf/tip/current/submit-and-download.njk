@@ -29,14 +29,15 @@ Submit and download your TIP
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
   <span class="govuk-caption-l">{{ item.systemName or "Microsoft CS version 3" }} ({{ item.finalReportReference or "CAF24092025FDMH" }})</span>
-<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Submit your TIP to GovAssure for approval</h1>
+<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Submit your TIP for review</h1>
 
         <p class="govuk-body">
   Your Targeted Improvement Plan (TIP) is ready for submission.
 </p>
-
+<p>You can go back to check your actions, download the draft TIP to complete final sign-off, or continue to submission.</p>
     {{ govukInsetText({
-  text: "You can go back to check your actions, download the draft TIP to complete final sign-off, or continue to submission."
+  html: "
+  If there are any changes to your TIP needed after you submit it, the GovAssure team will contact you. You will then be able to return to WebCAF to make updates."
 }) }}
 
    {{ govukSummaryList({
@@ -67,6 +68,10 @@ Submit and download your TIP
     }
   ]
 }) }}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+
+  
 
    
     <form action="/webcaf/tip/current/confirmation" method="post" novalidate>
@@ -78,22 +83,29 @@ Submit and download your TIP
             classes: "govuk-fieldset__legend--m"
           }
         },
+        hint: {
+          text: ""
+        },
         items: [
           {
             value: "yes",
-            text: "I confirm that all actions in this TIP have been signed off by the relevant managers, teams or stakeholders.",
+            text: "I confirm that the contents of this TIP have been signed off by my organisation's GovAssure senior responsible officer (SRO). ",
             checked: data['confirmSubmit'] == 'yes'
           }
         ]
       }) }}
 
+
+
       {{ govukButton({
-        text: "Submit your TIP for approval"
+        text: "Submit your TIP for review"
       }) }}
       <p class="govuk-body">
   <a href="/webcaf/tip/current/check-answers" class="govuk-link">Back to check your answers</a>
 </p>
     </form>
+
+    
 
   </div>
 </div>

@@ -34,7 +34,7 @@ My account - Reviewers – GOV.UK Prototype Kit
   "To do": "govuk-tag--blue",
   "In progress": "govuk-tag--yellow",
   "In-progress": "govuk-tag--yellow",
-  "Pending approval": "govuk-tag--pink",
+  "Under review": "govuk-tag--pink",
   "Completed": "govuk-tag--green"
 } %}
   
@@ -71,6 +71,7 @@ My account - Reviewers – GOV.UK Prototype Kit
             <a class="govuk-link govuk-link--no-visited-state" href="{{ system.primaryActionHref }}" >
               {{ system.primaryActionText }}
             </a>
+            
             {% if system.secondaryActionText %}
               <br>
               <a class="govuk-link govuk-link--no-visited-state" href="{{ system.secondaryActionHref }}" target="_blank">

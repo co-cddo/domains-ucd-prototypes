@@ -61,7 +61,19 @@ Read recommendation and action
   </div>
 {% endset %}
 
-
+{% set noDateReasonHtml %}
+  <div class="govuk-!-margin-top-3">
+    {{ govukTextarea({
+      name: "noTimingReason",
+      id: "noTimingReason",
+      value: item.actionDetails.noTimingReason if item.actionDetails else "",
+      label: {
+        text: "Explain why you cannot provide a target date",
+        classes: "govuk-label--s"
+      }
+    }) }}
+  </div>
+{% endset %}
 
 {% set actionFieldsHtml %}
   <div class="govuk-!-margin-top-3">
@@ -102,7 +114,7 @@ Read recommendation and action
         }
       },
       hint: {
-        text: "This means whether you have the people, capacity and supporting resources needed to do the work."
+        text: "This means whether you have the people, capacity and supporting resources needed to do the work"
       },
       items: [
         {
@@ -135,7 +147,7 @@ Read recommendation and action
         }
       },
       hint: {
-        text: "This means whether the funding needed for the action has been approved."
+        text: "This means whether the funding needed for the action has been approved"
       },
       items: [
         {
@@ -207,7 +219,7 @@ Read recommendation and action
   items: [
     { text: "My account", href: "/webcaf/tip/current/my-account" },
     { text: "Edit draft TIP", href: "/webcaf/tip/current/draft-tip" },
-    { text: "Respond to priority recommendation and action", href: prioritySummaryHref },
+    { text: "Respond to priority recommendation", href: prioritySummaryHref },
     { text: item.recId }
   ]
 }) }}
@@ -224,7 +236,7 @@ Read recommendation and action
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 <span class="govuk-caption-l">{{ item.systemName or "Microsoft CS version 3" }} ({{ item.finalReportReference or "CAF24092025FDMH" }})</span>
-<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Respond to priority recommendation and action</h1>
+<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Respond to priority recommendation</h1>
 <p class="govuk-body govuk-!-margin-bottom-6"><strong>Recommendation ID:</strong> {{ item.recId }}</p>
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
@@ -288,7 +300,7 @@ Read recommendation and action
 
 <div id="action-details-section" class="tip-hidden govuk-!-margin-top-5">
   <h2 class="govuk-heading-l">Action details</h2>
-  <p class="govuk-body">Provide the details for the action you will take in response to this recommendation.</p>
+  <p class="govuk-body">Provide the details for the action or actions you will take in response to this recommendation.</p>
   <p>For help completing this section, go to the <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">GovAssure stage 5 guidance page (opens in new tab)</a></p>
   {{ actionFieldsHtml | safe }}
 </div>

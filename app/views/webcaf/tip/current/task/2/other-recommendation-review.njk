@@ -63,7 +63,7 @@ Review other recommendation and action
         classes: "govuk-label--m"
       },
       hint: {
-        text: "Describe the action and how it will implement the recommendation"
+        text: "Describe the action or actions and how they will implement the recommendation"
       }
     }) }}
 
@@ -77,7 +77,7 @@ Review other recommendation and action
         classes: "govuk-label--m"
       },
       hint: {
-        text: "Enter action owner's full name or team name "
+        text: "Name the person or team who has ultimate responsibility for implementing the action "
       }
     }) }}
 
@@ -197,7 +197,7 @@ Review other recommendation and action
   items: [
     { text: "My account", href: "/webcaf/tip/current/my-account" },
     { text: "Edit draft TIP", href: "/webcaf/tip/current/draft-tip" },
-    { text: "Review other recommendation and action", href: otherSummaryHref },
+    { text: "Review other recommendation", href: otherSummaryHref },
     { text: item.recId }
   ]
 }) }}
@@ -215,7 +215,7 @@ Review other recommendation and action
   <div class="govuk-grid-column-two-thirds">
 
     <span class="govuk-caption-l">{{ item.systemName or "Microsoft CS version 3" }} ({{ item.finalReportReference or "CAF24092025FDMH" }})</span>
-<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Review other recommendation and action</h1>
+<h1 class="govuk-heading-l govuk-!-margin-bottom-2">Review other recommendation</h1>
 <p class="govuk-body govuk-!-margin-bottom-6"><strong>Recommendation ID:</strong> {{ item.recId }}</p>
 
     <div class="govuk-summary-card">
@@ -277,7 +277,7 @@ Review other recommendation and action
 
         <div id="action-details-section" class="tip-hidden govuk-!-margin-top-5">
         <h2 class="govuk-heading-l">Action details</h2>
-        <p class="govuk-body">Provide the details for the action you will take in response to this recommendation.</p>
+        <p class="govuk-body">Provide the details for the action or actions you will take in response to this recommendation.</p>
         <p>For help completing this section, go to the <a href="#" class="govuk-link govuk-link--no-visited-state" rel="noreferrer noopener" target="_blank">GovAssure stage 5 guidance page (opens in new tab)</a></p>
         {{ actionFieldsHtml | safe }}
         </div>

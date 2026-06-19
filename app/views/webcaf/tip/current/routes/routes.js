@@ -97,7 +97,7 @@ function getTipPrimaryAction(tipStatus) {
     }
   }
 
-  if (tipStatus === 'Pending approval') {
+  if (tipStatus === 'Under review') {
     return {
       text: 'View TIP',
       href: '/webcaf/tip/current/tip-output'
@@ -461,7 +461,7 @@ function getTipStatus(tip, sessionData) {
   }
 
   if (isTipPendingApproval(sessionData)) {
-    return 'Pending approval'
+    return 'Under review'
   }
 
   if (
@@ -748,10 +748,13 @@ router.get('/webcaf/tip/current/my-account', function (req, res) {
       finalReportReference: tip.system.finalReportReference,
       finalReportDate: tip.system.finalReportDate,
       tipStatus: tipStatus,
+      thirdActionText: 'View final IARR',
+      thirdActionHref: '/webcaf/tip/current/iar-report-v6',
       primaryActionText: primaryAction.text,
       primaryActionHref: primaryAction.href,
-      secondaryActionText: 'View final IARR',
-      secondaryActionHref: '/webcaf/tip/current/iar-report-v6'
+      secondaryActionText: 'Start TIP template (XLS)',
+      secondaryActionHref: '#'
+      
     },
     {
       id: 'GOV.UK Communications Hub',
