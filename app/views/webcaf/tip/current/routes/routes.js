@@ -752,7 +752,7 @@ router.get('/webcaf/tip/current/my-account', function (req, res) {
       thirdActionHref: '/webcaf/tip/current/iar-report-v6',
       primaryActionText: primaryAction.text,
       primaryActionHref: primaryAction.href,
-      secondaryActionText: 'Start TIP template (XLS)',
+      secondaryActionText: 'Download TIP template (XLS)',
       secondaryActionHref: '#'
       
     },
