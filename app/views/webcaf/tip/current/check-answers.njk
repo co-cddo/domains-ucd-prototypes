@@ -115,7 +115,7 @@ Check your answers
 
      <h2 class="govuk-heading-l">Download your draft TIP</h2>
 <div id="changedName-hint" class="govuk-hint">
-      Your draft Targeted Improvement Plan (TIP) is ready to be downloaded and passed to the relevant managers, teams or stakeholders for final sign-off.
+      Your draft Targeted Improvement Plan (TIP) is ready to be downloaded and passed to the relevant managers, teams or stakeholders for final sign-off
     </div>
     <p class="govuk-body">
       <a href="/public/downloads/draft-tip-report.pdf" class="govuk-link govuk-link--no-visited-state" download="Draft-TIP-Report.pdf">Download draft TIP (PDF)</a><br>
@@ -123,6 +123,8 @@ Check your answers
     </p>
      
 <br>
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
 
     <form action="/webcaf/tip/current/check-answers" method="post" novalidate>
       {{ govukRadios({
@@ -135,7 +137,7 @@ Check your answers
           }
         },
          hint: {
-          text: ""
+          text: "Update one or more actions to continue"
         },
         items: [
           {
@@ -150,6 +152,8 @@ Check your answers
           }
         ]
       }) }}
+
+
 
       {{ govukButton({
         text: "Continue"
