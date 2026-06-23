@@ -137,7 +137,7 @@ Check your answers
           }
         },
          hint: {
-          text: "Update one or more actions to continue"
+          text: ""
         },
         items: [
           {
@@ -153,6 +153,10 @@ Check your answers
         ]
       }) }}
 
+{{ govukWarningText({
+  text: "Update one or more actions to continue.",
+  iconFallbackText: "Warning"
+}) }}
 
 
       {{ govukButton({
