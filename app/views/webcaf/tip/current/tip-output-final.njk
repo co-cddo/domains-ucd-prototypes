@@ -916,11 +916,7 @@ otherRecommendations: [
           <dd class="govuk-summary-list__value">{{ rec.recommendation }}</dd>
         </div>
 
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">Reviewed recommendation and risk</dt>
-          <dd class="govuk-summary-list__value">{{ rec.reviewed }}</dd>
-        </div>
-
+        
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">Status</dt>
           <dd class="govuk-summary-list__value">
@@ -1142,7 +1138,7 @@ otherRecommendations: [
       <p class="govuk-body">
       Your Targeted Improvement Plan (TIP) sets out the actions your organisation has committed to take to strengthen its cyber resilience in response to its GovAssure stage 4 review.
       <br><br>
-      It focuses on areas that need improvement to meet the target government Cyber Assessment Framework (CAF) profile.
+      It focuses on areas that need improvement to meet the target Government Cyber Assessment Framework (CAF) profile.
       <br><br>
       It lists your priority recommendations and other recommendations, with information you've added for each recommendation, including:
       </p>
@@ -1223,6 +1219,13 @@ otherRecommendations: [
             </strong>
           </dd>
         </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Submission date</dt>
+          <dd class="govuk-summary-list__value">
+            24 June 2026
+          </dd>
+        </div>
       </dl>
     </section>
 
@@ -1230,7 +1233,7 @@ otherRecommendations: [
       <h2 class="govuk-heading-l">Priority recommendations</h2>
 
       <p class="govuk-body">
-        Priority recommendations cover contributing outcomes that did not meet the target government CAF profile. Each priority recommendation either has an action planned or a reason why no action is planned.
+        Priority recommendations cover contributing outcomes that did not meet the target Government CAF profile. Each priority recommendation either has an action planned or a reason why no action is planned.
       </p>
 
       {% for rec in tip.priorityRecommendations %}
@@ -1242,7 +1245,7 @@ otherRecommendations: [
       <h2 class="govuk-heading-l">Other recommendations</h2>
 
       <p class="govuk-body">
-        Other recommendations cover contributing outcomes that met the target government CAF profile. Actions are optional for other recommendations.
+        Other recommendations cover contributing outcomes that met the target Government CAF profile. Actions are optional for other recommendations.
       </p>
 
       {% for rec in tip.otherRecommendations %}
